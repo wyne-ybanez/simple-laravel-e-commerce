@@ -7,6 +7,10 @@ import AppLayout from "../components/AppLayout.vue";
 
 const routes = [
     {
+        path: "/",
+        redirect: "/app",
+    },
+    {
         path: "/app",
         name: "app",
         component: AppLayout,
@@ -15,6 +19,44 @@ const routes = [
                 path: "dashboard",
                 name: "app.dashboard",
                 component: Dashboard,
+            },
+            {
+                path: "products",
+                name: "app.products",
+                component: Dashboard,
+            },
+            {
+                path: "users",
+                name: "app.users",
+                component: Dashboard,
+            },
+            {
+                path: "customers",
+                name: "app.customers",
+                component: Dashboard,
+            },
+            {
+                path: "customers/:id",
+                name: "app.customers.view",
+                component: Dashboard,
+            },
+            {
+                path: "orders",
+                name: "app.orders",
+                component: Dashboard,
+            },
+            {
+                path: "orders/:id",
+                name: "app.orders.view",
+                component: Dashboard,
+            },
+            {
+                path: "/report",
+                name: "reports",
+                component: Dashboard,
+                meta: {
+                    requiresAuth: true,
+                },
             },
         ],
     },
