@@ -6,18 +6,18 @@
 
     <div class="flex-1">
       <Navbar @toggle-sidebar="toggleSidebar"></Navbar>
-      <!--      Content-->
+      <!--     Content-->
       <main class="p-6 ">
         <router-view></router-view>
       </main>
-      <!--/      Content-->
+      <!--/    Content-->
     </div>
   </div>
   <Toast />
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import Sidebar from "./Sidebar.vue";
 import Navbar from "./Navbar.vue"
 
@@ -28,7 +28,20 @@ const {title} = defineProps({
 const sidebarOpened = ref(true)
 
 function toggleSidebar() {
-  sidebarOpened.value = !sidebarOpened
+  sidebarOpened.value = !sidebarOpened.value
+}
+
+onMounted(()=> {
+  handleSidebarOpened()
+  window.addEventListener('resize', handleSidebarOpened)
+})
+
+onUnmounted(()=> {
+  window.removeEventListener('resize', handleSidebarOpened)
+})
+
+function handleSidebarOpened() {
+  sidebarOpened.value = window.outerWidth > 768 // returns true or false based on argument
 }
 </script>
 
