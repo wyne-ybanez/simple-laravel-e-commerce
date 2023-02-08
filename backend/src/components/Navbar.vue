@@ -1,6 +1,9 @@
 <template>
     <header class="flex justify-between items-center p-3 h-14 shadow bg-white">
-    <button class="flex items-center justify-center rounded transition-colors w-8 h-8 text-gray-700 hover:bg-black/10">
+    <button
+       @click="emit('toggle-sidebar')"
+        class="flex items-center justify-center rounded transition-colors w-8 h-8 text-gray-700 hover:bg-black/10
+    ">
       <Bars3Icon class="w-6"/>
     </button>
     <Menu as="div" class="relative inline-block text-left">
@@ -67,6 +70,10 @@
 import { Bars3Icon, ArrowLeftOnRectangleIcon, UserIcon } from '@heroicons/vue/24/outline'
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import { ChevronDownIcon } from '@heroicons/vue/20/solid';
+
+const emit = defineEmits(
+  ['toggle-sidebar']
+)
 </script>
 
 <style scoped>
