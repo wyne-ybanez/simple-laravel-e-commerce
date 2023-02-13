@@ -40,11 +40,11 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout() 
+    public function logout()
     {
         /** @var \App\Models\User $user */
         $user = Auth::user();
-        $user->currentAccessToken()->delete();
+        $user->tokens()->delete();
 
         return response('', 204);
     }
