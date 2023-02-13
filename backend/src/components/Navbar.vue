@@ -70,10 +70,19 @@
 import { Bars3Icon, ArrowLeftOnRectangleIcon, UserIcon } from '@heroicons/vue/24/outline'
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import { ChevronDownIcon } from '@heroicons/vue/20/solid';
+import store from '../store';
+import router from '../router';
 
 const emit = defineEmits(
   ['toggle-sidebar']
 )
+
+function logout() {
+  store.dispatch('logout')
+  .then(() => {
+      router.push({name: 'login'})
+  })
+}
 </script>
 
 <style scoped>

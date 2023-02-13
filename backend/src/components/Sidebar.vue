@@ -18,7 +18,7 @@
         Products
       </span>
     </router-link>
-    <router-link :to="{name: 'app.orders'}"
+    <router-link :to="{name: 'app.dashboard'}"
                  class="flex items-center p-2 rounded transition-colors hover:bg-black/30">
       <span class="mr-2 text-gray-300">
         <CursorArrowRaysIcon class="w-5"/>
@@ -27,7 +27,7 @@
         Orders
       </span>
     </router-link>
-    <router-link :to="{name: 'app.users'}"
+    <router-link :to="{name: 'app.dashboard'}"
                  class="flex items-center p-2 rounded transition-colors hover:bg-black/30">
       <span class="mr-2 text-gray-300">
         <UsersIcon class="w-5"/>
@@ -36,7 +36,7 @@
         Users
       </span>
     </router-link>
-    <router-link :to="{name: 'app.customers'}"
+    <router-link :to="{name: 'app.dashboard'}"
                  class="flex items-center p-2 rounded transition-colors hover:bg-black/30">
       <span class="mr-2 text-gray-300">
         <UserGroupIcon class="w-5"/>

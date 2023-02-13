@@ -31,39 +31,39 @@ const routes = [
                 name: "app.products",
                 component: Products,
             },
-            {
-                path: "users",
-                name: "app.users",
-                component: Dashboard,
-            },
-            {
-                path: "customers",
-                name: "app.customers",
-                component: Dashboard,
-            },
-            {
-                path: "customers/:id",
-                name: "app.customers.view",
-                component: Dashboard,
-            },
-            {
-                path: "orders",
-                name: "app.orders",
-                component: Dashboard,
-            },
-            {
-                path: "orders/:id",
-                name: "app.orders.view",
-                component: Dashboard,
-            },
-            {
-                path: "/report",
-                name: "reports",
-                component: Dashboard,
-                meta: {
-                    requiresAuth: true,
-                },
-            },
+            // {
+            //     path: "users",
+            //     name: "app.users",
+            //     component: Dashboard,
+            // },
+            // {
+            //     path: "customers",
+            //     name: "app.customers",
+            //     component: Dashboard,
+            // },
+            // {
+            //     path: "customers/:id",
+            //     name: "app.customers.view",
+            //     component: Dashboard,
+            // },
+            // {
+            //     path: "orders",
+            //     name: "app.orders",
+            //     component: Dashboard,
+            // },
+            // {
+            //     path: "orders/:id",
+            //     name: "app.orders.view",
+            //     component: Dashboard,
+            // },
+            // {
+            //     path: "/report",
+            //     name: "reports",
+            //     component: Dashboard,
+            //     meta: {
+            //         requiresAuth: true,
+            //     },
+            // },
         ],
     },
     {
