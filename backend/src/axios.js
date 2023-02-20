@@ -1,6 +1,6 @@
 import axios from "axios";
 import store from "./store";
-import router from "./router/index.js";
+import router from "./router";
 
 const axiosClient = axios.create({
     baseURL: `${import.meta.env.VITE_API_BASE_URL}/api`,
@@ -17,7 +17,7 @@ axiosClient.interceptors.response.use(
     },
     (error) => {
         if (error.response.status === 401) {
-            store.commit("setToken", null);
+            sessionStorage.removeItem("TOKEN");
             router.push({ name: "login" });
         }
         throw error;

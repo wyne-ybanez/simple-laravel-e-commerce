@@ -80,9 +80,9 @@ const currentUser = computed(() => store.state.user.data);
 
 function logout() {
   store.dispatch('logout')
-  .then(() => {
-      router.push({name: 'login'})
-  })
+    .then(() => {
+        router.push({name: 'login'})
+    })
 }
 </script>
 
