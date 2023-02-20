@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
-import * as actions from './actions';
+import state from "./state";
+import * as actions from "./actions";
 import * as mutations from "./mutations";
 
 const store = createStore({
@@ -10,8 +11,8 @@ const store = createStore({
         },
     },
     getters: {},
-    actions: {},
-    mutations: {},
-})
+    actions,
+    mutations,
+});
 
 export default store;
