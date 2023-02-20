@@ -1,7 +1,7 @@
 export default {
     user: {
-        // token: sessionStorage.getItem('TOKEN'),
-        token: 1234,
+        token: sessionStorage.getItem('TOKEN'),
+        // token: 1234,
         data: {},
     },
     products: {
