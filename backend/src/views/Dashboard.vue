@@ -1,15 +1,13 @@
 <template>
-    <div class="mb-2 flex items-center justify-between">
-        <h1 class="text-3xl font-semibold">Dashboard</h1>
-    </div>
+  <h1>Dashboard</h1>
 </template>
 
 <script>
 export default {
-    name: 'Dashboard'
+  name: "Dashboard"
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>

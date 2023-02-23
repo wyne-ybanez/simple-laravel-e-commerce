@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +11,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'email'=> ['required', 'email'],
             'password' => 'required',
             'remember' => 'boolean'
         ]);
@@ -32,24 +31,19 @@ class AuthController extends Controller
                 'message' => 'You don\'t have permission to authenticate as admin'
             ], 403);
         }
-        if (!$user->email_verified_at) {
-            Auth::logout();
-            return response([
-                'message' => 'Your email address is not verified'
-            ], 403);
-        }
         $token = $user->createToken('main')->plainTextToken;
         return response([
             'user' => new UserResource($user),
             'token' => $token
         ]);
+
     }
 
     public function logout()
     {
         /** @var \App\Models\User $user */
         $user = Auth::user();
-        $user->currentAccessToken()->delete();
+        $user->tokens()->delete();
 
         return response('', 204);
     }
@@ -59,4 +53,3 @@ class AuthController extends Controller
         return new UserResource($request->user());
     }
 }
-
