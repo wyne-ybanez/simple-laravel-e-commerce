@@ -29,7 +29,7 @@
           <h3 class="text-zinc-500 pb-2">Email</h3>
           <label for="email-address" class="sr-only">Email address</label>
           <input id="email-address" name="email" type="email" autocomplete="email" required="" v-model="user.email"
-                 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-zinc-300 placeholder-zinc-400 bg-black text-white focus:ring-zinc-500 sm:text-sm"
+                 class="appearance-none rounded-none relative block w-full px-3 py-3 border border-zinc-300 placeholder-zinc-400 bg-black text-white focus:ring-zinc-500 focus:border-white sm:text-sm"
                  placeholder="Email address"/>
         </div>
         <div class="pb-2">
@@ -37,7 +37,7 @@
           <label for="password" class="sr-only">Password</label>
           <input id="password" name="password" type="password" autocomplete="current-password" required=""
                  v-model="user.password"
-                 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-zinc-300 placeholder-zinc-400 bg-black text-white focus:ring-zinc-500 sm:text-sm"
+                 class="appearance-none rounded-none relative block w-full px-3 py-3 border border-zinc-300 placeholder-zinc-400 bg-black text-white focus:ring-zinc-500 focus:border-white sm:text-sm"
                  placeholder="Password"/>
         </div>
       </div>
