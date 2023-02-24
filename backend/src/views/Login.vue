@@ -1,5 +1,5 @@
 <template>
-  <GuestLayout title="Sign in to your account">
+  <GuestLayout title="Sign into your account">
     <form class="mt-8 space-y-6" method="POST" @submit.prevent="login">
       <div v-if="errorMsg" class="flex items-center justify-between py-3 px-5 bg-red-500 text-white rounded">
         {{ errorMsg }}
@@ -24,18 +24,20 @@
       </span>
       </div>
       <input type="hidden" name="remember" value="true"/>
-      <div class="rounded-md shadow-sm -space-y-px">
-        <div>
+      <div class="rounded-sm shadow-sm space-y-8">
+        <div class="pt-2">
+          <h3 class="text-zinc-500 pb-2">Email</h3>
           <label for="email-address" class="sr-only">Email address</label>
           <input id="email-address" name="email" type="email" autocomplete="email" required="" v-model="user.email"
-                 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-zinc-300 placeholder-zinc-400 bg-black text-white focus:ring-zinc-500 sm:text-sm"
                  placeholder="Email address"/>
         </div>
-        <div>
+        <div class="pb-2">
+          <h3 class="text-zinc-500 pb-2">Password</h3>
           <label for="password" class="sr-only">Password</label>
           <input id="password" name="password" type="password" autocomplete="current-password" required=""
                  v-model="user.password"
-                 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-zinc-300 placeholder-zinc-400 bg-black text-white focus:ring-zinc-500 sm:text-sm"
                  placeholder="Password"/>
         </div>
       </div>
@@ -43,12 +45,12 @@
       <div class="flex items-center justify-between">
         <div class="flex items-center">
           <input id="remember-me" name="remember-me" type="checkbox" v-model="user.remember"
-                 class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"/>
-          <label for="remember-me" class="ml-2 block text-sm text-gray-900"> Remember me </label>
+                 class="h-4 w-4 text-green-400 focus:ring-green-500 border-green-300 rounded cursor-pointer"/>
+          <label for="remember-me" class="ml-2 block text-base text-gray-500"> Remember me </label>
         </div>
 
-        <div class="text-sm">
-          <router-link :to="{name: 'requestPassword'}" class="font-medium text-indigo-600 hover:text-indigo-500"> Forgot
+        <div class="text-base">
+          <router-link :to="{name: 'requestPassword'}" class="font-medium text-gray-500 hover:text-white"> Forgot
             your password?
           </router-link>
         </div>
@@ -57,10 +59,10 @@
       <div>
         <button type="submit"
                 :disabled="loading"
-                class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-base font-medium rounded-sm text-white bg-zinc-800 hover:bg-white hover:text-black transition duration-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-zinc-500"
                 :class="{
                   'cursor-not-allowed': loading,
-                  'hover:bg-indigo-500': loading,
+                  'hover:bg-white': loading,
                 }">
           <svg
             v-if="loading"
@@ -83,8 +85,8 @@
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
             ></path>
           </svg>
-          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-              <LockClosedIcon class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true"/>
+            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+              <LockClosedIcon class="h-5 w-5 text-zinc-500 group-hover:text-zinc-400" aria-hidden="true"/>
             </span>
           Sign in
         </button>
