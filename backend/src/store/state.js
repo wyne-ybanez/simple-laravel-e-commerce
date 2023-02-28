@@ -5,6 +5,6 @@ export default {
   },
   products: {
     loading: false,
-    data: [],
+    response: [],
   }
 }

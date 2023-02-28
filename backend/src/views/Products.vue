@@ -14,7 +14,7 @@
         <span class="whitespace-nowrap mr-3">Per Page</span>
         <select @change="getProducts(null)" v-model="perPage"
           class="appearance-none relative block w-24 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900
-                 rounded-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                 rounded-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
         >
           <option value="5">5</option>
           <option value="10">10</option>
@@ -26,11 +26,12 @@
       <div>
         <input v-model="search" @change="getProducts(null)"
           class="appearance-none relative block w-48 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900
-                 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                 rounded-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm"
           placeholder="Type to Search products">
       </div>
     </div>
-    <Spinner v-if="products.loading" />
+    <Spinner v-if="products.loading"
+      class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center" />
     <template v-else>
 
       <table class="table-auto w-full">
@@ -39,21 +40,21 @@
             <th class="border-b-2 p-2 text-left">ID</th>
             <th class="border-b-2 p-2 text-left">Image</th>
             <th class="border-b-2 p-2 text-left">Title</th>
-            <th class="border-b-2 p-2 text-left">Price</th>
-            <th class="border-b-2 p-2 text-left">Last Updated At</th>
+            <th class="border-b-2 p-2 text-left">Value</th>
+            <th class="border-b-2 p-2 text-left">Last Updated</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="product of products.data">
             <td class="border-b p-2">{{ product.id }}</td>
             <td class="border-b p-2">
-              <img src="w-16" :src="product.image" :alt="product.title">
+              <img class="w-16 h-16 object-cover" :src="product.image" :alt="product.title">
             </td>
             <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis">
               {{ product.title }}
             </td>
             <td class="border-b p-2">
-              {{ $filters.currencyUSD(product.price) }}
+              {{ product.price }}
             </td>
             <td class="border-b p-2 ">
               {{ product.updated_at }}
@@ -67,7 +68,22 @@
 </template>
 
 <script setup>
+import { computed, ref, onMounted } from 'vue';
+import Spinner from "../components/core/Spinner.vue"
+import store from '../store/index.js';
+import PRODUCTS_PER_PAGE from '../constants.js'
 
+const perPage = ref(PRODUCTS_PER_PAGE)
+const search = ref('')
+const products = computed(() => store.state.products)
+
+onMounted(() => {
+  getProducts();
+})
+
+function getProducts() {
+  store.dispatch('getProducts')
+}
 </script>
 
 <style scoped>
