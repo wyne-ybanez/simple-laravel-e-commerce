@@ -3,4 +3,8 @@ export default {
     token: sessionStorage.getItem('TOKEN'),
     data: {}
   },
+  products: {
+    loading: false,
+    data: [],
+  }
 }
