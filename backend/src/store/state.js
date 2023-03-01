@@ -1,10 +1,16 @@
 export default {
   user: {
     token: sessionStorage.getItem('TOKEN'),
-    data: {}
+    data: {},
   },
   products: {
     loading: false,
-    response: [],
+    links: [],
+    from: null,
+    to: null,
+    page: 1,
+    limit: null,
+    total: null,
+    // response: [],
   }
 }

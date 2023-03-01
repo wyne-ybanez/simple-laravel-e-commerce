@@ -11,9 +11,21 @@ export function setToken(state, token) {
   }
 }
 
-// Give an empty object as a parameter
+// Let response default to null as a parameter
 // Will be set to undefined otherwise and log an error
-export function setProduct(state, [loading, response = {}]) {
+export function setProduct(state, [loading, response = null]) {
+
+  if (response) {
+    state.products = {
+        data: response.data,
+        links: response.meta.links,
+        total: response.meta.total,
+        limit: response.meta.per_page,
+        from: response.meta.from,
+        to: response.meta.to,
+        page: response.meta.current_page,
+    };
+  }
+
   state.products.loading = loading;
-  state.products.data = response.data;
 }

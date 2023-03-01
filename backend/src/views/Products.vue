@@ -1,4 +1,7 @@
 <template>
+  <!-- Uncomment to see data output: -->
+  <!-- <pre>{{ products }}</pre> -->
+  
   <div class="flex items-center justify-between mb-3">
     <h1 class="text-3xl font-semibold">Products</h1>
     <button type="submit"
@@ -8,6 +11,7 @@
     Add Product
     </button>
   </div>
+  <!-- Paginate options -->
   <div class="bg-white p-4 rounded-md shadow">
     <div class="flex justify-between border-b-2 pb-3">
       <div class="flex items-center">
@@ -30,10 +34,12 @@
           placeholder="Type to Search products">
       </div>
     </div>
+    <!-- Spinner -->
     <Spinner v-if="products.loading"
-      class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center" />
+      class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center" 
+    />
+    <!-- Products Table -->
     <template v-else>
-
       <table class="table-auto w-full">
         <thead>
           <tr>
@@ -62,8 +68,39 @@
           </tr>
         </tbody>
       </table>
-
+      <!-- // Pagination (Network XHR: 'meta' values) -->
+      <div class="flex justify-between items-center mt-5">
+        <span>
+          Showing from {{ products.from }} to {{ products.to }}
+        </span>
+        <nav
+          v-if="products.total > products.limit"
+          class="relative z-0 inline-flex justify-center rounded-sm shadow-sm -space-x-px"
+          aria-label="Pagination"
+        >
+          <a
+            v-for="(link, i) of products.links"
+            :key="i"
+            :disabled="!link.url"
+            href="#"
+            @click.prevent="getForPage($event, link)"
+            aria-current="page"
+            class="relative inline-flex items-center px-4 py-2 border text-sm font-base whitespace-nowrap"
+            :class="[
+              link.active
+                ? 'z-10 bg-gray-50 border-gray-400 text-gray-500'
+                : 'bg-white border-gray-200 text-gray-500 hover:bg-gray-50',
+              i === 0 ? 'rounded-l-full' : '',
+              i === products.links.length - 1 ? 'rounded-r-full' : '',
+              !link.url ? ' bg-gray-100 text-gray-500 hover:bg-gray-100': ''
+              ]"
+            v-html="link.label"
+          >
+          </a>
+        </nav>
+      </div>
     </template>
+
   </div>
 </template>
 
@@ -81,8 +118,15 @@ onMounted(() => {
   getProducts();
 })
 
-function getProducts() {
-  store.dispatch('getProducts')
+function getProducts(url = null) {
+  store.dispatch('getProducts', {url})
+}
+
+function getForPage(e, link) {
+  if (!link.url || link.active) {
+    return
+  }
+  getProducts(link.url)
 }
 </script>
 
