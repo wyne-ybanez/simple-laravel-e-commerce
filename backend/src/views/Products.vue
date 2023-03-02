@@ -90,8 +90,8 @@
               link.active
                 ? 'z-10 bg-gray-50 border-gray-400 text-gray-500'
                 : 'bg-white border-gray-200 text-gray-500 hover:bg-gray-50',
-              i === 0 ? 'rounded-l-full' : '',
-              i === products.links.length - 1 ? 'rounded-r-full' : '',
+              i === 0 ? 'rounded-l-sm' : '',
+              i === products.links.length - 1 ? 'rounded-r-sm' : '',
               !link.url ? ' bg-gray-100 text-gray-500 hover:bg-gray-100': ''
               ]"
             v-html="link.label"
