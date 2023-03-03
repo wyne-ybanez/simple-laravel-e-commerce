@@ -1,38 +1,26 @@
 <template>
-  <div class="w-[200px] transition-all bg-black text-zinc-400 py-4 px-2">
+  <div class="w-[200px] transition-all bg-black text-zinc-400 font-sans py-4 px-2">
     <router-link :to="{name: 'app.dashboard'}"
-                 class="flex items-center p-2 mb-4 rounded transition-colors hover:bg-zinc-800 hover:text-white">
-      <span class="mx-2 text-zinc-400">
-        <HomeIcon class="w-5"/>
-      </span>
-      <span class="text-sm">
+                 class="flex items-center p-2 pl-12 mb-4 rounded transition-colors hover:bg-zinc-800 hover:text-white">
+      <span class="text-md">
         Dashboard
       </span>
     </router-link>
     <router-link :to="{name: 'app.products'}"
-                 class="flex items-center p-2 mb-4 rounded transition-colors hover:bg-zinc-800 hover:text-white">
-      <span class="mx-2 text-zinc-400 ">
-        <ViewListIcon class="w-5"/>
-      </span>
-      <span class="text-sm">
+                 class="flex items-center p-2 pl-12 mb-4 rounded transition-colors hover:bg-zinc-800 hover:text-white">
+      <span class="text-md">
         Products
       </span>
     </router-link>
     <router-link :to="{name: 'app.dashboard'}"
-                 class="flex items-center p-2 mb-4 rounded transition-colors hover:bg-zinc-800 hover:text-white">
-      <span class="mx-2 text-zinc-400">
-        <UsersIcon class="w-5"/>
-      </span>
-      <span class="text-sm">
+                 class="flex items-center p-2 pl-12 mb-4 rounded transition-colors hover:bg-zinc-800 hover:text-white">
+      <span class="text-md">
         Users
       </span>
     </router-link>
     <router-link :to="{name: 'app.dashboard'}"
-                 class="flex items-center p-2 mb-4 rounded transition-colors hover:bg-zinc-800 hover:text-white">
-      <span class="mx-2 text-zinc-400">
-        <ChartBarIcon class="w-5"/>
-      </span>
-      <span class="text-sm">
+                 class="flex items-center p-2 pl-12 mb-4 rounded transition-colors hover:bg-zinc-800 hover:text-white">
+      <span class="text-md">
         Reports
       </span>
     </router-link>
@@ -40,7 +28,7 @@
 </template>
 
 <script setup>
-  import {HomeIcon, UsersIcon, ViewListIcon, ChartBarIcon} from '@heroicons/vue/outline'
+
 </script>
 
 <style scoped>

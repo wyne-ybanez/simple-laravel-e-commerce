@@ -1,5 +1,5 @@
 <template>
-  <div v-if="currentUser.id" class="min-h-full bg-gray-200 flex">
+  <div v-if="currentUser.id" class="min-h-full bg-gray-100 flex">
     <!--    Sidebar-->
     <Sidebar :class="{'-ml-[200px]': !sidebarOpened}"/>
     <!--/    Sidebar-->
@@ -13,7 +13,7 @@
       <!--      Content-->
     </div>
   </div>
-  <div v-else class="min-h-full bg-gray-200 flex items-center justify-center">
+  <div v-else class="min-h-full bg-gray-100 flex items-center justify-center">
     <Spinner />
   </div>
 </template>

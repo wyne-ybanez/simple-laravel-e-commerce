@@ -1,19 +1,16 @@
 <template>
-  <!-- Uncomment to see data output: -->
-  <!-- <pre>{{ products }}</pre> -->
-  
   <div class="flex items-center justify-between mb-3">
-    <h1 class="text-3xl font-semibold">Products</h1>
+    <h1 class="text-lg font-normal">Products</h1>
     <button type="submit"
-      class="y-2 px-4 border border-transparent text-sm font-medium rounded-sm text-white bg-green-500
-             hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+      class="py-1 px-16 border border-transparent text-sm font-light rounded-sm text-white bg-green-600
+             hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-700"
     >
     Add Product
     </button>
   </div>
   <!-- Paginate options -->
-  <div class="bg-white p-4 rounded-md shadow">
-    <div class="flex justify-between border-b-2 pb-3">
+  <div class="bg-white p-4 rounded shadow">
+    <div class="flex justify-between pb-5">
       <div class="flex items-center">
         <span class="whitespace-nowrap mr-3">Per Page</span>
         <select @change="getProducts(null)" v-model="perPage"
@@ -36,18 +33,18 @@
     </div>
     <!-- Spinner -->
     <Spinner v-if="products.loading"
-      class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center" 
+      class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"
     />
     <!-- Products Table -->
     <template v-else>
       <table class="table-auto w-full">
-        <thead>
+        <thead class="text-left">
           <tr>
-            <th class="border-b-2 p-2 text-left">ID</th>
-            <th class="border-b-2 p-2 text-left">Image</th>
-            <th class="border-b-2 p-2 text-left">Title</th>
-            <th class="border-b-2 p-2 text-left">Value</th>
-            <th class="border-b-2 p-2 text-left">Last Updated</th>
+            <th class="border-b p-2 font-medium">ID</th>
+            <th class="border-b p-2 font-medium">Image</th>
+            <th class="border-b p-2 font-medium">Title</th>
+            <th class="border-b p-2 font-medium">Value</th>
+            <th class="border-b p-2 font-medium">Last Updated</th>
           </tr>
         </thead>
         <tbody>
