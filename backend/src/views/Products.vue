@@ -9,11 +9,11 @@
     </button>
   </div>
   <!-- Paginate options -->
-  <div class="bg-white p-4 rounded shadow">
+  <div class="bg-white p-4 rounded border">
     <div class="flex justify-between pb-5">
       <div class="flex items-center">
         <span class="whitespace-nowrap mr-3">Per Page</span>
-        <select @change="getProducts(null)" v-model="perPage"
+        <select v-model="perPage" @change="getProducts(null)" 
           class="appearance-none relative block w-24 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900
                  rounded-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
         >
@@ -89,7 +89,7 @@
                 : 'bg-white border-gray-200 text-gray-500 hover:bg-gray-50',
               i === 0 ? 'rounded-l-sm' : '',
               i === products.links.length - 1 ? 'rounded-r-sm' : '',
-              !link.url ? ' bg-gray-100 text-gray-500 hover:bg-gray-100': ''
+              !link.url ? 'hidden hover:bg-gray-50 text-gray-500': ''
               ]"
             v-html="link.label"
           >
@@ -116,7 +116,11 @@ onMounted(() => {
 })
 
 function getProducts(url = null) {
-  store.dispatch('getProducts', {url})
+  store.dispatch('getProducts', {
+    url,
+    search: search.value,
+    perPage: perPage.value,
+  })
 }
 
 function getForPage(e, link) {
