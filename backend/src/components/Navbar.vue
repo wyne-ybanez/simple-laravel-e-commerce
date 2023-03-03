@@ -1,16 +1,55 @@
 <template>
-  <header class="flex justify-between items-center p-3 h-14 shadow bg-white">
+  <header class="flex justify-between items-center pt-3 pb-14 px-6 shadow bg-black">
+    <!-- Hamburger -->
     <button @click="emit('toggle-sidebar')"
-            class="flex items-center justify-center rounded transition-colors w-8 h-8 text-gray-700 hover:bg-black/10">
+            class="flex items-center justify-center rounded transition-colors w-8 h-8 text-zinc-500 hover:text-white md:hidden block">
       <MenuIcon class="w-6"/>
     </button>
+
+    <!-- Site name -->
+    <div class="text-zinc-200 md:block hidden">
+      <router-link :to="{name: 'app.dashboard'}">
+        <span class="pr-2">Development Store</span>
+        <span class="rounded-full bg-red-600 px-1 uppercase text-xs text-black">demo</span>
+      </router-link>
+    </div>
+
+    <!-- Navbar links -->
+    <div class="text-zinc-500 justify-between md:block hidden">
+      <router-link :to="{name: 'app.dashboard'}"
+                  class="py-2 px-5 mb-4 transition-colors hover:text-white">
+        <span class="text-md">
+          Dashboard
+        </span>
+      </router-link>
+      <router-link :to="{name: 'app.products'}"
+                  class="py-2 px-5 mb-4 transition-colors hover:text-white">
+        <span class="text-md">
+          Products
+        </span>
+      </router-link>
+      <router-link :to="{name: 'app.dashboard'}"
+                  class="py-2 px-5 mb-4 transition-colors hover:text-white">
+        <span class="text-md">
+          Users
+        </span>
+      </router-link>
+      <router-link :to="{name: 'app.dashboard'}"
+                  class="py-2 px-5 mb-4 transition-colors hover:text-white">
+        <span class="text-md">
+          Reports
+        </span>
+      </router-link>
+    </div>
+
+    <!-- Avatar dropdown -->
     <Menu as="div" class="relative inline-block text-left">
-      <MenuButton class="flex items-center">
+      <MenuButton class="flex items-center text-zinc-500 hover:text-white">
         <img src="https://randomuser.me/api/portraits/men/1.jpg" class="rounded-full w-8 mr-2">
-        <small>{{currentUser.name}}</small>
+        <small class="">{{currentUser.name}}</small>
         <ChevronDownIcon
-          class="h-5 w-5 text-violet-200 hover:text-violet-100"
-          aria-hidden="true"
+            class="h-5 w-5"
+            aria-hidden="true"
         />
       </MenuButton>
 
