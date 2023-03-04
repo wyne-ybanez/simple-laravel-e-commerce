@@ -1,17 +1,8 @@
 <template>
-  <div class="flex items-center justify-between mb-3">
-    <h1 class="text-lg font-normal">Products</h1>
-    <button type="submit"
-      class="py-2 px-6 border border-transparent text-sm font-light rounded-sm text-white bg-green-600
-             hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-700"
-    >
-    Add Product
-    </button>
-  </div>
   <div class="bg-white p-4 rounded border">
     <div class="flex justify-between pb-5">
       <div class="flex items-center">
-        <!-- Paginate options -->
+        <!-- List options -->
         <span class="whitespace-nowrap mr-3">Per Page</span>
         <select v-model="perPage" @change="getProducts(null)"
           class="appearance-none relative block w-24 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900
@@ -32,7 +23,7 @@
           placeholder="Search Products">
       </div>
     </div>
-    <!-- Products Table -->
+    <!-- Products table -->
     <table class="table-auto w-full">
       <thead class="text-left">
         <tr>
@@ -80,7 +71,7 @@
         </tr>
       </tbody>
     </table>
-    <!-- // Pagination (Network XHR: 'meta' values) -->
+    <!-- Pagination -->
     <div v-if="!products.loading" class="flex justify-between items-center mt-5">
       <span>
         Showing from {{ products.from }} to {{ products.to }}
@@ -116,10 +107,10 @@
 
 <script setup>
 import { computed, ref, onMounted } from 'vue'
-import Spinner from "../components/core/Spinner.vue"
-import store from '../store/index.js'
-import PRODUCTS_PER_PAGE from '../constants.js'
-import TableHeaderCell from '../components/core/Table/TableHeaderCell.vue';
+import Spinner from "../../components/core/Spinner.vue"
+import store from '../../store/index.js'
+import PRODUCTS_PER_PAGE from '../../constants.js'
+import TableHeaderCell from '../../components/core/Table/TableHeaderCell.vue';
 
 const perPage = ref(PRODUCTS_PER_PAGE)
 const search = ref('')
