@@ -10,7 +10,7 @@
     <div class="text-zinc-200 md:block hidden">
       <router-link :to="{name: 'app.dashboard'}">
         <span class="pr-2">Development Store</span>
-        <span class="rounded-full bg-red-600 px-1 uppercase text-xs text-black">demo</span>
+        <span class="rounded-full bg-red-600 px-1 uppercase text-xs text-black font-light">demo</span>
       </router-link>
     </div>
 
@@ -52,7 +52,6 @@
             aria-hidden="true"
         />
       </MenuButton>
-
       <transition
         enter-active-class="transition duration-100 ease-out"
         enter-from-class="transform scale-95 opacity-0"
