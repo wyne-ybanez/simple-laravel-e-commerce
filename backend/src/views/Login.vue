@@ -45,7 +45,7 @@
       <div class="flex items-center justify-between">
         <div class="flex items-center">
           <input id="remember-me" name="remember-me" type="checkbox" v-model="user.remember"
-                 class="h-4 w-4 text-green-400 focus:ring-green-500 border-green-300 rounded cursor-pointer"/>
+                 class="h-4 w-4 text-black focus:outline-none focus:ring-0 rounded cursor-pointer"/>
           <label for="remember-me" class="ml-2 block text-base text-gray-500"> Remember me </label>
         </div>
 
