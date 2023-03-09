@@ -27,29 +27,44 @@
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+              class="w-full max-w-md transform overflow-hidden rounded-md text-left align-middle shadow-xl bg-green-100 transition-all"
             >
-              <DialogTitle
-                as="h3"
-                class="text-lg font-medium leading-6 text-gray-900"
-              >
-                Test Modal
-              </DialogTitle>
-              <div class="mt-2">
-                <p class="text-sm text-gray-500">
-                  Your test modal appears successfully.
-                </p>
-              </div>
-
-              <div class="mt-4">
+            <Spinner v-if="loading"
+                       class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"/>
+            <header class="py-3 px-4 flex justify-between items-center">
+                <DialogTitle as="h3" class="text-lg leading-6 font-medium text-gray-900">
+                  {{ product.id ? `Update product: "${props.product.title}"` : 'Add Product' }}
+                </DialogTitle>
                 <button
-                  type="button"
-                  class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                  @click="closeModal"
+                  @click="closeModal()"
+                  class="w-8 h-8 flex items-center justify-center rounded-full transition-colors cursor-pointer hover:bg-[rgba(0,0,0,0.2)]"
                 >
-                  Got it, thanks!
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
                 </button>
-              </div>
+            </header>
+            <form @submit.prevent="onSubmit">
+                <div class="bg-white px-4 pt-5 pb-4">
+                    <CustomInput class="mb-2" v-model="product.title" label="Product Title"/>
+                    <CustomInput type="file" class="mb-2" label="Product Image" @change="file => product.image = file"/>
+                    <CustomInput class="mb-2" v-model="product.title" label="Product Title"/>
+                </div>
+                <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+
+                </footer>
+            </form>
             </DialogPanel>
           </TransitionChild>
         </div>
@@ -59,7 +74,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onUpdated } from 'vue'
 import {
   TransitionRoot,
   TransitionChild,
@@ -67,19 +82,45 @@ import {
   DialogPanel,
   DialogTitle,
 } from '@headlessui/vue'
+import Spinner from '../../components/core/Spinner.vue';
 
 const props = defineProps({
     modelValue: Boolean,
+    product: {
+        required: true,
+        type: Object,
+    }
 })
-const emit = defineEmits(['update:modelValue'])
+
+const loading = ref(false)
+const product = ref({
+    id: props.product.id,
+    title: props.product.title,
+    image: props.product.image,
+    description: props.product.description,
+    price: props.product.price,
+})
 
 const show = computed({
     get: () => props.modelValue, // we get this from Products.vue
     set: (value) => emit('update:modelValue', value)
 })
 
+onUpdated(() => {
+    product.value = {
+        id: props.product.id,
+        title: props.product.title,
+        image: props.product.image,
+        description: props.product.description,
+        price: props.product.price,
+    }
+})
+
+const emit = defineEmits(['update:modelValue', 'close'])
+
 function closeModal(){
   show.value = false
+  emit('close')
 }
 </script>
 
