@@ -4,12 +4,11 @@
     <button type="submit"
       @click="showProductModal"
       class="py-2 px-6 border border-transparent text-sm font-light rounded-sm text-white bg-green-600
-             hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-700"
+             hover:bg-green-700 focus:outline-none"
     >
     Add Product
     </button>
   </div>
-  <pre>{{ showModal }}</pre>
   <ProductModal v-model="showModal" :product="productModel"/>
   <ProductsTable />
 </template>
