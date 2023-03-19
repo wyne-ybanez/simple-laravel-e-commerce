@@ -28,7 +28,7 @@ export function getProducts(
     { url = null, search = "", perPage = 10, sort_field, sort_direction }
 ) {
     commit("setProduct", [true]);
-    url = url || "/product";
+    url = url || "/products";
     return axiosClient
         .get(url, {
             params: {
@@ -55,7 +55,7 @@ export function createProduct({ commit }, product) {
         form.append("price", product.price);
         product = form;
     }
-    return axiosClient.post("/product", product);
+    return axiosClient.post("/products", product);
 }
 
 export function updateProduct({ commit }, product) {
@@ -73,5 +73,5 @@ export function updateProduct({ commit }, product) {
       // laravel understands this as an Update
       product._method = "PUT";
   }
-  return axiosClient.post(`/product/${id}`, product);
+  return axiosClient.post(`/products/${id}`, product);
 }
