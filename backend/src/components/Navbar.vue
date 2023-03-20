@@ -61,14 +61,14 @@
         leave-to-class="transform scale-95 opacity-0"
       >
         <MenuItems
-          class="absolute right-0 mt-2 w-36 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+          class="absolute right-0 mt-2 w-36 origin-top-right divide-y divide-gray-100 rounded-sm bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
         >
           <div class="px-1 py-1">
             <MenuItem v-slot="{ active }">
               <button
                 :class="[
                   active ? 'bg-zinc-200/50 text-gray-900' : '',
-                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                  'group flex w-full items-center rounded-sm px-2 py-2 text-sm',
                 ]"
               >
                 <UserIcon
@@ -84,7 +84,7 @@
                 @click="logout"
                 :class="[
                   active ? 'bg-zinc-200/50 text-gray-900' : '',
-                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                  'group flex w-full items-center rounded-sm px-2 py-2 text-sm',
                 ]"
               >
                 <LogoutIcon
