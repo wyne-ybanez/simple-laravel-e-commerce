@@ -173,8 +173,6 @@ import Spinner from "../../components/core/Spinner.vue"
 import store from '../../store/index.js'
 import PRODUCTS_PER_PAGE from '../../constants.js'
 import TableHeaderCell from '../../components/core/Table/TableHeaderCell.vue';
-
-// Recently added - may need to be deleted
 import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/vue";
 import {DotsVerticalIcon, PencilIcon, TrashIcon} from '@heroicons/vue/outline'
 import ProductModal from "./ProductModal.vue";
@@ -211,6 +209,17 @@ function sortProducts(field) {
     sortDirection.value = 'asc'
   }
   getProducts()
+}
+
+function deleteProduct(product) {
+  if(!confirm(`Are you sure you want to delete the product?`)) {
+    return 
+  }
+  store.dispatch('deleteProduct', product.id)
+    .then(res => {
+      // TODO show notification (after delete)
+      store.dispatch('getProducts')
+    })
 }
 
 function getForPage(e, link) {

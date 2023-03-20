@@ -24,8 +24,17 @@ export function logout({ commit }) {
 }
 
 export function getProducts(
+    /**
+     * Get Products:
+     *
+     * These parameters are primarily whats used to display the products on the table prior to any filtering or queries.
+     * If an object argument is not passed, we want products to display anyway as a default.
+     * Hence, these values are set as equivalent to an empty object argument.
+     *
+     * Params: @url , @search , @perPage , @sort_field , @sort_direction
+     */
     { commit },
-    { url = null, search = "", perPage = 10, sort_field, sort_direction }
+    { url = null, search = "", perPage = 10, sort_field, sort_direction } = {}
 ) {
     commit("setProduct", [true]);
     url = url || "/products";
@@ -74,4 +83,8 @@ export function updateProduct({ commit }, product) {
       product._method = "PUT";
   }
   return axiosClient.post(`/products/${id}`, product);
+}
+
+export function deleteProduct({ commit }, id) {
+    return axiosClient.delete(`/products/${id}`)
 }
