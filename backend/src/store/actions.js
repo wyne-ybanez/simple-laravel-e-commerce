@@ -28,8 +28,8 @@ export function getProducts(
      * Get Products:
      *
      * These parameters are primarily whats used to display the products on the table prior to any filtering or queries.
-     * If an object argument is not passed, we want products to display anyway as a default.
-     * Hence, these values are set as equivalent to an empty object argument.
+     * If an object argument is not passed, we want products to display anyway by default.
+     * Hence, an empty object argument will be equivalent to that of these set values.
      *
      * Params: @url , @search , @perPage , @sort_field , @sort_direction
      */
