@@ -55,6 +55,10 @@ export function getProducts(
         });
 }
 
+export function getProduct({ commit }, id) {
+    return axiosClient.get(`/products/${id}`)
+}
+
 export function createProduct({ commit }, product) {
     if (product.image instanceof File) {
         const form = new FormData();

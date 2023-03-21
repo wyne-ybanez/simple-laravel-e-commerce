@@ -42,7 +42,7 @@
                                 >
                                     {{
                                         product.id
-                                            ? `Update product: "${props.product.title}"`
+                                            ? `Update Product: ${props.product.title}`
                                             : "Add Product"
                                     }}
                                 </DialogTitle>

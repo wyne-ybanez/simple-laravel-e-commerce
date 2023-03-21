@@ -58,7 +58,7 @@
         <tr v-for="product of products.data">
           <td class="border-b p-2">{{ product.id }}</td>
           <td class="border-b p-2">
-            <img class="w-16 h-16 object-cover" :src="product.image" :alt="product.title">
+            <img class="w-16 h-16 object-cover" :src="product.image_url" :alt="product.title">
           </td>
           <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis">
             {{ product.title }}
@@ -177,6 +177,8 @@ import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/vue";
 import {DotsVerticalIcon, PencilIcon, TrashIcon} from '@heroicons/vue/outline'
 import ProductModal from "./ProductModal.vue";
 
+const emit = defineEmits(['clickEdit'])
+
 const perPage = ref(PRODUCTS_PER_PAGE)
 const search = ref('')
 const products = computed(() => store.state.products)
@@ -211,9 +213,13 @@ function sortProducts(field) {
   getProducts()
 }
 
+function editProduct(product) {
+  emit('clickEdit', product)
+}
+
 function deleteProduct(product) {
   if(!confirm(`Are you sure you want to delete the product?`)) {
-    return 
+    return
   }
   store.dispatch('deleteProduct', product.id)
     .then(res => {
