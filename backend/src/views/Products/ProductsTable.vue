@@ -1,11 +1,11 @@
 <template>
-  <div class="bg-white p-4 rounded border">
+  <div class="bg-white p-4 rounded border animate-fade-in">
     <div class="flex justify-between pb-5">
       <div class="flex items-center">
         <!-- List options -->
         <span class="whitespace-nowrap mr-3">Per Page</span>
         <select v-model="perPage" @change="getProducts(null)"
-          class="appearance-none relative block w-24 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900
+          class="appearance-none relative block w-24 px-3 py-2 border border-gray-300 bg-gray-50 text-gray-900
                  rounded-sm focus:outline-none focus:ring-zinc-500 focus:border-0 focus:z-10 cursor-pointer sm:text-sm"
         >
           <option value="5">5</option>
@@ -49,13 +49,14 @@
       <tbody v-if="products.loading">
         <tr>
           <td colspan="6">
-            <Spinner v-if="products.loading" class="py-10"/>
+            <Spinner v-if="products.loading" class="py-10 h-[65.1vh] justify-center align-center"/>
           </td>
         </tr>
       </tbody>
       <!-- Table data -->
       <tbody v-if="!products.loading" class="font-light">
-        <tr v-for="product of products.data">
+        <!-- Add animation style if needed :style="{'animation-delay': `${index * 0.05}s`}" -->
+        <tr v-for="(product, index) of products.data" class="animate-fade-in">
           <td class="border-b p-2">{{ product.id }}</td>
           <td class="border-b p-2">
             <img class="w-16 h-16 object-cover" :src="product.image_url" :alt="product.title">
