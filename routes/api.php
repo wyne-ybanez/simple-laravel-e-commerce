@@ -24,4 +24,3 @@ Route::middleware(['auth:sanctum', 'admin'])
 });
 
 Route::post('/login', [AuthController::class, 'login']);
-
