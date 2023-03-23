@@ -22,7 +22,7 @@
     </style>
 </head>
 
-<body>
+<body class="bg-primary">
     @include('layouts.navigation')
 
     <main class="p-5">

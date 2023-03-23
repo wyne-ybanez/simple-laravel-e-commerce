@@ -37,6 +37,10 @@
         color: #d1c7a3;
     }
 
+    .bg-primary {
+        background-color: #ebe6d7;
+    }
+
     .link-underline {
         border-bottom-width: 0;
         background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff);
@@ -60,10 +64,6 @@
     .btn-primary {
         @apply text-white bg-stone-600 py-2 px-4 rounded shadow-md hover:bg-stone-900 active:bg-stone-800 transition-colors;
     }
-}
-
-body {
-    background-color: #ebe6d7;
 }
 
 h1, h2, h3, h4, h5, h6 {
