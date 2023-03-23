@@ -11,12 +11,18 @@
                 </div>
             </li>
             <li>
-                <a href="/src/cart.html" class="relative flex items-center justify-between py-3 px-3 transition-colors hover:bg-orange-800">
+                <a href="/src/index.html" class="relative flex items-center justify-between py-3 px-6 transition-colors hover:bg-orange-800">
                     <div class="flex items-center">
                         <div class="link-underline link-underline-black">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 -mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
+                            Home
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="/src/cart.html" class="relative flex items-center justify-between py-3 px-6 transition-colors hover:bg-orange-800">
+                    <div class="flex items-center">
+                        <div class="link-underline link-underline-black">
                             Basket
                         </div>
                     </div>
@@ -28,15 +34,12 @@
             </li>
             @if (!Auth::guest())
             <li x-data="{open: false}" class="relative">
-                <a @click="open = !open" class="cursor-pointer flex justify-between items-center py-3 px-3 hover:text-primary">
+                <a @click="open = !open" class="cursor-pointer flex justify-between items-center py-3 px-6 hover:text-primary">
                     <div class="flex items-center">
                         <div class="link-underline link-underline-black">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                            </svg>
                             My Account
                         </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-3 mt-5" viewBox="0 0 20 20" fill="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 mt-1" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                     </div>
@@ -72,23 +75,17 @@
             </li>
             @else
             <li>
-                <a href="/" class="flex items-center py-3 px-3 transition-colors hover:bg-gray-100">
+                <a href="/" class="flex items-center py-3 px-6 transition-colors hover:bg-gray-100">
                     <div class="flex items-center">
                         <div class="link-underline link-underline-black">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
-                            </svg>
                             Login
                         </div>
                     </div>
                 </a>
             </li>
             <li>
-                <a href="{{ route('register') }}" class="flex items-center py-3 px-3 transition-colors hover:bg-gray-100">
+                <a href="{{ route('register') }}" class="flex items-center py-3 px-6 transition-colors hover:bg-gray-100">
                     <div class="link-underline link-underline-black">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 mr-2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
                         Register
                     </div>
                 </a>
