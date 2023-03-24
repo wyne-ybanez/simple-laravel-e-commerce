@@ -1,4 +1,4 @@
-<header x-data="{ mobileMenuOpen: false }" class="flex justify-between shadow-md text-stone-600">
+<header x-data="{ mobileMenuOpen: false }" class="flex justify-between shadow-md">
     <div>
         <a href="/" class="block py-navbar-item pl-5 font-bold font-montserrat text-xl"> Logo </a>
     </div>
@@ -13,7 +13,7 @@
             <li>
                 <a href="/src/index.html" class="relative flex items-center justify-between py-3 px-6 transition-colors hover:bg-orange-800">
                     <div class="flex items-center">
-                        <div class="link-underline link-underline-black">
+                        <div class="link-underline link-underline-black text-stone-600">
                             Home
                         </div>
                     </div>
@@ -22,7 +22,7 @@
             <li>
                 <a href="/src/cart.html" class="relative flex items-center justify-between py-3 px-6 transition-colors hover:bg-orange-800">
                     <div class="flex items-center">
-                        <div class="link-underline link-underline-black">
+                        <div class="link-underline link-underline-black text-stone-600">
                             Basket
                         </div>
                     </div>
@@ -34,7 +34,7 @@
             </li>
             @if (!Auth::guest())
             <li x-data="{open: false}" class="relative">
-                <a @click="open = !open" class="cursor-pointer flex justify-between items-center py-3 px-6 hover:text-primary">
+                <a @click="open = !open" class="cursor-pointer flex justify-between items-center py-3 px-6 hover:text-primary text-stone-600">
                     <div class="flex items-center">
                         <div class="link-underline link-underline-black">
                             My Account
@@ -44,7 +44,7 @@
                         </svg>
                     </div>
                 </a>
-                <ul x-show="open" x-transition class="z-10 right-0 py-2">
+                <ul x-show="open" x-transition class="z-10 right-0 py-2 text-stone-600">
                     <li>
                         <a href="/src/profile.html" class="flex px-10 py-4 hover:bg-gray-100">
                             My Profile
@@ -75,7 +75,7 @@
             </li>
             @else
             <li>
-                <a href="/" class="flex items-center py-3 px-6 transition-colors hover:bg-gray-100">
+                <a href="{{ route('login') }}" class="flex items-center py-3 px-6 transition-colors hover:bg-gray-100">
                     <div class="flex items-center">
                         <div class="link-underline link-underline-black">
                             Login
@@ -94,7 +94,7 @@
         </ul>
     </div>
     <!-- Desktop: Responsive Menu -->
-    <nav class="hidden md:block">
+    <nav class="hidden md:block text-stone-600">
         <ul class="grid grid-flow-col items-center">
             <li>
                 <a href="/src/cart.html" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
@@ -151,7 +151,7 @@
             </li>
             @else
             <li>
-                <a href="/" class="flex items-center py-navbar-item px-navbar-item hover:text-primary">
+                <a href="{{ route('login') }}" class="flex items-center py-navbar-item px-navbar-item hover:text-primary">
                     <div class="link-underline link-underline-black">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />

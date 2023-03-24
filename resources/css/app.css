@@ -29,7 +29,8 @@
         @apply pr-3
     }
 
-    .text-primary {
+    .text-primary,
+    .text-strong {
         color: #645832;
     }
 
@@ -39,6 +40,18 @@
 
     .bg-primary {
         background-color: #ebe6d7;
+    }
+
+    .bg-strong {
+        background-color: #645832;
+    }
+
+    .bg-soft {
+        background-color: #d1c7a3;;
+    }
+
+    .font-monsterrat {
+        font-family: 'Monserrat', sans-serif;
     }
 
     .link-underline {
