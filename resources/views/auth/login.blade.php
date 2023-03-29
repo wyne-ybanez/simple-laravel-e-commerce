@@ -1,6 +1,6 @@
 <x-app-layout>
     <form method="POST" action="{{ route('login') }}" class="w-[450px] mx-auto p-6 my-36">
-        <h2 class="text-2xl font-semibold text-center mb-5">
+        <h2 class="text-2xl font-semibold text-center mb-2">
             Login to your account
         </h2>
         <p class="text-center text-gray-500 mb-6">

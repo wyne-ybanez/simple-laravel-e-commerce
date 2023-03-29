@@ -126,7 +126,7 @@ document.addEventListener("alpine:init", () => {
 
     Alpine.data("signupForm", () => ({
         defaultClasses:
-            "border-gray-300 focus:ring-purple-500 focus:border-purple-500",
+            "border-gray-300 focus:ring-stone-500 focus:border-stone-500",
         errorClasses:
             "border-red-600 focus:border-red-600 ring-1 ring-red-600 focus:ring-red-600",
         successClasses:
