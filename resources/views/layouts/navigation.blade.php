@@ -1,4 +1,4 @@
-<header x-data="{ mobileMenuOpen: false }" class="flex justify-between shadow-md">
+<header x-data="{ mobileMenuOpen: false }" class="flex justify-between border-b border-bg-soft">
     <div>
         <a href="/" class="block py-navbar-item pl-5 font-bold font-montserrat text-xl"> Logo </a>
     </div>

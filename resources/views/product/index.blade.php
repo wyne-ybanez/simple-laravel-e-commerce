@@ -1,31 +1,28 @@
 <x-app-layout>
-    <div class="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-5">
+    <div class="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-5">
         @foreach($products as $product)
         <!-- Product Item -->
         <div x-data="productItem({{ json_encode([
                     'id' => $product->id,
                     'image' => $product->image,
                     'title' => $product->title,
-                    'description' => $product->description,
                     'price' => $product->price,
-                ]) }})"
-                class="border border-1 border-gray-200 rounded-sm bg-white">
+                ]) }})" class="border border-1 border-bg-soft bg-primary rounded-sm flex flex-col">
 
-            <a href="{{ route('product.view', $product->slug) }}" class="aspect-w-3 aspect-h-2 block overflow-hidden">
+            <a href="{{ route('product.view', $product->slug) }}" class="aspect-w-3 aspect-h-3 block overflow-hidden">
                 <img src="{{ $product->image }}" alt="" class="object-cover rounded-sm hover:scale-105 hover:rotate-1 transition-transform" />
             </a>
 
-            <div class="p-4">
+            <div class="px-4 pt-4 pb-2">
                 <a href="{{ route('product.view', $product->slug) }}">
-                    <h3 class="text-lg">{{$product->title}}</h3>
-                    <p class="line-clamp-1 py-5">{{$product->description}}</p>
+                    <h3 class="text-xl font-montserrat">{{$product->title}}</h3>
                 </a>
             </div>
 
             <!-- affected by alpine toast -->
-            <div class="flex justify-end items-end py-5 px-4">
+            <div class="flex justify-end items-end pb-5 px-4 mt-auto">
                 <div class="mr-auto">
-                    <h5 class="font-bold">${{$product->price}}</h5>
+                    <h5 class="font-bold text-2xl font-montserrat">€{{$product->price}}</h5>
                 </div>
                 <div class="flex">
                     <button @click="addToWatchlist()" class="w-10 h-10 mr-2 rounded-sm border border-1 border-stone-600 flex items-center justify-center hover:bg-stone-600 hover:text-white active:bg-stone-800 transition-colors" :class="isInWatchlist(id) ? 'bg-stone-600 text-white' : 'text-stone-600'">

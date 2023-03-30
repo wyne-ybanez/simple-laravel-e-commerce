@@ -50,6 +50,14 @@
         background-color: #d1c7a3;;
     }
 
+    .border-bg-strong {
+        border-color: #645832;
+    }
+
+    .border-bg-soft {
+        border-color: #d1c7a3;
+    }
+
     .font-monsterrat {
         font-family: 'Monserrat', sans-serif;
     }
