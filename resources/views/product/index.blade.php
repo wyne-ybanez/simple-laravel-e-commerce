@@ -10,7 +10,7 @@
                 ]) }})" class="border border-bg-soft bg-primary flex flex-col">
 
             <a href="{{ route('product.view', $product->slug) }}" class="aspect-w-3 aspect-h-3 block overflow-hidden">
-                <img src="{{ $product->image }}" alt="" class="p-8 object-cover hover:scale-105 transition-transform" />
+                <img src="{{ $product->image }}" alt="" class="p-8 object-cover hover:p-0 hover:scale-105 hover:object-contain hover:bg-black transform transition-transform" />
             </a>
 
             <div class="px-4 pt-4 pb-2 border-bg-soft border-t">
@@ -30,7 +30,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                     </button>
-                    <button class="btn-primary rounded-sm" @click="addToCart(id)">
+                    <button class="btn-primary bg-strong rounded-sm" @click="addToCart(id)">
                         Purchase
                     </button>
                 </div>
