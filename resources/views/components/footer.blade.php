@@ -1,5 +1,5 @@
 <footer class="bg-strong text-soft text-xl py-8 font-montserrat">
-    <h1 class="text-center text-soft text-9xl mt-20 font-extrabold">Company Name</h1>
+    <h1 class="text-center text-soft text-9xl mt-20 font-extrabold">Digi.Art</h1>
     <div class="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
         <div class="mb-4">
             <h3 class="text-2xl text-soft font-bold font-montserrat mt-20 mb-2">Column 1</h3>

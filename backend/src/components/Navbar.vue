@@ -9,7 +9,7 @@
     <!-- Site name -->
     <div class="text-zinc-200 md:block hidden">
       <router-link :to="{name: 'app.dashboard'}">
-        <span class="pr-2">Fast Travel</span>
+        <span class="pr-2">Digi.Art</span>
         <span class="rounded-full bg-red-600 px-1 uppercase text-xs text-black font-light">demo</span>
       </router-link>
     </div>

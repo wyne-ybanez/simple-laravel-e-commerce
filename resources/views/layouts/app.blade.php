@@ -29,7 +29,7 @@
         {{ $slot }}
     </main>
 
-    <!-- Footer -->
+    <!-- footer -->
     <x-footer>
     </x-footer>
 
