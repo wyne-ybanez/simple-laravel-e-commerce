@@ -10,7 +10,7 @@
                 ]) }})" class="border border-bg-soft bg-primary flex flex-col">
 
             <a href="{{ route('product.view', $product->slug) }}" class="aspect-w-3 aspect-h-3 block overflow-hidden">
-                <img src="{{ $product->image }}" alt="" class="p-6 object-cover hover:scale-105 hover:rotate-1 transition-transform" />
+                <img src="{{ $product->image }}" alt="" class="p-8 object-cover hover:scale-105 transition-transform" />
             </a>
 
             <div class="px-4 pt-4 pb-2 border-bg-soft border-t">
