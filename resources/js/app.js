@@ -10,6 +10,7 @@ Alpine.plugin(persist);
 window.Alpine = Alpine;
 
 document.addEventListener("alpine:init", () => {
+// Store
     Alpine.store("header", {
         cartItemsObject: {},
         watchingItems: [],
@@ -24,6 +25,7 @@ document.addEventListener("alpine:init", () => {
         },
     });
 
+// Toast
     Alpine.data("toast", () => ({
         visible: false,
         delay: 5000,
@@ -66,6 +68,8 @@ document.addEventListener("alpine:init", () => {
         },
     }));
 
+// Product actions
+    // dispatches to app.blade.php
     Alpine.data("productItem", (product) => {
         return {
             id: product.id,
@@ -104,13 +108,13 @@ document.addEventListener("alpine:init", () => {
                     parseInt(this.$store.header.cartItemsObject[id].quantity) +
                     parseInt(quantity);
                 this.$dispatch("notify", {
-                    message: "The item was added into the cart",
+                    message: "Added into your basket",
                 });
             },
             removeItemFromCart() {
                 delete this.$store.header.cartItemsObject[this.id];
                 this.$dispatch("notify", {
-                    message: "The item was removed from cart",
+                    message: "Removed from your basket",
                 });
             },
             removeFromWatchlist() {
@@ -124,6 +128,7 @@ document.addEventListener("alpine:init", () => {
         };
     });
 
+// Signup form actions
     Alpine.data("signupForm", () => ({
         defaultClasses:
             "border-gray-300 focus:ring-stone-500 focus:border-stone-500",
