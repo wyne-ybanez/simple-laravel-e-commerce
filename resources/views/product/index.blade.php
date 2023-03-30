@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-5">
+    <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 p-5">
         @foreach($products as $product)
         <!-- Product Item -->
         <div x-data="productItem({{ json_encode([
@@ -7,10 +7,10 @@
                     'image' => $product->image,
                     'title' => $product->title,
                     'price' => $product->price,
-                ]) }})" class="border border-bg-soft bg-primary flex flex-col">
+                ]) }})" class="border border-bg-soft bg-primary hover:bg-black flex flex-col">
 
             <a href="{{ route('product.view', $product->slug) }}" class="aspect-w-3 aspect-h-3 block overflow-hidden">
-                <img src="{{ $product->image }}" alt="" class="p-8 object-cover hover:p-0 hover:scale-105 hover:object-contain hover:bg-black transform transition-transform" />
+                <img src="{{ $product->image }}" alt="" class="p-8 object-cover hover:p-0 hover:m-auto hover:scale-105 hover:object-contain transition-transform" />
             </a>
 
             <div class="px-4 pt-4 pb-2 border-bg-soft border-t">
