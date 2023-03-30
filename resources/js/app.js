@@ -87,12 +87,12 @@ document.addEventListener("alpine:init", () => {
                         1
                     );
                     this.$dispatch("notify", {
-                        message: "The item was removed from your watchlist",
+                        message: "Item removed from your watchlist",
                     });
                 } else {
                     this.$store.header.watchingItems.push(product);
                     this.$dispatch("notify", {
-                        message: "The item was added into the watchlist",
+                        message: "Item added into your watchlist",
                     });
                 }
             },
