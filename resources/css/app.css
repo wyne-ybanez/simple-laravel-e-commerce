@@ -85,6 +85,29 @@
     .btn-primary {
         @apply text-white bg-stone-600 py-2 px-4 rounded shadow-md hover:bg-stone-900 active:bg-stone-800 transition-colors;
     }
+
+    /* pagination overrides */
+    .product-pagination {
+        @apply rounded-none;
+    }
+
+    .product-pagination a,
+    .product-pagination span {
+        @apply text-stone-600 bg-primary border-0 rounded-none shadow-none focus:outline-none focus:ring-0 mx-1 aria-disabled:hidden;
+    }
+
+    .product-pagination p>span {
+        @apply text-stone-600;
+    }
+
+    .product-pagination a {
+        @apply active:bg-black active:text-soft focus:bg-black hover:bg-black hover:text-soft;
+    }
+
+    .product-pagination span,
+    .product-pagination span > svg {
+        @apply text-stone-400;
+    }
 }
 
 h1, h2, h3, h4, h5, h6 {
