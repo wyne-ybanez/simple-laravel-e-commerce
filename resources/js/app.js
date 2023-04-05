@@ -87,12 +87,12 @@ document.addEventListener("alpine:init", () => {
                         1
                     );
                     this.$dispatch("notify", {
-                        message: "Item removed from your watchlist",
+                        message: "Watchlist: item removed",
                     });
                 } else {
                     this.$store.header.watchingItems.push(product);
                     this.$dispatch("notify", {
-                        message: "Item added into your watchlist",
+                        message: "Watchlist: item added",
                     });
                 }
             },
@@ -108,13 +108,13 @@ document.addEventListener("alpine:init", () => {
                     parseInt(this.$store.header.cartItemsObject[id].quantity) +
                     parseInt(quantity);
                 this.$dispatch("notify", {
-                    message: "Added into your basket",
+                    message: "Basket: item added",
                 });
             },
             removeItemFromCart() {
                 delete this.$store.header.cartItemsObject[this.id];
                 this.$dispatch("notify", {
-                    message: "Removed from your basket",
+                    message: "Basket: item removed",
                 });
             },
             removeFromWatchlist() {

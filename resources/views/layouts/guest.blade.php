@@ -16,9 +16,13 @@
 </head>
 
 <body class="bg-primary">
-    <div class="font-sans antialiased">
-        {{ $slot }}
-    </div>
+    @include('layouts.navigation')
+
+    {{ $slot }}
+
+    <!-- footer -->
+    <x-footer>
+    </x-footer>
 </body>
 
 </html>

@@ -10,7 +10,7 @@ class ProductController extends Controller
     public function index() {
         $products = Product::query()
             ->orderBy('updated_at', 'asc')
-            ->paginate(6);
+            ->paginate(12);
 
         return view('product.index', [
             'products' => $products
@@ -69,7 +69,7 @@ class ProductController extends Controller
         $products = Product::query()
             ->where('category', 'LIKE', $category[$category_name] . '%')
             ->orderBy('updated_at', 'asc')
-            ->paginate(6);
+            ->paginate(12);
 
         return $products;
     }
