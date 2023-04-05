@@ -40,6 +40,9 @@
           <TableHeaderCell @click="sortProducts('price')" class="border-b p-2 pb-5 font-medium" field="price" :sort-field="sortField" :sort-direction="sortDirection">
             Value
           </TableHeaderCell>
+          <TableHeaderCell @click="sortProducts('category')" class="border-b p-2 pb-5 font-medium" field="category" :sort-field="sortField" :sort-direction="sortDirection">
+            Category
+          </TableHeaderCell>
           <TableHeaderCell @click="sortProducts('updated_at')" class="border-b p-2 pb-5 font-medium" field="updated_at" :sort-field="sortField" :sort-direction="sortDirection">
             Last Updated
           </TableHeaderCell>
@@ -66,6 +69,9 @@
           </td>
           <td class="border-b p-2">
             {{ product.price }}
+          </td>
+          <td class="border-b p-2">
+            {{ product.category }}
           </td>
           <td class="border-b p-2 ">
             {{ product.updated_at }}

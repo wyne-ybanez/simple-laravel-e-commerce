@@ -96,6 +96,16 @@
     <!-- Desktop: Responsive Menu -->
     <nav class="hidden md:block text-stone-600">
         <ul class="grid grid-flow-col items-center">
+
+            <!-- TEST: Categories -->
+            <li>
+                <a href="{{ route('anti_heroes') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
+                    <div class="link-underline link-underline-black">
+                        Anti-Heroes
+                    </div>
+                </a>
+            </li>
+
             <li>
                 <a href="/src/cart.html" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
                     <div class="link-underline link-underline-black">

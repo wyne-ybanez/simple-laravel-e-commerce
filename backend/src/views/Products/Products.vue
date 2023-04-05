@@ -24,6 +24,7 @@ const DEFAULT_PRODUCT = {
   id: '',
   title: '',
   description: '',
+  category: '',
   image: '',
   price: ''
 }

@@ -81,6 +81,11 @@
                                             (file) => (product.image = file)
                                         "
                                     />
+                                     <CustomInput
+                                        class="mb-2"
+                                        v-model="product.category"
+                                        label="Category"
+                                    />
                                     <CustomInput
                                         type="textarea"
                                         class="mb-2"
@@ -140,6 +145,7 @@ const product = ref({
     id: props.product.id,
     title: props.product.title,
     image: props.product.image,
+    category: props.product.category,
     description: props.product.description,
     price: props.product.price,
 });
@@ -154,6 +160,7 @@ onUpdated(() => {
         id: props.product.id,
         title: props.product.title,
         image: props.product.image,
+        category: props.product.category,
         description: props.product.description,
         price: props.product.price,
     };

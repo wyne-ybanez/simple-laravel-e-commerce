@@ -1,5 +1,6 @@
 <x-app-layout>
     <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 p-5">
+
         @foreach($products as $product)
         <!-- Product Item -->
         <div x-data="productItem({{ json_encode([
@@ -19,7 +20,6 @@
                 </a>
             </div>
 
-            <!-- affected by alpine toast -->
             <div class="flex justify-end items-end pb-5 px-4 mt-auto">
                 <div class="mr-auto">
                     <h5 class="font-bold text-2xl font-montserrat">€{{$product->price}}</h5>
@@ -38,8 +38,8 @@
 
         </div>
         @endforeach
-    </div>
 
+    </div>
     <div class="p-5 product-pagination">
         {{ $products->links() }}
     </div>

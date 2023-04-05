@@ -32,7 +32,8 @@ class ProductController extends Controller
         if($search) {
             $query
               ->where('title', 'like', "%{$search}%")
-              ->orWhere('description', 'like', "%{$search}%");
+              ->orWhere('description', 'like', "%{$search}%")
+              ->orWhere('category', 'like', "%{$search}%");
         }
         return ProductListResource::collection($query->paginate($perPage));
     }
