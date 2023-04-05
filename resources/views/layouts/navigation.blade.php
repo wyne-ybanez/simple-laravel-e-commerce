@@ -96,16 +96,39 @@
     <!-- Desktop: Responsive Menu -->
     <nav class="hidden md:block text-stone-600">
         <ul class="grid grid-flow-col items-center">
-
-            <!-- TEST: Categories -->
-            <li>
+            <li class="mt-5">
+                <a href="{{ route('monsters') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
+                    <div class="link-underline link-underline-black">
+                        Monsters
+                    </div>
+                </a>
+            </li>
+            <li class="mt-5">
+                <a href="{{ route('landscapes') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
+                    <div class="link-underline link-underline-black">
+                        Landscapes
+                    </div>
+                </a>
+            </li>
+            <li class="mt-5">
+                <a href="{{ route('heroes') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
+                    <div class="link-underline link-underline-black">
+                        Heroes
+                    </div>
+                </a>
+            </li>
+            <li class="mt-5">
                 <a href="{{ route('anti_heroes') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
                     <div class="link-underline link-underline-black">
                         Anti-Heroes
                     </div>
                 </a>
             </li>
-
+            <li class="mx-1">
+                <div class="text-5xl font-bold relative inline-flex items-center mb-2 px-navbar-item hover:text-primary">
+                    .
+                </div>
+            </li>
             <li>
                 <a href="/src/cart.html" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
                     <div class="link-underline link-underline-black">
