@@ -1,37 +1,25 @@
 <footer class="bg-strong text-soft text-xl py-8 font-montserrat">
-    <h1 class="text-center text-soft text-9xl mt-20 font-extrabold">Digi.Art</h1>
-    <div class="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="mb-4">
-            <h3 class="text-2xl text-soft font-bold font-montserrat mt-20 mb-2">Column 1</h3>
-            <ul class="pl-4">
-                <li class="hover:text-white py-2"><a href="#">Link 1</a></li>
-                <li class="hover:text-white py-2"><a href="#">Link 2</a></li>
-                <li class="hover:text-white py-2"><a href="#">Link 3</a></li>
-            </ul>
+    <h1 class="text-center text-soft md:text-9xl sm:text-8xl text-7xl mt-20 font-extrabold">Digi.Art</h1>
+    <div class="container mx-auto justify-items-center grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="mb-4 mt-20">
+            <a href="{{ route('monsters') }}" class="text-2xl text-soft hover:text-white font-bold font-montserrat mt-20 mb-2">
+                Monsters
+            </a>
         </div>
-        <div class="mb-4">
-            <h3 class="text-2xl text-soft font-bold font-montserrat mt-20 mb-2">Column 2</h3>
-            <ul class="pl-4">
-                <li class="hover:text-white py-2"><a href="#">Link 1</a></li>
-                <li class="hover:text-white py-2"><a href="#">Link 2</a></li>
-                <li class="hover:text-white py-2"><a href="#">Link 3</a></li>
-            </ul>
+        <div class="mb-4 mt-20">
+            <a href="{{ route('landscapes') }}" class="text-2xl text-soft hover:text-white font-bold font-montserrat mt-20 mb-2">
+                Landscapes
+            </a>
         </div>
-        <div class="mb-4">
-            <h3 class="text-2xl text-soft font-bold font-montserrat mt-20 mb-2">Column 3</h3>
-            <ul class="pl-4">
-                <li class="hover:text-white py-2"><a href="#">Link 1</a></li>
-                <li class="hover:text-white py-2"><a href="#">Link 2</a></li>
-                <li class="hover:text-white py-2"><a href="#">Link 3</a></li>
-            </ul>
+        <div class="mb-4 mt-20">
+            <a href="{{ route('heroes') }}" class="text-2xl text-soft hover:text-white font-bold font-montserrat mt-20 mb-2">
+                Heroes
+            </a>
         </div>
-        <div class="mb-4">
-            <h3 class="text-2xl text-soft font-bold font-montserrat mt-20 mb-2">Column 4</h3>
-            <ul class="pl-4">
-                <li class="hover:text-white py-2"><a href="#">Link 1</a></li>
-                <li class="hover:text-white py-2"><a href="#">Link 2</a></li>
-                <li class="hover:text-white py-2"><a href="#">Link 3</a></li>
-            </ul>
+        <div class="mb-4 mt-20">
+            <a href="{{ route('anti_heroes') }}" class="text-2xl text-soft hover:text-white font-bold font-montserrat mt-20 mb-2">
+                Anti-Heroes
+            </a>
         </div>
     </div>
     <div class="mt-10 pt-8 px-20 text-xl text-soft flex">
