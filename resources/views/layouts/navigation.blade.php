@@ -1,9 +1,9 @@
-<header x-data="{ mobileMenuOpen: false }" class="flex justify-between border-b border-bg-soft">
+<header x-data="{ mobileMenuOpen: false }" class="flex justify-between border-b border-bg-soft sticky top-0 z-50 bg-primary">
     <div>
         <a href="{{ route('home') }}" class="block py-navbar-item pl-5 font-bold font-montserrat text-4xl"> Digi.Art </a>
     </div>
     <!-- Mobile: Responsive Menu -->
-    <div class="block fixed z-10 top-0 bottom-0 height h-full w-[220px] transition-all md:hidden bg-primary shadow-xl" :class="mobileMenuOpen ? 'left-0' : '-left-[220px]'">
+    <div class="block fixed z-10 top-0 bottom-0 height h-full w-[220px] transition-all md:hidden bg-primary shadow-md border border-bg-soft" :class="mobileMenuOpen ? 'left-0' : '-left-[220px]'">
         <ul>
             <li>
                 <div>
@@ -11,7 +11,7 @@
                 </div>
             </li>
             <li>
-                <a href="/src/index.html" class="relative flex items-center justify-between py-3 px-6 transition-colors hover:bg-orange-800">
+                <a href="/src/index.html" class="relative flex items-center justify-between py-3 px-6 transition-colors hover:bg-gray-100">
                     <div class="flex items-center">
                         <div class="link-underline link-underline-black text-stone-600">
                             Home
@@ -20,7 +20,7 @@
                 </a>
             </li>
             <li>
-                <a href="/src/cart.html" class="relative flex items-center justify-between py-3 px-6 transition-colors hover:bg-orange-800">
+                <a href="/src/cart.html" class="relative flex items-center justify-between py-3 px-6 transition-colors hover:bg-gray-100">
                     <div class="flex items-center">
                         <div class="link-underline link-underline-black text-stone-600">
                             Basket
@@ -77,7 +77,7 @@
             <li>
                 <a href="{{ route('login') }}" class="flex items-center py-3 px-6 transition-colors hover:bg-gray-100">
                     <div class="flex items-center">
-                        <div class="link-underline link-underline-black">
+                        <div class="link-underline link-underline-black text-stone-600">
                             Login
                         </div>
                     </div>
@@ -85,7 +85,7 @@
             </li>
             <li>
                 <a href="{{ route('register') }}" class="flex items-center py-3 px-6 transition-colors hover:bg-gray-100">
-                    <div class="link-underline link-underline-black">
+                    <div class="link-underline link-underline-black text-stone-600">
                         Register
                     </div>
                 </a>
@@ -96,6 +96,13 @@
     <!-- Desktop: Responsive Menu -->
     <nav class="hidden md:block text-stone-600">
         <ul class="grid grid-flow-col items-center">
+            <li class="mt-5">
+                <a href="{{ route('home') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
+                    <div class="link-underline link-underline-black">
+                        All Works
+                    </div>
+                </a>
+            </li>
             <li class="mt-5">
                 <a href="{{ route('monsters') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
                     <div class="link-underline link-underline-black">

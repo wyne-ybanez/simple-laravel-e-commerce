@@ -67,7 +67,7 @@ class ProductController extends Controller
         );
 
         $products = Product::query()
-            ->where('category', 'LIKE', '%' . $category[$category_name] . '%')
+            ->where('category', 'LIKE', $category[$category_name] . '%')
             ->orderBy('updated_at', 'asc')
             ->paginate(6);
 
