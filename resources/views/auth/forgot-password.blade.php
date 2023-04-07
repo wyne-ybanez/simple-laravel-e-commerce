@@ -10,7 +10,7 @@
     </p>
 
     <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    <x-auth-session-status class="flex justify-center align-center my-4" :status="session('status')" />
 
     <form method="POST" action="{{ route('password.email') }}" class="w-[450px] mx-auto p-6">
         @csrf
