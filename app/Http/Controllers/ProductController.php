@@ -17,7 +17,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function monsters()
+    public function category1()
     {
         $products = $this->get_items_in_category("monsters");
 
@@ -26,7 +26,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function anti_heroes()
+    public function category2()
     {
         $products = $this->get_items_in_category("anti-heroes");
 
@@ -35,7 +35,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function heroes()
+    public function category3()
     {
         $products = $this->get_items_in_category("heroes");
 
@@ -44,7 +44,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function landscapes()
+    public function category4()
     {
         $products = $this->get_items_in_category("landscapes");
 

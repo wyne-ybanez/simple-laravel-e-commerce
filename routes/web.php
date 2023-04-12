@@ -17,10 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductController::class, 'index'])->name('home');
 
-Route::get('/monsters', [ProductController::class, 'monsters'])->name('monsters');
-Route::get('/heroes', [ProductController::class, 'heroes'])->name('heroes');
-Route::get('/anti-heroes', [ProductController::class, 'anti_heroes'])->name('anti_heroes');
-Route::get('/landscapes', [ProductController::class, 'landscapes'])->name('landscapes');
+Route::get('/monsters', [ProductController::class, 'category1'])->name('monsters');
+Route::get('/anti-heroes', [ProductController::class, 'category2'])->name('anti_heroes');
+Route::get('/heroes', [ProductController::class, 'category3'])->name('heroes');
+Route::get('/landscapes', [ProductController::class, 'category4'])->name('landscapes');
 
 Route::get('/product/{product:slug}', [ProductController::class, 'view'])->name('product.view');
 
