@@ -137,3 +137,7 @@ h1, h2, h3, h4, h5, h6 {
 .table-sm>thead>tr>th {
     padding: 0.25rem;
 }
+
+.wysiwyg-content.text-black {
+    white-space: pre-line;
+}
