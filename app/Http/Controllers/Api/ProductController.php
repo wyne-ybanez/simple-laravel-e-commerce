@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductListResource;
 use App\Http\Resources\ProductResource;
+use App\Models\ProductImages;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
@@ -54,6 +55,19 @@ class ProductController extends Controller
 
         /** @var \Illuminate\Http\UploadedFile $image */
         $image = $data['image'] ?? null;
+
+        // $images = $request->file('images');
+
+        // foreach ($images as $image) {
+        //     $filename = $image->hashName();
+        //     $path = $image->store('products', 'public');
+
+        //     $productImage = new ProductImages();
+        //     $productImage->product_id = $data->id;
+        //     $productImage->filename = $filename;
+        //     $productImage->path = $path;
+        //     $productImage->save();
+        // }
 
         // Check if image was given and save on local file system
         if ($image) {
