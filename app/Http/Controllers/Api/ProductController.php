@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    public $images;
+    public $images; // TODO: allow multiple images to display for product
 
     /**
      * Display a listing of the resource.
@@ -76,11 +76,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $product = Product::find($id);
-        $images = $product->images;
-
-        return view('products.show', compact('product', 'images'));
-        // return new ProductResource($product);
+        return new ProductResource($product);
     }
 
     /**

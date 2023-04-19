@@ -54,6 +54,7 @@ class ProductController extends Controller
     }
 
     public function view(Product $product){
+        //TODO: Allow multiple images to display for product
         $images = $product->images;
 
         return view('product.view', ['product' => $product, 'images' => $images]);
