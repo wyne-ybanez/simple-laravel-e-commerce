@@ -44,9 +44,9 @@
                             </svg>
                         </a>
                     </div>
-                    <div class="flex mb-1">
+                    <div class="flex mb-[0.1rem]">
                         <template x-for="image in images">
-                            <a @click.prevent="activeImage = image" class="cursor-pointer w-[12rem] pt-1 pr-1 flex items-center justify-center" :class="{'border-bg-strong': activeImage === image}">
+                            <a @click.prevent="activeImage = image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-1 flex items-center justify-center" :class="{'border-bg-strong': activeImage === image}">
                                 <img :src="image" alt="" class="w-auto hover:shadow-black hover:shadow-lg object-cover" />
                             </a>
                         </template>
@@ -58,18 +58,8 @@
                 <h1 class="lg:text-7xl text-4xl font-semibold mb-2">
                     {{$product->title}}
                 </h1>
-                <div class="mb-6" x-data="{expanded: false}">
-                    <div x-show="expanded" x-collapse.min.120px class="text-black wysiwyg-content">
-                        {{ $product->description }}
-                    </div>
-                    <p class="text-right">
-                        <a @click="expanded = !expanded" href="javascript:void(0)" class="text-stone-500 hover:text-stone-700" x-text="expanded ? 'Read Less' : 'Read More'"></a>
-                    </p>
-                </div>
 
-                <hr class="h-[2px] bg-black mb-10">
-
-                <div class="text-xl font-bold mb-6">${{$product->price}}</div>
+                <div class="text-xl font-bold mt-10">${{$product->price}}</div>
                 <div class="flex items-center mb-5">
                     <label for="quantity" class="block font-bold mr-4">
                         Quantity
@@ -81,6 +71,17 @@
                         </svg>
                         Add to Cart
                     </button>
+                </div>
+
+                <hr class="h-[2.5px] rounded my-5 bg-black">
+
+                <div class="mb-6" x-data="{expanded: false}">
+                    <div x-show="expanded" x-collapse.min.290px class="text-black wysiwyg-content">
+                        {{ $product->description }}
+                    </div>
+                    <p class="text-right">
+                        <a @click="expanded = !expanded" href="javascript:void(0)" class="text-stone-500 hover:text-stone-700" x-text="expanded ? 'Read Less' : 'Read More'"></a>
+                    </p>
                 </div>
             </div>
         </div>

@@ -53,9 +53,10 @@ class ProductController extends Controller
         ]);
     }
 
-    
     public function view(Product $product){
-        return view('product.view', ['product' => $product]);
+        $images = $product->images;
+
+        return view('product.view', ['product' => $product, 'images' => $images]);
     }
 
     public function get_items_in_category($category_name)

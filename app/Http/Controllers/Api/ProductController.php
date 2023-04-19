@@ -14,6 +14,8 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
+    public $images;
+
     /**
      * Display a listing of the resource.
      *
@@ -74,7 +76,11 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return new ProductResource($product);
+        $product = Product::find($id);
+        $images = $product->images;
+
+        return view('products.show', compact('product', 'images'));
+        // return new ProductResource($product);
     }
 
     /**
