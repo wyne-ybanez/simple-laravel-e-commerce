@@ -15,7 +15,7 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    public $images; // TODO: allow multiple images to display for product
+    // public $images; // TODO: allow multiple images to display for product
 
     /**
      * Display a listing of the resource.
@@ -56,18 +56,21 @@ class ProductController extends Controller
         /** @var \Illuminate\Http\UploadedFile $image */
         $image = $data['image'] ?? null;
 
-        // $images = $request->file('images');
+        //===========================================
+        // TODO: multiple images for each product
+        // if ($images) {
+        //     foreach ($images as $image) {
+        //         $filename = $image->hashName();
+        //         $path = $image->store('products', 'public');
 
-        // foreach ($images as $image) {
-        //     $filename = $image->hashName();
-        //     $path = $image->store('products', 'public');
-
-        //     $productImage = new ProductImages();
-        //     $productImage->product_id = $data->id;
-        //     $productImage->filename = $filename;
-        //     $productImage->path = $path;
-        //     $productImage->save();
+        //         $productImage = new ProductImages();
+        //         $productImage->product_id = $data->id;
+        //         $productImage->filename = $filename;
+        //         $productImage->path = $path;
+        //         $productImage->save();
+        //     }
         // }
+         //===========================================
 
         // Check if image was given and save on local file system
         if ($image) {
