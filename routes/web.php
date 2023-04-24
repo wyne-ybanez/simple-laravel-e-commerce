@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,8 @@ Route::get('/monsters', [ProductController::class, 'category1'])->name('monsters
 Route::get('/anti-heroes', [ProductController::class, 'category2'])->name('anti_heroes');
 Route::get('/heroes', [ProductController::class, 'category3'])->name('heroes');
 Route::get('/landscapes', [ProductController::class, 'category4'])->name('landscapes');
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
 Route::get('/product/{product:slug}', [ProductController::class, 'view'])->name('product.view');
 
