@@ -26,15 +26,11 @@ Route::middleware(['guestOrVerified'])->group(function() {
 
     Route::prefix('/cart')->name('cart.')->group(Function() {
         Route::get('/', [CartController::class, 'index'])->name('index');
-        Route::get('/add/{product:slug}', [CartController::class, 'add'])->name('add');
-        Route::get('/remove/{product:slug}', [CartController::class, 'remove'])->name('remove');
-        Route::get('/update-quantity/{product:slug}', [CartController::class, 'updateQuantity'])->name('update-quantity');
+        Route::post('/add/{product:slug}', [CartController::class, 'add'])->name('add');
+        Route::post('/remove/{product:slug}', [CartController::class, 'remove'])->name('remove');
+        Route::post('/update-quantity/{product:slug}', [CartController::class, 'updateQuantity'])->name('update-quantity');
     });
 });
-
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
-
-
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
