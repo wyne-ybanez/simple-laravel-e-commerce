@@ -55,17 +55,17 @@ document.addEventListener("alpine:init", async () => {
     return {
       product,
       addToCart(quantity = 1) {
-        post(this.product.addToCart, {quantity})
-          .then(result => {
-            this.$dispatch('cart-change', {count: result.count})
+        post(this.product.addToCartUrl, { quantity })
+          .then((result) => {
+            this.$dispatch("cart-change", { count: result.count });
             this.$dispatch("notify", {
-              message: "The item was added into the basket",
+                message: "The item was added into the basket",
             });
           })
-          .catch(response => {
+          .catch((response) => {
             console.log(response);
             console.log(this.product);
-          })
+          });
       },
       removeItemFromCart() {
         post(this.product.removeUrl)
