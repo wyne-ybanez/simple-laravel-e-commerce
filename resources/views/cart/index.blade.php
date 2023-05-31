@@ -24,7 +24,8 @@
                 },
             }" class="p-5 mb-10">
             <template x-if="cartItems.length">
-                <div>
+                <!-- div required as a wrapper for alpine -->
+                <div> 
                     <template x-for="product of cartItems" :key="product.id">
                         <!-- Product - Item -->
                         <div x-data="productItem(product)">
