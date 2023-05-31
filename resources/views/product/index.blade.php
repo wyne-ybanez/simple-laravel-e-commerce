@@ -8,7 +8,7 @@
                     'image' => $product->image,
                     'title' => $product->title,
                     'price' => $product->price,
-                    'addToCartUrl' => route('cart.add', $product->slug)
+                    'addToCartUrl' => route('cart.add', $product)
                 ]) }})"
                 class="border border-bg-soft bg-primary hover:bg-black flex flex-col">
             <a href="{{ route('product.view', $product->slug) }}" class="aspect-w-3 aspect-h-3 block overflow-hidden">

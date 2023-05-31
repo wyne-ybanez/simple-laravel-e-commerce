@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="container lg:w-2/4 xl:w-2/4 mx-auto">
-        <h1 class="text-3xl font-bold my-6">Basket Items:</h1>
+        <h1 class="text-3xl font-bold m-6">Basket Items:</h1>
 
         <!-- Products - Container -->
         <div x-data="{
@@ -29,21 +29,27 @@
                         <!-- Product - Item -->
                         <div x-data="productItem(product)">
                             <div class="w-full flex flex-col sm:flex-row items-center gap-4 flex-1">
-                                <a :href="product.href" class="w-36 h-32 flex items-center justify-center overflow-hidden">
+                                <a :href="product.href" class="w-1/2 h-52 flex items-center justify-center overflow-hidden object-contain">
                                     <img :src="product.image" class="object-cover" alt="" />
                                 </a>
                                 <div class="flex flex-col justify-between flex-1">
                                     <div class="flex justify-between mb-3">
                                         <h3 x-text="product.title"></h3>
-                                        <span class="text-lg font-semibold">
-                                            <span x-text="product.price * product.quantity">
+                                        <span class="text-lg">
+                                            <span x-text="`€${product.price * product.quantity}`">
                                             </span>
                                         </span>
                                     </div>
                                     <div class="flex justify-between items-center">
                                         <div class="flex items-center">
                                             Quantity:
-                                            <input type="number" min="1" x-model="product.quantity" @change="changeQuantity()" class="ml-3 py-1 border-gray-200 focus:border-stone-600 focus:ring-stone-600 w-16" />
+                                            <input 
+                                                type="number" 
+                                                min="1" 
+                                                x-model="product.quantity" 
+                                                @change="changeQuantity()" 
+                                                class="ml-3 py-1 border-gray-200 focus:border-stone-600 focus:ring-stone-600 w-16" 
+                                            />
                                         </div>
                                         <a href="#" @click.prevent="removeItemFromCart()" class="text-stone-500 hover:text-stone-900">Remove</a>
                                     </div>
@@ -58,7 +64,7 @@
                     <div class="py-6">
                         <div class="flex justify-between">
                             <span class="font-semibold text-lg">Subtotal</span>
-                            <span id="cartTotal" class="text-xl" x-text="`$${cartTotal}`"></span>
+                            <span id="cartTotal" class="text-xl font-semibold" x-text="`$${cartTotal}`"></span>
                         </div>
                         <p class="text-gray-500 mb-6">
                             Shipping and taxes calculated at checkout.
@@ -66,7 +72,7 @@
 
                         <form action="#" method="post">
                             @csrf
-                            <button type="submit" class="btn-primary w-full py-3 text-lg">
+                            <button type="submit" class="btn-primary md:w-2/5 xl:w-2/5 lg:w-2/5 w-full flex justify-center m-auto py-3 text-lg">
                                 Proceed to Checkout
                             </button>
                         </form>
@@ -76,7 +82,7 @@
             </template>
 
             <template x-if="!cartItems.length">
-                <div class="text-center py-8 text-gray-700">
+                <div class="text-center text-xl py-8 text-stone-600">
                     You don't have any items in cart
                 </div>
             </template>
