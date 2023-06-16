@@ -25,7 +25,7 @@
             }" class="p-5 mb-10">
             <template x-if="cartItems.length">
                 <!-- div required as a wrapper for alpine -->
-                <div> 
+                <div>
                     <template x-for="product of cartItems" :key="product.id">
                         <!-- Product - Item -->
                         <div x-data="productItem(product)">
@@ -44,13 +44,7 @@
                                     <div class="flex justify-between items-center">
                                         <div class="flex items-center">
                                             Quantity:
-                                            <input 
-                                                type="number" 
-                                                min="1" 
-                                                x-model="product.quantity" 
-                                                @change="changeQuantity()" 
-                                                class="ml-3 py-1 border-gray-200 focus:border-stone-600 focus:ring-stone-600 w-16" 
-                                            />
+                                            <input type="number" min="1" x-model="product.quantity" @change="changeQuantity()" class="ml-3 py-1 border-gray-200 focus:border-stone-600 focus:ring-stone-600 w-16" />
                                         </div>
                                         <a href="#" @click.prevent="removeItemFromCart()" class="text-stone-500 hover:text-stone-900">Remove</a>
                                     </div>
@@ -68,12 +62,12 @@
                             <span id="cartTotal" class="text-xl font-semibold" x-text="`$${cartTotal}`"></span>
                         </div>
                         <p class="text-gray-500 mb-6">
-                            Shipping and taxes calculated at checkout.
+                            Shipping and taxes calculated at checkout
                         </p>
 
                         <form action="#" method="post">
                             @csrf
-                            <button type="submit" class="btn-primary md:w-2/5 xl:w-2/5 lg:w-2/5 w-full flex justify-center m-auto py-3 text-lg">
+                            <button type="submit" class="btn-primary md:w-2/5 xl:w-2/5 lg:w-2/5 w-full flex justify-center ml-auto py-3 text-lg">
                                 Proceed to Checkout
                             </button>
                         </form>
