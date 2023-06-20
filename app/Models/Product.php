@@ -25,4 +25,9 @@ class Product extends Model
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
     }
+
+    // public function _getImages(): BelongsTo
+    // {
+    //     return $this->hasMany(ProductImages::class, $foreignKey, $localKey);
+    // }
 }
