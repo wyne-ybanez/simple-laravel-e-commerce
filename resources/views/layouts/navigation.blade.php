@@ -34,11 +34,11 @@
                         </div>
                     </div>
                     <!-- Cart Items Counter -->
-                    <small 
-                        x-show="cartItemsCount" 
-                        x-transition 
-                        x-text="cartItemsCount" 
-                        x-cloak 
+                    <small
+                        x-show="cartItemsCount"
+                        x-transition
+                        x-text="cartItemsCount"
+                        x-cloak
                         class="py-[2px] px-[8px] rounded-full bg-stone-700 text-white">
                     </small>
                     <!--/ Cart Items Counter -->
@@ -58,7 +58,7 @@
                 </a>
                 <ul x-show="open" x-transition class="z-10 right-0 py-2 text-stone-600">
                     <li>
-                        <a href="/src/profile.html" class="flex px-10 py-4 hover:bg-gray-100">
+                        <a href="{{ route('profile') }}" class="flex px-10 py-4 hover:bg-gray-100">
                             My Profile
                         </a>
                     </li>
@@ -176,7 +176,7 @@
                 </a>
                 <ul @click.outside="open = false" x-show="open" x-transition x-cloak class="rounded-sm shadow-md absolute z-10 right-0 bg-white py-2 w-48">
                     <li>
-                        <a href="/src/profile.html" class="flex w-full px-5 py-2 hover:bg-gray-100">
+                        <a href="{{ route('profile') }}" class="flex w-full px-5 py-2 hover:bg-gray-100">
                             My Profile
                         </a>
                     </li>
