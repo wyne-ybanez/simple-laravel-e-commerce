@@ -11,6 +11,6 @@ namespace App\Enums;
  */
 enum AddressType: string
 {
-    const Shipping = 'shipping';
-    const Billing = 'billing';
+    case Shipping = 'shipping';
+    case Billing = 'billing';
 }
