@@ -16,14 +16,16 @@
                       activeImage: null,
                       prev() {
                           let index = this.images.indexOf(this.activeImage);
-                          if (index === 0)
+                          if (index === 0) {
                               index = this.images.length;
+                          }
                           this.activeImage = this.images[index - 1];
                       },
                       next() {
                           let index = this.images.indexOf(this.activeImage);
-                          if (index === this.images.length - 1)
+                          if (index === this.images.length - 1) {
                               index = -1;
+                          }
                           this.activeImage = this.images[index + 1];
                       },
                       init() {
@@ -45,16 +47,20 @@
                                 <img :src="activeImage.image" alt="" class="w-full" />
                             </div>
                         </template>
-                        <a @click.prevent="prev" class="cursor-pointer bg-black/30 text-white absolute left-0 top-1/2 -translate-y-1/2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-                            </svg>
-                        </a>
-                        <a @click.prevent="next" class="cursor-pointer bg-black/30 text-white absolute right-0 top-1/2 -translate-y-1/2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </a>
+                        <template x-for="image in images">
+                            <a @click.prevent="prev" class="cursor-pointer bg-black/30 text-white absolute left-0 top-1/2 -translate-y-1/2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </a>
+                        </template>
+                        <template x-for="image in images">
+                            <a @click.prevent="next" class="cursor-pointer bg-black/30 text-white absolute right-0 top-1/2 -translate-y-1/2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
+                        </template>
                     </div>
                     <div class="flex mb-[0.1rem]">
                         <template x-for="image in images">
