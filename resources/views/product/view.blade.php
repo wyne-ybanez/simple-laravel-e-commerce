@@ -64,8 +64,8 @@
                     </div>
                     <div class="flex mb-[0.1rem]">
                         <template x-for="image in images">
-                            <a @click.prevent="activeImage=image" @click="console.log(image)" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-1 flex items-center justify-center" :class="{'border-bg-strong': activeImage === image}">
-                                <img :src="image.image" alt="" class="w-auto hover:shadow-black hover:shadow-lg object-cover" />
+                            <a @click.prevent="activeImage=image" @click="console.log(image)" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image}">
+                                <img :src="image.image" alt="" class="w-auto hover:shadow-black hover:shadow-lg object-cover h-[10rem] mr-auto" />
                             </a>
                         </template>
                     </div>
