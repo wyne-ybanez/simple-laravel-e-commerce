@@ -54,10 +54,18 @@ class ProductController extends Controller
     }
 
     public function view(Product $product){
-        //TODO: Allow multiple images to display for product
-        // $images = $product->images;
+        $images = $product->images;
+        echo $images;
+        // dd($images);
+        
+        // foreach ($images as $image) {
+        //     $product_image = $image->image;
+        // }
 
-        return view('product.view', ['product' => $product]);
+        return view('product.view_experimental', [
+            'product' => $product,
+            'product_images' => $images,
+        ]);
     }
 
     public function get_items_in_category($category_name)

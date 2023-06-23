@@ -11,7 +11,7 @@
         <div class="grid gap-6 w-screen grid-cols-1 lg:grid-cols-2">
             <div class="lg:col-span-1">
                 <div x-data="{
-                      image: ['{{$product->image}}'],
+                      mainImage: ['{{$product->image}}'],
                       images: [{{$product->images}}],
                       activeImage: null,
                       prev() {
@@ -27,13 +27,13 @@
                           this.activeImage = this.images[index + 1];
                       },
                       init() {
-                          this.activeImage = this.images.length > 0 ? this.images[0] : null
+                          this.activeImage = this.images.length > 0 ? this.images[0] : null;
                       }
                     }">
                     <div class="relative">
                         <template x-for="image in images">
                             <div x-show="activeImage === image">
-                                <img :src="image[0].image" alt="" class="w-full" />
+                                <img :src="activeImage[0].image" alt="" class="w-full" />
                             </div>
                         </template>
                         <a @click.prevent="prev" class="cursor-pointer bg-black/30 text-white absolute left-0 top-1/2 -translate-y-1/2">
@@ -42,7 +42,7 @@
                             </svg>
                         </a>
                         <template x-for="image in images">
-                            <a @click.prevent="next" @click="console.log(images)" class="cursor-pointer bg-black/30 text-white absolute right-0 top-1/2 -translate-y-1/2">
+                            <a @click.prevent="next" @click="console.log(image)" class="cursor-pointer bg-black/30 text-white absolute right-0 top-1/2 -translate-y-1/2">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                                 </svg>
@@ -51,9 +51,23 @@
                     </div>
                     <div class="flex mb-[0.1rem]">
                         <template x-for="(image, index) in images" :key="image[index].id">
-                            <a @click.prevent="activeImage = image" @click="console.log(image[index])" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-1 flex items-center justify-center" :class="{'border-bg-strong': activeImage === image}">
+                            <a @click.prevent="activeImage=image" @click="console.log(image[index])" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-1 flex items-center justify-center" :class="{'border-bg-strong': activeImage === image}">
                                 <img :src="image[index].image" alt="" class="w-auto hover:shadow-black hover:shadow-lg object-cover" />
                             </a>
+                        </template>
+                        <template x-for="(image, index) in images" :key="image[index].id">
+                            <div x-show="image[index+1].image">
+                                <a  @click="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-1 flex items-center justify-center" :class="{'border-bg-strong': activeImage === image}">
+                                    <img :src="image[index+1].image" alt="" class="w-auto hover:shadow-black hover:shadow-lg object-cover" />
+                                </a>
+                            </div>
+                        </template>
+                        <template x-for="(image, index) in images" :key="image[index].id">
+                            <div x-show="image[index+2].image">
+                                <a @click.prevent="activeImage=image" @click="console.log(image[index+2])" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-1 flex items-center justify-center" :class="{'border-bg-strong': activeImage === image}">
+                                    <img :src="image[index+2].image" alt="" class="w-auto hover:shadow-black hover:shadow-lg object-cover" />
+                                </a>
+                            </div>
                         </template>
                     </div>
                 </div>
