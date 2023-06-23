@@ -54,31 +54,31 @@ class ProductController extends Controller
         $data['updated_by'] = $request->user()->id;
 
         /** @var \Illuminate\Http\UploadedFile $image */
-        $image = $data['image'] ?? null;
+        $images = $data['images'] ?? null;
 
         //===========================================
         // TODO: multiple images for each product
-        // if ($images) {
-        //     foreach ($images as $image) {
-        //         $filename = $image->hashName();
-        //         $path = $image->store('products', 'public');
+        if ($images) {
+            foreach ($images as $image) {
+                $filename = $image->hashName();
+                $path = $image->store('products', 'public');
 
-        //         $productImage = new ProductImages();
-        //         $productImage->product_id = $data->id;
-        //         $productImage->filename = $filename;
-        //         $productImage->path = $path;
-        //         $productImage->save();
-        //     }
-        // }
+                $productImage = new ProductImages();
+                $productImage->product_id = $data->id;
+                $productImage->filename = $filename;
+                $productImage->path = $path;
+                $productImage->save();
+            }
+        }
          //===========================================
 
         // Check if image was given and save on local file system
-        if ($image) {
-            $relativePath = $this->saveImage($image);
-            $data['image'] = URL::to(Storage::url($relativePath));
-            $data['image_mime'] = $image->getClientMimeType();
-            $data['image_size'] = $image->getSize();
-        }
+        // if ($image) {
+        //     $relativePath = $this->saveImage($image);
+        //     $data['image'] = URL::to(Storage::url($relativePath));
+        //     $data['image_mime'] = $image->getClientMimeType();
+        //     $data['image_size'] = $image->getSize();
+        // }
 
         $product = Product::create($data);
 

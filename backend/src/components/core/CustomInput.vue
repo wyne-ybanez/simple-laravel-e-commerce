@@ -47,7 +47,9 @@
                 :value="props.modelValue"
                 @input="emit('change', $event.target.files[0])"
                 :class="inputClasses"
-                :placeholder="label"/>
+                :placeholder="label"
+                multiple
+                />
         </div>
       </template>
       <template v-else-if="type === 'checkbox'">

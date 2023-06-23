@@ -12,7 +12,7 @@
             <div class="lg:col-span-1">
                 <div x-data="{
                       image: ['{{$product->image}}'],
-                      images: [{{$product->images}}],
+                      images: [{{$product->images}}][0],
                       activeImage: null,
                       prev() {
                           let index = this.images.indexOf(this.activeImage);
@@ -27,13 +27,22 @@
                           this.activeImage = this.images[index + 1];
                       },
                       init() {
-                          this.activeImage = this.images.length > 0 ? this.images[0] : null
+                          if (this.images.length) {
+                                this.activeImage = this.images.length > 0 ? this.images[0] : null;
+                          } else {
+                             this.activeImage = this.image.length > 0 ? this.image[0] : null;
+                          }
                       }
                     }">
                     <div class="relative">
+                        <template x-for="item in image">
+                            <div x-show="activeImage === item">
+                                <img :src="item" alt="" class="w-full" />
+                            </div>
+                        </template>
                         <template x-for="image in images">
                             <div x-show="activeImage === image">
-                                <img :src="image[0].image" alt="" class="w-full" />
+                                <img :src="activeImage.image" alt="" class="w-full" />
                             </div>
                         </template>
                         <a @click.prevent="prev" class="cursor-pointer bg-black/30 text-white absolute left-0 top-1/2 -translate-y-1/2">
@@ -41,18 +50,16 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
                             </svg>
                         </a>
-                        <template x-for="image in images">
-                            <a @click.prevent="next" @click="console.log(images)" class="cursor-pointer bg-black/30 text-white absolute right-0 top-1/2 -translate-y-1/2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                                </svg>
-                            </a>
-                        </template>
+                        <a @click.prevent="next" class="cursor-pointer bg-black/30 text-white absolute right-0 top-1/2 -translate-y-1/2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </a>
                     </div>
                     <div class="flex mb-[0.1rem]">
-                        <template x-for="(image, index) in images" :key="image[index].id">
-                            <a @click.prevent="activeImage = image" @click="console.log(image[index])" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-1 flex items-center justify-center" :class="{'border-bg-strong': activeImage === image}">
-                                <img :src="image[index].image" alt="" class="w-auto hover:shadow-black hover:shadow-lg object-cover" />
+                        <template x-for="image in images">
+                            <a @click.prevent="activeImage=image" @click="console.log(image)" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-1 flex items-center justify-center" :class="{'border-bg-strong': activeImage === image}">
+                                <img :src="image.image" alt="" class="w-auto hover:shadow-black hover:shadow-lg object-cover" />
                             </a>
                         </template>
                     </div>
