@@ -54,17 +54,8 @@ class ProductController extends Controller
     }
 
     public function view(Product $product){
-        $images = $product->images;
-        echo $images;
-        // dd($images);
-        
-        // foreach ($images as $image) {
-        //     $product_image = $image->image;
-        // }
-
         return view('product.view_experimental', [
             'product' => $product,
-            'product_images' => $images,
         ]);
     }
 
