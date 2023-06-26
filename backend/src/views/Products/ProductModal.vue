@@ -76,9 +76,9 @@
                                     <CustomInput
                                         type="file"
                                         class="mb-2"
-                                        label="Product Images"
+                                        label="Product Image"
                                         @change="
-                                            (files) => (product.images = files)
+                                            (file) => (product.image = file)
                                         "
                                     />
                                      <CustomInput
@@ -144,7 +144,7 @@ const loading = ref(false);
 const product = ref({
     id: props.product.id,
     title: props.product.title,
-    images: props.product.images,
+    image: props.product.image,
     category: props.product.category,
     description: props.product.description,
     price: props.product.price,
@@ -159,7 +159,7 @@ onUpdated(() => {
     product.value = {
         id: props.product.id,
         title: props.product.title,
-        images: props.product.images,
+        image: props.product.image,
         category: props.product.category,
         description: props.product.description,
         price: props.product.price,

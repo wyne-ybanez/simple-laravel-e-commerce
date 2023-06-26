@@ -60,14 +60,10 @@ class ProductController extends Controller
         // TODO: multiple images for each product
         if ($images) {
             foreach ($images as $image) {
-                $filename = $image->hashName();
-                $path = $image->store('products', 'public');
-
-                $productImage = new ProductImages();
-                $productImage->product_id = $data->id;
-                $productImage->filename = $filename;
-                $productImage->path = $path;
-                $productImage->save();
+                $relativePath = $this->saveImage($image);
+                $data['image'] = URL::to(Storage::url($relativePath));
+                $data['image_mime'] = $image->getClientMimeType();
+                $data['image_size'] = $image->getSize();
             }
         }
          //===========================================
