@@ -147,7 +147,7 @@
                             <template x-if="shippingCountryCounties">
                                 <x-input type="select" name="shipping[county]" x-model="shippingAddress.county" class="w-full focus:border-stone-600 focus:ring-stone-600 border-gray-300 rounded">
                                     <option value="">Select County</option>
-                                    <template x-for="[code, county] of Object.entries(shippingCountrycounties)" :key="code">
+                                    <template x-for="[code, county] of Object.entries(shippingCountryCounties)" :key="code">
                                         <option :selected="code === shippingAddress.county" :value="code" x-text="county"></option>
                                     </template>
                                 </x-input>
