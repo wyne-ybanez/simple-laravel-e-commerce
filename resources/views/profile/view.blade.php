@@ -71,25 +71,17 @@
                     </div>
                     <div class="grid grid-cols-2 gap-3 mb-3">
                         <div>
-                            <x-input 
-                                type="select" 
-                                name="billing[country_code]" 
-                                x-model="billingAddress.country_code">
+                            <x-input type="select" name="billing[country_code]" x-model="billingAddress.country_code">
                                 <option value="">Select Country</option>
                                 <template x-for="country of countries" :key="country.code">
-                                    <option 
-                                        :selected="country.code === billingAddress.country_code" :value="country.code" 
-                                        x-text="country.name">
+                                    <option :selected="country.code === billingAddress.country_code" :value="country.code" x-text="country.name">
                                     </option>
                                 </template>
                             </x-input>
                         </div>
                         <div>
                             <template x-if="billingCountryCounties">
-                                <x-input 
-                                    type="select" 
-                                    name="billing[county]" 
-                                    x-model="billingAddress.county">
+                                <x-input type="select" name="billing[county]" x-model="billingAddress.county">
                                     <option value="">Select County</option>
                                     <!-- Iterate over every entry in counties array using key & value -->
                                     <template x-for="[code, county] of Object.entries(billingCountryCounties)" :key="code">
@@ -99,12 +91,7 @@
                                 </x-input>
                             </template>
                             <template x-if="!billingCountryCounties">
-                                <x-input 
-                                    type="text" 
-                                    name="shipping[county]" 
-                                    x-model="shippingAddress.county" 
-                                    placeholder="County" 
-                                />
+                                <x-input type="text" name="shipping[county]" x-model="shippingAddress.county" placeholder="County" />
                             </template>
                         </div>
                     </div>
