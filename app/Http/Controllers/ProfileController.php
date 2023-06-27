@@ -51,15 +51,26 @@ class ProfileController extends Controller
 
         /** @var \App\Models\Customer $customer */
         $customer = $user->customer;
-
-        $shippingAddress = $customer->shippingAddress ?: new CustomerAddress(['type' => AddressType::Shipping]);
-        $billingAddress = $customer->billingAddress ?: new CustomerAddress(['type' => AddressType::Billing]);
-
-        // updates are from request
         $customer->update($customerData);
-        $shippingAddress->update($shippingData);
-        $billingAddress->update($billingData);
 
+        // Updates and Creates like in SQL
+        if ($customer->shippingAddress) {
+            $customer->shippingAddress->update($shippingData);
+        } else {
+            $shippingData['customer_id'] = $customer->user_id;
+            $shippingData['type'] = AddressType::Shipping->value;
+            CustomerAddress::create($shippingData);
+        }
+
+        if ($customer->billingAddress) {
+            $customer->billingAddress->update($billingData);
+        } else {
+            $billingData['customer_id'] = $customer->user_id;
+            $billingData['type'] = AddressType::Billing->value;
+            CustomerAddress::create($billingData);
+        }
+
+        // 'Flash Message' is imported in the view
         $request->session()->flash('flash_message', 'Profile was successfully updated');
 
         return redirect()->route('profile');

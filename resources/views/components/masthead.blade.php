@@ -1,4 +1,4 @@
-<div class="border border-r-0 border-bg-soft bg-primary text-soft text-xl mt-5 py-32 font-montserrat w-full">
+<div class="border border-x-0 border-bg-soft bg-primary text-soft text-xl mt-5 py-32 font-montserrat w-full">
     <h1 class="text-center md:text-9xl sm:text-5xl text-5xl font-extrabold">
         <a href="{{ route('home') }}" class="text-soft hover:text-strong">
             Digi.Art
