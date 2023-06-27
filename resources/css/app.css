@@ -75,6 +75,10 @@
         background-image: linear-gradient(transparent, transparent), linear-gradient(rgb(0, 0, 0), rgb(0, 0, 0));
     }
 
+    .link-underline-strong {
+        background-image: linear-gradient(transparent, transparent), linear-gradient(rgb(62, 62, 62), rgb(88, 66, 17));
+    }
+
     .link-underline:hover {
         background-size: 100% 1.5px;
         background-position: 0 100%

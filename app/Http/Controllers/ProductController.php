@@ -57,7 +57,8 @@ class ProductController extends Controller
     {
         $products = Product::query()
             ->orderBy('updated_at', 'desc')
-            ->paginate(3);
+            ->limit(6)
+            ->get();
 
         return view('product.view', [
             'product' => $product,
