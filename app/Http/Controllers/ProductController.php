@@ -53,10 +53,15 @@ class ProductController extends Controller
         ]);
     }
 
-    public function view(Product $product){
+    public function view(Product $product)
+    {
+        $products = Product::query()
+            ->orderBy('updated_at', 'desc')
+            ->paginate(3);
 
         return view('product.view', [
             'product' => $product,
+            'products' => $products,
         ]);
     }
 

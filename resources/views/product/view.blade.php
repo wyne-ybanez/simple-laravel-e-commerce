@@ -104,4 +104,7 @@
             </div>
         </div>
     </div>
+
+    @include('components.masthead')
+    @include('product.partials.view-extras')
 </x-app-layout>
