@@ -1,6 +1,6 @@
     <div class="container">
         <div class="grid w-screen grid-cols-1 lg:grid-cols-2 bg-primary text-black">
-            <div class="lg:col-span-1 w-fit lg:p-40 px-[2rem] py-10 border border-bg-soft border-r-1 border-l-0">
+            <div class="lg:col-span-1 w-fit xl:p-40 md:p-20 px-[2rem] py-10 border border-bg-soft border-r-1 border-l-0">
                 <h1 class="lg:text-7xl text-4xl font-semibold mb-2">
                     {{$product->title}}
                 </h1>
