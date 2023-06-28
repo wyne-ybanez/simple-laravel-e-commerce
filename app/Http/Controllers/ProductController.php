@@ -12,44 +12,55 @@ class ProductController extends Controller
             ->orderBy('updated_at', 'asc')
             ->paginate(12);
 
+        $heading = "All Works";
+
         return view('product.index', [
-            'products' => $products
+            'products' => $products,
+            'heading' => $heading,
         ]);
     }
 
     public function category1()
     {
         $products = $this->get_items_in_category("monsters");
+        $heading = "Monsters";
 
         return view('product.index', [
-            'products' => $products
+            'products' => $products,
+            'heading' => $heading,
         ]);
     }
 
     public function category2()
     {
         $products = $this->get_items_in_category("anti-heroes");
+        $heading = "Anti-Heroes";
 
         return view('product.index', [
-            'products' => $products
+            'products' => $products,
+            'heading' => $heading,
         ]);
     }
 
     public function category3()
     {
         $products = $this->get_items_in_category("heroes");
+        $heading = "Heroes";
 
         return view('product.index', [
-            'products' => $products
+            'products' => $products,
+            'heading' => $heading,
         ]);
     }
 
     public function category4()
     {
         $products = $this->get_items_in_category("landscapes");
+        $heading = "Landscapes";
 
         return view('product.index', [
-            'products' => $products
+            'products' => $products,
+            'heading' => $heading,
         ]);
     }
 
