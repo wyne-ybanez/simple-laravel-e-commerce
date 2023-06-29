@@ -10,7 +10,7 @@
                 ]) }}),
                 productView = !productView" class="container">
         <div class="grid gap-6 w-screen grid-cols-1 lg:grid-cols-2 bg-black text-white">
-            <div class="lg:col-span-1 border border-bg-soft border-r-1 border-l-0 border-y-0 p-10">
+            <div class="lg:col-span-1 border border-bg-soft border-r-1 border-l-0 border-y-0">
                 <div x-data="{
                       image: ['{{$product->image}}'],
                       images: [{{$product->images}}][0],
@@ -73,7 +73,7 @@
                 </div>
             </div>
 
-            <div class="lg:col-span-1 w-fit lg:p-40 px-[2rem] py-10">
+            <div class="lg:col-span-1 w-fit lg:p-32 px-[2rem] py-10">
                 <h1 class="lg:text-7xl text-4xl font-semibold mb-2">
                     {{$product->title}}
                 </h1>
