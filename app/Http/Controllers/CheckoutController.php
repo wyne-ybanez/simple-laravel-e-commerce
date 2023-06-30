@@ -27,7 +27,7 @@ class CheckoutController extends Controller
         [$products, $cartItems] = Cart::getProductsAndCartItems();
 
         $orderItems = [];
-        $lineItems = [];
+        $lineItems = []; // what's in the cart
         $totalPrice = 0;
 
         foreach ($products as $product) {
@@ -39,7 +39,7 @@ class CheckoutController extends Controller
                     'product_data' => [
                         'name' => $product->title,
                     ],
-                    'unit_amount' => $product->price * 100,
+                    'unit_amount' => $product->price * 100, // multiply by 100 because Stripe is in cents
                 ],
                 'quantity' => $quantity,
             ];
@@ -71,7 +71,7 @@ class CheckoutController extends Controller
         // Create Order Items
         foreach($orderItems as $orderItem) {
             $orderItem['order_id'] = $order->id;
-            OrderItem::create();
+            OrderItem::create($orderItem);
         }
 
         // Create Payment
@@ -82,7 +82,7 @@ class CheckoutController extends Controller
             'type' => 'cc',
             'created_by' => $user->id,
             'updated_by' => $user->id,
-            'session_id' => $session->id,
+            'session_id' => $session->id
         ];
 
         Payment::create($paymentData);
@@ -132,7 +132,7 @@ class CheckoutController extends Controller
     {
         \Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
 
-        $lineItems = [];
+        $lineItems = []; // pass items in cart to Stripe
         foreach($order->items as $item) {
             $lineItems[] = [
                 'price_data' => [
