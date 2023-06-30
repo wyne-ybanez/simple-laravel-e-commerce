@@ -114,7 +114,9 @@ class CheckoutController extends Controller
             if ($payment->status === PaymentStatus::Pending->value) {
                 $this->updateOrderAndSession($payment);
             }
+
             $customer = \Stripe\Customer::retrieve($session->customer);
+
             return view('checkout.success', compact('customer'));
         } catch (NotFoundHttpException $e){
             throw $e;
@@ -123,7 +125,7 @@ class CheckoutController extends Controller
         }
     }
 
-    public function failure(Request $request) 
+    public function failure(Request $request)
     {
         return view('checkout.failure', ['message' => ""]);
     }
@@ -139,7 +141,7 @@ class CheckoutController extends Controller
                     'currency' => 'eur',
                     'product_data' => [
                         'name' => $item->product->title,
-                        // 'images' => [$product->image]
+                        'images' => $item->product->image
                     ],
                     'unit_amount' => $item->unit_price * 100,
                 ],
