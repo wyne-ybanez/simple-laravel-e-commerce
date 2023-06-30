@@ -2,13 +2,19 @@
 
 namespace App\Helpers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\CartItem;
+use Illuminate\Support\Arr;
 
-class Cart extends Controller
+/**
+ * Class Cart
+ *
+ * @package App\Helpers
+ */
+class Cart
 {
     public static function getCartItemsCount() {
-        $request = \request();
+        $request = \request(); // call global request()
         $user = $request->user();
 
         if ($user) {
@@ -75,5 +81,19 @@ class Cart extends Controller
         if(!empty($newCartItems)) {
             CartItem::insert($newCartItems);
         }
+    }
+
+    /**
+     *
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public static function getProductsAndCartItems(): array|\Illuminate\Database\Eloquent\Collection
+    {
+        $cartItems = self::getCartItems();
+        $ids = Arr::pluck($cartItems, 'product_id');
+        $products = Product::query()->whereIn('id', $ids)->get();
+        $cartItems = Arr::keyBy($cartItems, 'product_id');
+
+        return [$products, $cartItems];
     }
 }
