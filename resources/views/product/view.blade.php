@@ -9,8 +9,8 @@
                     'addToCartUrl' => route('cart.add', $product),
                 ]) }}),
                 productView = !productView" class="container">
-        <div class="grid gap-6 w-screen grid-cols-1 lg:grid-cols-2 bg-black text-white">
-            <div class="lg:col-span-1 border border-bg-soft border-r-1 border-l-0 border-y-0">
+        <div class="grid gap-6 w-screen grid-cols-1 lg:grid-cols-2 bg-primary text-primary">
+            <div class="lg:col-span-1 p-10 border border-bg-soft border-r-1 border-l-0 border-y-0">
                 <div x-data="{
                       image: ['{{$product->image}}'],
                       images: [{{$product->images}}][0],
@@ -95,7 +95,7 @@
                 <hr class="h-[2.5px] rounded my-5 bg-black">
 
                 <div class="mb-6" x-data="{expanded: false}">
-                    <div x-show="expanded" x-collapse.min.290px class="text-white text-lg wysiwyg-content">
+                    <div x-show="expanded" x-collapse.min.290px class="text-black text-lg wysiwyg-content">
                         {{ $product->description }}
                     </div>
                     <p class="text-right">

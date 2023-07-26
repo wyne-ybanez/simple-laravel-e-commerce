@@ -1,11 +1,8 @@
-<header
-    x-data="{
+<!-- Conditional bg header color depends on ProductView -->
+<header x-data="{
         mobileMenuOpen: false,
         cartItemsCount: {{ \App\Helpers\Cart::getCartItemsCount() }},
-    }"
-    @cart-change.window="cartItemsCount = $event.detail.count"
-    class="flex justify-between border-b border-bg-soft sticky top-0 z-50" :class="productView ? 'bg-black' : 'bg-primary'"
->
+    }" @cart-change.window="cartItemsCount = $event.detail.count" class="flex justify-between border-b border-bg-soft sticky top-0 z-50" :class="productView ? 'bg-primary' : 'bg-primary'">
     <div>
         <a href="{{ route('home') }}" class="block py-navbar-item pl-5 font-bold font-montserrat text-4xl text-strong"> Digi.Art </a>
     </div>
@@ -34,12 +31,7 @@
                         </div>
                     </div>
                     <!-- Cart Items Counter -->
-                    <small
-                        x-show="cartItemsCount"
-                        x-transition
-                        x-text="cartItemsCount"
-                        x-cloak
-                        class="py-[2px] px-[8px] rounded-full bg-stone-700 text-white">
+                    <small x-show="cartItemsCount" x-transition x-text="cartItemsCount" x-cloak class="py-[2px] px-[8px] rounded-full bg-stone-700 text-white">
                     </small>
                     <!--/ Cart Items Counter -->
                 </a>
@@ -151,13 +143,7 @@
                         Basket
                     </div>
                     <!-- Cart Items Counter -->
-                    <small 
-                        x-show="cartItemsCount" 
-                        x-transition 
-                        x-cloak 
-                        x-text="cartItemsCount" 
-                        class="absolute z-[100] top-4 right-4 py-0 px-[8px] rounded-full w-[1.7rem] text-center text-white bg-stone-700"
-                    >
+                    <small x-show="cartItemsCount" x-transition x-cloak x-text="cartItemsCount" class="absolute z-[100] top-4 right-4 py-0 px-[8px] rounded-full w-[1.7rem] text-center text-white bg-stone-700">
                     </small>
                     <!-- End Cart Items Counter -->
                 </a>
