@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['guestOrVerified'])->group(function() {
+Route::middleware(['guestOrVerified'])->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('home');
     Route::get('/monsters', [ProductController::class, 'category1'])->name('monsters');
     Route::get('/anti-heroes', [ProductController::class, 'category2'])->name('anti_heroes');
@@ -25,7 +26,7 @@ Route::middleware(['guestOrVerified'])->group(function() {
     Route::get('/landscapes', [ProductController::class, 'category4'])->name('landscapes');
     Route::get('/product/{product:slug}', [ProductController::class, 'view'])->name('product.view');
 
-    Route::prefix('/cart')->name('cart.')->group(Function() {
+    Route::prefix('/cart')->name('cart.')->group(function () {
         Route::get('/', [CartController::class, 'index'])->name('index');
         Route::post('/add/{product:slug}', [CartController::class, 'add'])->name('add');
         Route::post('/remove/{product:slug}', [CartController::class, 'remove'])->name('remove');
@@ -41,6 +42,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('cart.checkout');
     Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
     Route::get('/checkout/failure', [CheckoutController::class, 'failure'])->name('checkout.failure');
+    Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
+    Route::get('/orders/view/:order', [OrderController::class, 'view'])->name('order.view');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

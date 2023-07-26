@@ -55,7 +55,7 @@
                         </a>
                     </li>
                     <li class="hover:bg-gray-100">
-                        <a href="/" class="flex items-center px-10 py-4">
+                        <a href="{{ route('order.index') }}" class="flex items-center px-10 py-4">
                             My Orders
                         </a>
                     </li>
@@ -167,7 +167,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/src/orders.html" class="flex px-5 py-2 hover:bg-gray-100">
+                        <a href="{{ route('order.index') }}" class="flex px-5 py-2 hover:bg-gray-100">
                             My Orders
                         </a>
                     </li>
