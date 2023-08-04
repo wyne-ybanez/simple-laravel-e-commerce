@@ -69,7 +69,7 @@ class CheckoutController extends Controller
         $order = Order::create($orderData);
 
         // Create Order Items
-        foreach($orderItems as $orderItem) {
+        foreach ($orderItems as $orderItem) {
             $orderItem['order_id'] = $order->id;
             OrderItem::create($orderItem);
         }
@@ -119,7 +119,7 @@ class CheckoutController extends Controller
             $customer = \Stripe\Customer::retrieve($session->customer);
 
             return view('checkout.success', compact('customer'));
-        } catch (NotFoundHttpException $e){
+        } catch (NotFoundHttpException $e) {
             throw $e;
         } catch (\Exception $e) {
             return view('checkout.failure', ['message' => $e->getMessage()]);
@@ -136,7 +136,7 @@ class CheckoutController extends Controller
         \Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
 
         $lineItems = []; // pass items in cart to Stripe
-        foreach($order->items as $item) {
+        foreach ($order->items as $item) {
             $lineItems[] = [
                 'price_data' => [
                     'currency' => 'eur',
@@ -175,7 +175,9 @@ class CheckoutController extends Controller
 
         try {
             $event = \Stripe\Webhook::constructEvent(
-                $payload, $sig_header, $endpoint_secret
+                $payload,
+                $sig_header,
+                $endpoint_secret
             );
         } catch (\UnexpectedValueException $e) {
             // Invalid payload
@@ -186,7 +188,7 @@ class CheckoutController extends Controller
         }
 
         // Handle the event
-        switch($event->type) {
+        switch ($event->type) {
             case 'checkout.sessions.completed':
                 $paymentIntent = $event->data->object;
                 $sessionId = $paymentIntent['id'];
@@ -197,7 +199,7 @@ class CheckoutController extends Controller
                 if ($payment) {
                     $this->updateOrderAndSession($payment);
                 }
-            // ... handle other event types
+                // ... handle other event types
             default:
                 echo 'Received unknown event type ' . $event->type;
         }

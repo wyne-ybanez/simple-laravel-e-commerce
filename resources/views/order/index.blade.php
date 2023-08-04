@@ -19,22 +19,25 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($orders as $order)
                     <tr class="border-b">
-                        <td class="py-1 px-2">
-                            <a href="#" class="text-purple-600 hover:text-purple-500">
-                                #123
+                        <td class="py-4 px-2">
+                            <a href="#" class="text-stone-600 hover:text-stone-500">
+                                #{{ $order->id }}
                             </a>
                         </td>
-                        <td class="py-1 px-2 whitespace-nowrap">12/12/12</td>
-                        <td class="py-1 px-2">
-                            <small class="py-1 px-2 rounded">
-                                Finished
+                        <td class="py-4 px-2 whitespace-nowrap">{{ $order->created_at }}</td>
+                        <td class="py-4 px-2">
+                            <small class="py-1 px-2 rounded
+                            {{ $order->isPaid() ? 'bg-emerald-400' : 'bg-gray-400' }}">
+                                {{ $order->status }}
                             </small>
                         </td>
-                        <td class="py-1 px-2">$123</td>
-                        <td class="py-1 px-2 whitespace-nowrap">1 item(s)</td>
-                        <td class="py-1 px-2 flex gap-2 w-[100px]">
-                            <form action="#" method="POST">
+                        <td class="py-4 px-2">${{ $order->total_price }}</td>
+                        <td class="py-4 px-2 whitespace-nowrap">{{ $order->items_count }} item(s)</td>
+                        <td class="py-4 px-2 flex gap-2 w-[100px]">
+                            @if (!$order->isPaid())
+                            <form action="{{ route('cart.checkout-order', $order) }}" method="POST">
                                 @csrf
                                 <button class="flex items-center py-1 btn-primary whitespace-nowrap">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -43,10 +46,15 @@
                                     Pay
                                 </button>
                             </form>
+                            @endif
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
+        </div>
+        <div class="mt-3">
+            {{ $orders->links() }}
         </div>
     </div>
 </x-app-layout>
