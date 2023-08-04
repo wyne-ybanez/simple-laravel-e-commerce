@@ -5,7 +5,7 @@
 
 <x-app-layout>
     <div class="container mx-auto lg:w-2/3 p-5 font-montserrat">
-        <h1 class="text-3xl font-bold mb-2">My Orders</h1>
+        <h1 class="text-3xl font-bold mt-6 mb-8">My Orders</h1>
         <div class="bg-white rounded-lg p-3 overflow-x-auto">
             <table class="table-auto w-full">
                 <thead>

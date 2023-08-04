@@ -38,6 +38,7 @@ class CheckoutController extends Controller
                     'currency' => 'eur',
                     'product_data' => [
                         'name' => $product->title,
+                        // 'image' => $product->image
                     ],
                     'unit_amount' => $product->price * 100, // multiply by 100 because Stripe is in cents
                 ],
@@ -142,12 +143,14 @@ class CheckoutController extends Controller
                     'currency' => 'eur',
                     'product_data' => [
                         'name' => $item->product->title,
-                        'images' => $item->product->image
+                        // 'image' => $item->product->image
                     ],
                     'unit_amount' => $item->unit_price * 100,
                 ],
                 'quantity' => $item->quantity,
             ];
+
+            // dd($lineItems);
         }
 
         $session = \Stripe\Checkout\Session::create([
