@@ -1,14 +1,14 @@
     <div class="container">
-        <div class="grid w-screen grid-cols-1 lg:grid-cols-2 bg-primary text-black">
+        <div class="grid w-screen grid-cols-1 lg:grid-cols-2 bg-strong text-black">
             <div class="lg:col-span-1 w-fit lg:p-32 px-[2rem] py-10 border border-bg-soft border-r-0 border-l-0">
-                <h1 class="lg:text-7xl text-4xl font-semibold mb-2">
+                <h1 class="lg:text-7xl text-4xl text-soft font-semibold mb-2">
                     {{$product->title}}
                 </h1>
 
-                <hr class="h-[2.5px] rounded my-5 bg-black">
+                <hr class="h-[2.5px] rounded my-5 bg-strong">
 
                 <div class="mb-6" x-data="{expanded: true}">
-                    <div x-show="expanded" x-collapse.min.290px class="text-black text-lg wysiwyg-content">
+                    <div x-show="expanded" x-collapse.min.290px class="text-soft text-lg wysiwyg-content">
                         {{ $product->description }}
                     </div>
                 </div>

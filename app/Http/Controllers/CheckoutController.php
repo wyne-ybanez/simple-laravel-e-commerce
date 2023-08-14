@@ -17,6 +17,9 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CheckoutController extends Controller
 {
+    /**
+     * CHECKOUT
+     */
     public function checkout(Request $request)
     {
         /** @var \App\Models\User $user */
@@ -87,11 +90,15 @@ class CheckoutController extends Controller
         ];
 
         Payment::create($paymentData);
+
         CartItem::where(['user_id' => $user->id])->delete();
 
         return redirect($session->url);
     }
 
+    /**
+     * SUCCESS
+     */
     public function success(Request $request)
     {
         /** @var \App\Models\User $user */
@@ -127,11 +134,17 @@ class CheckoutController extends Controller
         }
     }
 
+    /**
+     * FAILURE
+     */
     public function failure(Request $request)
     {
         return view('checkout.failure', ['message' => ""]);
     }
 
+    /**
+     * CHECKOUT ORDER
+     */
     public function checkoutOrder(Order $order, Request $request)
     {
         \Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
@@ -166,6 +179,9 @@ class CheckoutController extends Controller
         return redirect($session->url);
     }
 
+    /**
+     * WEBHOOK
+     */
     public function webhook()
     {
         \Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
@@ -210,6 +226,9 @@ class CheckoutController extends Controller
         return response('', 200);
     }
 
+    /**
+     * UPDATE ORDER & SESSION
+     */
     private function updateOrderAndSession(Payment $payment)
     {
         $payment->status = PaymentStatus::Paid->value;
