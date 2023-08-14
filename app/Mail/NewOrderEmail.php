@@ -20,7 +20,6 @@ class NewOrderEmail extends Mailable
      */
     public function __construct(public Order $order, public $forAdmin = true)
     {
-
     }
 
     /**
