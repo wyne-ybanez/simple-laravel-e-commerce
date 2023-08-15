@@ -22,7 +22,7 @@
                     @foreach($orders as $order)
                     <tr class="border-t">
                         <td class="py-4 px-2">
-                            <a href="#" class="text-stone-600 hover:text-stone-500">
+                            <a href="{{ route('order.view', $order) }}" class="text-stone-600 hover:text-stone-500">
                                 #{{ $order->id }}
                             </a>
                         </td>
@@ -35,18 +35,21 @@
                         </td>
                         <td class="py-4 px-2">${{ $order->total_price }}</td>
                         <td class="py-4 px-2 whitespace-nowrap">{{ $order->items_count }} item(s)</td>
-                        <td class="py-4 px-2 flex gap-2 w-[100px]">
+                        <td class="py-4 px-2 flex gap-4 w-[100px]">
                             @if (!$order->isPaid())
-                            <form action="{{ route('cart.checkout-order', $order) }}" method="POST">
-                                @csrf
-                                <button class="flex items-center py-1 btn-primary whitespace-nowrap">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                                    </svg>
-                                    Pay
-                                </button>
-                            </form>
+                                <form action="{{ route('cart.checkout-order', $order) }}" method="POST">
+                                    @csrf
+                                    <button class="flex items-center py-1 btn-primary whitespace-nowrap">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                        </svg>
+                                        Pay
+                                    </button>
+                                </form>
                             @endif
+                            <a href="{{ route('order.view', $order) }}" class="flex items-center py-1 btn-primary whitespace-nowrap">
+                                View
+                            </a>
                         </td>
                     </tr>
                     @endforeach
