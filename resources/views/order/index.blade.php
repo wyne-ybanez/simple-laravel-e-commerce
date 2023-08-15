@@ -9,7 +9,7 @@
         <div class="bg-white rounded-lg p-3 overflow-x-auto">
             <table class="table-auto w-full">
                 <thead>
-                    <tr class="border-b-2">
+                    <tr>
                         <th class="text-left p-2">Order</th>
                         <th class="text-left p-2">Date</th>
                         <th class="text-left p-2">Status</th>
@@ -20,7 +20,7 @@
                 </thead>
                 <tbody>
                     @foreach($orders as $order)
-                    <tr class="border-b">
+                    <tr class="border-t">
                         <td class="py-4 px-2">
                             <a href="#" class="text-stone-600 hover:text-stone-500">
                                 #{{ $order->id }}

@@ -146,6 +146,6 @@ body {
     padding: 0.25rem;
 }
 
-.wysiwyg-content.text-black {
+.wysiwyg-content {
     white-space: pre-line;
 }
