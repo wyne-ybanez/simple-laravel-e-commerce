@@ -6,7 +6,7 @@
 <x-app-layout>
     <div class="container mx-auto lg:w-2/3 p-5 font-montserrat">
         <h1 class="text-3xl font-bold mt-6 mb-8">My Orders</h1>
-        <div class="bg-white rounded-lg p-3 overflow-x-auto">
+        <div class="bg-white rounded-md p-3 overflow-x-auto">
             <table class="table-auto w-full">
                 <thead>
                     <tr>
@@ -56,7 +56,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="mt-3">
+        <div class="mt-3 product-pagination">
             {{ $orders->links() }}
         </div>
     </div>

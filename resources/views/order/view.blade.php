@@ -16,18 +16,19 @@
                     <td class="font-bold py-1 px-2">Order Status</td>
                     <td>
                         <span
-                            class="text-black py-1 px-2 rounded {{$order->isPaid() ? 'bg-emerald-400' : 'bg-gray-400'}}">
+                            class="text-black uppercase py-1 px-2 rounded {{$order->isPaid() ? 'bg-emerald-400' : 'bg-gray-400'}}">
                             {{$order->status}}
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="font-bold py-1 px-2">SubTotal</td>
-                    <td>${{ $order->total_price }}</td>
+                    <td>€{{ $order->total_price }}</td>
                 </tr>
                 </tbody>
             </table>
 
+            <!-- $order->items() is a static function from 'Order.php' -->
             @foreach($order->items()->with('product')->get() as $item)
                 <hr class="my-5"/>
 
@@ -43,9 +44,12 @@
                                 {{$item->product->title}}
                             </h3>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center">Qty: {{$item->quantity}}</div>
-                            <span class="text-lg font-semibold"> ${{$item->unit_price}} </span>
+                        <div class="flex items-center">
+                            <div class="flex items-center">
+                                <div>Quantity: <span class="text-lg font-semibold pl-1"> {{$item->quantity}}</span></div>
+                                <div class="pl-8">x</div>
+                                <div class="pl-8"><span class="text-lg font-semibold">€{{$item->unit_price}} </span></div>
+                            </div>
                         </div>
                     </div>
                 </div>
