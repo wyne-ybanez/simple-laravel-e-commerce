@@ -28,6 +28,12 @@
           Products
         </span>
       </router-link>
+      <router-link :to="{name: 'app.orders'}"
+                  class="py-2 px-5 mb-4 transition-colors hover:text-white">
+        <span class="text-md">
+          Orders
+        </span>
+      </router-link>
       <router-link :to="{name: 'app.dashboard'}"
                   class="py-2 px-5 mb-4 transition-colors hover:text-white">
         <span class="text-md">

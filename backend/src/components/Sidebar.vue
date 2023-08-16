@@ -12,6 +12,12 @@
         Products
       </span>
     </router-link>
+    <router-link :to="{name: 'app.orders'}"
+                 class="flex items-center py-2 px-10 mb-4 rounded transition-colors hover:bg-zinc-800 hover:text-white">
+      <span class="text-md">
+        Orders
+      </span>
+    </router-link>
     <router-link :to="{name: 'app.dashboard'}"
                  class="flex items-center py-2 px-10 mb-4 rounded transition-colors hover:bg-zinc-800 hover:text-white">
       <span class="text-md">
