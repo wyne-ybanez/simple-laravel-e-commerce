@@ -23,6 +23,7 @@ export function logout({ commit }) {
     });
 }
 
+// Products
 export function getProducts(
     /**
      * Get Products:
@@ -31,20 +32,23 @@ export function getProducts(
      * If an object argument is not passed, we want products to display anyway by default.
      * Hence, an empty object argument will be equivalent to that of these set values.
      *
-     * Params: @url , @search , @perPage , @sort_field , @sort_direction
+     * Params: @url , @search , @per_page , @sort_field , @sort_direction
      */
-    { commit },
-    { url = null, search = "", perPage = 10, sort_field, sort_direction } = {}
+    { commit, state },
+    { url = null, search = "", per_page, sort_field, sort_direction } = {}
 ) {
     commit("setProduct", [true]);
     url = url || "/products";
+
+    const params = {
+        per_page: state.products.limit,
+    }
+
     return axiosClient
         .get(url, {
             params: {
-                search,
-                per_page: perPage,
-                sort_field,
-                sort_direction,
+                ...params,
+                search, per_page, sort_field, sort_direction,
             },
         })
         .then((res) => {
@@ -93,4 +97,36 @@ export function updateProduct({ commit }, product) {
 
 export function deleteProduct({ commit }, id) {
     return axiosClient.delete(`/products/${id}`)
+}
+
+// Orders
+export function getOrders({ commit, state }, { url = null, search = "", per_page, sort_field, sort_direction } = {}) {
+    commit("setOrders", [true]);
+    url = url || "/orders";
+
+    const params = {
+        per_page: state.orders.limit,
+    }
+
+    return axiosClient.get(url, {
+        params: {
+            ...params,
+            search, per_page, sort_field, sort_direction
+        }
+    })
+    .then((res) => {
+        commit('setOrders', [false, res.data])
+    })
+    .catch(() => {
+        commit('setOrders', [false])
+    })
+}
+
+export function getOrder({ commit }, id) {
+    return axiosClient.get(`/orders/${id}`)
+}
+
+// TODO: Apply this function in the view
+export function deleteOrder({ commit }, id) {
+    return axiosClient.delete(`/orders/${id}`)
 }

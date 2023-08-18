@@ -11,21 +11,40 @@ export function setToken(state, token) {
   }
 }
 
-// Let response default to null as a parameter
+// Let 'data' default to null as a parameter
 // Will be set to undefined otherwise and log an error
-export function setProduct(state, [loading, response = null]) {
-
-  if (response) {
+export function setProduct(state, [loading, data = null]) {
+  // console.log(data)
+  if (data) {
     state.products = {
-        data: response.data,
-        links: response.meta.links,
-        total: response.meta.total,
-        limit: response.meta.per_page,
-        from: response.meta.from,
-        to: response.meta.to,
-        page: response.meta.current_page,
+        ...state.products,
+        data: data.data,
+        links: data.meta.links,
+        total: data.meta.total,
+        limit: data.meta.per_page,
+        from: data.meta.from,
+        to: data.meta.to,
+        page: data.meta.current_page,
     };
   }
 
   state.products.loading = loading;
+}
+
+export function setOrders(state, [loading, data = null]) {
+  console.log(data)
+  if (data) {
+    state.orders = {
+        ...state.orders,
+        data: data.data,
+        links: data.meta.links,
+        total: data.meta.total,
+        limit: data.meta.per_page,
+        from: data.meta.from,
+        to: data.meta.to,
+        page: data.meta.current_page,
+    };
+  }
+
+  state.orders.loading = loading;
 }

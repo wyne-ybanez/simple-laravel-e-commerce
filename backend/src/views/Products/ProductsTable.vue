@@ -178,7 +178,7 @@
 import { computed, ref, onMounted } from 'vue'
 import Spinner from "../../components/core/Spinner.vue"
 import store from '../../store/index.js'
-import PRODUCTS_PER_PAGE from '../../constants.js'
+import {PRODUCTS_PER_PAGE} from '../../constants'
 import TableHeaderCell from '../../components/core/Table/TableHeaderCell.vue';
 import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/vue";
 import {DotsVerticalIcon, PencilIcon, TrashIcon} from '@heroicons/vue/outline'
@@ -202,7 +202,7 @@ function getProducts(url = null) {
     sort_field: sortField.value,
     sort_direction: sortDirection.value,
     search: search.value,
-    perPage: perPage.value,
+    per_page: perPage.value,
   })
 }
 
