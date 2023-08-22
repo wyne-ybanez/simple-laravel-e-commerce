@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 p-5">
+<div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-10 p-6">
 
     @foreach($products as $product)
     <!-- Product Item -->
@@ -8,20 +8,24 @@
                     'title' => $product->title,
                     'price' => $product->price,
                     'addToCartUrl' => route('cart.add', $product)
-                ]) }})" class="border border-bg-soft bg-primary hover:bg-black flex flex-col">
-        <a href="{{ route('product.view', $product->slug) }}" class="aspect-w-3 aspect-h-3 block overflow-hidden">
-            <img src="{{ $product->image }}" alt="" class="p-8 object-cover hover:p-0 hover:m-auto hover:scale-105 hover:object-contain transition-transform" />
+                ]) }})" class="bg-primary hover:bg-strong hover:text-white flex flex-col product-item rounded-xl">
+        
+        <!-- Image -->
+        <a href="{{ route('product.view', $product->slug) }}" class="aspect-w-3 aspect-h-3 block overflow-hidden rounded-xl">
+            <img src="{{ $product->image }}" alt="" class="p-8 object-cover hover:p-0 hover:m-auto hover:scale-100 transition-transform grayscale hover:grayscale-0" />
         </a>
 
-        <div class="px-4 pt-4 pb-2 border-bg-soft border-t">
+        <!-- Title -->
+        <div class="px-10 pt-4 pb-2 border-bg-soft">
             <a href="{{ route('product.view', $product->slug) }}">
                 <h3 class="text-xl">{{$product->title}}</h3>
             </a>
         </div>
 
-        <div class="flex justify-end items-end pb-5 px-4 mt-auto">
+        <!-- Price -->
+        <div class="flex justify-end items-end pb-5 px-10 mt-auto">
             <div class="mr-auto">
-                <h5 class="font-bold text-2xl font-montserrat">€{{$product->price}}</h5>
+                <h5 class="font-bold text-xl font-montserrat">€{{$product->price}}</h5>
             </div>
             <div class="flex font-montserrat">
                 <!-- <button @click="addToWatchlist()" class="w-10 h-10 mr-2 rounded-sm border border-2 text-strong border-bg-strong flex items-center justify-center hover:bg-stone-800 hover:text-white transition-colors" :class="isInWatchlist(id) ? 'bg-stone-800 text-white' : 'text-strong'">

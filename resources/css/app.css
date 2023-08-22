@@ -31,31 +31,31 @@
 
     .text-primary,
     .text-strong {
-        color: #645832;
+        color: #000000;
     }
 
     .text-soft {
-        color: #d1c7a3;
+        color: #dcdcdc;
     }
 
     .bg-primary {
-        background-color: #ebe6d7;
+        background-color: #ddd9c2;
     }
 
     .bg-strong {
-        background-color: #645832;
+        background-color: #101010;
     }
 
     .bg-soft {
-        background-color: #d1c7a3;;
+        background-color: #242424;;
     }
 
     .border-bg-strong {
-        border-color: #645832;
+        border-color: #000000;
     }
 
     .border-bg-soft {
-        border-color: #d1c7a3;
+        border-color: #737373;
     }
 
     .font-monsterrat {
@@ -112,10 +112,14 @@
     .product-pagination span > svg {
         @apply text-stone-400;
     }
-}
 
-h1, h2, h3, h4, h5, h6 {
-    color: #645832;
+    /* h1, h2, h3, h4, h5, h6 {
+        @apply text-black;
+    }
+
+    .product-item {
+        @apply 
+    } */
 }
 
 body {
