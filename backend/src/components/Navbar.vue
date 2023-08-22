@@ -10,8 +10,8 @@
     <div class="text-zinc-200 md:block hidden">
       <router-link :to="{name: 'app.dashboard'}">
         <span class="pr-2">{{ businessName }}</span>
-        <span class="rounded-full px-1 uppercase text-xs text-black font-light" 
-              :class="{ 'bg-red-600' : demo, 'bg-emerald-500' : live, 'bg-purple-600' : production }">
+        <span class="rounded-full px-1 uppercase text-xs text-black font-base" 
+              :class="{ 'bg-red-600' : demo, 'bg-green-600' : live, 'bg-purple-600' : staging }">
             {{ status }}
         </span>
       </router-link>
@@ -123,9 +123,10 @@ const emit = defineEmits(['toggle-sidebar'])
 
 const businessName = ref("Digi.Art");
 
+// Status changes
 const demo = ref(true);
 const live = ref(false);
-const production = ref(false);
+const staging = ref(false);
 
 const status = computed(() => {
   if (demo.value) {
@@ -134,8 +135,8 @@ const status = computed(() => {
   if (live.value) {
     return "live"
   }
-  if (production.value) {
-    return "production"
+  if (staging.value) {
+    return "staging"
   }
 });
 
