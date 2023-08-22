@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -39,7 +39,7 @@
     }
 
     .bg-primary {
-        background-color: #ddd9c2;
+        background-color: #e5e5cd;
     }
 
     .bg-strong {
@@ -60,6 +60,10 @@
 
     .font-monsterrat {
         font-family: 'Monserrat', sans-serif;
+    }
+
+    .font-crimson-text {
+        font-family: 'Crimson Text', sans-serif;
     }
 
     .link-underline {
@@ -123,7 +127,7 @@
 }
 
 body {
-    font-family: 'Crimson Text', sans-serif;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .wysiwyg-content h3,

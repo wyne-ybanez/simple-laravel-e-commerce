@@ -1,7 +1,7 @@
     <div class="container">
         <div class="grid w-screen grid-cols-1 lg:grid-cols-2 bg-strong text-black">
-            <div class="lg:col-span-1 w-fit lg:p-32 px-[2rem] py-10 border border-bg-soft border-r-0 border-l-0">
-                <h1 class="lg:text-7xl text-4xl text-soft font-semibold mb-2">
+            <div class="lg:col-span-1 w-fit lg:p-32 px-[2rem] py-10">
+                <h1 class="lg:text-7xl text-4xl text-soft font-semibold font-crimson-text mb-2">
                     {{$product->title}}
                 </h1>
 
@@ -14,7 +14,7 @@
                 </div>
             </div>
 
-            <div class="lg:col-span-1 border border-bg-soft border-r-0 p-10">
+            <div class="lg:col-span-1 p-40">
                 <div x-data="{
                       image: ['{{$product->image}}'],
                       images: [{{$product->images}}][0],
@@ -44,12 +44,12 @@
                     <div class="relative">
                         <template x-for="item in image">
                             <div x-show="activeImage === item">
-                                <img :src="item" alt="" class="w-full" />
+                                <img :src="item" alt="" class="w-full shadow shadow-xl shadow-white grayscale rounded" />
                             </div>
                         </template>
                         <template x-for="image in images">
                             <div x-show="activeImage === image">
-                                <img :src="activeImage.image" alt="" class="w-full" />
+                                <img :src="activeImage.image" alt="" class="w-full shadow shadow-xl shadow-white grayscale rounded" />
                             </div>
                         </template>
                         <!-- <template x-for="image in images">
@@ -70,7 +70,7 @@
                     <div class="flex mb-[0.1rem]">
                         <template x-for="image in images">
                             <a @click.prevent="activeImage=image" @click="console.log(image)" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image}">
-                                <img :src="image.image" alt="" class="w-auto hover:shadow-black hover:shadow-lg object-cover h-[10rem] mr-auto" />
+                                <img :src="image.image" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto" />
                             </a>
                         </template>
                     </div>

@@ -10,7 +10,7 @@
                 ]) }}),
                 productView = !productView" class="container">
         <div class="grid gap-6 w-screen grid-cols-1 lg:grid-cols-2 bg-primary text-primary">
-            <div class="lg:col-span-1 p-10 border border-bg-soft border-r-1 border-l-0 border-y-0">
+            <div class="lg:col-span-1 p-24">
                 <div x-data="{
                       image: ['{{$product->image}}'],
                       images: [{{$product->images}}][0],
@@ -40,19 +40,19 @@
                     <div class="relative">
                         <template x-for="item in image">
                             <div x-show="activeImage === item">
-                                <img :src="item" alt="" class="w-full" />
+                                <img :src="item" alt="" class="w-full rounded" />
                             </div>
                         </template>
                         <template x-for="image in images">
                             <div x-show="activeImage === image">
-                                <img :src="activeImage.image" alt="" class="w-full" />
+                                <img :src="activeImage.image" alt="" class="w-full rounded" />
                             </div>
                         </template>
                     </div>
                     <div class="flex mb-[0.1rem]">
                         <template x-for="image in images">
                             <a @click.prevent="activeImage=image" @click="console.log(image)" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image}">
-                                <img :src="image.image" alt="" class="w-auto hover:shadow-black hover:shadow-lg object-cover h-[10rem] mr-auto" />
+                                <img :src="image.image" alt="" class="w-auto hover:shadow-black hover:shadow-lg object-cover h-[10rem] mr-auto rounded" />
                             </a>
                         </template>
                     </div>
@@ -60,7 +60,7 @@
             </div>
 
             <div class="lg:col-span-1 w-fit lg:p-32 px-[2rem] py-10">
-                <h1 class="lg:text-7xl text-4xl font-semibold mb-2">
+                <h1 class="lg:text-7xl text-4xl font-crimson-text font-semibold mb-2">
                     {{$product->title}}
                 </h1>
 
@@ -92,12 +92,10 @@
         </div>
     </div>
 
-    @include('components.masthead')
-
     @include('product.partials.view-reversed')
 
     <div class="pt-52 pb-20 px-20">
-        <h1 class="md:text-9xl text-7xl">Featured Art</h1>
+        <h1 class="md:text-7xl text-7xl font-crimson-text">Featured Products</h1>
     </div>
     @include('product.partials.view-items')
 </x-app-layout>
