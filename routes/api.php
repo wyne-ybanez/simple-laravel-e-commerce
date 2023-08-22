@@ -21,7 +21,7 @@ Route::middleware(['auth:sanctum', 'admin'])
         Route::get('/user', [AuthController::class, 'getUser']);
         Route::post('/logout', [AuthController::class, 'logout']);
 
-        Route::get('/products', [ProductController::class, 'index']);
+        Route::apiResource('/products', ProductController::class);
         Route::get('/orders', [OrderController::class, 'index']);
         Route::get('/orders/{order}', [OrderController::class, 'view']);
 });

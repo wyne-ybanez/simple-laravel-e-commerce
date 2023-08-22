@@ -52,27 +52,29 @@ class ProductController extends Controller
         $data['updated_by'] = $request->user()->id;
 
         /** @var \Illuminate\Http\UploadedFile $image */
-        $images = $data['images'] ?? null;
+        $image = $data['image'] ?? null;
 
         //===========================================
         // TODO: multiple images for each product
-        if ($images) {
-            foreach ($images as $image) {
-                $relativePath = $this->saveImage($image);
-                $data['image'] = URL::to(Storage::url($relativePath));
-                $data['image_mime'] = $image->getClientMimeType();
-                $data['image_size'] = $image->getSize();
-            }
-        }
+        // $images = $data['images'] ?? null;
+
+        // if ($images) {
+        //     foreach ($images as $image) {
+        //         $relativePath = $this->saveImage($image);
+        //         $data['image'] = URL::to(Storage::url($relativePath));
+        //         $data['image_mime'] = $image->getClientMimeType();
+        //         $data['image_size'] = $image->getSize();
+        //     }
+        // }
          //===========================================
 
         // Check if image was given and save on local file system
-        // if ($image) {
-        //     $relativePath = $this->saveImage($image);
-        //     $data['image'] = URL::to(Storage::url($relativePath));
-        //     $data['image_mime'] = $image->getClientMimeType();
-        //     $data['image_size'] = $image->getSize();
-        // }
+        if ($image) {
+            $relativePath = $this->saveImage($image);
+            $data['image'] = URL::to(Storage::url($relativePath));
+            $data['image_mime'] = $image->getClientMimeType();
+            $data['image_size'] = $image->getSize();
+        }
 
         $product = Product::create($data);
 

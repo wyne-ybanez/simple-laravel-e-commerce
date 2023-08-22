@@ -9,8 +9,8 @@
     Add Product
     </button>
   </div>
-  <ProductModal v-model="showModal" :product="productModel" @close="onModalClose" />
   <ProductsTable @clickEdit="editProduct" />
+  <ProductModal v-model="showModal" :product="productModel" @close="onModalClose" />
 </template>
 
 <script setup>

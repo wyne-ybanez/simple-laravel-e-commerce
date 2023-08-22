@@ -76,7 +76,7 @@
                                     <CustomInput
                                         type="file"
                                         class="mb-2"
-                                        label="Product Image"
+                                        label="Product Main Image"
                                         @change="
                                             (file) => (product.image = file)
                                         "
