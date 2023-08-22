@@ -14,7 +14,6 @@ export function setToken(state, token) {
 // Let 'data' default to null as a parameter
 // Will be set to undefined otherwise and log an error
 export function setProduct(state, [loading, data = null]) {
-  // console.log(data)
   if (data) {
     state.products = {
         ...state.products,
@@ -32,7 +31,6 @@ export function setProduct(state, [loading, data = null]) {
 }
 
 export function setOrders(state, [loading, data = null]) {
-  console.log(data)
   if (data) {
     state.orders = {
         ...state.orders,

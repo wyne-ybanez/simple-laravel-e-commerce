@@ -107,9 +107,12 @@
                     class="animate-fade-in"
                 >
                     <td class="border-b p-2">{{ order.id }}</td>
-                    <td class="border-b p-2">
+                    <td class="border-b p-2" v-if="order.customer">
+                        {{ order.customer.first_name }}
+                        {{ order.customer.last_name }}
+                    </td>
+                    <td class="border-b p-2" v-else>
                         {{ order.user.name }}
-                        <!-- {{ order.customer.last_name }} -->
                     </td>
                     <td
                         class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
