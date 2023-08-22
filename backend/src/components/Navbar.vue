@@ -9,8 +9,11 @@
     <!-- Site name -->
     <div class="text-zinc-200 md:block hidden">
       <router-link :to="{name: 'app.dashboard'}">
-        <span class="pr-2">Digi.Art</span>
-        <span class="rounded-full bg-red-600 px-1 uppercase text-xs text-black font-light">demo</span>
+        <span class="pr-2">{{ businessName }}</span>
+        <span class="rounded-full px-1 uppercase text-xs text-black font-light" 
+              :class="{ 'bg-red-600' : demo, 'bg-emerald-500' : live, 'bg-purple-600' : production }">
+            {{ status }}
+        </span>
       </router-link>
     </div>
 
@@ -114,9 +117,27 @@ import {Menu, MenuButton, MenuItems, MenuItem} from '@headlessui/vue'
 import {ChevronDownIcon} from '@heroicons/vue/solid'
 import store from "../store";
 import router from "../router";
-import {computed} from "vue";
+import {ref, computed} from "vue";
 
 const emit = defineEmits(['toggle-sidebar'])
+
+const businessName = ref("Digi.Art");
+
+const demo = ref(true);
+const live = ref(false);
+const production = ref(false);
+
+const status = computed(() => {
+  if (demo.value) {
+    return "demo"
+  }
+  if (live.value) {
+    return "live"
+  }
+  if (production.value) {
+    return "production"
+  }
+});
 
 const currentUser = computed(() => store.state.user.data);
 
