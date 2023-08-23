@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Helpers\ProductUtility;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -22,7 +23,7 @@ class ProductController extends Controller
 
     public function category1()
     {
-        $products = $this->get_items_in_category("monsters");
+        $products = ProductUtility::get_items_in_category("monsters");
         $heading = "Monsters";
 
         return view('product.index', [
@@ -33,7 +34,7 @@ class ProductController extends Controller
 
     public function category2()
     {
-        $products = $this->get_items_in_category("anti-heroes");
+        $products = ProductUtility::get_items_in_category("anti-heroes");
         $heading = "Anti-Heroes";
 
         return view('product.index', [
@@ -44,7 +45,7 @@ class ProductController extends Controller
 
     public function category3()
     {
-        $products = $this->get_items_in_category("heroes");
+        $products = ProductUtility::get_items_in_category("heroes");
         $heading = "Heroes";
 
         return view('product.index', [
@@ -55,7 +56,7 @@ class ProductController extends Controller
 
     public function category4()
     {
-        $products = $this->get_items_in_category("landscapes");
+        $products = ProductUtility::get_items_in_category("landscapes");
         $heading = "Landscapes";
 
         return view('product.index', [
@@ -75,22 +76,5 @@ class ProductController extends Controller
             'product' => $product,
             'products' => $products,
         ]);
-    }
-
-    public function get_items_in_category($category_name)
-    {
-        $category = array(
-            "monsters" => "monster",
-            "landscapes" => "landscape",
-            "heroes" => "hero",
-            "anti-heroes" => "anti-hero"
-        );
-
-        $products = Product::query()
-            ->where('category', 'LIKE', $category[$category_name] . '%')
-            ->orderBy('updated_at', 'asc')
-            ->paginate(12);
-
-        return $products;
     }
 }

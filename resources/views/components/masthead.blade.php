@@ -6,23 +6,23 @@
     </h1>
     <div class="container mx-auto justify-items-center grid grid-cols-2 md:grid-cols-4 gap-4">
         <div class="mb-4 mt-20">
-            <a href="{{ route('monsters') }}" class="text-2xl hover:text-soft font-bold font-montserrat mt-20 mb-2">
-                Monsters
+            <a href="{{ route(getenv('PRODUCT_CATEGORY_1')) }}" class="text-2xl hover:text-soft font-bold font-montserrat mt-20 mb-2">
+                {{ getenv('PRODUCT_CATEGORY_1') }}
             </a>
         </div>
         <div class="mb-4 mt-20">
-            <a href="{{ route('landscapes') }}" class="text-2xl hover:text-soft font-bold font-montserrat mt-20 mb-2">
-                Landscapes
+            <a href="{{ route(getenv('PRODUCT_CATEGORY_4')) }}" class="text-2xl hover:text-soft font-bold font-montserrat mt-20 mb-2">
+                {{ getenv('PRODUCT_CATEGORY_4') }}
             </a>
         </div>
         <div class="mb-4 mt-20">
-            <a href="{{ route('heroes') }}" class="text-2xl hover:text-soft font-bold font-montserrat mt-20 mb-2">
-                Heroes
+            <a href="{{ route(getenv('PRODUCT_CATEGORY_3')) }}" class="text-2xl hover:text-soft font-bold font-montserrat mt-20 mb-2">
+                {{ getenv('PRODUCT_CATEGORY_3') }}
             </a>
         </div>
         <div class="mb-4 mt-20">
-            <a href="{{ route('anti_heroes') }}" class="text-2xl hover:text-soft font-bold font-montserrat mt-20 mb-2">
-                Anti-Heroes
+            <a href="{{ route(getenv('PRODUCT_CATEGORY_2')) }}" class="text-2xl hover:text-soft font-bold font-montserrat mt-20 mb-2">
+                {{ getenv('PRODUCT_CATEGORY_2') }}
             </a>
         </div>
     </div>
