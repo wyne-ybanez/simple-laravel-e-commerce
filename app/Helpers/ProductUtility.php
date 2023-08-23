@@ -5,8 +5,9 @@ namespace App\Helpers;
 use App\Models\Product;
 
 /**
- * Class Product
+ * Class ProductUtility
  *
+ * provides some utility functions
  * @package App\Helpers
  */
 class ProductUtility
