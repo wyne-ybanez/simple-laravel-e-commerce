@@ -1,7 +1,7 @@
 <div class="bg-white text-strong text-xl py-32 font-montserrat w-full">
     <h1 class="text-center md:text-9xl sm:text-5xl text-5xl font-extrabold">
         <a href="{{ route('home') }}" class="text-strong">
-            Digi.Art
+            {{ getenv('APP_NAME') }}
         </a>
     </h1>
     <div class="container mx-auto justify-items-center grid grid-cols-2 md:grid-cols-4 gap-4">

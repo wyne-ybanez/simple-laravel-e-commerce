@@ -4,14 +4,14 @@
         cartItemsCount: {{ \App\Helpers\Cart::getCartItemsCount() }},
     }" @cart-change.window="cartItemsCount = $event.detail.count" class="flex justify-between border-b border-bg-soft sticky top-0 z-50" :class="productView ? 'bg-primary' : 'bg-primary'">
     <div>
-        <a href="{{ route('home') }}" class="block py-navbar-item pl-5 font-bold font-montserrat text-4xl text-strong"> Digi.Art </a>
+        <a href="{{ route('home') }}" class="block py-navbar-item pl-5 font-bold font-montserrat text-4xl text-strong">{{ getenv('APP_NAME') }}</a>
     </div>
     <!-- Mobile: Responsive Menu -->
     <div class="block fixed z-10 top-0 bottom-0 height h-full w-[220px] transition-all md:hidden shadow-md border border-bg-soft bg-primary" :class="mobileMenuOpen ? 'left-0' : '-left-[220px]'">
         <ul>
             <li>
                 <div>
-                    <a href="/" class="block py-navbar-item pl-5 font-bold text-primary font-montserrat text-3xl"> Digi.Art </a>
+                    <a href="/" class="block py-navbar-item pl-5 font-bold text-primary font-montserrat text-3xl">{{ getenv('APP_NAME') }}</a>
                 </div>
             </li>
             <li>
@@ -102,30 +102,30 @@
                 </a>
             </li>
             <li class="mt-5">
-                <a href="{{ route('monsters') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
+                <a href="{{ route(getenv('PRODUCT_CATEGORY_1')) }}" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
                     <div class="link-underline link-underline-strong">
-                        Monsters
+                        {{ getenv('PRODUCT_CATEGORY_1') }}
                     </div>
                 </a>
             </li>
             <li class="mt-5">
-                <a href="{{ route('landscapes') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
+                <a href="{{ route(getenv('PRODUCT_CATEGORY_4')) }}" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
                     <div class="link-underline link-underline-strong">
-                        Landscapes
+                        {{ getenv('PRODUCT_CATEGORY_4') }}
                     </div>
                 </a>
             </li>
             <li class="mt-5">
-                <a href="{{ route('heroes') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
+                <a href="{{ route(getenv('PRODUCT_CATEGORY_3')) }}" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
                     <div class="link-underline link-underline-strong">
-                        Heroes
+                        {{ getenv('PRODUCT_CATEGORY_3') }}
                     </div>
                 </a>
             </li>
             <li class="mt-5">
-                <a href="{{ route('anti_heroes') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
+                <a href="{{ route(getenv('PRODUCT_CATEGORY_2')) }}" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
                     <div class="link-underline link-underline-strong">
-                        Anti-Heroes
+                        {{ getenv('PRODUCT_CATEGORY_2') }}
                     </div>
                 </a>
             </li>

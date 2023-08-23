@@ -4,9 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Imports */
-@import url("content.css");
-
 /* Layers */
 @layer base {
     .py-navbar-item {

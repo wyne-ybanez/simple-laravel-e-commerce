@@ -4,7 +4,7 @@
       <router-link :to="{name: 'app.dashboard'}" class="mx-auto">
           <span class="px-2">{{ businessName }}</span>
           <span class="rounded-full px-1 uppercase text-xs text-black font-base mb-4" 
-                :class="{ 'bg-red-600' : demo, 'bg-green-600' : live, 'bg-purple-600' : staging }">
+                :class="{ 'bg-red-600' : DEMO, 'bg-green-600' : LIVE, 'bg-purple-600' : STAGING }">
               {{ status }}
           </span>
       </router-link>
@@ -44,23 +44,20 @@
 
 <script setup>
 import {ref, computed} from "vue";
+import {DEMO, LIVE, STAGING, BUSINESS_NAME} from "../constants.js";
 
-const businessName = ref("Digi.Art");
-
-// Status changes
-const demo = ref(true);
-const live = ref(false);
-const staging = ref(false);
+// controlled in 'constants.js'
+const businessName = ref(BUSINESS_NAME);
 
 const status = computed(() => {
-  if (demo.value) {
+  if (DEMO) {
     return "demo"
   }
-  if (live.value) {
-    return "live"
-  }
-  if (staging.value) {
+  if (STAGING) {
     return "staging"
+  }
+  if (LIVE) {
+    return "live"
   }
 });
 

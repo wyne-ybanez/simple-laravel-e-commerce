@@ -115,16 +115,16 @@
 import {MenuIcon, LogoutIcon, UserIcon} from '@heroicons/vue/outline'
 import {Menu, MenuButton, MenuItems, MenuItem} from '@headlessui/vue'
 import {ChevronDownIcon} from '@heroicons/vue/solid'
-import {DEMO, LIVE, STAGING} from "../constants.js";
+import {DEMO, LIVE, STAGING, BUSINESS_NAME} from "../constants.js";
 import store from "../store";
 import router from "../router";
 import {ref, computed} from "vue";
 
 const emit = defineEmits(['toggle-sidebar'])
 
-const businessName = ref("Digi.Art");
+// controlled in 'constants.js'
+const businessName = ref(BUSINESS_NAME);
 
-// Status changes controlled in 'constants.js'
 const status = computed(() => {
   if (DEMO) {
     return "demo"
