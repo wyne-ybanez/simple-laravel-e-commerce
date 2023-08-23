@@ -1,6 +1,6 @@
     <div class="container">
         <div class="grid w-screen grid-cols-1 lg:grid-cols-2 bg-strong text-black">
-            <div class="lg:col-span-1 w-fit lg:p-32 px-[2rem] py-10">
+            <div class="lg:col-span-1 w-fit lg:p-32 px-[2rem] py-10 my-24">
                 <h1 class="lg:text-7xl text-4xl text-soft font-semibold font-crimson-text mb-2">
                     {{$product->title}}
                 </h1>
@@ -9,7 +9,7 @@
 
                 <div class="mb-6" x-data="{expanded: true}">
                     <div x-show="expanded" x-collapse.min.290px class="text-soft text-lg wysiwyg-content">
-                        {{ $product->description }}
+                        {{ $product->description_2 }}
                     </div>
                 </div>
             </div>

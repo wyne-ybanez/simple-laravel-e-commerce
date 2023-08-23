@@ -29,6 +29,7 @@ class ProductRequest extends FormRequest
             'price' => ['required', 'numeric'],
             'category' => ['nullable', 'max: 255'],
             'description' => ['nullable', 'string'],
+            'description_2' => ['nullable', 'string'],
             'color' => ['nullable', 'boolean']
         ];
     }

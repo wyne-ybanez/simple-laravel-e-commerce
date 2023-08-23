@@ -93,6 +93,12 @@
                                         label="Description"
                                     />
                                     <CustomInput
+                                        type="textarea"
+                                        class="mb-2"
+                                        v-model="product.description_2"
+                                        label="Alternative Description"
+                                    />
+                                    <CustomInput
                                         type="number"
                                         class="mb-2"
                                         v-model="product.price"
@@ -153,6 +159,7 @@ const product = ref({
     image: props.product.image,
     category: props.product.category,
     description: props.product.description,
+    description_2: props.product.description_2,
     price: props.product.price,
     color: props.product.color,
 });
@@ -170,6 +177,7 @@ onUpdated(() => {
         image: props.product.image,
         category: props.product.category,
         description: props.product.description,
+        description_2: props.product.description_2,
         price: props.product.price,
         color: props.product.color,
     };

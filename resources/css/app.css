@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Imports */
+@import url("content.css");
+
+/* Layers */
 @layer base {
     .py-navbar-item {
         @apply py-6;
@@ -120,12 +124,10 @@
     /* h1, h2, h3, h4, h5, h6 {
         @apply text-black;
     }
-
-    .product-item {
-        @apply 
-    } */
+    */
 }
 
+/* Content */
 body {
     font-family: 'Quicksand', sans-serif;
 }

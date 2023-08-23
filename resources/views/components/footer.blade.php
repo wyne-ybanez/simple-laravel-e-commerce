@@ -1,4 +1,4 @@
-<footer class="bg-strong text-soft text-xl py-8 font-montserrat w-full">
+<footer class="bg-strong text-soft text-xl py-8 font-montserrat w-full mt-40">
     <h1 class="text-center text-soft md:text-9xl sm:text-8xl text-7xl mt-20 font-extrabold">
         <a href="{{ route('home') }}" class="">
             Digi.Art
