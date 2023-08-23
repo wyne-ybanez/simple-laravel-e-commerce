@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container lg:w-2/4 xl:w-2/4 mx-auto font-montserrat">
+    <div class="container lg:w-2/4 xl:w-2/4 mx-auto mt-20 font-montserrat">
         <h1 class="text-3xl font-bold m-6">Basket Items:</h1>
 
         <!-- Products - Container -->
