@@ -11,7 +11,7 @@
       <router-link :to="{name: 'app.dashboard'}">
         <span class="pr-2">{{ businessName }}</span>
         <span class="rounded-full px-1 uppercase text-xs text-black font-base" 
-              :class="{ 'bg-red-600' : demo, 'bg-green-600' : live, 'bg-purple-600' : staging }">
+              :class="{ 'bg-red-600' : DEMO, 'bg-green-600' : LIVE, 'bg-purple-600' : STAGING }">
             {{ status }}
         </span>
       </router-link>
@@ -115,6 +115,7 @@
 import {MenuIcon, LogoutIcon, UserIcon} from '@heroicons/vue/outline'
 import {Menu, MenuButton, MenuItems, MenuItem} from '@headlessui/vue'
 import {ChevronDownIcon} from '@heroicons/vue/solid'
+import {DEMO, LIVE, STAGING} from "../constants.js";
 import store from "../store";
 import router from "../router";
 import {ref, computed} from "vue";
@@ -123,20 +124,16 @@ const emit = defineEmits(['toggle-sidebar'])
 
 const businessName = ref("Digi.Art");
 
-// Status changes
-const demo = ref(true);
-const live = ref(false);
-const staging = ref(false);
-
+// Status changes controlled in 'constants.js'
 const status = computed(() => {
-  if (demo.value) {
+  if (DEMO) {
     return "demo"
   }
-  if (live.value) {
-    return "live"
-  }
-  if (staging.value) {
+  if (STAGING) {
     return "staging"
+  }
+  if (LIVE) {
+    return "live"
   }
 });
 

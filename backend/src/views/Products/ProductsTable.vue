@@ -45,7 +45,7 @@
             Category
           </TableHeaderCell>
           <TableHeaderCell class="border-b p-2 pb-5 font-medium" field="color">
-            Filter
+            Color
           </TableHeaderCell>
           <TableHeaderCell @click="sortProducts('updated_at')" class="border-b p-2 pb-5 font-medium" field="updated_at" :sort-field="sortField" :sort-direction="sortDirection">
             Last Updated
