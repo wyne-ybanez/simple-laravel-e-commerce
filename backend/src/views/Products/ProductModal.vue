@@ -99,6 +99,12 @@
                                         label="Price"
                                         prepend="€"
                                     />
+                                    <CustomInput
+                                        type="checkbox"
+                                        class="mb-2"
+                                        v-model="product.color"
+                                        label="Colored Image"
+                                    />
                                 </div>
                                 <footer
                                     class="bg-white px-4 py-4 sm:flex sm:flex-row-reverse justify-between"
@@ -148,8 +154,10 @@ const product = ref({
     category: props.product.category,
     description: props.product.description,
     price: props.product.price,
+    color: props.product.color,
 });
 
+// changes what appears on modal when opening modal again
 const show = computed({
     get: () => props.modelValue, // we get this from Products.vue
     set: (value) => emit("update:modelValue", value),
@@ -163,6 +171,7 @@ onUpdated(() => {
         category: props.product.category,
         description: props.product.description,
         price: props.product.price,
+        color: props.product.color,
     };
 });
 

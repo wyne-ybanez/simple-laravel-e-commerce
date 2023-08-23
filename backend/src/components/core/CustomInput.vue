@@ -52,18 +52,19 @@
       </template>
       <template v-else-if="type === 'checkbox'">
         <div class="flex flex-col grow">
+            <label class="block text-sm mb-2 text-zinc-400"> Product images are black & white by default </label>
             <div>
                 {{ label }}
                 <span v-if="required" class="text-zinc-400 text-lg">*</span>
+                <input
+                    :name="name"
+                    :type="type"
+                    :checked="props.modelValue"
+                    :required="required"
+                    @change="emit('update:modelValue', $event.target.checked)"
+                    class="h-[20px] w-[20px] text-zinc-600 border-gray-200 ml-1 accent-green-500 mb-5"
+                />
             </div>
-            <input :id="id"
-                :name="name"
-                :type="type"
-                :checked="props.modelValue"
-                :required="required"
-                @change="emit('update:modelValue', $event.target.checked)"
-                class="h-4 w-4 text-zinc-600 border-gray-300 rounded"/>
-            <label :for="id" class="ml-2 block text-sm text-gray-900"> {{ label }} </label>
         </div>
       </template>
       <template v-else>

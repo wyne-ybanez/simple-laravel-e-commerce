@@ -26,7 +26,8 @@ const DEFAULT_PRODUCT = {
   description: '',
   category: '',
   image: '',
-  price: ''
+  price: '',
+  color: ''
 }
 
 const productModel = ref({...DEFAULT_PRODUCT})

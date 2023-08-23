@@ -3,16 +3,20 @@
     @foreach($products as $product)
     <!-- Product Item -->
     <div x-data="productItem({{ json_encode([
-                    'id' => $product->id,
-                    'image' => $product->image,
-                    'title' => $product->title,
-                    'price' => $product->price,
-                    'addToCartUrl' => route('cart.add', $product)
-                ]) }})" class="bg-primary hover:bg-strong hover:text-white flex flex-col product-item rounded-xl">
-        
+                        'id' => $product->id,
+                        'image' => $product->image,
+                        'title' => $product->title,
+                        'price' => $product->price,
+                        'color' => $product->color,
+                        'addToCartUrl' => route('cart.add', $product)
+                    ])
+                }})"
+        class="bg-primary hover:bg-strong hover:text-white flex flex-col product-item rounded-xl"
+    >
         <!-- Image -->
         <a href="{{ route('product.view', $product->slug) }}" class="aspect-w-3 aspect-h-3 block overflow-hidden rounded-xl">
-            <img src="{{ $product->image }}" alt="" class="p-8 object-cover hover:p-0 hover:m-auto hover:scale-100 transition-transform grayscale hover:grayscale-0" />
+            <img src="{{ $product->image }}" alt="" class="p-8 object-cover hover:p-0 hover:m-auto hover:scale-100 transition-transform hover:grayscale-0" 
+                :class="{{ $product->color }} ? '' : 'grayscale'"/>
         </a>
 
         <!-- Title -->
@@ -33,7 +37,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                     </button> -->
-                <button class="h-10 border-bg-strong border-2 rounded-sm px-2 text-strong hover:bg-stone-800 hover:text-white" @click="addToCart()">
+                <button class="h-10 border-bg-strong border-2 rounded-sm px-2 text-strong hover:border-white hover:bg-stone-800 hover:text-white" @click="addToCart()">
                     Purchase
                 </button>
             </div>

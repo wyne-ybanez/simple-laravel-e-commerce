@@ -14,6 +14,7 @@
           <option value="50">50</option>
           <option value="100">100</option>
         </select>
+        <span class="ml-3"> {{ products.total }} Products</span>
       </div>
       <!-- Search -->
       <div>
@@ -42,6 +43,9 @@
           </TableHeaderCell>
           <TableHeaderCell @click="sortProducts('category')" class="border-b p-2 pb-5 font-medium" field="category" :sort-field="sortField" :sort-direction="sortDirection">
             Category
+          </TableHeaderCell>
+          <TableHeaderCell class="border-b p-2 pb-5 font-medium" field="color">
+            Filter
           </TableHeaderCell>
           <TableHeaderCell @click="sortProducts('updated_at')" class="border-b p-2 pb-5 font-medium" field="updated_at" :sort-field="sortField" :sort-direction="sortDirection">
             Last Updated
@@ -72,6 +76,20 @@
           </td>
           <td class="border-b p-2">
             {{ product.category }}
+          </td>
+          <td class="border-b p-2">
+            <div class="text-black py-1 px-2 rounded w-fit" :class="{
+                'bg-emerald-400': ['true', '1', 1, true].includes(product.color),
+                'bg-gray-300': ['false', '0', 0, false].includes(product.color),
+              }"
+            >
+              <span class="py-1" v-if="product.color">
+                  Colored
+              </span>
+              <span class="py-1" v-else>
+                  Grayscale
+              </span>
+            </div>
           </td>
           <td class="border-b p-2 ">
             {{ product.updated_at }}
@@ -182,7 +200,6 @@ import {PRODUCTS_PER_PAGE} from '../../constants'
 import TableHeaderCell from '../../components/core/Table/TableHeaderCell.vue';
 import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/vue";
 import {DotsVerticalIcon, PencilIcon, TrashIcon} from '@heroicons/vue/outline'
-import ProductModal from "./ProductModal.vue";
 
 const emit = defineEmits(['clickEdit'])
 

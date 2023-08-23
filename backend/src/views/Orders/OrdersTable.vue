@@ -15,7 +15,7 @@
                     <option value="50">50</option>
                     <option value="100">100</option>
                 </select>
-                <span class="ml-3">{{ orders.total }} Orders Found</span>
+                <span class="ml-3">{{ orders.total }} Orders</span>
             </div>
             <!-- Search -->
             <div>
@@ -106,7 +106,7 @@
                     v-for="(order, index) of orders.data"
                     class="animate-fade-in"
                 >
-                    <td class="border-b p-2">{{ order.id }}</td>
+                    <td class="border-b p-2 py-4">{{ order.id }}</td>
                     <td class="border-b p-2" v-if="order.customer">
                         {{ order.customer.first_name }}
                         {{ order.customer.last_name }}

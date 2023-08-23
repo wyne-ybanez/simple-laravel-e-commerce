@@ -69,8 +69,9 @@ export function createProduct({ commit }, product) {
         form.append("title", product.title);
         form.append("image", product.image);
         form.append("category", product.category);
-        form.append("description", product.description);
+        form.append("description", product.description || '');
         form.append("price", product.price);
+        form.append("color", product.color ? 1 : 0);
         product = form;
     }
     return axiosClient.post("/products", product);
@@ -78,14 +79,16 @@ export function createProduct({ commit }, product) {
 
 export function updateProduct({ commit }, product) {
   const id = product.id
+
   if (product.image instanceof File) {
       const form = new FormData();
       form.append("id", product.id);
       form.append("title", product.title);
       form.append("image", product.image);
       form.append("category", product.category);
-      form.append("description", product.description);
+      form.append("description", product.description || '');
       form.append("price", product.price);
+      form.append("color", product.color ? 1 : 0);
       form.append("_method", "PUT");
       product = form;
   } else {
