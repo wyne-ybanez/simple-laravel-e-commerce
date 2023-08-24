@@ -2,7 +2,7 @@
     <div class="flex items-center justify-between mb-3">
         <h1 class="text-lg font-normal">Orders</h1>
     </div>
-    <OrdersTable/>
+    <OrdersTable @clickView="viewOrder"/>
 </template>
 
 <script setup>

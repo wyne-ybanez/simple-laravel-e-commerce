@@ -9,8 +9,8 @@
                     @change="getOrders(null)"
                     class="appearance-none relative block w-24 px-3 py-2 border border-gray-300 bg-gray-50 text-gray-900 rounded-sm focus:outline-none focus:ring-zinc-500 focus:border-0 focus:z-10 cursor-pointer sm:text-sm"
                 >
-                    <option value="5">5</option>
                     <option value="10">10</option>
+                    <option value="15">15</option>
                     <option value="20">20</option>
                     <option value="50">50</option>
                     <option value="100">100</option>
@@ -126,13 +126,13 @@
                         {{ order.created_at }}
                     </td>
                     <td class="border-b p-2">
-                        <!-- <router-link
+                        <router-link
                             :to="{
                                 name: 'app.orders.view',
                                 params: { id: order.id },
                             }"
-                            class="w-8 h-8 rounded-full text-stone-700 border border-stone-700 flex justify-center items-center hover:text-white hover:bg-stone-700"
-                        > -->
+                            class="w-8 h-8 rounded-full text-stone-700 border border-stone-700 flex justify-center items-center hover:text-white hover:bg-black"
+                        >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -152,7 +152,7 @@
                                     d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                                 />
                             </svg>
-                        <!-- </router-link> -->
+                        </router-link>
                     </td>
                 </tr>
             </tbody>

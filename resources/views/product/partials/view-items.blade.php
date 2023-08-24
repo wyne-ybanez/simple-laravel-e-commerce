@@ -11,7 +11,7 @@
                         'addToCartUrl' => route('cart.add', $product)
                     ])
                 }})"
-        class="bg-primary hover:bg-strong hover:text-white flex flex-col product-item rounded-xl"
+        class="bg-primary hover:bg-strong hover:text-white text-strong flex flex-col product-item rounded-xl"
     >
         <!-- Image -->
         <a href="{{ route('product.view', $product->slug) }}" class="aspect-w-3 aspect-h-3 block overflow-hidden rounded-xl">

@@ -1,11 +1,5 @@
 <?php
 
-/**
- * User: Wyne
- * Date: 06/30/2023
- * Time: 9:04 AM
- */
-
 namespace App\Enums;
 
 /**
