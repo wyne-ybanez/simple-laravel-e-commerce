@@ -122,12 +122,13 @@
                 <!-- Order Item -->
                 <div class="flex flex-col sm:flex-row items-center gap-4 mt-2">
                     <a
-                        href="#"
-                        class="w-36 h-32 flex items-center justify-center overflow-hidden my-2"
+                        :href=productUrlPrefix+item.product.slug
+                        target="_blank"
+                        class="w-36 h-32 flex items-center justify-center overflow-hidden my-2 rounded"
                     >
                         <img
                             :src="item.product.image"
-                            class="object-cover"
+                            class="object-cover rounded"
                             alt=""
                         />
                     </a>
@@ -161,11 +162,14 @@ import store from "../../store";
 import { useRoute } from "vue-router";
 import axiosClient from "../../axios.js";
 import OrderStatus from "./OrderStatus.vue";
+import { APP_URL } from "../../constants.js";
 
 const route = useRoute();
 
 const order = ref(null);
 const orderStatuses = ref([]);
+
+const productUrlPrefix = `${APP_URL}/product/`;
 
 onMounted(() => {
     store.dispatch("getOrder", route.params.id).then(({ data }) => {

@@ -11,3 +11,6 @@ export const CUSTOMERS_PER_PAGE = 10
 export const DEMO = true
 export const STAGING = false
 export const LIVE = false
+
+// App URL
+export const APP_URL = 'http://localhost:8000'
