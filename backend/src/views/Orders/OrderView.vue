@@ -1,14 +1,14 @@
 <template>
     <div v-if="order">
         <!--  Order Details-->
-        <div>
+        <div class="my-4">
             <h2
-                class="flex justify-between items-center text-xl font-semibold pb-2 border-b border-gray-300"
+                class="flex items-center text-lg pb-2 border-b border-gray-300"
             >
                 Order Details
-                <OrderStatus :order="order" />
+                <span class="text-sm ml-4"><OrderStatus :order="order" /></span>
             </h2>
-            <table>
+            <table class="mt-2">
                 <tbody>
                     <tr>
                         <td class="font-bold py-1 px-2">Order #</td>
@@ -44,13 +44,13 @@
         <!--/  Order Details-->
 
         <!--  Customer Details-->
-        <div>
+        <div class="my-10">
             <h2
-                class="text-xl font-semibold mt-6 pb-2 border-b border-gray-300"
+                class="text-lg mt-6 pb-2 border-b border-gray-300"
             >
                 Customer Details
             </h2>
-            <table>
+            <table class="mt-2">
                 <tbody>
                     <tr>
                         <td class="font-bold py-1 px-2">Full Name</td>
@@ -73,57 +73,57 @@
         <!--/  Customer Details-->
 
         <!--  Addresses Details-->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-10">
             <div>
                 <h2
-                    class="text-xl font-semibold mt-6 pb-2 border-b border-gray-300"
+                    class="text-lg mt-6 pb-2 border-b border-gray-300"
                 >
                     Billing Address
                 </h2>
                 <!--  Billing Address Details-->
-                <!-- <div>
-                    {{ order.customer.billingAddress.address1 }},
-                    {{ order.customer.billingAddress.address2 }} <br />
-                    {{ order.customer.billingAddress.city }},
-                    {{ order.customer.billingAddress.zipcode }} <br />
-                    {{ order.customer.billingAddress.state }},
-                    {{ order.customer.billingAddress.country }} <br />
-                </div> -->
+                <div class="px-2 mt-2">
+                    {{ order.customer.billingAddress.address1 }}, <br />
+                    {{ order.customer.billingAddress.address2 }}, <br />
+                    {{ order.customer.billingAddress.city }}, <br />
+                    {{ order.customer.billingAddress.zipcode }}, <br />
+                    {{ order.customer.billingAddress.state }}
+                    {{ order.customer.billingAddress.country }}
+                </div>
                 <!--/  Billing Address Details-->
             </div>
             <div>
                 <h2
-                    class="text-xl font-semibold mt-6 pb-2 border-b border-gray-300"
+                    class="text-lg mt-6 pb-2 border-b border-gray-300"
                 >
                     Shipping Address
                 </h2>
                 <!--  Shipping Address Details-->
-                <!-- <div>
-                    {{ order.customer.shippingAddress.address1 }},
-                    {{ order.customer.shippingAddress.address2 }} <br />
-                    {{ order.customer.shippingAddress.city }},
-                    {{ order.customer.shippingAddress.zipcode }} <br />
-                    {{ order.customer.shippingAddress.state }},
-                    {{ order.customer.shippingAddress.country }} <br />
-                </div> -->
+                <div class="px-2 mt-2">
+                    {{ order.customer.shippingAddress.address1 }}, <br />
+                    {{ order.customer.shippingAddress.address2 }}, <br />
+                    {{ order.customer.shippingAddress.city }}, <br />
+                    {{ order.customer.shippingAddress.zipcode }}, <br />
+                    {{ order.customer.shippingAddress.state }}
+                    {{ order.customer.shippingAddress.country }}
+                </div>
                 <!--/  Shipping Address Details-->
             </div>
         </div>
         <!--/  Customer Details-->
 
         <!--    Order Items-->
-        <div>
+        <div class="my-10">
             <h2
-                class="text-xl font-semibold mt-6 pb-2 border-b border-gray-300"
+                class="text-lg mt-6 pb-2 border-b border-gray-300"
             >
                 Order Items
             </h2>
             <div v-for="item of order.items">
                 <!-- Order Item -->
-                <div class="flex flex-col sm:flex-row items-center gap-4">
+                <div class="flex flex-col sm:flex-row items-center gap-4 mt-2">
                     <a
                         href="#"
-                        class="w-36 h-32 flex items-center justify-center overflow-hidden"
+                        class="w-36 h-32 flex items-center justify-center overflow-hidden my-2"
                     >
                         <img
                             :src="item.product.image"
@@ -132,23 +132,23 @@
                         />
                     </a>
                     <div class="flex flex-col justify-between flex-1">
-                        <div class="flex justify-between mb-3">
+                        <div class="flex justify-between mb-3 font-semibold">
                             <h3>
                                 {{ item.product.title }}
                             </h3>
                         </div>
-                        <div class="flex justify-between items-center">
+                        <div class="flex space-x-10 items-center">
                             <div class="flex items-center">
-                                Qty: {{ item.quantity }}
+                                Quantity: <span class="ml-4">{{ item.quantity }}</span>
                             </div>
-                            <span class="text-lg font-semibold">
+                            <div>x</div>
+                            <span class="text-lg">
                                 {{ item.unit_price }}
                             </span>
                         </div>
                     </div>
                 </div>
                 <!--/ Order Item -->
-                <hr class="my-3" />
             </div>
         </div>
         <!--/    Order Items-->
@@ -169,11 +169,6 @@ const orderStatuses = ref([]);
 
 onMounted(() => {
     store.dispatch("getOrder", route.params.id).then(({ data }) => {
-      if (data) {
-        console.log(data)
-      }
-      else console.log('no data');
-        
         order.value = data;
     });
 

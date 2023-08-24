@@ -35,7 +35,7 @@ class OrderController extends Controller
     public function view(Order $order)
     {
         // 'items.product' - relation can be checked in Order and OrderItem model
-        // $order->load('items.product');
+        $order->load('items.product');
         return new OrderResource($order);
     }
 }

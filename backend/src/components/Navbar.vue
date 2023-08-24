@@ -11,7 +11,11 @@
       <router-link :to="{name: 'app.dashboard'}">
         <span class="pr-2">{{ businessName }}</span>
         <span class="rounded-full px-1 uppercase text-xs text-black font-base" 
-              :class="{ 'bg-red-600' : DEMO, 'bg-green-600' : LIVE, 'bg-purple-600' : STAGING }">
+              :class="{
+                'bg-red-600' : DEMO,
+                'bg-green-600' : LIVE,
+                'bg-purple-600' : STAGING,
+              }">
             {{ status }}
         </span>
       </router-link>
