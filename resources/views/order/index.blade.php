@@ -64,7 +64,7 @@
         @else 
             <div class="order-complete__message pt-10 mx-auto text-center my-20">
                 <h1>
-                    Snag our products: Because adulting is tough, <br> 
+                    Snag our products: Because adulting is tough, <br>
                     and retail therapy is a lot cheaper than therapy therapy.
                 </h1>
                 <h1 class="mt-10 font-semibold">

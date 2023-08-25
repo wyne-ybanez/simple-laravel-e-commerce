@@ -49,6 +49,7 @@
                 class="text-lg mt-6 pb-2 border-b border-gray-300"
             >
                 Customer Details
+                <span class="text-sm ml-4"><OrderCustomerStatus :order="order" /></span>
             </h2>
             <table class="mt-2">
                 <tbody>
@@ -115,7 +116,7 @@
                     {{ order.customer.shippingAddress.state }}
                     {{ order.customer.shippingAddress.country }}
                 </div>
-                <div v-else class="px-2 mt-4">
+                <div v-else class="px-2 mt-4 mb-16">
                     The customer has not assigned a <strong>Shipping Address</strong>  for this order. <br>
                     Please contact them to rectify this.
                 </div>
@@ -176,6 +177,7 @@ import { useRoute } from "vue-router";
 import axiosClient from "../../axios.js";
 import OrderStatus from "./OrderStatus.vue";
 import OrderAddressStatus from "./OrderAddressStatus.vue";
+import OrderCustomerStatus from "./OrderCustomerStatus.vue";
 import { APP_URL } from "../../constants.js";
 
 const route = useRoute();
