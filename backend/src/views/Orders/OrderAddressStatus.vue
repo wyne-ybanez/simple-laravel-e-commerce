@@ -18,7 +18,8 @@ const {order} = defineProps({
 const addressStatus = computed(() => {
     if (order.customer.billingAddress.id == '' || order.customer.shippingAddress.id == '') {
         return 'error'
-    } else return 'complete'
+    }
+    return 'complete'
 })
 
 console.log(order.customer);

@@ -3,6 +3,7 @@
         'bg-orange-300': !order.customer.email || !order.customer.phone ,
         'bg-green-400': order.customer.email && order.customer.phone,
         'bg-gray-300': order.status === 'cancelled',
+        'bg-red-400': !order.customer,
       }">
       {{ customerStatus }}
     </span>
@@ -18,7 +19,17 @@ const {order} = defineProps({
 const customerStatus = computed(() => {
     if (!order.customer.email || !order.customer.phone) {
         return 'incomplete'
-    } else return 'complete'
+    }
+
+    if (order.status === 'cancelled') {
+        return 'cancelled'
+    }
+
+    if (!order.customer || !order.customer.id) {
+        return 'error'
+    }
+
+    return 'complete'
 })
 
 console.log(order.customer);
