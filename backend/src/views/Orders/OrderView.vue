@@ -11,7 +11,7 @@
             <table class="mt-2">
                 <tbody>
                     <tr>
-                        <td class="font-bold py-1 px-2">Order #</td>
+                        <td class="font-bold py-1 px-2">Order ID</td>
                         <td>{{ order.id }}</td>
                     </tr>
                     <tr>
@@ -79,15 +79,22 @@
                     class="text-lg mt-6 pb-2 border-b border-gray-300"
                 >
                     Billing Address
+                    <span class="text-sm ml-4"><OrderAddressStatus :order="order" /></span>
                 </h2>
                 <!--  Billing Address Details-->
-                <div class="px-2 mt-2">
+                <div 
+                    v-if="(order.customer.billingAddress.id)" 
+                    class="px-2 mt-2">
                     {{ order.customer.billingAddress.address1 }}, <br />
                     {{ order.customer.billingAddress.address2 }}, <br />
                     {{ order.customer.billingAddress.city }}, <br />
                     {{ order.customer.billingAddress.zipcode }}, <br />
                     {{ order.customer.billingAddress.state }}
                     {{ order.customer.billingAddress.country }}
+                </div>
+                <div v-else class="px-2 mt-4">
+                    The customer has not assigned a <strong>Billing Address</strong> for this order. <br>
+                    Please contact them to rectify this.
                 </div>
                 <!--/  Billing Address Details-->
             </div>
@@ -96,15 +103,21 @@
                     class="text-lg mt-6 pb-2 border-b border-gray-300"
                 >
                     Shipping Address
+                     <span class="text-sm ml-4"><OrderAddressStatus :order="order" /></span>
                 </h2>
                 <!--  Shipping Address Details-->
-                <div class="px-2 mt-2">
+                <div v-if="(order.customer.shippingAddress.id)" 
+                    class="px-2 mt-2">
                     {{ order.customer.shippingAddress.address1 }}, <br />
                     {{ order.customer.shippingAddress.address2 }}, <br />
                     {{ order.customer.shippingAddress.city }}, <br />
                     {{ order.customer.shippingAddress.zipcode }}, <br />
                     {{ order.customer.shippingAddress.state }}
                     {{ order.customer.shippingAddress.country }}
+                </div>
+                <div v-else class="px-2 mt-4">
+                    The customer has not assigned a <strong>Shipping Address</strong>  for this order. <br>
+                    Please contact them to rectify this.
                 </div>
                 <!--/  Shipping Address Details-->
             </div>
@@ -162,6 +175,7 @@ import store from "../../store";
 import { useRoute } from "vue-router";
 import axiosClient from "../../axios.js";
 import OrderStatus from "./OrderStatus.vue";
+import OrderAddressStatus from "./OrderAddressStatus.vue";
 import { APP_URL } from "../../constants.js";
 
 const route = useRoute();

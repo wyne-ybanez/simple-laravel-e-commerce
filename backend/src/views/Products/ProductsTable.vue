@@ -56,7 +56,10 @@
       <tbody v-if="products.loading">
         <tr>
           <td colspan="6">
-            <Spinner v-if="products.loading" class="py-10 h-[65.1vh] justify-center align-center"/>
+            <Spinner v-if="products.loading" class="py-10 h-[65.1vh] justify-center align-center text-center"/>
+            <p v-else class="text-center py-8 text-gray-700">
+                There are no products.
+            </p>
           </td>
         </tr>
       </tbody>
@@ -78,8 +81,8 @@
             {{ product.category }}
           </td>
           <td class="border-b p-2">
-            <div class="text-black py-1 px-2 rounded w-fit" :class="{
-                'bg-emerald-400': ['true', '1', 1, true].includes(product.color),
+            <div class="text-black text-sm py-1 px-2 rounded-full w-fit" :class="{
+                'bg-green-400': ['true', '1', 1, true].includes(product.color),
                 'bg-gray-300': ['false', '0', 0, false].includes(product.color),
               }"
             >

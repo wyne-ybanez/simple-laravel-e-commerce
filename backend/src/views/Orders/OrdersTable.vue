@@ -86,15 +86,9 @@
             <tbody v-if="orders.loading || !orders.data.length">
                 <tr>
                     <td colspan="6">
-                        <Spinner
-                            v-if="orders.loading"
-                            class="py-10 h-[65.1vh] justify-center align-center"
-                        />
+                        <Spinner v-if="orders.loading" class="py-10 h-[65.1vh] justify-center align-center"/>
                         <p v-else class="text-center py-8 text-gray-700">
-                            There are no orders
-
-                            Data: <br>
-                            {{ orders }}
+                            There are no orders.
                         </p>
                     </td>
                 </tr>

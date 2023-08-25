@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel E-commerce Website') }}</title>
+    <title>{{ config('app.name', 'E-commerce Website') }}</title>
 
     <!-- Font imports-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
