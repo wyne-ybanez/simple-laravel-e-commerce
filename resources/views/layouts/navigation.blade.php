@@ -2,7 +2,7 @@
 <header x-data="{
         mobileMenuOpen: false,
         cartItemsCount: {{ \App\Helpers\Cart::getCartItemsCount() }},
-    }" @cart-change.window="cartItemsCount = $event.detail.count" class="flex justify-between border-b border-bg-soft sticky top-0 z-50" :class="productView ? 'bg-primary' : 'bg-primary'">
+    }" @cart-change.window="cartItemsCount = $event.detail.count" class="flex justify-between border-b border-bg-soft sticky top-0 z-50 bg-primary">
     <div>
         <a href="{{ route('home') }}" class="block py-navbar-item pl-5 font-bold font-montserrat text-4xl text-strong">{{ getenv('APP_NAME') }}</a>
     </div>

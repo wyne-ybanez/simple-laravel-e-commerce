@@ -22,7 +22,7 @@
     </style>
 </head>
 
-<body class="bg-primary overflow-x-hidden" x-data="{productView: false}">
+<body class="bg-primary overflow-x-hidden">
     @include('layouts.navigation')
 
     <main>
