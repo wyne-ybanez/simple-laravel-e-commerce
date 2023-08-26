@@ -59,7 +59,7 @@
                 <input
                     :name="name"
                     :type="type"
-                    :checked="props.modelValue"
+                    :checked="props.modelValue ? props.modelValue : false"
                     :required="required"
                     @change="emit('update:modelValue', $event.target.checked)"
                     class="h-[20px] w-[20px] text-zinc-600 border-gray-200 ml-1 accent-green-500 mb-5 cursor-pointer"

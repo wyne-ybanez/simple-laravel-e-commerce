@@ -10,7 +10,7 @@
 
     @include('product.partials.view-items')
 
-    <div class="p-5 product-pagination">
+    <div class="px-16 pt-12 product-pagination">
         {{ $products->links() }}
     </div>
 </x-app-layout>

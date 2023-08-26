@@ -39,17 +39,22 @@
                           } else {
                              this.activeImage = this.image.length > 0 ? this.image[0] : null;
                           }
-                      }
+                      },
+                      grayscale: true,
                     }">
                     <div class="relative">
                         <template x-for="item in image">
                             <div x-show="activeImage === item">
-                                <img :src="item" alt="" class="w-full shadow shadow-xl shadow-white grayscale rounded" />
+                                <img :src="item" alt="" class="w-full shadow shadow-xl shadow-white cursor-pointer grayscale rounded" 
+                                    :class="grayscale ? 'grayscale' : 'grayscale-0'"
+                                    @click="grayscale = !grayscale"/>
                             </div>
                         </template>
                         <template x-for="image in images">
                             <div x-show="activeImage === image">
-                                <img :src="activeImage.image" alt="" class="w-full shadow shadow-xl shadow-white grayscale rounded" />
+                                <img :src="activeImage.image" alt="" class="w-full shadow shadow-xl shadow-white cursor-pointer grayscale rounded" 
+                                    :class="grayscale ? 'grayscale' : 'grayscale-0'"
+                                    @click="grayscale = !grayscale"/>
                             </div>
                         </template>
                         <!-- <template x-for="image in images">
@@ -69,7 +74,7 @@
                     </div>
                     <div class="flex mb-[0.1rem]">
                         <template x-for="image in images">
-                            <a @click.prevent="activeImage=image" @click="console.log(image)" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image}">
+                            <a @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image}">
                                 <img :src="image.image" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto" />
                             </a>
                         </template>

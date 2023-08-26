@@ -64,7 +64,7 @@
                     {{$product->title}}
                 </h1>
 
-                <div class="text-xl font-bold mt-10">${{$product->price}}</div>
+                <div class="text-xl font-bold mt-10">€{{$product->price}}</div>
                 <div class="flex items-center mb-5">
                     <label for="quantity" class="block font-bold mr-4">
                         Quantity
