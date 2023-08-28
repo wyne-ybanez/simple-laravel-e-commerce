@@ -10,6 +10,7 @@ use App\Models\CartItem;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Payment;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -124,22 +125,49 @@ class CheckoutController extends Controller
                 $this->updateOrderAndSession($payment);
             }
 
+            // return user back to home page
             $customer = \Stripe\Customer::retrieve($session->customer);
 
-            return view('checkout.success', compact('customer'));
+            $products = Product::query()
+            ->orderBy('updated_at', 'asc')
+            ->paginate(12);
+
+            return view('checkout.success', compact('customer'), [
+                    'heading' => 'All Works',
+                    'products' => $products
+                ]
+            );
         } catch (NotFoundHttpException $e) {
             throw $e;
         } catch (\Exception $e) {
-            return view('checkout.failure', ['message' => $e->getMessage()]);
+            $products = Product::query()
+            ->orderBy('updated_at', 'asc')
+            ->paginate(12);
+
+            return view('checkout.failure', [
+                'message' => $e->getMessage(),
+                'heading' => 'All Works',
+                'products' => $products
+            ]);
         }
     }
 
     /**
      * FAILURE
+     *
+     * (Already handled by function above)
      */
     public function failure(Request $request)
     {
-        return view('checkout.failure', ['message' => ""]);
+        $products = Product::query()
+        ->orderBy('updated_at', 'asc')
+        ->paginate(12);
+
+        return view('checkout.failure', [
+            'message' => 'If the issue persists, please try again later',
+            'heading' => 'All Works',
+            'products' => $products
+        ]);
     }
 
     /**
