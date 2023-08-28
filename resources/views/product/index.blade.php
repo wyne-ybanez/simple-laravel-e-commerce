@@ -4,8 +4,10 @@
 ?>
 
 <x-app-layout>
-    <div class="py-16 px-16">
+    <div class="py-16 px-16 flex">
         <h1 class="md:text-7xl text-5xl font-crimson-text">{{ $heading }}</h1>
+
+        @include('components.query-nav')
     </div>
 
     @include('product.partials.view-items')
