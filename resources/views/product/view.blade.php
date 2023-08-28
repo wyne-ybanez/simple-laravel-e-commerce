@@ -94,8 +94,5 @@
 
     @include('product.partials.view-reversed')
 
-    <div class="pt-52 pb-20 px-20">
-        <h1 class="md:text-7xl text-7xl font-crimson-text">Featured Products</h1>
-    </div>
-    @include('product.partials.view-items')
+    @include('product.partials.featured-items')
 </x-app-layout>

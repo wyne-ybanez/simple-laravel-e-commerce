@@ -27,6 +27,7 @@ class ProductController extends Controller
         if (!empty($query)) {
             $products = Product::query()
                         ->where('title', 'LIKE', '%' . $query . '%')
+                        ->orWhere('category', 'LIKE', '%' . $query . '%')
                         ->orWhere(function ($queryBuilder) use ($query, $category) {
                             if (isset($category[$query])) {
                                 $queryBuilder->where('category', 'LIKE', $category[$query] . '%');
