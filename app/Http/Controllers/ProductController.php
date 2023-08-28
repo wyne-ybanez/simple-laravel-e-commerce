@@ -21,7 +21,7 @@ class ProductController extends Controller
             "anti-heroes" => 'anti-hero'
         );
 
-        $query = $request->input('q');
+        $query = strtolower($request->input('q'));
 
         // query allows for search of product titles and categories
         if (!empty($query)) {

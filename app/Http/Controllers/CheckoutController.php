@@ -132,11 +132,12 @@ class CheckoutController extends Controller
             ->orderBy('updated_at', 'asc')
             ->paginate(12);
 
-            return view('checkout.success', compact('customer'), [
-                    'heading' => 'All Works',
-                    'products' => $products
-                ]
-            );
+            $context = [
+                'heading' => 'All Works',
+                'products' => $products
+            ];
+
+            return view('checkout.success', compact('customer'), $context);
         } catch (NotFoundHttpException $e) {
             throw $e;
         } catch (\Exception $e) {
@@ -144,11 +145,13 @@ class CheckoutController extends Controller
             ->orderBy('updated_at', 'asc')
             ->paginate(12);
 
-            return view('checkout.failure', [
+            $context = [
                 'message' => $e->getMessage(),
                 'heading' => 'All Works',
                 'products' => $products
-            ]);
+            ];
+
+            return view('checkout.failure', $context);
         }
     }
 
