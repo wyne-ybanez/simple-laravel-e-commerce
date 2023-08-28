@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-10 p-6">
+<div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-20 py-6 px-16">
 
     @foreach($products as $product)
     <!-- Product Item -->
@@ -11,11 +11,11 @@
                         'addToCartUrl' => route('cart.add', $product)
                     ])
                 }})"
-        class="bg-primary hover:bg-strong hover:text-white text-strong flex flex-col product-item rounded-xl"
+        class="bg-primary hover:bg-strong hover:text-white text-strong flex flex-col product-item rounded-xl transition duration-150 ease-in-out"
     >
         <!-- Image -->
         <a href="{{ route('product.view', $product->slug) }}" class="aspect-w-3 aspect-h-3 block overflow-hidden rounded-xl">
-            <img src="{{ $product->image }}" alt="" class="p-8 object-cover hover:p-0 hover:m-auto hover:scale-100 transition-transform hover:grayscale-0" 
+            <img src="{{ $product->image }}" alt="" class="object-cover hover:grayscale-0 hover:scale-105 transition duration-150 ease-in-out" 
                 :class="{{ $product->color }} ? '' : 'grayscale'"/>
         </a>
 
