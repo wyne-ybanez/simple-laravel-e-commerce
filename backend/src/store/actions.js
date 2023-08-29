@@ -70,6 +70,7 @@ export function createProduct({ commit }, product) {
         form.append("image", product.image);
         form.append("category", product.category);
         form.append("description", product.description || '');
+        form.append("description_2", product.description_2 || '');
         form.append("price", product.price);
         form.append("color", product.color ? 1 : 0);
         product = form;
@@ -87,6 +88,7 @@ export function updateProduct({ commit }, product) {
       form.append("image", product.image);
       form.append("category", product.category);
       form.append("description", product.description || '');
+      form.append("description", product.description_2 || '');
       form.append("price", product.price);
       form.append("color", product.color ? 1 : 0);
       form.append("_method", "PUT");
