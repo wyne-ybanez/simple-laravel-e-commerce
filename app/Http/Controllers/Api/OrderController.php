@@ -38,4 +38,16 @@ class OrderController extends Controller
         $order->load('items.product');
         return new OrderResource($order);
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Order $order)
+    {
+        $order->delete();
+        return response()->noContent();
+    }
 }

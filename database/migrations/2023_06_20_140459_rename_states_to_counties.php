@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('counties', function (Blueprint $table) {
+        Schema::table('countries', function (Blueprint $table) {
             $table->renameColumn('counties', 'states');
         });
     }

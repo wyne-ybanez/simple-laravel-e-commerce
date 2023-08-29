@@ -21,6 +21,4 @@ const addressStatus = computed(() => {
     }
     return 'complete'
 })
-
-console.log(order.customer);
 </script>

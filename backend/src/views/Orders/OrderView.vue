@@ -2,12 +2,17 @@
     <div v-if="order">
         <!--  Order Details-->
         <div class="my-4">
-            <h2
-                class="flex items-center text-lg pb-2 border-b border-gray-300"
-            >
-                Order Details
-                <span class="text-sm ml-4"><OrderStatus :order="order" /></span>
-            </h2>
+            <div class="flex justify-between border-b border-gray-300">
+                <h2 class="flex text-lg pb-2">
+                    Order Details
+                    <span class="text-sm ml-4"><OrderStatus :order="order" /></span>
+                </h2>
+                <button class="group bg-zinc-300 text-black flex items-center rounded-sm px-4 py-1 mb-2
+                                hover:bg-zinc-400"
+                        @click="deleteOrder(order)">
+                        Delete
+                </button>
+            </div>
             <table class="mt-2">
                 <tbody>
                     <tr>
@@ -206,6 +211,17 @@ function onStatusChange() {
                 `Order status was successfully changed into "${order.value.status}"`
             );
         });
+}
+
+function deleteOrder(order) {
+  if(!confirm(`Are you sure you want to delete the order?`)) {
+    return
+  }
+  store.dispatch('deleteOrder', order.id)
+  .then(response => {
+          // Redirect to the index route
+          window.location = '/orders';
+    })
 }
 </script>
 

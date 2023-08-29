@@ -7,8 +7,7 @@
                     'title' => $product->title,
                     'price' => $product->price,
                     'addToCartUrl' => route('cart.add', $product),
-                ]) }}),
-                productView = !productView" class="container mb-24">
+                ]) }})" class="container mb-24">
         <div class="grid gap-6 w-screen grid-cols-1 lg:grid-cols-2 bg-primary text-primary">
             <div class="lg:col-span-1 p-24">
                 <div x-data="{
