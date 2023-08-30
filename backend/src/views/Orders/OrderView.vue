@@ -196,17 +196,14 @@ onMounted(() => {
 });
 
 function onStatusChange() {
-    console.log(order.status)
-
-    // axiosClient
-    //     .post(`/orders/change-status/${order.value.id}/${order.value.status}`)
-    //     .then(({ data }) => {
-    //         store.commit(
-    //             "showToast",
-    //             `Order status was successfully changed into "${order.value.status}"`
-    //         );
-    //     });
-    return
+    axiosClient
+        .post(`/orders/change-status/${order.value.id}/${order.value.status}`)
+        .then(({ data }) => {
+            store.commit(
+                "showToast",
+                `Order status was successfully changed into "${order.value.status}"`
+            );
+        });
 }
 
 function deleteOrder(order) {

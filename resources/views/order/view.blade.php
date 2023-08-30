@@ -15,10 +15,7 @@
                 <tr>
                     <td class="font-bold py-1 px-2">Order Status</td>
                     <td>
-                        <span
-                            class="text-black uppercase py-1 px-2 rounded {{$order->isPaid() ? 'bg-emerald-400' : 'bg-gray-400'}}">
-                            {{$order->status}}
-                        </span>
+                        @include('components.status')
                     </td>
                 </tr>
                 <tr>

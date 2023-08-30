@@ -22,7 +22,8 @@ Route::middleware(['auth:sanctum', 'admin'])
         Route::post('/logout', [AuthController::class, 'logout']);
 
         Route::apiResource('/products', ProductController::class);
-        Route::get('orders/statuses', [OrderController::class, 'getStatuses']);
+        Route::get('/orders/statuses', [OrderController::class, 'getStatuses']);
+        Route::post('/orders/change-status/{order}/{status}', [OrderController::class, 'changeStatus']);
         Route::apiResource('/orders', OrderController::class);
         Route::get('/orders/{order}', [OrderController::class, 'view']);
         Route::delete('/orders/delete/{order}', [OrderController::class, 'destroy']);

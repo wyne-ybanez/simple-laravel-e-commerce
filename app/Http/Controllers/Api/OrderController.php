@@ -56,4 +56,12 @@ class OrderController extends Controller
     {
         return OrderStatus::getStatuses();
     }
+
+    public function changeStatus(Order $order, $status)
+    {
+        $order->status = $status;
+        $order->save();
+
+        return response('', 200);
+    }
 }
