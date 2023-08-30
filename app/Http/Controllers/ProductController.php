@@ -14,6 +14,8 @@ class ProductController extends Controller
             ->paginate(12);
 
         $heading = "All Works";
+        $pageDescription = "Unearth a treasure trove of paintings, sculptures, photographs, digital art, and more. From timeless classics to cutting-edge contemporary masterpieces, our collection reflects the depth and diversity of artistic expression. ";
+
         $category = array(
             "monsters" => 'monster',
             "landscapes" => 'landscape',
@@ -36,11 +38,14 @@ class ProductController extends Controller
                         ->paginate(12);
         }
 
-        return view('product.index', [
+        $context = [
             'products' => $products,
             'heading' => $heading,
+            'pageDescription' => $pageDescription,
             'request' => $request
-        ]);
+        ];
+
+        return view('product.index', $context);
     }
 
     public function category1()
@@ -48,10 +53,15 @@ class ProductController extends Controller
         $products = ProductUtility::get_items_in_category("monsters");
         $heading = "Monsters";
 
-        return view('product.index', [
+        $pageDescription ="Our gallery here celebrates the boundless inventiveness of artists from across the globe. Here, you'll encounter creatures that defy the limits of reality, embodying the fusion of cultures, myths, and dreams. Prepare to be awed by the ingenuity that transforms mere ideas into vivid, breath-stealing monstrosities. ";
+
+        $context = [
             'products' => $products,
             'heading' => $heading,
-        ]);
+            'pageDescription' => $pageDescription,
+        ];
+
+        return view('product.index', $context);
     }
 
     public function category2()
@@ -59,10 +69,15 @@ class ProductController extends Controller
         $products = ProductUtility::get_items_in_category("anti-heroes");
         $heading = "Anti-Heroes";
 
-        return view('product.index', [
+        $pageDescription ="Beyond the characters themselves, our gallery provides insights into the creative minds behind these enigmatic figures. Delve into the inspirations and creative decisions that give depth to these anti-heroes by exploring artist profiles and statements. Engage with the creators who craft complexity, enriching your understanding of their stories.";
+
+        $context = [
             'products' => $products,
             'heading' => $heading,
-        ]);
+            'pageDescription' => $pageDescription,
+        ];
+
+        return view('product.index',$context);
     }
 
     public function category3()
@@ -70,10 +85,15 @@ class ProductController extends Controller
         $products = ProductUtility::get_items_in_category("heroes");
         $heading = "Heroes";
 
-        return view('product.index', [
+        $pageDescription ="Our gallery celebrates the artistry that brings legendary figures to life, honoring the visions of artists who breathe vitality into each character. Each piece is a testament to the intricate details and emotions that define these heroes, turning mere concepts into embodiments of inspiration.";
+
+        $context = [
             'products' => $products,
             'heading' => $heading,
-        ]);
+            'pageDescription' => $pageDescription,
+        ];
+
+        return view('product.index', $context);
     }
 
     public function category4()
@@ -81,9 +101,12 @@ class ProductController extends Controller
         $products = ProductUtility::get_items_in_category("landscapes");
         $heading = "Landscapes";
 
+        $pageDescription ="Embark on an odyssey through landscapes that exist beyond the realm of possibility. Our index page serves as your portal to a gallery of breathtaking scenes that blend the wondrous with the unreal. With an intuitive navigation system, your adventure through these fantastical worlds is as seamless as it is captivating. ";
+
         return view('product.index', [
             'products' => $products,
             'heading' => $heading,
+            'pageDescription' => $pageDescription,
         ]);
     }
 
@@ -94,9 +117,11 @@ class ProductController extends Controller
             ->limit(6)
             ->get();
 
-        return view('product.view', [
+        $context = [
             'product' => $product,
             'products' => $products,
-        ]);
+        ];
+
+        return view('product.view', $context);
     }
 }

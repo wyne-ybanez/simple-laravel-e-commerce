@@ -59,7 +59,7 @@
             </div>
 
             <div class="lg:col-span-1 w-fit lg:p-32 px-[2rem] py-10">
-                <h1 class="lg:text-7xl text-4xl font-crimson-text font-semibold mb-2">
+                <h1 class="lg:text-7xl text-4xl font-almarai mb-2">
                     {{$product->title}}
                 </h1>
 
