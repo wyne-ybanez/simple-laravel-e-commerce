@@ -14,7 +14,7 @@ class ProductController extends Controller
             ->paginate(12);
 
         $heading = "All Works";
-        $pageDescription = "Unearth a treasure trove of paintings, sculptures, photographs, digital art, and more. From timeless classics to cutting-edge contemporary masterpieces, our collection reflects the depth and diversity of artistic expression. ";
+        $pageDescription = "Delve into a world teeming with the imagination of artists who have breathed life into our favourite fantasy universes. From majestic dragons to heroic characters, our carefully curated collection showcases the incredible diversity and creativity of digital artists. ";
 
         $category = array(
             "monsters" => 'monster',
@@ -101,7 +101,7 @@ class ProductController extends Controller
         $products = ProductUtility::get_items_in_category("landscapes");
         $heading = "Landscapes";
 
-        $pageDescription ="Embark on an odyssey through landscapes that exist beyond the realm of possibility. Our index page serves as your portal to a gallery of breathtaking scenes that blend the wondrous with the unreal. With an intuitive navigation system, your adventure through these fantastical worlds is as seamless as it is captivating. ";
+        $pageDescription ="Step into a realm where the ordinary fades away, and the extraordinary takes flight – welcome to the index page of our Landscape Fantasy World Gallery. Here, we invite you to journey through an enchanting collection of otherworldly landscapes that defy the bounds of reality. From mystical floating islands to ethereal forests, our curated collection transports you to realms where imagination knows no limits. ";
 
         return view('product.index', [
             'products' => $products,
