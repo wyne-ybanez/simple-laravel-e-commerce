@@ -2,7 +2,7 @@
     <span class="text-black py-1 px-2 rounded-full uppercase text-xs" :class="{
         'bg-orange-300': !order.customer.email || !order.customer.phone ,
         'bg-green-400': order.customer.email && order.customer.phone,
-        'bg-gray-300': order.status === 'cancelled',
+        'bg-stone-300': order.status === 'cancelled',
         'bg-red-400': !order.customer,
       }">
       {{ customerStatus }}

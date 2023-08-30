@@ -19,6 +19,11 @@ const addressStatus = computed(() => {
     if (order.customer.billingAddress.id == '' || order.customer.shippingAddress.id == '') {
         return 'error'
     }
+
+    if (order.status === 'cancelled') {
+        return 'cancelled'
+    }
+
     return 'complete'
 })
 </script>
