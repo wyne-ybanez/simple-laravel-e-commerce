@@ -22,9 +22,9 @@ Route::middleware(['auth:sanctum', 'admin'])
         Route::post('/logout', [AuthController::class, 'logout']);
 
         Route::apiResource('/products', ProductController::class);
+        Route::get('orders/statuses', [OrderController::class, 'getStatuses']);
         Route::apiResource('/orders', OrderController::class);
         Route::get('/orders/{order}', [OrderController::class, 'view']);
-
         Route::delete('/orders/delete/{order}', [OrderController::class, 'destroy']);
 });
 

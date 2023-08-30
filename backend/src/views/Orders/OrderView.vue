@@ -26,14 +26,8 @@
                     <tr>
                         <td class="font-bold py-1 px-2">Order Status</td>
                         <td>
-                            <select
-                                v-model="order.status"
-                                @change="onStatusChange"
-                            >
-                                <option
-                                    v-for="status of orderStatuses"
-                                    :value="status"
-                                >
+                            <select v-model="order.status" @change="onStatusChange" class="p-2">
+                                <option v-for="status of orderStatuses" :value="status">
                                     {{ status }}
                                 </option>
                             </select>
@@ -132,9 +126,7 @@
 
         <!--    Order Items-->
         <div class="my-10">
-            <h2
-                class="text-lg mt-6 pb-2 border-b border-gray-300"
-            >
+            <h2 class="text-lg mt-6 pb-2 border-b border-gray-300">
                 Order Items
             </h2>
             <div v-for="item of order.items">
@@ -193,24 +185,28 @@ const orderStatuses = ref([]);
 const productUrlPrefix = `${APP_URL}/product/`;
 
 onMounted(() => {
-    store.dispatch("getOrder", route.params.id).then(({ data }) => {
-        order.value = data;
-    });
+    store.dispatch("getOrder", route.params.id)
+        .then(({ data }) => {
+            order.value = data;
+        });
 
-    // axiosClient
-    //     .get(`/orders/statuses`)
-    //     .then(({ data }) => (orderStatuses.value = data));
+    axiosClient
+        .get("/orders/statuses")
+        .then(({ data }) => (orderStatuses.value = data));
 });
 
 function onStatusChange() {
-    axiosClient
-        .post(`/orders/change-status/${order.value.id}/${order.value.status}`)
-        .then(({ data }) => {
-            store.commit(
-                "showToast",
-                `Order status was successfully changed into "${order.value.status}"`
-            );
-        });
+    console.log(order.status)
+
+    // axiosClient
+    //     .post(`/orders/change-status/${order.value.id}/${order.value.status}`)
+    //     .then(({ data }) => {
+    //         store.commit(
+    //             "showToast",
+    //             `Order status was successfully changed into "${order.value.status}"`
+    //         );
+    //     });
+    return
 }
 
 function deleteOrder(order) {

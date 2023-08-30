@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Enums\OrderStatus;
 use App\Models\Order;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\OrderListResource;
@@ -49,5 +50,10 @@ class OrderController extends Controller
     {
         $order->delete();
         return response()->noContent();
+    }
+
+    public function getStatuses()
+    {
+        return OrderStatus::getStatuses();
     }
 }
