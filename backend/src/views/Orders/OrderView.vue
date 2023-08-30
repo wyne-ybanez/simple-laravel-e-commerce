@@ -195,17 +195,6 @@ onMounted(() => {
         .then(({ data }) => (orderStatuses.value = data));
 });
 
-function onStatusChange() {
-    axiosClient
-        .post(`/orders/change-status/${order.value.id}/${order.value.status}`)
-        .then(({ data }) => {
-            store.commit(
-                "showToast",
-                `Order status was successfully changed into "${order.value.status}"`
-            );
-        });
-}
-
 function deleteOrder(order) {
   if(!confirm(`Are you sure you want to delete the order?`)) {
     return
