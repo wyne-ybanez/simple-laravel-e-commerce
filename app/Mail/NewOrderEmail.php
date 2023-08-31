@@ -31,6 +31,6 @@ class NewOrderEmail extends Mailable
     {
         return $this
             ->subject('New Order')
-            ->view('mail.new-order');
+            ->view('mail.customer-new-order');
     }
 }

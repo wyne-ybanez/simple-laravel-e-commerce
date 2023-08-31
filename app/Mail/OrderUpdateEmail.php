@@ -31,6 +31,6 @@ class OrderUpdateEmail extends Mailable
     {
         return $this
             ->subject('Order Status was updated')
-            ->view('mail.update-order');
+            ->view('mail.customer-update-order');
     }
 }

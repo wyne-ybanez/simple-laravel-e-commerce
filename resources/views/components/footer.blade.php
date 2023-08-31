@@ -29,11 +29,13 @@
     <div class="mt-10 pt-8 text-xl flex text-black items-end">
         <div>
             All rights reserved &copy; {{ date('Y') }} <span class="font-semibold px-2">{{ getenv('APP_NAME') }}</span>
-            <br>
-            This site was created by
-            <span class="link-underline link-underline-black">
-                <a href="https://wyne-ybanez-portfolio.vercel.app/" target="_blank">Wyne Ybanez</a>
-            </span>
+            @if (getenv('APP_AUTHOR'))
+                <br>
+                This site was created by
+                <span class="link-underline link-underline-black">
+                    <a href="{{ getenv('APP_AUTHOR_SITE') }}" target="_blank">{{ getenv('APP_AUTHOR') }}</a>
+                </span>
+            @endif
         </div>
         <div class="ml-auto align-center">
             <a class="mr-10 link-underline link-underline-black" href="#">Terms of Use</a>

@@ -6,7 +6,7 @@
     <tr>
         <th>Order ID</th>
         <td>
-            <a href="{{ $forAdmin ? env('BACKEND_URL').'/app/orders/'.$order->id : route('order.view', $order, true) }}">
+            <a href="{{ $forAdmin ? env('BACKEND_URL').'/orders/'.$order->id : route('order.view', $order, true) }}">
                 {{$order->id}}
             </a>
         </td>
