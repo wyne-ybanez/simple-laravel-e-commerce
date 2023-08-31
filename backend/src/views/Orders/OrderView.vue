@@ -205,6 +205,10 @@ function deleteOrder(order) {
           window.location = '/orders';
     })
 }
+
+function onStatusChange() {
+    axiosClient.post(`/orders/change-status/${order.value.id}/${order.value.status}`);
+}
 </script>
 
 <style scoped></style>

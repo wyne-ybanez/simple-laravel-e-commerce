@@ -51,6 +51,13 @@
                                     @endif
                                     @endif
                                 @endif
+
+                                @if ($order->isIncomplete())
+                                    <a href="{{ route('profile.view') }}" class="flex items-center py-1 btn-primary whitespace-nowrap">
+                                        Update Address
+                                    </a>
+                                @endif
+
                                 <a href="{{ route('order.view', $order) }}" class="flex items-center py-1 btn-primary whitespace-nowrap">
                                     View
                                 </a>

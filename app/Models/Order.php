@@ -23,6 +23,31 @@ class Order extends Model
         return $this->status === OrderStatus::Paid->value;
     }
 
+    public function isCompleted()
+    {
+        return $this->status === OrderStatus::Completed->value;
+    }
+
+    public function isIncomplete()
+    {
+        return $this->status === OrderStatus::Incomplete->value;
+    }
+
+    public function isShipped()
+    {
+        return $this->status === OrderStatus::Shipped->value;
+    }
+
+    public function isUnpaid()
+    {
+        return $this->status === OrderStatus::Unpaid->value;
+    }
+
+    public function isCancelled()
+    {
+        return $this->status === OrderStatus::Cancelled->value;
+    }
+
     public function payment(): HasOne
     {
         return $this->hasOne(Payment::class);

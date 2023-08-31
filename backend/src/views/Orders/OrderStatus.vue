@@ -4,6 +4,7 @@
         'bg-orange-400': order.status === 'shipped',
         'bg-stone-300': order.status === 'cancelled',
         'bg-red-400': order.status === 'unpaid',
+        'bg-violet-400': order.status === 'incomplete',
       }">
       {{ order.status }}
     </span>
