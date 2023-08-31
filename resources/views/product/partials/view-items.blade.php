@@ -22,24 +22,11 @@
         <!-- Title -->
         <div class="pt-4 pb-2 border-bg-soft">
             <a href="{{ route('product.view', $product->slug) }}">
-                <h3 class="text-xl">{{$product->title}}</h3>
+                <h3 class="text-xl font-montserrat font-semibold">{{$product->title}}</h3>
             </a>
-        </div>
 
-        <!-- Price -->
-        <div class="flex justify-end items-end pb-5 mt-auto">
             <div class="mr-auto">
-                <h5 class="font-bold text-xl font-montserrat">€{{$product->price}}</h5>
-            </div>
-            <div class="flex font-montserrat">
-                <!-- <button @click="addToWatchlist()" class="w-10 h-10 mr-2 rounded-sm border border-2 text-strong border-bg-strong flex items-center justify-center hover:bg-stone-800 hover:text-white transition-colors" :class="isInWatchlist(id) ? 'bg-stone-800 text-white' : 'text-strong'">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                        </svg>
-                    </button> -->
-                <button class="h-10 border-stone-800 border-2 rounded-sm px-2 hover:bg-strong hover:text-white transition duration-150 ease-in-out" @click="addToCart()">
-                    Purchase
-                </button>
+                <h5 class="text-xl font-montserrat">€{{$product->price}}</h5>
             </div>
         </div>
 

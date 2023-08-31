@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Enums\OrderStatus;
 use App\Models\Order;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\OrderListResource;
 use App\Http\Resources\OrderResource;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderUpdateEmail;
+use App\Mail\AdminOrderUpdateEmail;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -61,6 +65,10 @@ class OrderController extends Controller
     {
         $order->status = $status;
         $order->save();
+        $adminUsers = User::where('is_admin', 1)->get();
+
+        Mail::to($order->user)->send(new OrderUpdateEmail($order));
+        Mail::to(...$adminUsers)->send(new AdminOrderUpdateEmail($order, (bool)$user->is_admin));
 
         return response('', 200);
     }

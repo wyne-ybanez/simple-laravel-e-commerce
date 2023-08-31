@@ -28,8 +28,7 @@
     </div>
     <div class="mt-10 pt-8 text-xl flex text-black items-end">
         <div>
-            &copy; 2023 <span class="font-semibold px-2">{{ getenv('APP_NAME') }}</span>
-            All rights reserved.
+            All rights reserved &copy; {{ date('Y') }} <span class="font-semibold px-2">{{ getenv('APP_NAME') }}</span>
             <br>
             This site was created by
             <span class="link-underline link-underline-black">
