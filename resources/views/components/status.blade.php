@@ -3,7 +3,7 @@
             {{ $order->isUnpaid() ? 'bg-red-400' : '' }}
             {{ $order->isCancelled() ? 'bg-gray-300' : '' }}
             {{ $order->isShipped() ? 'bg-orange-300' : '' }}
-            {{ $order->isIncomplete() ? 'bg-violet-300' : '' }}
+            {{ $order->isIncomplete() ? 'bg-violet-400' : '' }}
             ">
     {{$order->status}}
 </span>

@@ -33,11 +33,13 @@
                             </td>
                             <td class="py-4 px-2">${{ $order->total_price }}</td>
                             <td class="py-4 px-2 whitespace-nowrap">{{ $order->items_count }} item(s)</td>
+
                             <td class="py-4 px-2 flex gap-4 w-[100px]">
                                 @if (!$order->isPaid())
                                     @if (!$order->isShipped())
                                     @if (!$order->isCancelled())
                                     @if (!$order->isCompleted())
+                                    @if (!$order->isIncomplete())
                                         <form action="{{ route('cart.checkout-order', $order) }}" method="POST">
                                             @csrf
                                             <button class="flex items-center py-1 btn-primary whitespace-nowrap">
@@ -50,18 +52,18 @@
                                     @endif
                                     @endif
                                     @endif
+                                    @endif
                                 @endif
-
                                 @if ($order->isIncomplete())
-                                    <a href="{{ route('profile.view') }}" class="flex items-center py-1 btn-primary whitespace-nowrap">
-                                        Update Address
+                                    <a href="{{ route('profile') }}" class="flex items-center py-1 btn-primary whitespace-nowrap">
+                                        Add Address
                                     </a>
                                 @endif
-
                                 <a href="{{ route('order.view', $order) }}" class="flex items-center py-1 btn-primary whitespace-nowrap">
                                     View
                                 </a>
                             </td>
+
                         </tr>
                         @endforeach
                     </tbody>
