@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class OrderUpdateEmail extends Mailable
+class AdminOrderUpdateEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -17,7 +17,7 @@ class OrderUpdateEmail extends Mailable
      *
      * @return void
      */
-    public function __construct(public Order $order, public $forAdmin = true)
+    public function __construct(public Order $order)
     {
         //
     }

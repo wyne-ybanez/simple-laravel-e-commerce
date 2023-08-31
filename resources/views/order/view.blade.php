@@ -36,7 +36,7 @@
                         <img src="{{$item->product->image}}" class="object-cover" alt=""/>
                     </a>
                     <div class="flex flex-col justify-between">
-                        <div class="flex justify-between mb-3">
+                        <div class="flex justify-between mb-3 font-semibold">
                             <h3>
                                 {{$item->product->title}}
                             </h3>

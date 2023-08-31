@@ -35,7 +35,7 @@
                                 </a>
                                 <div class="flex flex-col justify-between flex-1">
                                     <div class="flex justify-between mb-3">
-                                        <h3 x-text="product.title"></h3>
+                                        <h3 x-text="product.title" class="font-semibold"></h3>
                                         <span class="text-lg">
                                             <span x-text="`€${product.price * product.quantity}`">
                                             </span>
@@ -61,7 +61,7 @@
                             <span class="font-semibold text-lg">Subtotal</span>
                             <span id="cartTotal" class="text-xl font-semibold" x-text="`$${cartTotal}`"></span>
                         </div>
-                        <p class="text-gray-500 mb-6">
+                        <p class="text-stone-800 mb-6">
                             Shipping and taxes calculated at checkout
                         </p>
 

@@ -1,8 +1,9 @@
 <template>
     <span class="text-black py-1 px-2 rounded-full uppercase text-xs" :class="{
-        'bg-red-400': order.customer.billingAddress.id == '' || order.customer.shippingAddress.id == '',
+        'bg-violet-400': order.customer.billingAddress.id == '' || order.customer.shippingAddress.id == '',
         'bg-green-400': order.customer.billingAddress.id || order.customer.shippingAddress.id,
         '!bg-stone-300': order.status === 'cancelled',
+        'bg-red-400': !order.customer.id
       }">
       {{ addressStatus }}
     </span>
@@ -21,6 +22,10 @@ const addressStatus = computed(() => {
     }
 
     if (order.customer.billingAddress.id == '' || order.customer.shippingAddress.id == '') {
+        return 'incomplete'
+    }
+
+    if (!order.customer.id) {
         return 'error'
     }
 

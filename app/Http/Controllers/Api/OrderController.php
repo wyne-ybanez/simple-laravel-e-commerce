@@ -68,7 +68,7 @@ class OrderController extends Controller
         $adminUsers = User::where('is_admin', 1)->get();
 
         Mail::to($order->user)->send(new OrderUpdateEmail($order));
-        Mail::to(...$adminUsers)->send(new AdminOrderUpdateEmail($order, (bool)$user->is_admin));
+        Mail::to(...$adminUsers)->send(new AdminOrderUpdateEmail($order));
 
         return response('', 200);
     }
