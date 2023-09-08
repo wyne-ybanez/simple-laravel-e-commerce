@@ -26,6 +26,9 @@ const DEFAULT_PRODUCT = {
   description: '',
   category: '',
   image: '',
+  image_1: '',
+  image_2: '',
+  image_3: '',
   price: '',
   color: ''
 }

@@ -14,9 +14,7 @@
             </TransitionChild>
 
             <div class="fixed inset-0 overflow-y-auto">
-                <div
-                    class="flex min-h-full items-center justify-center p-4 text-center"
-                >
+                <div class="flex min-h-full items-center justify-center p-4 text-center">
                     <TransitionChild
                         as="template"
                         enter="duration-300 ease-out"
@@ -26,16 +24,12 @@
                         leave-from="opacity-100 scale-100"
                         leave-to="opacity-0 scale-95"
                     >
-                        <DialogPanel
-                            class="w-full max-w-2xl transform overflow-hidden rounded-sm text-left align-middle shadow-lg bg-zinc-200 transition-all"
-                        >
+                        <DialogPanel class="w-full max-w-3xl h-[80ch] transform overflow-x-hidden rounded-sm text-left align-middle shadow-lg bg-zinc-200 transition-all">
                             <Spinner
                                 v-if="loading"
                                 class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"
                             />
-                            <header
-                                class="py-3 px-4 flex justify-between items-center"
-                            >
+                            <header class="py-3 px-4 flex justify-between items-center">
                                 <DialogTitle
                                     as="h3"
                                     class="text-base leading-6 font-medium text-gray-900"
@@ -66,7 +60,7 @@
                                     </svg>
                                 </button>
                             </header>
-                            <form @submit.prevent="onSubmit">
+                            <form @submit.prevent="onSubmit" enctype="multipart/form-data">
                                 <div class="bg-white px-4 pt-1 pb-4">
                                     <CustomInput
                                         class="mb-2"
@@ -76,11 +70,39 @@
                                     <CustomInput
                                         type="file"
                                         class="mb-2"
-                                        label="Product Image"
+                                        label="Main Product Image"
                                         @change="
                                             (file) => (product.image = file)
                                         "
                                     />
+                                    <img class="w-16 h-16 object-cover inline" :src="props.product.image_url">
+                                    <CustomInput
+                                        type="file"
+                                        class="mb-2"
+                                        label="Product Image 1"
+                                        @change="
+                                            (file) => (product.image_1 = file)
+                                        "
+                                    />
+                                    <img class="w-16 h-16 object-cover" :src="props.product.image_url_1">
+                                    <CustomInput
+                                        type="file"
+                                        class="mb-2"
+                                        label="Product Image 2"
+                                        @change="
+                                            (file) => (product.image_2 = file)
+                                        "
+                                    />
+                                    <img class="w-16 h-16 object-cover" :src="props.product.image_url_2">
+                                    <CustomInput
+                                        type="file"
+                                        class="mb-2"
+                                        label="Product Image 3"
+                                        @change="
+                                            (file) => (product.image_3 = file)
+                                        "
+                                    />
+                                    <img class="w-16 h-16 object-cover" :src="props.product.image_url_3">
                                      <CustomInput
                                         class="mb-2"
                                         v-model="product.category"
@@ -157,6 +179,9 @@ const product = ref({
     id: props.product.id,
     title: props.product.title,
     image: props.product.image,
+    image_1: props.product.image_1,
+    image_2: props.product.image_2,
+    image_3: props.product.image_3,
     category: props.product.category,
     description: props.product.description,
     description_2: props.product.description_2,
@@ -175,6 +200,9 @@ onUpdated(() => {
         id: props.product.id,
         title: props.product.title,
         image: props.product.image,
+        image_1: props.product.image_1,
+        image_2: props.product.image_2,
+        image_3: props.product.image_3,
         category: props.product.category,
         description: props.product.description,
         description_2: props.product.description_2,

@@ -15,8 +15,6 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    // public $images; // TODO: allow multiple images to display for product
-
     /**
      * Display a listing of the resource.
      *
@@ -33,8 +31,6 @@ class ProductController extends Controller
             ->where('title', 'like', "%{$search}%")
             ->orderBy($sortField, $sortDirection)
             ->paginate($perPage);
-
-        // dd(ProductListResource::collection($query));
 
         return ProductListResource::collection($query);
     }
@@ -54,26 +50,39 @@ class ProductController extends Controller
         /** @var \Illuminate\Http\UploadedFile $image */
         $image = $data['image'] ?? null;
 
-        //===========================================
-        // TODO: multiple images for each product
-        // $images = $data['images'] ?? null;
+        /** @var \Illuminate\Http\UploadedFile $image_1 */
+        $image_1 = $data['image_1'] ?? null;
 
-        // if ($images) {
-        //     foreach ($images as $image) {
-        //         $relativePath = $this->saveImage($image);
-        //         $data['image'] = URL::to(Storage::url($relativePath));
-        //         $data['image_mime'] = $image->getClientMimeType();
-        //         $data['image_size'] = $image->getSize();
-        //     }
-        // }
-         //===========================================
+        /** @var \Illuminate\Http\UploadedFile $image_2 */
+        $image_2 = $data['image_2'] ?? null;
 
-        // Check if image was given and save on local file system
+        /** @var \Illuminate\Http\UploadedFile $image_3 */
+        $image_3 = $data['image_3'] ?? null;
+
+        // Check if image & images were given and save on local file system
         if ($image) {
             $relativePath = $this->saveImage($image);
             $data['image'] = URL::to(Storage::url($relativePath));
             $data['image_mime'] = $image->getClientMimeType();
             $data['image_size'] = $image->getSize();
+        }
+        if ($image_1) {
+            $relativePath = $this->saveImage($image_1);
+            $data['image_1'] = URL::to(Storage::url($relativePath));
+            $data['image_mime_1'] = $image_1->getClientMimeType();
+            $data['image_size_1'] = $image_1->getSize();
+        }
+        if ($image_2) {
+            $relativePath = $this->saveImage($image_2);
+            $data['image_2'] = URL::to(Storage::url($relativePath));
+            $data['image_mime_2'] = $image_2->getClientMimeType();
+            $data['image_size_2'] = $image_2->getSize();
+        }
+        if ($image_3) {
+            $relativePath = $this->saveImage($image_3);
+            $data['image_3'] = URL::to(Storage::url($relativePath));
+            $data['image_mime_3'] = $image_3->getClientMimeType();
+            $data['image_size_3'] = $image_3->getSize();
         }
 
         $product = Product::create($data);
@@ -107,7 +116,15 @@ class ProductController extends Controller
         /** @var \Illuminate\Http\UploadedFile $image */
         $image = $data['image'] ?? null;
 
-        // Check if image was given and saved on local file system
+        /** @var \Illuminate\Http\UploadedFile $image_1 */
+        $image_1 = $data['image_1'] ?? null;
+
+        /** @var \Illuminate\Http\UploadedFile $image_2 */
+        $image_2 = $data['image_2'] ?? null;
+
+        /** @var \Illuminate\Http\UploadedFile $image_3 */
+        $image_3 = $data['image_3'] ?? null;
+
         if ($image) {
             $relativePath = $this->saveImage($image);
             $data['image'] = URL::to(Storage::url($relativePath));
@@ -117,6 +134,36 @@ class ProductController extends Controller
             // if there is an existing image, delete it
             if($product->image) {
                 Storage::deleteDirectory('/public/' . dirname($product->image));
+            }
+        }
+        if ($image_1) {
+            $relativePath = $this->saveImage($image_1);
+            $data['image_1'] = URL::to(Storage::url($relativePath));
+            $data['image_mime_1'] = $image_1->getClientMimeType();
+            $data['image_size_1'] = $image_1->getSize();
+
+            if($product->image_1) {
+                Storage::deleteDirectory('/public/' . dirname($product->image_1));
+            }
+        }
+        if ($image_2) {
+            $relativePath = $this->saveImage($image_2);
+            $data['image_2'] = URL::to(Storage::url($relativePath));
+            $data['image_mime_2'] = $image_2->getClientMimeType();
+            $data['image_size_2'] = $image_2->getSize();
+
+            if($product->image_2) {
+                Storage::deleteDirectory('/public/' . dirname($product->image_2));
+            }
+        }
+        if ($image_3) {
+            $relativePath = $this->saveImage($image_3);
+            $data['image_3'] = URL::to(Storage::url($relativePath));
+            $data['image_mime_3'] = $image_3->getClientMimeType();
+            $data['image_size_3'] = $image_3->getSize();
+
+            if($product->image_3) {
+                Storage::deleteDirectory('/public/' . dirname($product->image_3));
             }
         }
 

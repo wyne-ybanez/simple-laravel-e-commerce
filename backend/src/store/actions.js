@@ -79,25 +79,80 @@ export function createProduct({ commit }, product) {
 }
 
 export function updateProduct({ commit }, product) {
-  const id = product.id
+    const id = product.id
+    // Main image
+    if (product.image instanceof File) {
+        const form = new FormData();
+        form.append("id", product.id);
+        form.append("title", product.title);
+        form.append("image", product.image);
+        form.append("category", product.category);
+        form.append("description", product.description || '');
+        form.append("description_2", product.description_2 || '');
+        form.append("price", product.price);
+        form.append("color", product.color ? 1 : 0);
+        form.append("_method", "PUT");
+        product = form;
+    } else {
+        // laravel understands this as an Update
+        product._method = "PUT";
+    }
 
-  if (product.image instanceof File) {
-      const form = new FormData();
-      form.append("id", product.id);
-      form.append("title", product.title);
-      form.append("image", product.image);
-      form.append("category", product.category);
-      form.append("description", product.description || '');
-      form.append("description", product.description_2 || '');
-      form.append("price", product.price);
-      form.append("color", product.color ? 1 : 0);
-      form.append("_method", "PUT");
-      product = form;
-  } else {
-      // laravel understands this as an Update
-      product._method = "PUT";
-  }
-  return axiosClient.post(`/products/${id}`, product);
+    // Image 1
+    if (product.image_1 instanceof File) {
+        const form = new FormData();
+        form.append("id", product.id);
+        form.append("title", product.title);
+        form.append("image_1", product.image_1);
+        form.append("category", product.category);
+        form.append("description", product.description || '');
+        form.append("description_2", product.description_2 || '');
+        form.append("price", product.price);
+        form.append("color", product.color ? 1 : 0);
+        form.append("_method", "PUT");
+        product = form;
+    }
+    else {
+        product._method = "PUT";
+    }
+
+    // Image 2
+    if (product.image_2 instanceof File) {
+        const form = new FormData();
+        form.append("id", product.id);
+        form.append("title", product.title);
+        form.append("image_2", product.image_2);
+        form.append("category", product.category);
+        form.append("description", product.description || '');
+        form.append("description_2", product.description_2 || '');
+        form.append("price", product.price);
+        form.append("color", product.color ? 1 : 0);
+        form.append("_method", "PUT");
+        product = form;
+    }
+    else {
+        product._method = "PUT";
+    }
+
+    // Image 3
+    if (product.image_3 instanceof File) {
+        const form = new FormData();
+        form.append("id", product.id);
+        form.append("title", product.title);
+        form.append("image_3", product.image_3);
+        form.append("category", product.category);
+        form.append("description", product.description || '');
+        form.append("description_2", product.description_2 || '');
+        form.append("price", product.price);
+        form.append("color", product.color ? 1 : 0);
+        form.append("_method", "PUT");
+        product = form;
+    }
+    else {
+        product._method = "PUT";
+    }
+
+    return axiosClient.post(`/products/${id}`, product);
 }
 
 export function deleteProduct({ commit }, id) {

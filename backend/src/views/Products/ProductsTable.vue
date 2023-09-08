@@ -66,7 +66,7 @@
       <!-- Table data -->
       <tbody v-if="!products.loading" class="font-light">
         <!-- Add animation style if needed :style="{'animation-delay': `${index * 0.05}s`}" -->
-        <tr v-for="(product, index) of products.data" class="animate-fade-in">
+        <tr v-for="(product) of products.data" class="animate-fade-in">
           <td class="border-b p-2">{{ product.id }}</td>
           <td class="border-b p-2">
             <img class="w-16 h-16 object-cover" :src="product.image_url" :alt="product.title">

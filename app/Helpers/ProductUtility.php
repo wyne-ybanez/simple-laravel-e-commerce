@@ -3,6 +3,8 @@
 namespace App\Helpers;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 /**
  * Class ProductUtility
