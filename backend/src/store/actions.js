@@ -64,95 +64,53 @@ export function getProduct({ commit }, id) {
 }
 
 export function createProduct({ commit }, product) {
-    if (product.image instanceof File) {
-        const form = new FormData();
-        form.append("title", product.title);
-        form.append("image", product.image);
-        form.append("category", product.category);
-        form.append("description", product.description || '');
-        form.append("description_2", product.description_2 || '');
-        form.append("price", product.price);
-        form.append("color", product.color ? 1 : 0);
-        product = form;
+    const formImageAppend = (fieldName, imageFile) => {
+        if (imageFile instanceof File) {
+            form.append(fieldName, imageFile || null)
+        }
     }
+
+    const form = new FormData();
+    formImageAppend('image', product.image)
+    formImageAppend('image_1', product.image_1)
+    formImageAppend('image_2', product.image_2)
+    formImageAppend('image_3', product.image_3)
+    form.append("title", product.title);
+    form.append("category", product.category);
+    form.append("description", product.description || '');
+    form.append("description_2", product.description_2 || '');
+    form.append("price", product.price);
+    form.append("color", product.color ? 1 : 0);
+    product = form;
+
     return axiosClient.post("/products", product);
 }
 
 export function updateProduct({ commit }, product) {
     const id = product.id
-    // Main image
-    if (product.image instanceof File) {
-        const form = new FormData();
-        form.append("id", product.id);
-        form.append("title", product.title);
-        form.append("image", product.image);
-        form.append("category", product.category);
-        form.append("description", product.description || '');
-        form.append("description_2", product.description_2 || '');
-        form.append("price", product.price);
-        form.append("color", product.color ? 1 : 0);
-        form.append("_method", "PUT");
-        product = form;
-    } else {
-        // laravel understands this as an Update
-        product._method = "PUT";
+    const form = new FormData();
+
+    const formImageAppend = (fieldName, imageFile) => {
+        if (imageFile instanceof File) {
+            form.append(fieldName, imageFile || null)
+        }
     }
 
-    // Image 1
-    if (product.image_1 instanceof File) {
-        const form = new FormData();
-        form.append("id", product.id);
-        form.append("title", product.title);
-        form.append("image_1", product.image_1);
-        form.append("category", product.category);
-        form.append("description", product.description || '');
-        form.append("description_2", product.description_2 || '');
-        form.append("price", product.price);
-        form.append("color", product.color ? 1 : 0);
-        form.append("_method", "PUT");
-        product = form;
-    }
-    else {
-        product._method = "PUT";
-    }
+    formImageAppend("image", product.image); // these must be in order
+    formImageAppend("image_1", product.image_1);
+    formImageAppend("image_2", product.image_2);
+    formImageAppend("image_3", product.image_3);
+    form.append("id", product.id);
+    form.append("title", product.title);
+    form.append("category", product.category);
+    form.append("description", product.description || '');
+    form.append("description_2", product.description_2 || '');
+    form.append("price", product.price);
+    form.append("color", product.color ? 1 : 0);
+    form.append("_method", "PUT");
+    product = form;
 
-    // Image 2
-    if (product.image_2 instanceof File) {
-        const form = new FormData();
-        form.append("id", product.id);
-        form.append("title", product.title);
-        form.append("image_2", product.image_2);
-        form.append("category", product.category);
-        form.append("description", product.description || '');
-        form.append("description_2", product.description_2 || '');
-        form.append("price", product.price);
-        form.append("color", product.color ? 1 : 0);
-        form.append("_method", "PUT");
-        product = form;
-    }
-    else {
-        product._method = "PUT";
-    }
-
-    // Image 3
-    if (product.image_3 instanceof File) {
-        const form = new FormData();
-        form.append("id", product.id);
-        form.append("title", product.title);
-        form.append("image_3", product.image_3);
-        form.append("category", product.category);
-        form.append("description", product.description || '');
-        form.append("description_2", product.description_2 || '');
-        form.append("price", product.price);
-        form.append("color", product.color ? 1 : 0);
-        form.append("_method", "PUT");
-        product = form;
-    }
-    else {
-        product._method = "PUT";
-    }
-
-    return axiosClient.post(`/products/${id}`, product);
+    return axiosClient.post(`/products/${id}`, form);
 }
 
 export function deleteProduct({ commit }, id) {
