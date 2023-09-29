@@ -24,12 +24,12 @@
                         leave-from="opacity-100 scale-100"
                         leave-to="opacity-0 scale-95"
                     >
-                        <DialogPanel class="w-full max-w-3xl h-[80ch] transform overflow-x-hidden rounded-sm text-left align-middle shadow-lg bg-zinc-200 transition-all">
+                        <DialogPanel class="w-full max-w-7xl h-[80ch] transform overflow-x-hidden rounded-sm text-left align-middle shadow-lg transition-all">
                             <Spinner
                                 v-if="loading"
                                 class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"
                             />
-                            <header class="py-3 px-4 flex justify-between items-center">
+                            <header class="py-3 px-4 flex justify-between items-center bg-zinc-200 sticky top-0">
                                 <DialogTitle
                                     as="h3"
                                     class="text-base leading-6 font-medium text-gray-900"
@@ -134,12 +134,10 @@
                                         label="Colored Image"
                                     />
                                 </div>
-                                <footer
-                                    class="bg-white px-4 py-4 sm:flex sm:flex-row-reverse justify-between"
-                                >
+                                <footer class="bg-white px-4 py-6 sm:flex sm:flex-row-reverse justify-between border border-t-1 border-r-0 border-stone-200 sticky bottom-0">
                                     <button
                                         type="submit"
-                                        class="mt-5 w-full inline-flex justify-center rounded-sm shadow-sm px-8 py-2 bg-green-600 md:text-base font-light text-white hover:bg-green-700 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-base"
+                                        class="mt-5 inline-flex justify-center rounded-sm shadow-sm px-8 py-2 bg-green-600 md:text-base font-light text-white hover:bg-green-700 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-base"
                                     >
                                         Submit
                                     </button>
