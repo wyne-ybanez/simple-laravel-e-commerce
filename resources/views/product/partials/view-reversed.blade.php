@@ -17,6 +17,9 @@
             <div class="lg:col-span-1 p-40">
                 <div x-data="{
                       image: ['{{$product->image}}'],
+                      image_1: ['{{$product->image_1}}'],
+                      image_2: ['{{$product->image_2}}'],
+                      image_3: ['{{$product->image_3}}'],
                       images: [{{$product->images}}][0],
                       activeImage: null,
                       prev() {
@@ -34,51 +37,33 @@
                           this.activeImage = this.images[index + 1];
                       },
                       init() {
-                          if (this.images.length) {
-                                this.activeImage = this.images.length > 0 ? this.images[0] : null;
-                          } else {
-                             this.activeImage = this.image.length > 0 ? this.image[0] : null;
-                          }
+                        this.activeImage = this.image.length > 0 ? this.image[0] : null;
                       },
                       grayscale: true,
                     }">
                     <div class="relative">
-                        <template x-for="item in image">
-                            <div x-show="activeImage === item">
-                                <img :src="item" alt="" class="w-full shadow shadow-xl shadow-white cursor-pointer grayscale rounded" 
-                                    :class="grayscale ? 'grayscale' : 'grayscale-0'"
-                                    @click="grayscale = !grayscale"/>
-                            </div>
-                        </template>
-                        <template x-for="image in images">
-                            <div x-show="activeImage === image">
-                                <img :src="activeImage.image" alt="" class="w-full shadow shadow-xl shadow-white cursor-pointer grayscale rounded" 
-                                    :class="grayscale ? 'grayscale' : 'grayscale-0'"
-                                    @click="grayscale = !grayscale"/>
-                            </div>
-                        </template>
-                        <!-- <template x-for="image in images">
-                            <a @click.prevent="prev" class="cursor-pointer bg-black/30 text-black absolute left-0 top-1/2 -translate-y-1/2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-strong" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-                                </svg>
-                            </a>
-                        </template>
-                        <template x-for="image in images">
-                            <a @click.prevent="next" class="cursor-pointer bg-black/30 text-black absolute right-0 top-1/2 -translate-y-1/2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-strong" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                                </svg>
-                            </a>
-                        </template> -->
+                        <img :src="activeImage ? activeImage : image" alt="" class="w-full shadow shadow-xl shadow-white cursor-pointer grayscale rounded"
+                            :class="grayscale ? 'grayscale' : 'grayscale-0'"
+                            @click="grayscale = !grayscale"/>
                     </div>
                     <div class="flex mb-[0.1rem]">
-                        <template x-for="image in images">
-                            <a @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image}">
-                                <img :src="image.image" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto" />
+                        <div x-show="image_1">
+                            <a @click.prevent="activeImage=image_1" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_1}">
+                                <img :src="image_1" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto"/>
                             </a>
-                        </template>
+                        </div>
+                        <div x-show="image_2">
+                            <a @click.prevent="activeImage=image_2" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_2}">
+                                <img :src="image_2" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto"/>
+                            </a>
+                        </div>
+                        <div x-show="image_3">
+                            <a @click.prevent="activeImage=image_3" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_3}">
+                                <img :src="image_3" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto"/>
+                            </a>
+                        </div>
                     </div>
+
                 </div>
             </div>
 
