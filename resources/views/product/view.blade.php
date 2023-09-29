@@ -11,49 +11,49 @@
         <div class="grid gap-6 w-screen grid-cols-1 lg:grid-cols-2 bg-primary text-primary">
             <div class="lg:col-span-1 p-24">
                 <div x-data="{
-                      image: ['{{$product->image}}'],
-                      images: [{{$product->images}}][0],
-                      activeImage: null,
-                      prev() {
-                          let index = this.images.indexOf(this.activeImage);
-                          if (index === 0) {
-                              index = this.images.length;
-                          }
-                          this.activeImage = this.images[index - 1];
-                      },
-                      next() {
-                          let index = this.images.indexOf(this.activeImage);
-                          if (index === this.images.length - 1) {
-                              index = -1;
-                          }
-                          this.activeImage = this.images[index + 1];
-                      },
-                      init() {
-                          if (this.images.length) {
-                                this.activeImage = this.images.length > 0 ? this.images[0] : null;
-                          } else {
-                             this.activeImage = this.image.length > 0 ? this.image[0] : null;
-                          }
-                      }
-                    }">
+                    image: ['{{$product->image}}'],
+                    image_1: ['{{$product->image_1}}'],
+                    image_2: ['{{$product->image_2}}'],
+                    image_3: ['{{$product->image_3}}'],
+                    images: [{{$product->images}}][0],
+                    activeImage: null,
+                    prev() {
+                        let index = this.images.indexOf(this.activeImage);
+                        if (index === 0) {
+                            index = this.images.length;
+                        }
+                        this.activeImage = this.images[index - 1];
+                    },
+                    next() {
+                        let index = this.images.indexOf(this.activeImage);
+                        if (index === this.images.length - 1) {
+                            index = -1;
+                        }
+                        this.activeImage = this.images[index + 1];
+                    },
+                    init() {
+                        this.activeImage = this.image.length > 0 ? this.image[0] : null;
+                    }
+                }">
                     <div class="relative">
-                        <template x-for="item in image">
-                            <div x-show="activeImage === item">
-                                <img :src="item" alt="" class="w-full rounded" />
-                            </div>
-                        </template>
-                        <template x-for="image in images">
-                            <div x-show="activeImage === image">
-                                <img :src="activeImage.image" alt="" class="w-full rounded" />
-                            </div>
-                        </template>
+                        <img :src="activeImage ? activeImage : image" alt="" class="w-full cursor-pointer rounded"/>
                     </div>
                     <div class="flex mb-[0.1rem]">
-                        <template x-for="image in images">
-                            <a @click.prevent="activeImage=image" @click="console.log(image)" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image}">
-                                <img :src="image.image" alt="" class="w-auto hover:shadow-black hover:shadow-lg object-cover h-[10rem] mr-auto rounded" />
+                        <div x-show="image_1">
+                            <a @click.prevent="activeImage=image_1" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_1}">
+                                <img :src="image_1" alt="" class="w-auto mt-10 rounded hover:shadow-black hover:shadow-lg object-cover h-[10rem] mr-auto"/>
                             </a>
-                        </template>
+                        </div>
+                        <div x-show="image_2">
+                            <a @click.prevent="activeImage=image_2" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_2}">
+                                <img :src="image_2" alt="" class="w-auto mt-10 rounded hover:shadow-black hover:shadow-lg object-cover h-[10rem] mr-auto"/>
+                            </a>
+                        </div>
+                        <div x-show="image_3">
+                            <a @click.prevent="activeImage=image_3" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_3}">
+                                <img :src="image_3" alt="" class="w-auto mt-10 rounded hover:shadow-black hover:shadow-lg object-cover h-[10rem] mr-auto"/>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

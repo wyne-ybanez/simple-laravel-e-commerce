@@ -11,11 +11,11 @@
                         'addToCartUrl' => route('cart.add', $product)
                     ])
                 }})"
-        class="bg-primary text-strong flex flex-col product-item transition duration-150 ease-in-out rounded"
+        class="bg-primary text-strong flex flex-col product-item rounded"
     >
         <!-- Image -->
         <a href="{{ route('product.view', $product->slug) }}" class="aspect-w-3 aspect-h-3 block overflow-hidden">
-            <img src="{{ $product->image }}" alt="" class="object-cover hover:grayscale-0 hover:scale-105 transition duration-150 ease-in-out rounded"
+            <img src="{{ $product->image }}" alt="" class="object-cover hover:grayscale-0 hover:scale-105 transition duration-200 ease-in-out rounded"
                 :class="{{ $product->color }} ? '' : 'grayscale'"/>
         </a>
 
