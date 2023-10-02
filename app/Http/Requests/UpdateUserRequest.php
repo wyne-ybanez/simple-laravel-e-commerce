@@ -20,6 +20,8 @@ class UpdateUserRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
+     * Changing the password here is optional.
+     *
      * @return array<string, mixed>
      */
     public function rules()

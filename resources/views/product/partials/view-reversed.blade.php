@@ -1,5 +1,5 @@
     <div class="container">
-        <div class="grid w-screen grid-cols-1 lg:grid-cols-2 bg-strong text-black">
+        <div class="grid w-screen grid-cols-1 lg:grid-cols-2 bg-strong text-black py-20">
             <div class="lg:col-span-1 w-fit px-20 my-24">
                 <h1 class="text-4xl text-soft font-bold font-montserrat mb-2">
                     {{$product->title}}
@@ -42,27 +42,25 @@
                       grayscale: true,
                     }">
                     <div class="relative">
-                        <img :src="activeImage ? activeImage : image" alt="" class="w-full shadow shadow-xl shadow-white cursor-pointer grayscale rounded"
-                            :class="grayscale ? 'grayscale' : 'grayscale-0'"
-                            @click="grayscale = !grayscale"/>
+                        <img :src="activeImage ? activeImage : image" alt="" class="w-full shadow shadow-xl shadow-white cursor-pointer grayscale rounded" :class="grayscale ? 'grayscale' : 'grayscale-0'" @click="grayscale = !grayscale" />
                     </div>
-                        <div class="flex mb-[0.1rem]">
-                            <template x-for="image in image_1">
-                                <a @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_1}">
-                                    <img :src="image" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto"/>
-                                </a>
-                            </template>
-                            <template x-for="image in image_2">
-                                <a @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_2}">
-                                    <img :src="image" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto"/>
-                                </a>
-                            </template>
-                            <template x-for="image in image_3">
-                                <a @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_3}">
-                                    <img :src="image" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto"/>
-                                </a>
-                            </template>
-                        </div>
+                    <div class="flex mb-[0.1rem]">
+                        <template x-for="image in image_1">
+                            <a x-show="image" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_1}">
+                                <img :src="image" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto" />
+                            </a>
+                        </template>
+                        <template x-for="image in image_2">
+                            <a x-show="image" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_2}">
+                                <img :src="image" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto" />
+                            </a>
+                        </template>
+                        <template x-for="image in image_3">
+                            <a x-show="image" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_3}">
+                                <img :src="image" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto" />
+                            </a>
+                        </template>
+                    </div>
                 </div>
             </div>
 

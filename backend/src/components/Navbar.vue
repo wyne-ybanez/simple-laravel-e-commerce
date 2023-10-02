@@ -41,7 +41,7 @@
           Orders
         </span>
       </router-link>
-      <router-link :to="{name: 'app.dashboard'}"
+      <router-link :to="{name: 'app.users'}"
                   class="py-2 px-5 mb-4 transition-colors hover:text-white">
         <span class="text-md">
           Users

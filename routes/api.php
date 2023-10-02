@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,7 @@ Route::middleware(['auth:sanctum', 'admin'])
         Route::post('/logout', [AuthController::class, 'logout']);
 
         Route::apiResource('/products', ProductController::class);
+        Route::apiResource('/users', UserController::class);
         Route::get('/orders/statuses', [OrderController::class, 'getStatuses']);
         Route::post('/orders/change-status/{order}/{status}', [OrderController::class, 'changeStatus']);
         Route::apiResource('/orders', OrderController::class);

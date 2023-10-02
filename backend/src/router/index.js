@@ -3,6 +3,7 @@ import AppLayout from '../components/AppLayout.vue'
 import Login from "../views/Login.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Products from "../views/Products/Products.vue";
+import Users from "../views/Users/Users.vue";
 import Orders from "../views/Orders/Orders.vue";
 import OrderView from "../views/Orders/OrderView.vue";
 import RequestPassword from "../views/RequestPassword.vue";
@@ -38,6 +39,11 @@ const routes = [
         path: 'orders/:id',
         name: 'app.orders.view',
         component: OrderView
+      },
+      {
+        path: 'users',
+        name: 'app.users',
+        component: Users
       },
     ]
   },

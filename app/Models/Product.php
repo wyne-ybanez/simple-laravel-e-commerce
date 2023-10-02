@@ -25,9 +25,4 @@ class Product extends Model
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
     }
-
-    public function images()
-    {
-        return $this->hasMany(ProductImages::class, 'product_id', 'id');
-    }
 }
