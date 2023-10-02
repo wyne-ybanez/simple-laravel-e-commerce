@@ -41,49 +41,32 @@
                         ID
                     </TableHeaderCell>
                     <TableHeaderCell
+                        @click="sortUsers('name')"
                         class="border-b p-2 pb-5 font-medium"
                         field=""
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                     >
-                        Image
+                        Name
                     </TableHeaderCell>
                     <TableHeaderCell
-                        @click="sortUsers('title')"
+                        @click="sortUsers('email')"
                         class="border-b p-2 pb-5 font-medium"
                         field="title"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                     >
-                        Title
+                        Email
                     </TableHeaderCell>
                     <TableHeaderCell
-                        @click="sortUsers('price')"
-                        class="border-b p-2 pb-5 font-medium"
-                        field="price"
+                        field="created_at"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
+                        @click="sortUsers('created_at')"
                     >
-                        Value
+                        Create Date
                     </TableHeaderCell>
-                    <TableHeaderCell
-                        @click="sortUsers('category')"
-                        class="border-b p-2 pb-5 font-medium"
-                        field="category"
-                        :sort-field="sortField"
-                        :sort-direction="sortDirection"
-                    >
-                        Category
-                    </TableHeaderCell>
-                    <TableHeaderCell
-                        @click="sortUsers('updated_at')"
-                        class="border-b p-2 pb-5 font-medium"
-                        field="updated_at"
-                        :sort-field="sortField"
-                        :sort-direction="sortDirection"
-                    >
-                        Last Updated
-                    </TableHeaderCell>
+                    <TableHeaderCell field="actions"> Actions </TableHeaderCell>
                 </tr>
             </thead>
             <!-- Spinner -->
@@ -105,26 +88,16 @@
                 <!-- Add animation style if needed :style="{'animation-delay': `${index * 0.05}s`}" -->
                 <tr v-for="user of users.data" class="animate-fade-in">
                     <td class="border-b p-2">{{ user.id }}</td>
-                    <td class="border-b p-2">
-                        <img
-                            class="w-16 h-16 object-cover"
-                            :src="user.image_url"
-                            :alt="user.title"
-                        />
-                    </td>
                     <td
                         class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
                     >
-                        {{ user.title }}
+                        {{ user.name }}
                     </td>
                     <td class="border-b p-2">
-                        {{ user.price }}
+                        {{ user.email }}
                     </td>
                     <td class="border-b p-2">
-                        {{ user.category }}
-                    </td>
-                    <td class="border-b p-2">
-                        {{ user.updated_at }}
+                        {{ user.created_at }}
                     </td>
                     <td class="border-y p-2">
                         <Menu as="div" class="relative inline-block text-left">
@@ -249,9 +222,21 @@ const users = computed(() => store.state.users);
 const sortField = ref("updated_at");
 const sortDirection = ref("desc");
 
+const user = ref({});
+const showUserModal = ref(false);
+
 onMounted(() => {
     getUsers();
 });
+
+function getForPage(ev, link) {
+    ev.preventDefault();
+    if (!link.url || link.active) {
+        return;
+    }
+
+    getUsers(link.url);
+}
 
 function getUsers(url = null) {
     store.dispatch("getUsers", {
@@ -277,6 +262,10 @@ function sortUsers(field) {
     getUsers();
 }
 
+function showAddNewModal() {
+    showUserModal.value = true;
+}
+
 function editUser(user) {
     emit("clickEdit", user);
 }
@@ -289,13 +278,6 @@ function deleteUser(user) {
         // TODO show notification (after delete)
         store.dispatch("getUsers");
     });
-}
-
-function getForPage(e, link) {
-    if (!link.url || link.active) {
-        return;
-    }
-    getUsers(link.url);
 }
 </script>
 

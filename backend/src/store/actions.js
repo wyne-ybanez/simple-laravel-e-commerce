@@ -23,17 +23,15 @@ export function logout({ commit }) {
     });
 }
 
-// Products
+//===== Products
+
+/**
+ * Get Products:
+ *
+ * These parameters are primarily whats used to display the products on the table prior to any filtering or queries.
+ * Params: @url , @search , @per_page , @sort_field , @sort_direction
+ */
 export function getProducts(
-    /**
-     * Get Products:
-     *
-     * These parameters are primarily whats used to display the products on the table prior to any filtering or queries.
-     * If an object argument is not passed, we want products to display anyway by default.
-     * Hence, an empty object argument will be equivalent to that of these set values.
-     *
-     * Params: @url , @search , @per_page , @sort_field , @sort_direction
-     */
     { commit, state },
     { url = null, search = "", per_page, sort_field, sort_direction } = {}
 ) {
@@ -42,13 +40,16 @@ export function getProducts(
 
     const params = {
         per_page: state.products.limit,
-    }
+    };
 
     return axiosClient
         .get(url, {
             params: {
                 ...params,
-                search, per_page, sort_field, sort_direction,
+                search,
+                per_page,
+                sort_field,
+                sort_direction,
             },
         })
         .then((res) => {
@@ -60,25 +61,25 @@ export function getProducts(
 }
 
 export function getProduct({ commit }, id) {
-    return axiosClient.get(`/products/${id}`)
+    return axiosClient.get(`/products/${id}`);
 }
 
 export function createProduct({ commit }, product) {
     const formImageAppend = (fieldName, imageFile) => {
         if (imageFile instanceof File) {
-            form.append(fieldName, imageFile || null)
+            form.append(fieldName, imageFile || null);
         }
-    }
+    };
 
     const form = new FormData();
-    formImageAppend('image', product.image)
-    formImageAppend('image_1', product.image_1)
-    formImageAppend('image_2', product.image_2)
-    formImageAppend('image_3', product.image_3)
+    formImageAppend("image", product.image);
+    formImageAppend("image_1", product.image_1);
+    formImageAppend("image_2", product.image_2);
+    formImageAppend("image_3", product.image_3);
     form.append("title", product.title);
     form.append("category", product.category);
-    form.append("description", product.description || '');
-    form.append("description_2", product.description_2 || '');
+    form.append("description", product.description || "");
+    form.append("description_2", product.description_2 || "");
     form.append("price", product.price);
     form.append("color", product.color ? 1 : 0);
     product = form;
@@ -87,14 +88,14 @@ export function createProduct({ commit }, product) {
 }
 
 export function updateProduct({ commit }, product) {
-    const id = product.id
+    const id = product.id;
     const form = new FormData();
 
     const formImageAppend = (fieldName, imageFile) => {
         if (imageFile instanceof File) {
-            form.append(fieldName, imageFile || null)
+            form.append(fieldName, imageFile || null);
         }
-    }
+    };
 
     formImageAppend("image", product.image); // these must be in order
     formImageAppend("image_1", product.image_1);
@@ -103,8 +104,8 @@ export function updateProduct({ commit }, product) {
     form.append("id", product.id);
     form.append("title", product.title);
     form.append("category", product.category);
-    form.append("description", product.description || '');
-    form.append("description_2", product.description_2 || '');
+    form.append("description", product.description || "");
+    form.append("description_2", product.description_2 || "");
     form.append("price", product.price);
     form.append("color", product.color ? 1 : 0);
     form.append("_method", "PUT");
@@ -114,37 +115,100 @@ export function updateProduct({ commit }, product) {
 }
 
 export function deleteProduct({ commit }, id) {
-    return axiosClient.delete(`/products/${id}`)
+    return axiosClient.delete(`/products/${id}`);
 }
 
-// Orders
-export function getOrders({ commit, state }, { url = null, search = "", per_page, sort_field, sort_direction } = {}) {
+//===== Orders
+
+/**
+ * Get Orders:
+ *
+ * These parameters are primarily whats used to display the users on the table prior to any filtering or queries.
+ * Params: @url , @search , @per_page , @sort_field , @sort_direction
+ */
+export function getOrders(
+    { commit, state },
+    { url = null, search = "", per_page, sort_field, sort_direction } = {}
+) {
     commit("setOrders", [true]);
     url = url || "/orders";
 
     const params = {
         per_page: state.orders.limit,
-    }
+    };
 
-    return axiosClient.get(url, {
-        params: {
-            ...params,
-            search, per_page, sort_field, sort_direction
-        }
-    })
-    .then((res) => {
-        commit('setOrders', [false, res.data])
-    })
-    .catch(() => {
-        commit('setOrders', [false])
-    })
+    return axiosClient
+        .get(url, {
+            params: {
+                ...params,
+                search,
+                per_page,
+                sort_field,
+                sort_direction,
+            },
+        })
+        .then((res) => {
+            commit("setOrders", [false, res.data]);
+        })
+        .catch(() => {
+            commit("setOrders", [false]);
+        });
 }
 
 export function getOrder({ commit }, id) {
-    return axiosClient.get(`/orders/${id}`)
+    return axiosClient.get(`/orders/${id}`);
 }
 
 // TODO: Apply this function in the view
 export function deleteOrder({ commit }, id) {
-    return axiosClient.delete(`/orders/${id}`)
+    return axiosClient.delete(`/orders/${id}`);
+}
+
+//===== Users
+
+/**
+ * Get Users:
+ *
+ * These parameters are primarily whats used to display the users on the table prior to any filtering or queries.
+ * Params: @url , @search , @per_page , @sort_field , @sort_direction
+ */
+export function getUsers(
+    { commit, state },
+    { url = null, search = "", per_page, sort_field, sort_direction } = {}
+) {
+    commit("setUser", [true]);
+    url = url || "/users";
+
+    const params = {
+        per_page: state.users.limit,
+    };
+
+    return axiosClient
+        .get(url, {
+            params: {
+                ...params,
+                search,
+                per_page,
+                sort_field,
+                sort_direction,
+            },
+        })
+        .then((res) => {
+            commit("setUsers", [false, res.data]);
+        })
+        .catch(() => {
+            commit("setUsers", [false]);
+        });
+}
+
+export function createUser({ commit }, user) {
+    return axiosClient.post("/users", user);
+}
+
+export function updateUser({ commit }, user) {
+    return axiosClient.put(`/users/${user.id}`, user);
+}
+
+export function deleteUser({ commit }, id) {
+    return axiosClient.delete(`/users/${id}`);
 }

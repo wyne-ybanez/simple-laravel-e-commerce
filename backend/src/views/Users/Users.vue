@@ -16,7 +16,7 @@
 <script setup>
 import UserModal from "./UserModal.vue";
 import UsersTable from "./UsersTable.vue";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import store from "../../store";
 
 // Default form values
@@ -33,6 +33,8 @@ const DEFAULT_USER = {
     color: "",
 };
 
+const users = computed(() => store.state.users);
+
 const userModel = ref({ ...DEFAULT_USER });
 const showModal = ref(false);
 
@@ -41,10 +43,8 @@ function showUserModal() {
 }
 
 function editUser(user) {
-    store.dispatch("getUser", user.id).then(({ data }) => {
-        userModel.value = data;
-        showUserModal();
-    });
+    userModel.value = user;
+    showUserModal();
 }
 
 function onModalClose() {
