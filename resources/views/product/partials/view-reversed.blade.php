@@ -1,7 +1,7 @@
     <div class="container">
         <div class="grid w-screen grid-cols-1 lg:grid-cols-2 bg-strong text-black">
-            <div class="lg:col-span-1 w-fit lg:p-32 px-[2rem] py-10 my-24">
-                <h1 class="lg:text-7xl text-4xl text-soft font-almarai mb-2">
+            <div class="lg:col-span-1 w-fit px-20 my-24">
+                <h1 class="text-4xl text-soft font-bold font-montserrat mb-2">
                     {{$product->title}}
                 </h1>
 
@@ -14,7 +14,7 @@
                 </div>
             </div>
 
-            <div class="lg:col-span-1 p-40">
+            <div class="lg:col-span-1 xl:my-24 lg:px-20 lg:pl-0">
                 <div x-data="{
                       image: ['{{$product->image}}'],
                       image_1: ['{{$product->image_1}}'],
@@ -46,24 +46,23 @@
                             :class="grayscale ? 'grayscale' : 'grayscale-0'"
                             @click="grayscale = !grayscale"/>
                     </div>
-                    <div class="flex mb-[0.1rem]">
-                        <div x-show="image_1">
-                            <a @click.prevent="activeImage=image_1" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_1}">
-                                <img :src="image_1" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto"/>
-                            </a>
+                        <div class="flex mb-[0.1rem]">
+                            <template x-for="image in image_1">
+                                <a @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_1}">
+                                    <img :src="image" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto"/>
+                                </a>
+                            </template>
+                            <template x-for="image in image_2">
+                                <a @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_2}">
+                                    <img :src="image" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto"/>
+                                </a>
+                            </template>
+                            <template x-for="image in image_3">
+                                <a @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_3}">
+                                    <img :src="image" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto"/>
+                                </a>
+                            </template>
                         </div>
-                        <div x-show="image_2">
-                            <a @click.prevent="activeImage=image_2" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_2}">
-                                <img :src="image_2" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto"/>
-                            </a>
-                        </div>
-                        <div x-show="image_3">
-                            <a @click.prevent="activeImage=image_3" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_3}">
-                                <img :src="image_3" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto"/>
-                            </a>
-                        </div>
-                    </div>
-
                 </div>
             </div>
 

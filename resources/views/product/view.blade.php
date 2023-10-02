@@ -9,7 +9,7 @@
                     'addToCartUrl' => route('cart.add', $product),
                 ]) }})" class="container mb-24">
         <div class="grid gap-6 w-screen grid-cols-1 lg:grid-cols-2 bg-primary text-primary">
-            <div class="lg:col-span-1 p-24">
+            <div class="lg:col-span-1 md:px-0 lg:px-20 lg:pt-24 lg:pr-0">
                 <div x-data="{
                     image: ['{{$product->image}}'],
                     image_1: ['{{$product->image_1}}'],
@@ -36,30 +36,30 @@
                     }
                 }">
                     <div class="relative">
-                        <img :src="activeImage ? activeImage : image" alt="" class="w-full cursor-pointer rounded"/>
+                        <img :src="activeImage ? activeImage : image" alt="" class="w-full cursor-pointer xl:rounded"/>
                     </div>
                     <div class="flex mb-[0.1rem]">
-                        <div x-show="image_1">
-                            <a @click.prevent="activeImage=image_1" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_1}">
-                                <img :src="image_1" alt="" class="w-auto mt-10 rounded hover:shadow-black hover:shadow-lg object-cover h-[10rem] mr-auto"/>
+                        <template x-for="image in image_1">
+                            <a @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_1}">
+                                <img :src="image" alt="" class="w-auto mt-2 rounded hover:shadow-black hover:shadow-lg object-cover h-[10rem] mr-auto"/>
                             </a>
-                        </div>
-                        <div x-show="image_2">
-                            <a @click.prevent="activeImage=image_2" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_2}">
-                                <img :src="image_2" alt="" class="w-auto mt-10 rounded hover:shadow-black hover:shadow-lg object-cover h-[10rem] mr-auto"/>
+                        </template>
+                        <template x-for="image in image_2">
+                            <a @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_2}">
+                                <img :src="image" alt="" class="w-auto mt-2 rounded hover:shadow-black hover:shadow-lg object-cover h-[10rem] mr-auto"/>
                             </a>
-                        </div>
-                        <div x-show="image_3">
-                            <a @click.prevent="activeImage=image_3" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_3}">
-                                <img :src="image_3" alt="" class="w-auto mt-10 rounded hover:shadow-black hover:shadow-lg object-cover h-[10rem] mr-auto"/>
+                        </template>
+                        <template x-for="image in image_3">
+                            <a @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_3}">
+                                <img :src="image" alt="" class="w-auto mt-2 rounded hover:shadow-black hover:shadow-lg object-cover h-[10rem] mr-auto"/>
                             </a>
-                        </div>
+                        </template>
                     </div>
                 </div>
             </div>
 
-            <div class="lg:col-span-1 w-fit lg:p-32 px-[2rem] py-10">
-                <h1 class="lg:text-7xl text-4xl font-almarai mb-2">
+            <div class="lg:col-span-1 w-fit lg:px-20 lg:pt-24">
+                <h1 class="font-bold text-4xl font-montserrat mb-2">
                     {{$product->title}}
                 </h1>
 

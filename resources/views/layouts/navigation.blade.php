@@ -7,7 +7,7 @@
         <a href="{{ route('home') }}" class="block py-navbar-item pl-5 font-bold font-montserrat text-4xl text-strong">{{ getenv('APP_NAME') }}</a>
     </div>
     <!-- Mobile: Responsive Menu -->
-    <div class="block fixed z-10 top-0 bottom-0 height h-full w-[220px] transition-all md:hidden shadow-md border border-bg-soft bg-primary" :class="mobileMenuOpen ? 'left-0' : '-left-[220px]'">
+    <div class="block fixed z-10 top-0 bottom-0 height h-full w-[220px] transition-all lg:hidden shadow-md border border-bg-soft bg-primary" :class="mobileMenuOpen ? 'left-0' : '-left-[220px]'">
         <ul>
             <li>
                 <div>
@@ -17,7 +17,7 @@
             <li>
                 <a href="/" class="relative flex items-center justify-between py-3 px-6 transition-colors hover:bg-gray-100">
                     <div class="flex items-center">
-                        <div class="link-underline link-underline-black text-stone-600">
+                        <div class="link-underline link-underline-black text-stone-600 text-2xl">
                             Home
                         </div>
                     </div>
@@ -26,7 +26,7 @@
             <li>
                 <a href="{{ route('cart.index') }}" class="relative flex items-center justify-between py-3 px-6 transition-colors hover:bg-gray-100">
                     <div class="flex items-center">
-                        <div class="link-underline link-underline-black text-stone-600">
+                        <div class="link-underline link-underline-black text-stone-600 text-2xl">
                             Basket
                         </div>
                     </div>
@@ -40,7 +40,7 @@
             <li x-data="{open: false}" class="relative">
                 <a @click="open = !open" class="cursor-pointer flex justify-between items-center py-3 px-6 hover:text-primary text-stone-600">
                     <div class="flex items-center">
-                        <div class="link-underline link-underline-black">
+                        <div class="link-underline link-underline-black text-2xl">
                             My Account
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 mt-1" viewBox="0 0 20 20" fill="currentColor">
@@ -50,12 +50,12 @@
                 </a>
                 <ul x-show="open" x-transition class="z-10 right-0 py-2 text-stone-600">
                     <li>
-                        <a href="{{ route('profile') }}" class="flex px-10 py-4 hover:bg-gray-100">
+                        <a href="{{ route('profile') }}" class="flex px-10 py-4 hover:bg-gray-100 text-2xl">
                             My Profile
                         </a>
                     </li>
                     <li class="hover:bg-gray-100">
-                        <a href="{{ route('order.index') }}" class="flex items-center px-10 py-4">
+                        <a href="{{ route('order.index') }}" class="flex items-center px-10 py-4 text-2xl">
                             My Orders
                         </a>
                     </li>
@@ -63,7 +63,7 @@
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <a href="{{ route('logout') }}" class="flex items-center px-10 py-4 hover:bg-gray-100" onclick="event.preventDefault();
+                            <a href="{{ route('logout') }}" class="flex items-center px-10 py-4 hover:bg-gray-100 text-2xl" onclick="event.preventDefault();
                                         this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </a>
@@ -75,7 +75,7 @@
             <li>
                 <a href="{{ route('login') }}" class="flex items-center py-3 px-6 transition-colors hover:bg-gray-100">
                     <div class="flex items-center">
-                        <div class="link-underline link-underline-black text-stone-600">
+                        <div class="link-underline link-underline-black text-stone-600 text-2xl">
                             Login
                         </div>
                     </div>
@@ -83,7 +83,7 @@
             </li>
             <li>
                 <a href="{{ route('register') }}" class="flex items-center py-3 px-6 transition-colors hover:bg-gray-100">
-                    <div class="link-underline link-underline-black text-stone-600">
+                    <div class="link-underline link-underline-black text-stone-600 text-2xl">
                         Register
                     </div>
                 </a>
@@ -92,7 +92,7 @@
         </ul>
     </div>
     <!-- Desktop: Responsive Menu -->
-    <nav class="hidden md:block text-primary text-lg">
+    <nav class="hidden lg:block text-primary text-lg">
         <ul class="grid grid-flow-col items-center">
             <li class="mt-5">
                 <a href="{{ route('home') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
@@ -206,8 +206,8 @@
             @endif
         </ul>
     </nav>
-    <button @click="mobileMenuOpen=!mobileMenuOpen" class="p-4 block md:hidden text-strong">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <button @click="mobileMenuOpen=!mobileMenuOpen" class="p-4 block lg:hidden text-strong">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
     </button>
