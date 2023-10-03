@@ -44,11 +44,14 @@
           <TableHeaderCell @click="sortProducts('category')" class="border-b p-2 pb-5 font-medium" field="category" :sort-field="sortField" :sort-direction="sortDirection">
             Category
           </TableHeaderCell>
-          <TableHeaderCell class="border-b p-2 pb-5 font-medium" field="color">
+          <TableHeaderCell @click="sortProducts('color')" class="border-b p-2 pb-5 font-medium" field="color" :sort-field="sortField" :sort-direction="sortDirection">
             Color
           </TableHeaderCell>
           <TableHeaderCell @click="sortProducts('updated_at')" class="border-b p-2 pb-5 font-medium" field="updated_at" :sort-field="sortField" :sort-direction="sortDirection">
             Last Updated
+          </TableHeaderCell>
+          <TableHeaderCell field="actions" class="cursor-default">
+              Actions
           </TableHeaderCell>
         </tr>
       </thead>

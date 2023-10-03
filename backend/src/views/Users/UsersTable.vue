@@ -59,14 +59,16 @@
                         Email
                     </TableHeaderCell>
                     <TableHeaderCell
+                        @click="sortUsers('created_at')"
                         field="created_at"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
-                        @click="sortUsers('created_at')"
                     >
-                        Create Date
+                        Created On
                     </TableHeaderCell>
-                    <TableHeaderCell field="actions"> Actions </TableHeaderCell>
+                    <TableHeaderCell field="actions" class="cursor-default">
+                        Actions
+                    </TableHeaderCell>
                 </tr>
             </thead>
             <!-- Spinner -->
@@ -87,19 +89,19 @@
             <tbody v-if="!users.loading" class="font-light">
                 <!-- Add animation style if needed :style="{'animation-delay': `${index * 0.05}s`}" -->
                 <tr v-for="user of users.data" class="animate-fade-in">
-                    <td class="border-b p-2">{{ user.id }}</td>
+                    <td class="border-b px-2 py-6">{{ user.id }}</td>
                     <td
-                        class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
+                        class="border-b px-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
                     >
                         {{ user.name }}
                     </td>
-                    <td class="border-b p-2">
+                    <td class="border-b px-2">
                         {{ user.email }}
                     </td>
-                    <td class="border-b p-2">
+                    <td class="border-b px-2">
                         {{ user.created_at }}
                     </td>
-                    <td class="border-y p-2">
+                    <td class="border-y px-2">
                         <Menu as="div" class="relative inline-block text-left">
                             <div>
                                 <MenuButton
@@ -222,7 +224,6 @@ const users = computed(() => store.state.users);
 const sortField = ref("updated_at");
 const sortDirection = ref("desc");
 
-const user = ref({});
 const showUserModal = ref(false);
 
 onMounted(() => {

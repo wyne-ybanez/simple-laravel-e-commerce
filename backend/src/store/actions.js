@@ -210,7 +210,7 @@ export function createUser({ commit }, user) {
 }
 
 export function updateUser({ commit }, user) {
-    return axiosClient.put(`/users/${user.id}`, user);
+    return axiosClient.put(`/users/${user.id}`, user)
 }
 
 export function deleteUser({ commit }, id) {

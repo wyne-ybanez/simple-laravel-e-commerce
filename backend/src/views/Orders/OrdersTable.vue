@@ -41,16 +41,14 @@
                         ID
                     </TableHeaderCell>
                     <TableHeaderCell
-                        class="border-b p-2 pb-5 font-medium"
+                        class="border-b p-2 pb-5 font-medium cursor-default"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                     >
                         Customer
                     </TableHeaderCell>
                     <TableHeaderCell
-                        @click="sortOrders('status')"
-                        class="border-b p-2 pb-5 font-medium"
-                        field="status"
+                        class="border-b p-2 pb-5 font-medium cursor-default"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                     >
@@ -59,7 +57,7 @@
                     <TableHeaderCell
                         @click="sortOrders('total_price')"
                         class="border-b p-2 pb-5 font-medium"
-                        field="price"
+                        field="total_price"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                     >
@@ -68,7 +66,7 @@
                     <TableHeaderCell
                         @click="sortOrders('created_at')"
                         class="border-b p-2 pb-5 font-medium"
-                        field="category"
+                        field="created_at"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                     >
@@ -76,7 +74,7 @@
                     </TableHeaderCell>
                     <TableHeaderCell
                         field="actions"
-                        class="border-b p-2 pb-5 font-medium"
+                        class="border-b p-2 pb-5 font-medium cursor-default"
                     >
                         Actions
                     </TableHeaderCell>
@@ -100,7 +98,7 @@
                     v-for="(order, index) of orders.data"
                     class="animate-fade-in"
                 >
-                    <td class="border-b p-2 py-4">{{ order.id }}</td>
+                    <td class="border-b p-2 py-6">{{ order.id }}</td>
                     <td class="border-b p-2" v-if="order.customer">
                         {{ order.customer.first_name }}
                         {{ order.customer.last_name }}
@@ -206,7 +204,6 @@ const orders = computed(() => store.state.orders);
 const sortField = ref("updated_at");
 const sortDirection = ref("desc");
 
-const order = ref({});
 const showOrderModal = ref(false);
 
 onMounted(() => {

@@ -31,8 +31,6 @@ const { title } = defineProps({
 const sidebarOpened = ref(true);
 const currentUser = computed(() => store.state.user.data);
 
-console.log(currentUser);
-
 function toggleSidebar() {
     sidebarOpened.value = !sidebarOpened.value;
 }

@@ -24,7 +24,7 @@
                         leave-from="opacity-100 scale-100"
                         leave-to="opacity-0 scale-95"
                     >
-                        <DialogPanel class="w-full max-w-7xl h-[80ch] transform overflow-x-hidden rounded-sm text-left align-middle shadow-lg transition-all">
+                        <DialogPanel class="w-full max-w-3xl transform overflow-x-hidden rounded-sm text-left align-middle shadow-lg transition-all">
                             <Spinner
                                 v-if="loading"
                                 class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"
@@ -36,7 +36,7 @@
                                 >
                                     {{
                                         user.id
-                                            ? `Update User: ${props.user.title}`
+                                            ? `Update User: ${props.user.name}`
                                             : "Add User"
                                     }}
                                 </DialogTitle>
@@ -64,38 +64,20 @@
                                 <div class="bg-white px-4 pt-1 pb-4">
                                     <CustomInput
                                         class="mb-2"
-                                        v-model="user.title"
-                                        label="User Title"
-                                    />
-                                     <CustomInput
-                                        class="mb-2"
-                                        v-model="user.category"
-                                        label="Category"
+                                        v-model="user.name"
+                                        label="User Name"
+                                        required
                                     />
                                     <CustomInput
-                                        type="textarea"
                                         class="mb-2"
-                                        v-model="user.description"
-                                        label="Description"
+                                        v-model="user.email"
+                                        label="Email"
+                                        required
                                     />
                                     <CustomInput
-                                        type="textarea"
                                         class="mb-2"
-                                        v-model="user.description_2"
-                                        label="Alternative Description"
-                                    />
-                                    <CustomInput
-                                        type="number"
-                                        class="mb-2"
-                                        v-model="user.price"
-                                        label="Price"
-                                        prepend="€"
-                                    />
-                                    <CustomInput
-                                        type="checkbox"
-                                        class="mb-2"
-                                        v-model="user.color"
-                                        label="Colored Image"
+                                        v-model="user.password"
+                                        label="Set Password"
                                     />
                                 </div>
                                 <footer class="bg-white px-4 py-6 sm:flex sm:flex-row-reverse justify-between border border-t-1 border-r-0 border-stone-200 sticky bottom-0">
@@ -139,16 +121,9 @@ const props = defineProps({
 const loading = ref(false);
 const user = ref({
     id: props.user.id,
-    title: props.user.title,
-    image: props.user.image,
-    image_1: props.user.image_1,
-    image_2: props.user.image_2,
-    image_3: props.user.image_3,
-    category: props.user.category,
-    description: props.user.description,
-    description_2: props.user.description_2,
-    price: props.user.price,
-    color: props.user.color,
+    name: props.user.name,
+    email: props.user.email,
+    password: props.user.password,
 });
 
 // changes what appears on modal when opening modal again
@@ -160,16 +135,9 @@ const show = computed({
 onUpdated(() => {
     user.value = {
         id: props.user.id,
-        title: props.user.title,
-        image: props.user.image,
-        image_1: props.user.image_1,
-        image_2: props.user.image_2,
-        image_3: props.user.image_3,
-        category: props.user.category,
-        description: props.user.description,
-        description_2: props.user.description_2,
-        price: props.user.price,
-        color: props.user.color,
+        name: props.user.name,
+        email: props.user.email,
+        password: props.user.password,
     };
 });
 

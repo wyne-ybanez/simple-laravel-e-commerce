@@ -71,7 +71,7 @@
         <div class="flex flex-col grow">
             <div>
                 {{ label }}
-                <span class="text-zinc-400 text-lg">*</span>
+                <span v-if="required" class="text-zinc-400 text-lg">*</span>
             </div>
             <input v-if="label === 'Price' "
                 placeholder="€"
