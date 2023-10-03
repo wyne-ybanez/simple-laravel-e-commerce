@@ -1,6 +1,6 @@
 import axiosClient from "../axios";
 
-export function getUser({ commit }, data) {
+export function getCurrentUser({ commit }, data) {
     return axiosClient.get("/user", data).then(({ data }) => {
         commit("setUser", data);
         return data;
@@ -35,7 +35,7 @@ export function getProducts(
     { commit, state },
     { url = null, search = "", per_page, sort_field, sort_direction } = {}
 ) {
-    commit("setProduct", [true]);
+    commit("setProducts", [true]);
     url = url || "/products";
 
     const params = {
@@ -53,10 +53,10 @@ export function getProducts(
             },
         })
         .then((res) => {
-            commit("setProduct", [false, res.data]);
+            commit("setProducts", [false, res.data]);
         })
         .catch(() => {
-            commit("setProduct", [false]);
+            commit("setProducts", [false]);
         });
 }
 
@@ -176,7 +176,7 @@ export function getUsers(
     { commit, state },
     { url = null, search = "", per_page, sort_field, sort_direction } = {}
 ) {
-    commit("setUser", [true]);
+    commit("setUsers", [true]);
     url = url || "/users";
 
     const params = {
@@ -199,6 +199,10 @@ export function getUsers(
         .catch(() => {
             commit("setUsers", [false]);
         });
+}
+
+export function getUser({ commit }, id) {
+    return axiosClient.get(`/users/${id}`);
 }
 
 export function createUser({ commit }, user) {

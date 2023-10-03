@@ -13,7 +13,7 @@ export function setToken(state, token) {
 
 // Let 'data' default to null as a parameter
 // Will be set to undefined otherwise and log an error
-export function setProduct(state, [loading, data = null]) {
+export function setProducts(state, [loading, data = null]) {
     if (data) {
         state.products = {
             ...state.products,

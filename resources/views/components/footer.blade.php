@@ -1,4 +1,4 @@
-<footer class="mx-auto text-soft text-xl py-8 font-montserrat w-11/12 md:w-[94vw] mt-40 border-t-2 border-bg-strong">
+<footer class="mx-auto text-soft text-xl py-8 font-montserrat w-11/12 mt-40 border-t-2 border-bg-strong">
     <h1 class="text-center text-black md:text-9xl sm:text-8xl text-7xl mt-20 font-extrabold">
         <a href="{{ route('home') }}" class="">
             {{ getenv('APP_NAME') }}
@@ -30,11 +30,11 @@
         <div>
             All rights reserved &copy; {{ date('Y') }} <span class="font-semibold px-2">{{ getenv('APP_NAME') }}</span>
             @if (getenv('APP_AUTHOR'))
-                <br>
-                This site was created by
-                <span class="link-underline link-underline-black">
-                    <a href="{{ getenv('APP_AUTHOR_SITE') }}" target="_blank">{{ getenv('APP_AUTHOR') }}</a>
-                </span>
+            <br>
+            This site was created by
+            <span class="link-underline link-underline-black">
+                <a href="{{ getenv('APP_AUTHOR_SITE') }}" target="_blank">{{ getenv('APP_AUTHOR') }}</a>
+            </span>
             @endif
         </div>
         <div class="ml-auto align-center">

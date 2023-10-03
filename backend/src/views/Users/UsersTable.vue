@@ -204,8 +204,8 @@
 <script setup>
 import { computed, ref, onMounted } from "vue";
 import Spinner from "../../components/core/Spinner.vue";
-import store from "../../store/index.js";
-import { USERS_PER_PAGE } from "../../constants";
+import store from "../../store";
+import { USERS_PER_PAGE } from "../../constants.js";
 import TableHeaderCell from "../../components/core/Table/TableHeaderCell.vue";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import {
@@ -241,10 +241,10 @@ function getForPage(ev, link) {
 function getUsers(url = null) {
     store.dispatch("getUsers", {
         url,
-        sort_field: sortField.value,
-        sort_direction: sortDirection.value,
         search: search.value,
         per_page: perPage.value,
+        sort_field: sortField.value,
+        sort_direction: sortDirection.value,
     });
 }
 

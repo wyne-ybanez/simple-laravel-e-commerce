@@ -31,6 +31,11 @@ const routes = [
                 component: Products,
             },
             {
+                path: "users",
+                name: "app.users",
+                component: Users,
+            },
+            {
                 path: "orders",
                 name: "app.orders",
                 component: Orders,
@@ -39,11 +44,6 @@ const routes = [
                 path: "orders/:id",
                 name: "app.orders.view",
                 component: OrderView,
-            },
-            {
-                path: "users",
-                name: "app.users",
-                component: Users,
             },
         ],
     },

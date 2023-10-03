@@ -198,7 +198,7 @@
 <script setup>
 import { computed, ref, onMounted } from 'vue'
 import Spinner from "../../components/core/Spinner.vue"
-import store from '../../store/index.js'
+import store from '../../store'
 import {PRODUCTS_PER_PAGE} from '../../constants'
 import TableHeaderCell from '../../components/core/Table/TableHeaderCell.vue';
 import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/vue";
