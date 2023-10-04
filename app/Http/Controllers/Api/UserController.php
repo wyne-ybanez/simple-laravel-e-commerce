@@ -39,7 +39,7 @@ class UserController extends Controller
     public function store(CreateUserRequest $request)
     {
         $data = $request->validated();
-        $data['email_verified_at'] = date('Y-m-d H:i:s');
+        $data['email_verified_at'] = date('Y-m-d H:i:s');  // automatically verifies additional users
         $data['password'] = Hash::make($data['password']);
 
         $data['created_by'] = $request->user()->id;
