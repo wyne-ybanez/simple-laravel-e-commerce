@@ -59,14 +59,24 @@
                         Email
                     </TableHeaderCell>
                     <TableHeaderCell
+                        @click="sortUsers('is_admin')"
+                        class="border-b p-2 pb-5 font-medium"
+                        field="is_admin"
+                        :sort-field="sortField"
+                        :sort-direction="sortDirection"
+                    >
+                        Admin
+                    </TableHeaderCell>
+                    <TableHeaderCell
                         @click="sortUsers('created_at')"
+                        class="font-medium"
                         field="created_at"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                     >
                         Created On
                     </TableHeaderCell>
-                    <TableHeaderCell field="actions" class="cursor-default">
+                    <TableHeaderCell field="actions" class="cursor-default font-medium">
                         Actions
                     </TableHeaderCell>
                 </tr>
@@ -97,6 +107,22 @@
                     </td>
                     <td class="border-b px-2">
                         {{ user.email }}
+                    </td>
+                    <td class="border-b px-2">
+                        <!-- Admin Status -->
+                        <div class="text-black text-sm py-1 px-2 rounded-full w-fit" :class="{
+                            'bg-green-400': ['true', '1', 1, true].includes(user.is_admin),
+                            'bg-gray-300': ['false', '0', 0, false].includes(user.is_admin),
+                        }"
+                        >
+                            <span class="py-1" v-if="user.is_admin">
+                                Admin
+                            </span>
+                            <span class="py-1" v-else>
+                                Regular
+                            </span>
+                        </div>
+                        <!-- End Admin Status -->
                     </td>
                     <td class="border-b px-2">
                         {{ user.created_at }}

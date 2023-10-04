@@ -39,7 +39,6 @@ class UserController extends Controller
     public function store(CreateUserRequest $request)
     {
         $data = $request->validated();
-        $data['is_admin'] = true;
         $data['email_verified_at'] = date('Y-m-d H:i:s');
         $data['password'] = Hash::make($data['password']);
 

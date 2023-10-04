@@ -29,28 +29,28 @@
     <table class="table-auto w-full">
       <thead class="text-left">
         <tr>
-          <TableHeaderCell @click="sortProducts('id')" class="border-b p-2 pb-5 font-medium" field="id" :sort-field="sortField" :sort-direction="sortDirection">
+          <TableHeaderCell @click="sortProducts('id')" class="border-b p-2 pb-5 font-medium cursor-pointer" field="id" :sort-field="sortField" :sort-direction="sortDirection">
             ID
           </TableHeaderCell>
           <TableHeaderCell class="border-b p-2 pb-5 font-medium" field="" :sort-field="sortField" :sort-direction="sortDirection">
             Image
           </TableHeaderCell>
-          <TableHeaderCell @click="sortProducts('title')" class="border-b p-2 pb-5 font-medium" field="title" :sort-field="sortField" :sort-direction="sortDirection">
+          <TableHeaderCell @click="sortProducts('title')" class="border-b p-2 pb-5 font-medium cursor-pointer" field="title" :sort-field="sortField" :sort-direction="sortDirection">
             Title
           </TableHeaderCell>
-          <TableHeaderCell @click="sortProducts('price')" class="border-b p-2 pb-5 font-medium" field="price" :sort-field="sortField" :sort-direction="sortDirection">
+          <TableHeaderCell @click="sortProducts('price')" class="border-b p-2 pb-5 font-medium cursor-pointer" field="price" :sort-field="sortField" :sort-direction="sortDirection">
             Value
           </TableHeaderCell>
-          <TableHeaderCell @click="sortProducts('category')" class="border-b p-2 pb-5 font-medium" field="category" :sort-field="sortField" :sort-direction="sortDirection">
+          <TableHeaderCell @click="sortProducts('category')" class="border-b p-2 pb-5 font-medium cursor-pointer" field="category" :sort-field="sortField" :sort-direction="sortDirection">
             Category
           </TableHeaderCell>
-          <TableHeaderCell @click="sortProducts('color')" class="border-b p-2 pb-5 font-medium" field="color" :sort-field="sortField" :sort-direction="sortDirection">
+          <TableHeaderCell @click="sortProducts('color')" class="border-b p-2 pb-5 font-medium cursor-pointer" field="color" :sort-field="sortField" :sort-direction="sortDirection">
             Color
           </TableHeaderCell>
-          <TableHeaderCell @click="sortProducts('updated_at')" class="border-b p-2 pb-5 font-medium" field="updated_at" :sort-field="sortField" :sort-direction="sortDirection">
+          <TableHeaderCell @click="sortProducts('updated_at')" class="border-b p-2 pb-5 font-medium cursor-pointer" field="updated_at" :sort-field="sortField" :sort-direction="sortDirection">
             Last Updated
           </TableHeaderCell>
-          <TableHeaderCell field="actions" class="cursor-default">
+          <TableHeaderCell field="actions" class="cursor-default font-medium">
               Actions
           </TableHeaderCell>
         </tr>
@@ -84,6 +84,7 @@
             {{ product.category }}
           </td>
           <td class="border-b p-2">
+            <!-- Color Notification -->
             <div class="text-black text-sm py-1 px-2 rounded-full w-fit" :class="{
                 'bg-green-400': ['true', '1', 1, true].includes(product.color),
                 'bg-gray-300': ['false', '0', 0, false].includes(product.color),
@@ -96,6 +97,7 @@
                   Grayscale
               </span>
             </div>
+            <!-- End Color Notification -->
           </td>
           <td class="border-b p-2 ">
             {{ product.updated_at }}

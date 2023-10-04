@@ -63,21 +63,28 @@
                             <form @submit.prevent="onSubmit" enctype="multipart/form-data">
                                 <div class="bg-white px-4 pt-1 pb-4">
                                     <CustomInput
-                                        class="mb-2"
+                                        class="mt-8 mb-2"
                                         v-model="user.name"
                                         label="User Name"
                                         required
                                     />
                                     <CustomInput
-                                        class="mb-2"
+                                        class="mt-8 mb-2"
                                         v-model="user.email"
                                         label="Email"
                                         required
                                     />
                                     <CustomInput
-                                        class="mb-2"
+                                        class="mt-8 mb-2"
                                         v-model="user.password"
-                                        label="Set Password"
+                                        label="Password"
+                                    />
+                                    <label class="block text-sm mt-12 text-zinc-400"> Enables administrator privileges for the user </label>
+                                    <CustomInput
+                                        type="checkbox"
+                                        class="mt-4 mb-2"
+                                        v-model="user.is_admin"
+                                        label="Administrator"
                                     />
                                 </div>
                                 <footer class="bg-white px-4 py-6 sm:flex sm:flex-row-reverse justify-between border border-t-1 border-r-0 border-stone-200 sticky bottom-0">
@@ -124,6 +131,7 @@ const user = ref({
     name: props.user.name,
     email: props.user.email,
     password: props.user.password,
+    is_admin: props.user.is_admin
 });
 
 // changes what appears on modal when opening modal again
@@ -138,6 +146,7 @@ onUpdated(() => {
         name: props.user.name,
         email: props.user.email,
         password: props.user.password,
+        is_admin: props.user.is_admin
     };
 });
 

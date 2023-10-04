@@ -1,7 +1,7 @@
 <template>
   <div>
     <label class="sr-only">{{ label }}</label>
-    <div class="mt-8 flex rounded-sm">
+    <div class="flex rounded-sm">
       <!-- <span v-if="prepend"
             class="inline-flex items-center px-3 rounded-l-sm border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
         {{ prepend }}
@@ -52,7 +52,6 @@
       </template>
       <template v-else-if="type === 'checkbox'">
         <div class="flex flex-col grow">
-            <label class="block text-sm mb-2 text-zinc-400"> Product images are black & white by default </label>
             <div>
                 {{ label }}
                 <span v-if="required" class="text-zinc-400 text-lg">*</span>

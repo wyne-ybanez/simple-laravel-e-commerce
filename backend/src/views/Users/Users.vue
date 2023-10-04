@@ -16,24 +16,16 @@
 <script setup>
 import UserModal from "./UserModal.vue";
 import UsersTable from "./UsersTable.vue";
-import { computed, ref } from "vue";
-import store from "../../store";
+import { ref } from "vue";
 
 // Default form values
 const DEFAULT_USER = {
     id: "",
-    title: "",
-    description: "",
-    category: "",
-    image: "",
-    image_1: "",
-    image_2: "",
-    image_3: "",
-    price: "",
-    color: "",
+    name: "",
+    email: "",
+    password: "",
+    is_admin: "",
 };
-
-const users = computed(() => store.state.users);
 
 const userModel = ref({ ...DEFAULT_USER });
 const showModal = ref(false);

@@ -33,7 +33,7 @@
                 <tr>
                     <TableHeaderCell
                         @click="sortOrders('id')"
-                        class="border-b p-2 pb-5 font-medium"
+                        class="border-b p-2 pb-5 font-medium cursor-pointer"
                         field="id"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
@@ -56,7 +56,7 @@
                     </TableHeaderCell>
                     <TableHeaderCell
                         @click="sortOrders('total_price')"
-                        class="border-b p-2 pb-5 font-medium"
+                        class="border-b p-2 pb-5 font-medium cursor-pointer"
                         field="total_price"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
@@ -65,7 +65,7 @@
                     </TableHeaderCell>
                     <TableHeaderCell
                         @click="sortOrders('created_at')"
-                        class="border-b p-2 pb-5 font-medium"
+                        class="border-b p-2 pb-5 font-medium cursor-pointer"
                         field="created_at"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"

@@ -1,5 +1,5 @@
 <template>
-    <th @click="emit('click', field)" class="border-b p-2 text-left cursor-pointer">
+    <th @click="emit('click', field)" class="border-b p-2 text-left">
         <div class="flex">
             <!-- Title slot -->
             <slot></slot>

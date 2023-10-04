@@ -24,7 +24,7 @@
                         leave-from="opacity-100 scale-100"
                         leave-to="opacity-0 scale-95"
                     >
-                        <DialogPanel class="w-full max-w-7xl h-[80ch] transform overflow-x-hidden rounded-sm text-left align-middle shadow-lg transition-all">
+                        <DialogPanel class="w-full max-w-5xl h-[80vh] transform overflow-x-hidden rounded-sm text-left align-middle shadow-lg transition-all">
                             <Spinner
                                 v-if="loading"
                                 class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"
@@ -63,13 +63,13 @@
                             <form @submit.prevent="onSubmit" enctype="multipart/form-data">
                                 <div class="bg-white px-4 pt-1 pb-4">
                                     <CustomInput
-                                        class="mb-2"
+                                        class="mt-8 mb-2"
                                         v-model="product.title"
                                         label="Product Title"
                                     />
                                     <CustomInput
                                         type="file"
-                                        class="mb-2"
+                                        class="mt-8 mb-2"
                                         label="Main Product Image"
                                         @change="
                                             (file) => (product.image = file)
@@ -78,7 +78,7 @@
                                     <img class="w-16 h-16 object-cover inline" :src="props.product.image_url">
                                     <CustomInput
                                         type="file"
-                                        class="mb-2"
+                                        class="mt-8 mb-2"
                                         label="Product Image 1"
                                         @change="
                                             (file) => (product.image_1 = file)
@@ -87,7 +87,7 @@
                                     <img class="w-16 h-16 object-cover" :src="props.product.image_url_1">
                                     <CustomInput
                                         type="file"
-                                        class="mb-2"
+                                        class="mt-8 mb-2"
                                         label="Product Image 2"
                                         @change="
                                             (file) => (product.image_2 = file)
@@ -96,7 +96,7 @@
                                     <img class="w-16 h-16 object-cover" :src="props.product.image_url_2">
                                     <CustomInput
                                         type="file"
-                                        class="mb-2"
+                                        class="mt-8 mb-2"
                                         label="Product Image 3"
                                         @change="
                                             (file) => (product.image_3 = file)
@@ -104,32 +104,33 @@
                                     />
                                     <img class="w-16 h-16 object-cover" :src="props.product.image_url_3">
                                      <CustomInput
-                                        class="mb-2"
+                                        class="mt-8 mb-2"
                                         v-model="product.category"
                                         label="Category"
                                     />
                                     <CustomInput
                                         type="textarea"
-                                        class="mb-2"
+                                        class="mt-8 mb-2"
                                         v-model="product.description"
                                         label="Description"
                                     />
                                     <CustomInput
                                         type="textarea"
-                                        class="mb-2"
+                                        class="mt-8 mb-2"
                                         v-model="product.description_2"
                                         label="Alternative Description"
                                     />
                                     <CustomInput
                                         type="number"
-                                        class="mb-2"
+                                        class="mt-8 mb-2"
                                         v-model="product.price"
                                         label="Price"
                                         prepend="€"
                                     />
+                                    <label class="block text-sm mt-12 text-zinc-400"> Product images are black & white by default </label>
                                     <CustomInput
                                         type="checkbox"
-                                        class="mb-2"
+                                        class="mt-4 mb-2"
                                         v-model="product.color"
                                         label="Colored Image"
                                     />
