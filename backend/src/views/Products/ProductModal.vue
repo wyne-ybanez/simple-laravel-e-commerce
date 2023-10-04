@@ -66,6 +66,7 @@
                                         class="mt-8 mb-2"
                                         v-model="product.title"
                                         label="Product Title"
+                                        required
                                     />
                                     <CustomInput
                                         type="file"
@@ -126,6 +127,7 @@
                                         v-model="product.price"
                                         label="Price"
                                         prepend="€"
+                                        required
                                     />
                                     <label class="block text-sm mt-12 text-zinc-400"> Product images are black & white by default </label>
                                     <CustomInput

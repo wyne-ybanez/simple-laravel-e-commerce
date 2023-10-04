@@ -78,6 +78,7 @@
                                         class="mt-8 mb-2"
                                         v-model="user.password"
                                         label="Password"
+                                        :required="user.password"
                                     />
                                     <label class="block text-sm mt-12 text-zinc-400"> Enables administrator privileges for the user </label>
                                     <CustomInput
