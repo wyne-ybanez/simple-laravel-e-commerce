@@ -157,15 +157,13 @@
                                                     params: { id: customer.id },
                                                 }"
                                                 :class="[
-                                                    active
-                                                        ? 'bg-zinc-600 text-white'
-                                                        : 'text-gray-900',
+                                                    active ? 'bg-gray-100' : '',
                                                     'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                                                 ]"
                                             >
                                                 <PencilIcon
                                                     :active="active"
-                                                    class="mr-2 h-5 w-5 text-zinc-400"
+                                                    class="mr-2 h-5 w-5 text-zinc-900"
                                                     aria-hidden="true"
                                                 />
                                                 Edit
@@ -174,9 +172,7 @@
                                         <MenuItem v-slot="{ active }">
                                             <button
                                                 :class="[
-                                                    active
-                                                        ? 'bg-zinc-600 text-white'
-                                                        : 'text-gray-900',
+                                                    active ? 'bg-zinc-100' : '',
                                                     'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                                                 ]"
                                                 @click="
@@ -185,7 +181,7 @@
                                             >
                                                 <TrashIcon
                                                     :active="active"
-                                                    class="mr-2 h-5 w-5 text-zinc-400"
+                                                    class="mr-2 h-5 w-5 text-zinc-900"
                                                     aria-hidden="true"
                                                 />
                                                 Delete

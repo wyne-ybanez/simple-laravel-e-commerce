@@ -1,10 +1,18 @@
 <template>
-    <div v-if="customer.id" class="animate-fade-in-down">
+    <div v-if="customer.id" class="my-4">
         <form @submit.prevent="onSubmit">
-            <div class="bg-white px-4 pt-5 pb-4">
-                <h1 class="text-2xl font-semibold pb-2">{{ title }}</h1>
+            <div class="px-4 pt-5 pb-4">
+                <div class="border-b border-gray-300">
+                    <h1 class="flex text-xl pb-2">
+                        <span class="font-semibold mr-2">
+                            Update Customer:
+                        </span>
+                        {{ customerName }}
+                        <!-- <span class="text-sm ml-4"><OrderStatus :order="order" /></span> -->
+                    </h1>
+                </div>
                 <CustomInput
-                    class="mb-2"
+                    class="mb-2 mt-5"
                     v-model="customer.first_name"
                     label="First Name"
                     :errors="errors.first_name"
@@ -29,12 +37,12 @@
                 />
                 <CustomInput
                     type="checkbox"
-                    class="mb-2"
+                    class="mb-2 mt-8"
                     v-model="customer.status"
-                    label="Active"
+                    label="Active Customer"
                     :errors="errors.status"
                 />
-
+                <!-- Billing -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <h2
@@ -42,8 +50,7 @@
                         >
                             Billing Address
                         </h2>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-5">
                             <CustomInput
                                 v-model="customer.billingAddress.address1"
                                 label="Address 1"
@@ -88,7 +95,8 @@
                             />
                         </div>
                     </div>
-
+                    <!-- End Billing -->
+                    <!-- Shipping -->
                     <div>
                         <h2
                             class="text-xl font-semibold mt-6 pb-2 border-b border-gray-300"
@@ -96,7 +104,7 @@
                             Shipping Address
                         </h2>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-5">
                             <CustomInput
                                 v-model="customer.shippingAddress.address1"
                                 label="Address 1"
@@ -142,27 +150,29 @@
                             />
                         </div>
                     </div>
+                    <!-- End Shipping -->
                 </div>
             </div>
-            <footer
-                class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
-            >
+            <footer class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button
                     type="submit"
-                    class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500"
+                    class="mt-3 w-full inline-flex justify-center border px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto text-white bg-green-600 hover:bg-green-700"
                 >
                     Submit
                 </button>
                 <router-link
                     :to="{ name: 'app.customers' }"
                     type="button"
-                    class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                    class="mt-3 w-full inline-flex justify-center border border-gray-300 px-4 py-2 bg-white text-base hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-zinc-500 sm:mt-0 sm:ml-3 sm:w-auto"
                     ref="cancelButtonRef"
                 >
                     Cancel
                 </router-link>
             </footer>
         </form>
+    </div>
+    <div v-else>
+        <h1 class="text-xl pb-2">There has been an error...</h1>
     </div>
 </template>
 
@@ -175,7 +185,7 @@ import CustomInput from "../../components/core/CustomInput.vue";
 const router = useRouter();
 const route = useRoute();
 
-const title = ref("");
+const customerName = ref("");
 const errors = ref({
     first_name: [],
     last_name: [],
@@ -241,10 +251,7 @@ function onSubmit() {
             .then((response) => {
                 loading.value = false;
                 if (response.status === 200) {
-                    store.commit(
-                        "showToast",
-                        "Customer has been successfully updated"
-                    );
+                    // TODO show notification
                     store.dispatch("getCustomers");
                     router.push({ name: "app.customers" });
                 }
@@ -272,7 +279,7 @@ function onSubmit() {
 
 onMounted(() => {
     store.dispatch("getCustomer", route.params.id).then(({ data }) => {
-        title.value = `Update customer: "${data.first_name} ${data.last_name}"`;
+        customerName.value = `${data.first_name} ${data.last_name}`;
         customer.value = data;
     });
 });
