@@ -42,6 +42,12 @@
                 <span class="text-md"> Products </span>
             </router-link>
             <router-link
+                :to="{ name: 'app.customers' }"
+                class="py-2 px-5 mb-4 transition-colors hover:text-white"
+            >
+                <span class="text-md"> Customers </span>
+            </router-link>
+            <router-link
                 :to="{ name: 'app.orders' }"
                 class="py-2 px-5 mb-4 transition-colors hover:text-white"
             >
@@ -52,12 +58,6 @@
                 class="py-2 px-5 mb-4 transition-colors hover:text-white"
             >
                 <span class="text-md"> Users </span>
-            </router-link>
-            <router-link
-                :to="{ name: 'app.customers' }"
-                class="py-2 px-5 mb-4 transition-colors hover:text-white"
-            >
-                <span class="text-md"> Customers </span>
             </router-link>
         </div>
 

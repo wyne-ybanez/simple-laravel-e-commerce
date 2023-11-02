@@ -104,7 +104,7 @@
             <!-- Spinner -->
             <tbody v-if="products.loading">
                 <tr>
-                    <td colspan="7">
+                    <td colspan="8">
                         <Spinner
                             v-if="products.loading"
                             class="py-10 h-[65.1vh] justify-center align-center text-center"

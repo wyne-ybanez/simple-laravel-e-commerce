@@ -1,12 +1,12 @@
 <template>
-    <div class="bg-white p-4 rounded-lg shadow animate-fade-in-down">
-        <div class="flex justify-between border-b-2 pb-3">
+    <div class="bg-white p-4 rounded border animate-fade-in-down">
+        <div class="flex justify-between pb-5">
             <div class="flex items-center">
                 <span class="whitespace-nowrap mr-3">Per Page</span>
                 <select
                     @change="getCustomers(null)"
                     v-model="perPage"
-                    class="appearance-none relative block w-24 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    class="appearance-none relative block w-24 px-3 py-2 border border-gray-300 bg-gray-50 text-gray-900 rounded-sm focus:outline-none focus:ring-zinc-500 focus:border-0 focus:z-10 cursor-pointer sm:text-sm"
                 >
                     <option value="5">5</option>
                     <option value="10">10</option>
@@ -14,14 +14,14 @@
                     <option value="50">50</option>
                     <option value="100">100</option>
                 </select>
-                <span class="ml-3">Found {{ customers.total }} customers</span>
+                <span class="ml-3"> {{ customers.total }} customers</span>
             </div>
             <div>
                 <input
                     v-model="search"
                     @change="getCustomers(null)"
-                    class="appearance-none relative block w-48 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                    placeholder="Type to Search customers"
+                    class="appearance-none relative block w-48 px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm placeholder:text-slate-400"
+                    placeholder="Search Customers"
                 />
             </div>
         </div>
@@ -31,6 +31,7 @@
                 <tr>
                     <TableHeaderCell
                         field="id"
+                        class="border-b p-2 pb-5 font-medium cursor-pointer"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                         @click="sortCustomers('id')"
@@ -39,6 +40,7 @@
                     </TableHeaderCell>
                     <TableHeaderCell
                         field="name"
+                        class="border-b p-2 pb-5 font-medium cursor-pointer"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                         @click="sortCustomers('name')"
@@ -47,6 +49,7 @@
                     </TableHeaderCell>
                     <TableHeaderCell
                         field="email"
+                        class="border-b p-2 pb-5 font-medium cursor-pointer"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                         @click="sortCustomers('email')"
@@ -55,6 +58,7 @@
                     </TableHeaderCell>
                     <TableHeaderCell
                         field="phone"
+                        class="border-b p-2 pb-5 font-medium cursor-pointer"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                         @click="sortCustomers('phone')"
@@ -63,6 +67,7 @@
                     </TableHeaderCell>
                     <TableHeaderCell
                         field="status"
+                        class="border-b p-2 pb-5 font-medium cursor-pointer"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                         @click="sortCustomers('status')"
@@ -71,13 +76,19 @@
                     </TableHeaderCell>
                     <TableHeaderCell
                         field="created_at"
+                        class="border-b p-2 pb-5 font-medium cursor-pointer"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                         @click="sortCustomers('created_at')"
                     >
                         Register Date
                     </TableHeaderCell>
-                    <TableHeaderCell field="actions"> Actions </TableHeaderCell>
+                    <TableHeaderCell
+                        field="actions"
+                        class="border-b p-2 pb-5 font-medium"
+                    >
+                        Actions
+                    </TableHeaderCell>
                 </tr>
             </thead>
             <!-- Spinner -->
@@ -121,7 +132,7 @@
                                     class="inline-flex items-center justify-center w-full justify-center rounded-full w-10 h-10 bg-black bg-opacity-0 text-sm font-medium text-white hover:bg-opacity-5 focus:bg-opacity-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
                                 >
                                     <DotsVerticalIcon
-                                        class="h-5 w-5 text-indigo-500"
+                                        class="h-5 w-5 text-zinc-500"
                                         aria-hidden="true"
                                     />
                                 </MenuButton>
@@ -147,14 +158,14 @@
                                                 }"
                                                 :class="[
                                                     active
-                                                        ? 'bg-indigo-600 text-white'
+                                                        ? 'bg-zinc-600 text-white'
                                                         : 'text-gray-900',
                                                     'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                                                 ]"
                                             >
                                                 <PencilIcon
                                                     :active="active"
-                                                    class="mr-2 h-5 w-5 text-indigo-400"
+                                                    class="mr-2 h-5 w-5 text-zinc-400"
                                                     aria-hidden="true"
                                                 />
                                                 Edit
@@ -164,7 +175,7 @@
                                             <button
                                                 :class="[
                                                     active
-                                                        ? 'bg-indigo-600 text-white'
+                                                        ? 'bg-zinc-600 text-white'
                                                         : 'text-gray-900',
                                                     'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                                                 ]"
@@ -174,7 +185,7 @@
                                             >
                                                 <TrashIcon
                                                     :active="active"
-                                                    class="mr-2 h-5 w-5 text-indigo-400"
+                                                    class="mr-2 h-5 w-5 text-zinc-400"
                                                     aria-hidden="true"
                                                 />
                                                 Delete
@@ -201,7 +212,7 @@
                 class="relative z-0 inline-flex justify-center rounded-md shadow-sm -space-x-px"
                 aria-label="Pagination"
             >
-                <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
+                <!-- Current: "z-10 bg-zinc-50 border-zinc-500 text-zinc-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
                 <a
                     v-for="(link, i) of customers.links"
                     :key="i"
@@ -212,7 +223,7 @@
                     class="relative inline-flex items-center px-4 py-2 border text-sm font-medium whitespace-nowrap"
                     :class="[
                         link.active
-                            ? 'z-10 bg-indigo-50 border-indigo-500 text-indigo-600'
+                            ? 'z-10 bg-zinc-50 border-zinc-500 text-zinc-600'
                             : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50',
                         i === 0 ? 'rounded-l-md' : '',
                         i === customers.links.length - 1 ? 'rounded-r-md' : '',
