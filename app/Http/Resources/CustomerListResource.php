@@ -22,6 +22,7 @@ class CustomerListResource extends JsonResource
             'last_name' => $this->last_name,
             'email' => $this->user->email,
             'phone' => $this->phone,
+            'status' => $this->status,
             'created_at' => (new \DateTime($this->created_at))->format('Y-m-d H:i:s'),
             'updated_at' => (new \DateTime($this->updated_at))->format('Y-m-d H:i:s'),
         ];

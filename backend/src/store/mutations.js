@@ -63,6 +63,22 @@ export function setUsers(state, [loading, data = null]) {
     state.users.loading = loading;
 }
 
+export function setCustomers(state, [loading, data = null]) {
+    if (data) {
+        state.customers = {
+            ...state.customers,
+            data: data.data,
+            links: data.meta?.links,
+            page: data.meta.current_page,
+            limit: data.meta.per_page,
+            from: data.meta.from,
+            to: data.meta.to,
+            total: data.meta.total,
+        };
+    }
+    state.customers.loading = loading;
+}
+
 export function showToast(state, message) {
     state.toast.show = true;
     state.toast.message = message;

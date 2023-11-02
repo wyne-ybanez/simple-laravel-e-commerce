@@ -76,7 +76,10 @@
                     >
                         Created On
                     </TableHeaderCell>
-                    <TableHeaderCell field="actions" class="cursor-default font-medium">
+                    <TableHeaderCell
+                        field="actions"
+                        class="cursor-default font-medium"
+                    >
                         Actions
                     </TableHeaderCell>
                 </tr>
@@ -84,7 +87,7 @@
             <!-- Spinner -->
             <tbody v-if="users.loading">
                 <tr>
-                    <td colspan="6">
+                    <td colspan="7">
                         <Spinner
                             v-if="users.loading"
                             class="py-10 h-[65.1vh] justify-center align-center text-center"
@@ -110,17 +113,24 @@
                     </td>
                     <td class="border-b px-2">
                         <!-- Admin Status -->
-                        <div class="text-black text-sm py-1 px-2 rounded-full w-fit" :class="{
-                            'bg-green-400': ['true', '1', 1, true].includes(user.is_admin),
-                            'bg-gray-300': ['false', '0', 0, false].includes(user.is_admin),
-                        }"
+                        <div
+                            class="text-black text-sm py-1 px-2 rounded-full w-fit"
+                            :class="{
+                                'bg-green-400': ['true', '1', 1, true].includes(
+                                    user.is_admin
+                                ),
+                                'bg-gray-300': [
+                                    'false',
+                                    '0',
+                                    0,
+                                    false,
+                                ].includes(user.is_admin),
+                            }"
                         >
                             <span class="py-1" v-if="user.is_admin">
                                 Admin
                             </span>
-                            <span class="py-1" v-else>
-                                Regular
-                            </span>
+                            <span class="py-1" v-else> Regular </span>
                         </div>
                         <!-- End Admin Status -->
                     </td>
