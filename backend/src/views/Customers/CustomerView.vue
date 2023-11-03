@@ -8,7 +8,9 @@
                             Update Customer:
                         </span>
                         {{ customerName }}
-                        <!-- <span class="text-sm ml-4"><OrderStatus :order="order" /></span> -->
+                        <span class="text-sm ml-4"
+                            ><CustomerStatus :customer="customer"
+                        /></span>
                     </h1>
                 </div>
                 <CustomInput
@@ -156,14 +158,14 @@
             <footer class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button
                     type="submit"
-                    class="mt-3 w-full inline-flex justify-center border px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto text-white bg-green-600 hover:bg-green-700"
+                    class="mt-3 w-full inline-flex justify-center border rounded-sm px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto text-white bg-green-600 hover:bg-green-700"
                 >
                     Submit
                 </button>
                 <router-link
                     :to="{ name: 'app.customers' }"
                     type="button"
-                    class="mt-3 w-full inline-flex justify-center border border-gray-300 px-4 py-2 bg-white text-base hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-zinc-500 sm:mt-0 sm:ml-3 sm:w-auto"
+                    class="group bg-zinc-300 text-black flex items-center rounded-sm px-4 py-2 hover:bg-zinc-400"
                     ref="cancelButtonRef"
                 >
                     Cancel
@@ -181,6 +183,7 @@ import { computed, onMounted, ref } from "vue";
 import store from "../../store";
 import { useRoute, useRouter } from "vue-router";
 import CustomInput from "../../components/core/CustomInput.vue";
+import CustomerStatus from "./CustomerStatus.vue";
 
 const router = useRouter();
 const route = useRoute();
