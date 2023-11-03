@@ -105,7 +105,7 @@
             <!-- Table data -->
             <tbody v-if="!customers.loading" class="font-light">
                 <tr v-for="customer of customers.data">
-                    <td class="border-b p-2">
+                    <td class="border-b p-2 py-6">
                         {{ customer.id }}
                     </td>
                     <td class="border-b p-2">

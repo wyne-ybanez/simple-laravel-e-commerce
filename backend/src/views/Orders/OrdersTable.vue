@@ -98,7 +98,9 @@
                     v-for="(order, index) of orders.data"
                     class="animate-fade-in"
                 >
-                    <td class="border-b p-2 py-6">{{ order.id }}</td>
+                    <td class="border-b p-2 py-6">
+                        {{ order.id }}
+                    </td>
                     <td class="border-b p-2" v-if="order.customer">
                         {{ order.customer.first_name }}
                         {{ order.customer.last_name }}
