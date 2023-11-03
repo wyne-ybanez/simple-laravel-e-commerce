@@ -5,12 +5,15 @@
             <div class="flex justify-between border-b border-gray-300">
                 <h2 class="flex text-lg pb-2">
                     Order Details
-                    <span class="text-sm ml-4"><OrderStatus :order="order" /></span>
+                    <span class="text-sm ml-4"
+                        ><OrderStatus :order="order"
+                    /></span>
                 </h2>
-                <button class="group bg-zinc-300 text-black flex items-center rounded-sm px-4 py-1 mb-2
-                                hover:bg-zinc-400"
-                        @click="deleteOrder(order)">
-                        Delete
+                <button
+                    class="group bg-zinc-300 text-black flex items-center rounded-sm px-4 py-1 mb-2 hover:bg-zinc-400"
+                    @click="deleteOrder(order)"
+                >
+                    Delete
                 </button>
             </div>
             <table class="mt-2">
@@ -26,8 +29,15 @@
                     <tr>
                         <td class="font-bold py-1 px-2">Order Status</td>
                         <td>
-                            <select v-model="order.status" @change="onStatusChange" class="p-2">
-                                <option v-for="status of orderStatuses" :value="status">
+                            <select
+                                v-model="order.status"
+                                @change="onStatusChange"
+                                class="p-2"
+                            >
+                                <option
+                                    v-for="status of orderStatuses"
+                                    :value="status"
+                                >
                                     {{ status }}
                                 </option>
                             </select>
@@ -44,11 +54,11 @@
 
         <!--  Customer Details-->
         <div class="my-10">
-            <h2
-                class="text-lg mt-6 pb-2 border-b border-gray-300"
-            >
+            <h2 class="text-lg mt-6 pb-2 border-b border-gray-300">
                 Customer Details
-                <span class="text-sm ml-4"><OrderCustomerStatus :order="order" /></span>
+                <span class="text-sm ml-4"
+                    ><OrderCustomerStatus :order="order"
+                /></span>
             </h2>
             <table class="mt-2">
                 <tbody>
@@ -75,48 +85,47 @@
         <!--  Addresses Details-->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-10">
             <div>
-                <h2
-                    class="text-lg mt-6 pb-2 border-b border-gray-300"
-                >
+                <h2 class="text-lg mt-6 pb-2 border-b border-gray-300">
                     Billing Address
-                    <span class="text-sm ml-4"><OrderAddressStatus :order="order" /></span>
+                    <span class="text-sm ml-4"
+                        ><OrderAddressStatus :order="order"
+                    /></span>
                 </h2>
                 <!--  Billing Address Details-->
-                <div 
-                    v-if="(order.customer.billingAddress.id)" 
-                    class="px-2 mt-2">
+                <div v-if="order.customer.billingAddress.id" class="px-2 mt-2">
                     {{ order.customer.billingAddress.address1 }}, <br />
                     {{ order.customer.billingAddress.address2 }}, <br />
                     {{ order.customer.billingAddress.city }}, <br />
                     {{ order.customer.billingAddress.zipcode }}, <br />
-                    {{ order.customer.billingAddress.state }}
+                    {{ order.customer.billingAddress.county }}, <br />
                     {{ order.customer.billingAddress.country }}
                 </div>
                 <div v-else class="px-2 mt-4">
-                    The customer has not assigned a <strong>Billing Address</strong> for this order. <br>
+                    The customer has not assigned a
+                    <strong>Billing Address</strong> for this order. <br />
                     Please contact them to rectify this.
                 </div>
                 <!--/  Billing Address Details-->
             </div>
             <div>
-                <h2
-                    class="text-lg mt-6 pb-2 border-b border-gray-300"
-                >
+                <h2 class="text-lg mt-6 pb-2 border-b border-gray-300">
                     Shipping Address
-                     <span class="text-sm ml-4"><OrderAddressStatus :order="order" /></span>
+                    <span class="text-sm ml-4"
+                        ><OrderAddressStatus :order="order"
+                    /></span>
                 </h2>
                 <!--  Shipping Address Details-->
-                <div v-if="(order.customer.shippingAddress.id)" 
-                    class="px-2 mt-2">
+                <div v-if="order.customer.shippingAddress.id" class="px-2 mt-2">
                     {{ order.customer.shippingAddress.address1 }}, <br />
                     {{ order.customer.shippingAddress.address2 }}, <br />
                     {{ order.customer.shippingAddress.city }}, <br />
                     {{ order.customer.shippingAddress.zipcode }}, <br />
-                    {{ order.customer.shippingAddress.state }}
+                    {{ order.customer.shippingAddress.county }}, <br />
                     {{ order.customer.shippingAddress.country }}
                 </div>
                 <div v-else class="px-2 mt-4 mb-16">
-                    The customer has not assigned a <strong>Shipping Address</strong>  for this order. <br>
+                    The customer has not assigned a
+                    <strong>Shipping Address</strong> for this order. <br />
                     Please contact them to rectify this.
                 </div>
                 <!--/  Shipping Address Details-->
@@ -133,7 +142,7 @@
                 <!-- Order Item -->
                 <div class="flex flex-col sm:flex-row items-center gap-4 mt-2">
                     <a
-                        :href=productUrlPrefix+item.product.slug
+                        :href="productUrlPrefix + item.product.slug"
                         target="_blank"
                         class="w-36 h-32 flex items-center justify-center overflow-hidden my-2 rounded"
                     >
@@ -151,7 +160,8 @@
                         </div>
                         <div class="flex space-x-10 items-center">
                             <div class="flex items-center">
-                                Quantity: <span class="ml-4">{{ item.quantity }}</span>
+                                Quantity:
+                                <span class="ml-4">{{ item.quantity }}</span>
                             </div>
                             <div>x</div>
                             <span class="text-lg">
@@ -185,10 +195,9 @@ const orderStatuses = ref([]);
 const productUrlPrefix = `${APP_URL}/product/`;
 
 onMounted(() => {
-    store.dispatch("getOrder", route.params.id)
-        .then(({ data }) => {
-            order.value = data;
-        });
+    store.dispatch("getOrder", route.params.id).then(({ data }) => {
+        order.value = data;
+    });
 
     axiosClient
         .get("/orders/statuses")
@@ -196,18 +205,19 @@ onMounted(() => {
 });
 
 function deleteOrder(order) {
-  if(!confirm(`Are you sure you want to delete the order?`)) {
-    return
-  }
-  store.dispatch('deleteOrder', order.id)
-  .then(response => {
-          // Redirect to the index route
-          window.location = '/orders';
-    })
+    if (!confirm(`Are you sure you want to delete the order?`)) {
+        return;
+    }
+    store.dispatch("deleteOrder", order.id).then((response) => {
+        // Redirect to the index route
+        window.location = "/orders";
+    });
 }
 
 function onStatusChange() {
-    axiosClient.post(`/orders/change-status/${order.value.id}/${order.value.status}`);
+    axiosClient.post(
+        `/orders/change-status/${order.value.id}/${order.value.status}`
+    );
 }
 </script>
 

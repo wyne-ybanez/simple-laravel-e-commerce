@@ -24,7 +24,7 @@ class OrderResource extends JsonResource
             'id' => $this->id,
             'status' => $this->status,
             'total_price' => $this->total_price,
-            'items' => $this->items->map(fn($item) => [
+            'items' => $this->items->map(fn ($item) => [
                 'id' => $item->id,
                 'unit_price' => $item->unit_price,
                 'quantity' => $item->quantity,
@@ -46,7 +46,7 @@ class OrderResource extends JsonResource
                     'address1' => $shipping->address1 ?? '',
                     'address2' => $shipping->address2 ?? '',
                     'city' => $shipping->city ?? '',
-                    'state' => $shipping->state ?? '',
+                    'county' => $shipping->county ?? '',
                     'zipcode' => $shipping->zipcode ?? '',
                     'country' => $shipping->country->name ?? '',
                 ],
@@ -55,7 +55,7 @@ class OrderResource extends JsonResource
                     'address1' => $billing->address1 ?? '',
                     'address2' => $billing->address2 ?? '',
                     'city' => $billing->city ?? '',
-                    'state' => $billing->state ?? '',
+                    'county' => $billing->county ?? '',
                     'zipcode' => $billing->zipcode ?? '',
                     'country' => $billing->country->name ?? '',
                 ]

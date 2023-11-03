@@ -27,22 +27,6 @@
                         'country_code' => old('shipping.country_code', $shippingAddress->country_code),
                         'zipcode' => old('shipping.zipcode', $shippingAddress->zipcode),
                     ]) }},
-                    get billingCountryCounties() {
-                        const country = this.countries.find(c => c.code === this.billingAddress.country_code)
-
-                        if (country && country.counties) {
-                            return JSON.parse(country.counties);
-                        }
-                        return null;
-                    },
-                    get shippingCountryCounties() {
-                        const country = this.countries.find(c => c.code === this.shippingAddress.country_code)
-
-                        if (country && country.counties) {
-                            return JSON.parse(country.counties);
-                        }
-                        return null;
-                    }
                 }" action="{{ route('profile.update') }}" method="post">
                     @csrf
 
@@ -80,19 +64,7 @@
                             </x-input>
                         </div>
                         <div>
-                            <template x-if="billingCountryCounties">
-                                <x-input type="select" name="billing[county]" x-model="billingAddress.county">
-                                    <option value="">Select County</option>
-                                    <!-- Iterate over every entry in counties array using key & value -->
-                                    <template x-for="[code, county] of Object.entries(billingCountryCounties)" :key="code">
-                                        <option :selected="code === billingAddress.county" :value="code" x-text="county">
-                                        </option>
-                                    </template>
-                                </x-input>
-                            </template>
-                            <template x-if="!billingCountryCounties">
-                                <x-input type="text" name="shipping[county]" x-model="shippingAddress.county" placeholder="County" />
-                            </template>
+                            <x-input type="text" name="billing[county]" x-model="billingAddress.county" placeholder="County" />
                         </div>
                     </div>
 
@@ -131,17 +103,7 @@
                             </x-input>
                         </div>
                         <div>
-                            <template x-if="shippingCountryCounties">
-                                <x-input type="select" name="shipping[county]" x-model="shippingAddress.county" class="w-full focus:border-stone-600 focus:ring-stone-600 border-gray-300 rounded">
-                                    <option value="">Select County</option>
-                                    <template x-for="[code, county] of Object.entries(shippingCountryCounties)" :key="code">
-                                        <option :selected="code === shippingAddress.county" :value="code" x-text="county"></option>
-                                    </template>
-                                </x-input>
-                            </template>
-                            <template x-if="!shippingCountryCounties">
-                                <x-input type="text" name="shipping[county]" x-model="shippingAddress.county" placeholder="County" class="w-full focus:border-stone-600 focus:ring-stone-600 border-gray-300 rounded" />
-                            </template>
+                            <x-input type="text" name="shipping[county]" x-model="shippingAddress.county" placeholder="County" class="w-full focus:border-stone-600 focus:ring-stone-600 border-gray-300 rounded" />
                         </div>
                     </div>
 

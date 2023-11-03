@@ -63,6 +63,7 @@ class ProfileRequest extends FormRequest
             'shipping.address1' => 'address 1',
             'shipping.address2' => 'address 2',
             'shipping.city' => 'city',
+            'shipping.county' => 'county',
             'shipping.zipcode' => 'zipcode',
             'shipping.country' => 'country',
         ];

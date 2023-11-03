@@ -79,6 +79,10 @@ export function setCustomers(state, [loading, data = null]) {
     state.customers.loading = loading;
 }
 
+export function setCountries(state, countries) {
+    state.countries = countries.data;
+}
+
 export function showToast(state, message) {
     state.toast.show = true;
     state.toast.message = message;

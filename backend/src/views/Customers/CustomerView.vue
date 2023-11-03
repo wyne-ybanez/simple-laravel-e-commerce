@@ -1,7 +1,7 @@
 <template>
     <div v-if="customer.id" class="my-4">
         <form @submit.prevent="onSubmit">
-            <div class="px-4 pt-5 pb-4">
+            <div class="px-4 pb-4">
                 <div class="border-b border-gray-300">
                     <h1 class="flex text-xl pb-2">
                         <span class="font-semibold mr-2">
@@ -73,27 +73,18 @@
                                 label="Zip Code"
                                 :errors="errors['billingAddress.zipcode']"
                             />
-
                             <CustomInput
                                 type="select"
                                 :select-options="countries"
-                                v-model="customer.billingAddress.country_code"
+                                v-model="billingCountry"
                                 label="Country"
                                 :errors="errors['billingAddress.country_code']"
                             />
                             <CustomInput
-                                v-if="billingCountry && !billingCountry.states"
-                                v-model="customer.billingAddress.state"
-                                label="State"
-                                :errors="errors['billingAddress.state']"
-                            />
-                            <CustomInput
-                                v-else
-                                type="select"
-                                :select-options="billingStateOptions"
-                                v-model="customer.billingAddress.state"
-                                label="State"
-                                :errors="errors['billingAddress.state']"
+                                type="text"
+                                v-model="customer.billingAddress.county"
+                                label="County"
+                                :errors="errors['billingAddress.county']"
                             />
                         </div>
                     </div>
@@ -136,19 +127,18 @@
                             />
                             <CustomInput
                                 v-if="
-                                    shippingCountry && !shippingCountry.states
+                                    shippingCountry && !shippingCountry.counties
                                 "
-                                v-model="customer.shippingAddress.state"
-                                label="State"
-                                :errors="errors['shippingAddress.state']"
+                                v-model="customer.shippingAddress.county"
+                                label="County"
+                                :errors="errors['shippingAddress.county']"
                             />
                             <CustomInput
                                 v-else
-                                type="select"
-                                :select-options="shippingStateOptions"
-                                v-model="customer.shippingAddress.state"
-                                label="State"
-                                :errors="errors['shippingAddress.state']"
+                                type="text"
+                                v-model="customer.shippingAddress.county"
+                                label="County"
+                                :errors="errors['shippingAddress.county']"
                             />
                         </div>
                     </div>
@@ -172,9 +162,6 @@
                 </router-link>
             </footer>
         </form>
-    </div>
-    <div v-else>
-        <h1 class="text-xl pb-2">There has been an error...</h1>
     </div>
 </template>
 
@@ -200,13 +187,13 @@ const errors = ref({
     "billingAddress.city": [],
     "billingAddress.zipcode": [],
     "billingAddress.country_code": [],
-    "billingAddress.state": [],
+    "billingAddress.county": [],
     "shippingAddress.address1": [],
     "shippingAddress.address2": [],
     "shippingAddress.city": [],
     "shippingAddress.zipcode": [],
     "shippingAddress.country_code": [],
-    "shippingAddress.state": [],
+    "shippingAddress.county": [],
 });
 const customer = ref({
     billingAddress: {},
@@ -222,27 +209,11 @@ const billingCountry = computed(() =>
         (c) => c.code === customer.value.billingAddress.country_code
     )
 );
-const billingStateOptions = computed(() => {
-    if (!billingCountry.value || !billingCountry.value.states) return [];
-
-    return Object.entries(billingCountry.value.states).map((c) => ({
-        key: c[0],
-        text: c[1],
-    }));
-});
 const shippingCountry = computed(() =>
     store.state.countries.find(
         (c) => c.code === customer.value.shippingAddress.country_code
     )
 );
-const shippingStateOptions = computed(() => {
-    if (!shippingCountry.value || !shippingCountry.value.states) return [];
-
-    return Object.entries(shippingCountry.value.states).map((c) => ({
-        key: c[0],
-        text: c[1],
-    }));
-});
 
 function onSubmit() {
     loading.value = true;

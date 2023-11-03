@@ -19,7 +19,7 @@ class CountryResource extends JsonResource
         return [
             'code' => $this->code,
             'name' => $this->name,
-            'counties' => json_decode($this->states, true),
+            'counties' => json_decode($this->counties, true),
         ];
     }
 }

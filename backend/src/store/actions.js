@@ -1,3 +1,4 @@
+import { defineCustomElement } from "vue";
 import axiosClient from "../axios";
 
 export function getCurrentUser({ commit }, data) {
@@ -20,6 +21,13 @@ export function logout({ commit }) {
         commit("setToken", null);
 
         return response;
+    });
+}
+
+export function getCountries({ commit }) {
+    return axiosClient.get("countries").then(({ data }) => {
+        commit("setCountries", data);
+        console.log(data);
     });
 }
 
