@@ -120,7 +120,19 @@
                         {{ customer.phone }}
                     </td>
                     <td class="border-b p-2">
-                        {{ customer.status }}
+                        <!-- {{ customer.status }} -->
+                        <!-- Color Notification -->
+                        <div
+                            class="text-black text-sm py-1 px-2 rounded-full w-fit"
+                            :class="{
+                                'bg-gray-300': customer.status !== 'active',
+                                'bg-green-400': customer.status === 'active',
+                            }"
+                        >
+                            <span class="py-1" v-if="customer.status === 'active'">active</span>
+                            <span class="py-1" v-else>disabled</span>
+                        </div>
+                        <!-- End Color Notification -->
                     </td>
                     <td class="border-b p-2">
                         {{ customer.created_at }}

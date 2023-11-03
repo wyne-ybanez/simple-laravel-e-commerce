@@ -14,32 +14,32 @@
                     </h1>
                 </div>
                 <CustomInput
-                    class="mb-2 mt-5"
+                    class="mb-5 mt-5"
                     v-model="customer.first_name"
                     label="First Name"
                     :errors="errors.first_name"
                 />
                 <CustomInput
-                    class="mb-2"
+                    class="mb-5"
                     v-model="customer.last_name"
                     label="Last Name"
                     :errors="errors.last_name"
                 />
                 <CustomInput
-                    class="mb-2"
+                    class="mb-5"
                     v-model="customer.email"
                     label="Email"
                     :errors="errors.email"
                 />
                 <CustomInput
-                    class="mb-2"
+                    class="mb-5"
                     v-model="customer.phone"
                     label="Phone"
                     :errors="errors.phone"
                 />
                 <CustomInput
                     type="checkbox"
-                    class="mb-2 mt-8"
+                    class="mb-5 mt-8"
                     v-model="customer.status"
                     label="Active Customer"
                     :errors="errors.status"
@@ -54,33 +54,39 @@
                         </h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-5">
                             <CustomInput
+                                class="mb-5"
                                 v-model="customer.billingAddress.address1"
                                 label="Address 1"
                                 :errors="errors['billingAddress.address1']"
                             />
                             <CustomInput
+                                class="mb-5"
                                 v-model="customer.billingAddress.address2"
                                 label="Address 2"
                                 :errors="errors['billingAddress.address2']"
                             />
                             <CustomInput
+                                class="mb-5"
                                 v-model="customer.billingAddress.city"
                                 label="City"
                                 :errors="errors['billingAddress.city']"
                             />
                             <CustomInput
+                                class="mb-5"
                                 v-model="customer.billingAddress.zipcode"
                                 label="Zip Code"
                                 :errors="errors['billingAddress.zipcode']"
                             />
                             <CustomInput
+                                class="mb-5"
                                 type="select"
                                 :select-options="countries"
-                                v-model="billingCountry"
+                                v-model="customer.billingAddress.country_code"
                                 label="Country"
                                 :errors="errors['billingAddress.country_code']"
                             />
                             <CustomInput
+                                class="mb-5"
                                 type="text"
                                 v-model="customer.billingAddress.county"
                                 label="County"
@@ -99,26 +105,31 @@
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-5">
                             <CustomInput
+                                class="mb-5"
                                 v-model="customer.shippingAddress.address1"
                                 label="Address 1"
                                 :errors="errors['shippingAddress.address1']"
                             />
                             <CustomInput
+                                class="mb-5"
                                 v-model="customer.shippingAddress.address2"
                                 label="Address 2"
                                 :errors="errors['shippingAddress.address2']"
                             />
                             <CustomInput
+                                class="mb-5"
                                 v-model="customer.shippingAddress.city"
                                 label="City"
                                 :errors="errors['shippingAddress.city']"
                             />
                             <CustomInput
+                                class="mb-5"
                                 v-model="customer.shippingAddress.zipcode"
                                 label="Zip Code"
                                 :errors="errors['shippingAddress.zipcode']"
                             />
                             <CustomInput
+                                class="mb-5"
                                 type="select"
                                 :select-options="countries"
                                 v-model="customer.shippingAddress.country_code"
@@ -126,15 +137,7 @@
                                 :errors="errors['shippingAddress.country_code']"
                             />
                             <CustomInput
-                                v-if="
-                                    shippingCountry && !shippingCountry.counties
-                                "
-                                v-model="customer.shippingAddress.county"
-                                label="County"
-                                :errors="errors['shippingAddress.county']"
-                            />
-                            <CustomInput
-                                v-else
+                                class="mb-5"
                                 type="text"
                                 v-model="customer.shippingAddress.county"
                                 label="County"
@@ -203,16 +206,6 @@ const loading = ref(false);
 
 const countries = computed(() =>
     store.state.countries.map((c) => ({ key: c.code, text: c.name }))
-);
-const billingCountry = computed(() =>
-    store.state.countries.find(
-        (c) => c.code === customer.value.billingAddress.country_code
-    )
-);
-const shippingCountry = computed(() =>
-    store.state.countries.find(
-        (c) => c.code === customer.value.shippingAddress.country_code
-    )
 );
 
 function onSubmit() {

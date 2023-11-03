@@ -107,6 +107,9 @@
                         </div>
                     </div>
 
+                    <!-- Hidden input for status -->
+                    <x-input type="text" name="status" value="active" class="hidden" />
+
                     <x-primary-button class="w-full text-lg mt-5">Update</x-primary-button>
                 </form>
             </div>
