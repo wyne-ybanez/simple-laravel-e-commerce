@@ -100,8 +100,8 @@
         </ul>
     </div>
     <!-- Desktop: Responsive Menu -->
-    <nav class="hidden lg:block text-primary text-lg"
-        :class="{ 'text-secondary': scrolled }">
+    <nav class="hidden lg:block text-lg"
+        :class="scrolled ? 'text-secondary' : 'text-primary'">
         <ul class="grid grid-flow-col items-center">
             <li class="mt-5">
                 <a href="{{ route('home') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
