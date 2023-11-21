@@ -16,16 +16,23 @@ class ProductUtility
 {
     public static function get_items_in_category($category_name)
     {
+        // keys
+        $category_name_1 = getenv('PRODUCT_CATEGORY_1');
+        $category_name_2 = getenv('PRODUCT_CATEGORY_2');
+        $category_name_3 = getenv('PRODUCT_CATEGORY_3');
+        $category_name_4 = getenv('PRODUCT_CATEGORY_4');
+
+        // Singular
         $category_1 = 'monster';
         $category_2 = 'anti-hero';
         $category_3 = 'hero';
         $category_4 = 'landscape';
 
         $category = array(
-            "monsters" => $category_1,
-            "landscapes" => $category_4,
-            "heroes" => $category_3 ,
-            "anti-heroes" => $category_2
+            $category_name_1 => $category_1,
+            $category_name_2 => $category_4,
+            $category_name_3  => $category_3 ,
+            $category_name_4 => $category_2
         );
 
         $products = Product::query()

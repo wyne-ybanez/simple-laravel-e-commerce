@@ -10,7 +10,7 @@
         @include('components.query-nav')
     </div>
 
-    <div class="px-20 pb-16 lg:w-1/2">
+    <div class="px-20 pb-16 2xl:w-1/2 xl:w-[60%]">
         {{ $pageDescription }}
     </div>
 

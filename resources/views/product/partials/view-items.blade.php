@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-20 py-6 px-6 lg:px-20 ">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-10 lg:gap-12 2xl:gap-20 py-6 px-6 lg:px-20 ">
 
     @foreach($products as $product)
     <!-- Product Item -->

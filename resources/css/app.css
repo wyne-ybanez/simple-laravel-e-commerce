@@ -31,7 +31,8 @@
     }
 
     .text-primary,
-    .text-strong {
+    .text-strong,
+    .text-secondary {
         color: #000000;
     }
 
@@ -39,7 +40,8 @@
         color: #dcdcdc;
     }
 
-    .bg-primary {
+    .bg-primary,
+    .bg-secondary {
         background-color: #e5e5cd;
     }
 

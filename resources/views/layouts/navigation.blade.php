@@ -1,13 +1,21 @@
 <!-- Conditional bg header color depends on ProductView -->
-<header x-data="{
+<header
+    x-data="{
         mobileMenuOpen: false,
+        scrolled: false,
         cartItemsCount: {{ \App\Helpers\Cart::getCartItemsCount() }},
-    }" @cart-change.window="cartItemsCount = $event.detail.count" class="flex justify-between border-b border-bg-soft sticky top-0 z-50 bg-primary">
+    }"
+    @cart-change.window="cartItemsCount = $event.detail.count"
+    x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 150)"
+    :class="{ 'bg-secondary': scrolled }"
+    class="flex justify-between border-b border-bg-soft sticky top-0 z-50 bg-primary transition ease-in duration-300"
+>
     <div>
         <a href="{{ route('home') }}" class="block py-navbar-item pl-5 font-bold font-montserrat text-4xl text-strong">{{ getenv('APP_NAME') }}</a>
     </div>
     <!-- Mobile: Responsive Menu -->
-    <div class="block fixed z-10 top-0 bottom-0 height h-full w-[220px] transition-all lg:hidden shadow-md border border-bg-soft bg-primary" :class="mobileMenuOpen ? 'left-0' : '-left-[220px]'">
+    <div class="block fixed z-10 top-0 bottom-0 height h-full w-[220px] transition-all lg:hidden shadow-md border border-bg-soft bg-primary" 
+        :class="mobileMenuOpen ? 'left-0' : '-left-[220px]'">
         <ul>
             <li>
                 <div>
@@ -92,7 +100,8 @@
         </ul>
     </div>
     <!-- Desktop: Responsive Menu -->
-    <nav class="hidden lg:block text-primary text-lg">
+    <nav class="hidden lg:block text-primary text-lg"
+        :class="{ 'text-secondary': scrolled }">
         <ul class="grid grid-flow-col items-center">
             <li class="mt-5">
                 <a href="{{ route('home') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item hover:text-primary">
