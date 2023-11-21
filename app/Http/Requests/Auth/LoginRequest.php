@@ -53,8 +53,19 @@ class LoginRequest extends FormRequest
         $user = $this->user();
         $customer = $user->customer;
 
+        // bans login of admin email
+        if($user->email === "admin@example.com") {
+            Auth::guard('web')->logout();
+            $this->session()->invalidate();
+            $this->session()->regenerateToken();
+
+            throw ValidationException::withMessages([
+                'email' => trans('This account is forbidden from logging in.'),
+            ]);
+        }
+
+        // checks if user is deactivated
         if($customer->status !== CustomerStatus::Active->value) {
-            // assuming the user is already logged in
             Auth::guard('web')->logout();
             $this->session()->invalidate();
             $this->session()->regenerateToken();
