@@ -4,7 +4,7 @@
 ?>
 
 <x-app-layout>
-    <div class="pt-16 pb-8 px-20 flex flex-col justify-between items-center md:flex-row lg:flex-row">
+    <div class="pt-16 pb-8 px-20 flex flex-col items-center md:flex-row lg:flex-row">
         <h1 class="md:text-7xl text-5xl font-almarai mb-10 md:mb-0">{{ $heading }}</h1>
 
         @include('components.query-nav')

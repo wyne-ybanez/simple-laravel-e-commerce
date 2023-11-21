@@ -1,6 +1,6 @@
-<form method="GET" action="/">
+<form method="GET" action="/" class="ml-auto">
     <div class="flex">
-        <input class="rounded-full border-0 ring-0 focus:ring-black focus:ring-2" 
+        <input class="rounded-full border-0 ring-0 focus:ring-black focus:ring-2 w-[18rem]"
         type="text" name="q" placeholder="Browse Products">
         <button class="text-stone-800 font-light inline -translate-x-8">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
