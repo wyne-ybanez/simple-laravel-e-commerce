@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\Api\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,12 @@ Route::middleware(['auth:sanctum', 'admin'])
         Route::apiResource('/orders', OrderController::class);
         Route::get('/orders/{order}', [OrderController::class, 'view']);
         Route::delete('/orders/delete/{order}', [OrderController::class, 'destroy']);
+
+        // Dashboard Routes
+        Route::get('/dashboard/customers-count', [DashboardController::class, 'activeCustomers']);
+        Route::get('/dashboard/products-count', [DashboardController::class, 'activeProducts']);
+        Route::get('/dashboard/orders-count', [DashboardController::class, 'paidOrders']);
+        Route::get('/dashboard/income-amount', [DashboardController::class, 'totalIncome']);
     });
 
 Route::post('/login', [AuthController::class, 'login']);

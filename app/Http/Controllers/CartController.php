@@ -24,7 +24,7 @@ class CartController extends Controller
             $total += $product->price * $cartItems[$product->id]['quantity'];
         }
 
-        $compacted_cartItems_total = compact('cartItems', 'products', 'total'); // compact creates a new array
+        $compacted_cartItems_total = compact('cartItems', 'products', 'total', ); // compact creates a new array
 
         return view('cart.index', $compacted_cartItems_total);
     }
