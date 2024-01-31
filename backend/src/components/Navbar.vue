@@ -19,7 +19,8 @@
                     :class="{
                         'bg-red-600': DEMO,
                         'bg-green-600': LIVE,
-                        'bg-purple-600': STAGING,
+                        'bg-blue-500': STAGING,
+                        'bg-purple-600': LOCAL,
                     }"
                 >
                     {{ status }}
@@ -31,30 +32,35 @@
         <div class="text-zinc-500 justify-between md:block hidden">
             <router-link
                 :to="{ name: 'app.dashboard' }"
-                class="py-2 px-5 mb-4 transition-colors hover:text-white"
+                :class="{ 'text-white' : $route.name === 'app.dashboard' }"
+                class="py-2 px-5 mb-4 transition-colors hover:text-white active:text-white"
             >
                 <span class="text-md"> Dashboard </span>
             </router-link>
             <router-link
                 :to="{ name: 'app.products' }"
+                :class="{ 'text-white' : $route.name === 'app.products' }"
                 class="py-2 px-5 mb-4 transition-colors hover:text-white"
             >
                 <span class="text-md"> Products </span>
             </router-link>
             <router-link
                 :to="{ name: 'app.customers' }"
+                :class="{ 'text-white' : $route.name === 'app.customers' }"
                 class="py-2 px-5 mb-4 transition-colors hover:text-white"
             >
                 <span class="text-md"> Customers </span>
             </router-link>
             <router-link
                 :to="{ name: 'app.orders' }"
+                :class="{ 'text-white' : $route.name === 'app.orders' }"
                 class="py-2 px-5 mb-4 transition-colors hover:text-white"
             >
                 <span class="text-md"> Orders </span>
             </router-link>
             <router-link
                 :to="{ name: 'app.users' }"
+                :class="{ 'text-white' : $route.name === 'app.users' }"
                 class="py-2 px-5 mb-4 transition-colors hover:text-white"
             >
                 <span class="text-md"> Users </span>
@@ -131,7 +137,7 @@
 import { MenuIcon, LogoutIcon, UserIcon } from "@heroicons/vue/outline";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 import { ChevronDownIcon } from "@heroicons/vue/solid";
-import { DEMO, LIVE, STAGING, BUSINESS_NAME } from "../constants.js";
+import { DEMO, LIVE, STAGING, LOCAL, BUSINESS_NAME } from "../constants.js";
 import store from "../store";
 import router from "../router";
 import { ref, computed } from "vue";
@@ -150,6 +156,9 @@ const status = computed(() => {
     }
     if (LIVE) {
         return "live";
+    }
+    if (LOCAL) {
+        return "local";
     }
 });
 

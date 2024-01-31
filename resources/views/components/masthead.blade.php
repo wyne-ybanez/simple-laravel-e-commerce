@@ -1,3 +1,4 @@
+<!-- TODO: update aesthetic to be like on main -->
 <div class="bg-white text-strong text-xl py-32 font-montserrat w-full">
     <h1 class="text-center md:text-9xl sm:text-5xl text-5xl font-extrabold">
         <a href="{{ route('home') }}" class="text-strong">
