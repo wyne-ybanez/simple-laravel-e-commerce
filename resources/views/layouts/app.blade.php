@@ -25,7 +25,7 @@
 <body class="bg-primary overflow-x-hidden">
     @include('layouts.navigation')
 
-    <main>
+    <main class="overflow-x-hidden">
         {{ $slot }}
     </main>
 

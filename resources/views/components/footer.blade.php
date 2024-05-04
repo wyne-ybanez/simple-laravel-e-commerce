@@ -26,18 +26,18 @@
             </a>
         </div>
     </div>
-    <div class="mt-10 pt-8 text-xl flex text-black items-end">
-        <div>
-            All rights reserved &copy; {{ date('Y') }} <span class="font-semibold px-2">{{ getenv('APP_NAME') }}</span>
+    <div class="mt-10 pt-8 text-xl flex text-black items-end grid grid-cols-1 gap-y-10">
+        <div class="col-span-1">
+            All rights reserved &copy; {{ date('Y') }}<span class="font-semibold px-2">{{ getenv('APP_NAME') }}</span>
             @if (getenv('APP_AUTHOR'))
             <br>
-            This site was created by
-            <span class="link-underline link-underline-black">
-                <a href="{{ getenv('APP_AUTHOR_SITE') }}" target="_blank">{{ getenv('APP_AUTHOR') }}</a>
+            Developed by
+            <span class="link-underline link-underline-black font-semibold">
+                <a href="{{ getenv('APP_AUTHOR_SITE') }}" target="_blank">{{ getenv('APP_AUTHOR') }}.</a>
             </span>
             @endif
         </div>
-        <div class="ml-auto align-center">
+        <div class="lg:ml-auto align-center col-span-1">
             <a class="mr-10 link-underline link-underline-black" href="#">Terms of Use</a>
             <a class="link-underline link-underline-black" href="#">Privacy Policy</a>
         </div>

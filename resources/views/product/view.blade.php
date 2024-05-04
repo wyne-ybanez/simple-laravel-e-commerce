@@ -9,7 +9,7 @@
                     'addToCartUrl' => route('cart.add', $product),
                 ]) }})" class="container mb-24">
         <div class="grid gap-6 w-screen grid-cols-1 lg:grid-cols-2 bg-primary text-primary py-20">
-            <div class="lg:col-span-1 md:px-0 lg:px-20 lg:pt-24 lg:pr-0">
+            <div class="lg:col-span-1 md:px-0 lg:px-20 xl:pt-24 lg:pr-0">
                 <div x-data="{
                     image: ['{{$product->image}}'],
                     image_1: ['{{$product->image_1}}'],
@@ -59,7 +59,7 @@
                 </div>
             </div>
 
-            <div class="lg:col-span-1 w-fit lg:px-20 lg:pt-24">
+            <div class="lg:col-span-1 w-fit md:px-20 px-10 md:my-0 xl:my-24">
                 <h1 class="font-bold text-4xl font-montserrat mb-2">
                     {{$product->title}}
                 </h1>
@@ -81,7 +81,7 @@
                 <hr class="h-[2.5px] rounded my-5 bg-black">
 
                 <div class="mb-6" x-data="{expanded: false}">
-                    <div x-show="expanded" x-collapse.min.290px class="text-black text-lg wysiwyg-content">
+                    <div x-show="expanded" x-collapse.min.280px class="text-black text-lg wysiwyg-content">
                         {{ $product->description }}
                     </div>
                     @if(strlen($product->description) > 300)
