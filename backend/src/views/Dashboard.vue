@@ -5,25 +5,37 @@
       <!-- Acive Customers -->
       <div class="bg-white py-6 px-5 rounded border text-lg flex flex-col items-center justify-center">
         <label class="font-light">Active Customers</label>
-        <span class="text-2xl pt-2">{{ customersCount }}</span>
+        <template v-if="!loading.customersCount">
+          <span class="text-2xl pt-2">{{ customersCount }}</span>
+        </template>
+        <Spinner v-else text=" " class="pt-2"/>
       </div>
       <!-- End Active Customers -->
       <!-- Acive Products -->
       <div class="bg-white py-6 px-5 rounded border text-lg flex flex-col items-center justify-center">
         <label class="font-light">Active Products</label>
-        <span class="text-2xl pt-2">{{ productsCount }}</span>
+        <template v-if="!loading.productsCount">
+          <span class="text-2xl pt-2">{{ productsCount }}</span>
+        </template>
+        <Spinner v-else text=" " class="pt-2"/>
       </div>
       <!-- End Active Products -->
       <!-- Paid Orders -->
       <div class="bg-white py-6 px-5 rounded border text-lg flex flex-col items-center justify-center">
         <label class="font-light">Paid Orders</label>
-        <span class="text-2xl pt-2">{{ paidOrders }}</span>
+        <template v-if="!loading.paidOrders">
+          <span class="text-2xl pt-2">{{ paidOrders }}</span>
+        </template>
+        <Spinner v-else text=" " class="pt-2"/>
       </div>
       <!-- End Paid Orders -->
       <!-- Total Income -->
       <div class="bg-white py-6 px-5 rounded border text-lg flex flex-col items-center justify-center">
         <label class="font-light">Total Income</label>
-        <span class="text-2xl pt-2">{{ totalIncome }}</span>
+        <template v-if="!loading.totalIncome">
+          <span class="text-2xl pt-2">{{ totalIncome }}</span>
+        </template>
+        <Spinner v-else text=" " class="pt-2"/>
       </div>
       <!-- End Total Income -->
     </div>
@@ -50,6 +62,7 @@
 import DoughnutChart from '../components/core/Charts/Doughnut.vue'
 import axiosClient from '../axios.js'
 import {computed, onMounted, ref} from "vue";
+import Spinner from "../components/core/Spinner.vue";
 
 const chartData = {
   labels: ['Red', 'Blue', 'Yellow'],
@@ -61,15 +74,34 @@ const chartData = {
   ]
 };
 
+const loading = ref({
+  customersCount: true,
+  productsCount: true,
+  paidOrders: true,
+  totalIncome: true,
+})
+
 const customersCount = ref(0);
 const productsCount = ref(0);
 const paidOrders = ref(0);
 const totalIncome = ref(0);
 
-axiosClient.get('/dashboard/customers-count').then(({data}) => customersCount.value = data)
-axiosClient.get('/dashboard/products-count').then(({data}) => productsCount.value = data)
-axiosClient.get('/dashboard/orders-count').then(({data}) => paidOrders.value = data)
-axiosClient.get('/dashboard/income-amount').then(({data}) => totalIncome.value = data)
+axiosClient.get('/dashboard/customers-count').then(({data}) => {
+  customersCount.value = data
+  loading.value.customersCount = false
+})
+axiosClient.get('/dashboard/products-count').then(({data}) => { 
+  productsCount.value = data
+  loading.value.productsCount = false
+})
+axiosClient.get('/dashboard/orders-count').then(({data}) => { 
+  paidOrders.value = data
+  loading.value.paidOrders = false
+})
+axiosClient.get('/dashboard/income-amount').then(({data}) => { 
+  totalIncome.value = data
+  loading.value.totalIncome = false
+})
 </script>
 
 <style scoped>
