@@ -27,12 +27,24 @@
       </div>
       <!-- End Total Income -->
     </div>
+
+    <div>
+      <DoughnutChart :data="chartData"/>
+    </div>
 </template>
 
-<script>
-export default {
-  name: "Dashboard"
-}
+<script setup>
+  import DoughnutChart from '../components/core/Charts/Doughnut.vue'
+
+  const chartData = {
+    labels: ['Red', 'Blue', 'Yellow'],
+    datasets: [
+      {
+        data: [300, 50, 100],
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+      }
+    ]
+  };
 </script>
 
 <style scoped>
