@@ -6,7 +6,7 @@ Welcome to Simple Laravel E-Commerce, your starting point for building a Laravel
 
 To begin, follow these steps:
 
-1. Set up your `.env` file. Navigate to the `backend/` folder and configure your `.env` file there too.
+1. Set up your `.env` file. Navigate to the `backend/` folder and configure your `.env` file there too. Follow the `.env.example`    file for sample file contents.
 2. In your terminal, go to the project root directory and run:
     ```bash
     npm install && composer install
