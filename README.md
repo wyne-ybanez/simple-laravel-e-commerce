@@ -35,6 +35,15 @@ Please ensure you have PHP, Laravel, NPM, Valet, and MySQL server set up before 
 
 The goal of this project is to provide a straightforward method for setting up a Laravel Full-Stack e-commerce website.
 
+## Technologies
+
+- PHP
+- Laravel
+- Vue
+- Apline.js
+- Tailwind
+- Livewire
+
 ## Deployment
 
 ...
