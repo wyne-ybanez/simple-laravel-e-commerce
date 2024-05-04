@@ -5,25 +5,25 @@
       <!-- Acive Customers -->
       <div class="bg-white py-6 px-5 rounded border text-lg flex flex-col items-center justify-center">
         <label class="font-light">Active Customers</label>
-        <span class="text-2xl pt-2">15</span>
+        <span class="text-2xl pt-2">{{ customersCount }}</span>
       </div>
       <!-- End Active Customers -->
       <!-- Acive Products -->
       <div class="bg-white py-6 px-5 rounded border text-lg flex flex-col items-center justify-center">
         <label class="font-light">Active Products</label>
-        <span class="text-2xl pt-2">28</span>
+        <span class="text-2xl pt-2">{{ productsCount }}</span>
       </div>
       <!-- End Active Products -->
       <!-- Paid Orders -->
       <div class="bg-white py-6 px-5 rounded border text-lg flex flex-col items-center justify-center">
         <label class="font-light">Paid Orders</label>
-        <span class="text-2xl pt-2">103</span>
+        <span class="text-2xl pt-2">{{ paidOrders }}</span>
       </div>
       <!-- End Paid Orders -->
       <!-- Total Income -->
       <div class="bg-white py-6 px-5 rounded border text-lg flex flex-col items-center justify-center">
         <label class="font-light">Total Income</label>
-        <span class="text-2xl pt-2">€253,212</span>
+        <span class="text-2xl pt-2">{{ totalIncome }}</span>
       </div>
       <!-- End Total Income -->
     </div>
@@ -47,17 +47,29 @@
 </template>
 
 <script setup>
-  import DoughnutChart from '../components/core/Charts/Doughnut.vue'
+import DoughnutChart from '../components/core/Charts/Doughnut.vue'
+import axiosClient from '../axios.js'
+import {computed, onMounted, ref} from "vue";
 
-  const chartData = {
-    labels: ['Red', 'Blue', 'Yellow'],
-    datasets: [
-      {
-        data: [300, 50, 100],
-        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
-      }
-    ]
-  };
+const chartData = {
+  labels: ['Red', 'Blue', 'Yellow'],
+  datasets: [
+    {
+      data: [300, 50, 100],
+      backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+    }
+  ]
+};
+
+const customersCount = ref(0);
+const productsCount = ref(0);
+const paidOrders = ref(0);
+const totalIncome = ref(0);
+
+axiosClient.get('/dashboard/customers-count').then(({data}) => customersCount.value = data)
+axiosClient.get('/dashboard/products-count').then(({data}) => productsCount.value = data)
+axiosClient.get('/dashboard/orders-count').then(({data}) => paidOrders.value = data)
+axiosClient.get('/dashboard/income-amount').then(({data}) => totalIncome.value = data)
 </script>
 
 <style scoped>

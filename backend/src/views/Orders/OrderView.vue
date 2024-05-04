@@ -200,8 +200,8 @@ onMounted(() => {
     });
 
     axiosClient
-        .get("/orders/statuses")
-        .then(({ data }) => (orderStatuses.value = data));
+        .get("api/orders/statuses")
+        .then(({data}) => orderStatuses.value = data)
 });
 
 function deleteOrder(order) {

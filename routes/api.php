@@ -33,7 +33,7 @@ Route::middleware(['auth:sanctum', 'admin'])
         Route::get('/countries', [CustomerController::class, 'countries']);
 
         // Orders Routes
-        Route::get('/orders/statuses', [OrderController::class, 'getStatuses']);
+        Route::get('api/orders/statuses', [OrderController::class, 'getStatuses']);
         Route::post('/orders/change-status/{order}/{status}', [OrderController::class, 'changeStatus']);
         Route::get('/orders/{order}', [OrderController::class, 'view']);
         Route::delete('/orders/delete/{order}', [OrderController::class, 'destroy']);
