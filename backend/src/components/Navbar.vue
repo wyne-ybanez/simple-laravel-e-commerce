@@ -1,6 +1,6 @@
 <template>
     <header
-        class="flex justify-between items-center pt-3 pb-14 px-6 shadow bg-black"
+        class="flex justify-between items-center pt-3 pb-14 px-6 shadow bg-zinc-200 text-black"
     >
         <!-- Hamburger -->
         <button
@@ -11,11 +11,11 @@
         </button>
 
         <!-- Site name -->
-        <div class="text-zinc-200 md:block hidden">
+        <div class="text-black md:block hidden">
             <router-link :to="{ name: 'app.dashboard' }">
                 <span class="pr-2">{{ businessName }}</span>
                 <span
-                    class="rounded-full px-1 uppercase text-xs text-black font-base"
+                    class="rounded-full px-2 py-[2px] uppercase text-xs text-white font-base"
                     :class="{
                         'bg-red-600': DEMO,
                         'bg-green-600': LIVE,
@@ -29,39 +29,39 @@
         </div>
 
         <!-- Navbar links -->
-        <div class="text-zinc-500 justify-between md:block hidden">
+        <div class="text-zinc-600 justify-between md:block hidden">
             <router-link
                 :to="{ name: 'app.dashboard' }"
-                :class="{ 'text-white' : $route.name === 'app.dashboard' }"
-                class="py-2 px-5 mb-4 transition-colors hover:text-white active:text-white"
+                :class="{ 'text-zinc-400' : $route.name === 'app.dashboard' }"
+                class="py-2 px-5 mb-4 transition-colors hover:text-zinc-400 active:text-white"
             >
                 <span class="text-md"> Dashboard </span>
             </router-link>
             <router-link
                 :to="{ name: 'app.products' }"
-                :class="{ 'text-white' : $route.name === 'app.products' }"
-                class="py-2 px-5 mb-4 transition-colors hover:text-white"
+                :class="{ 'text-zinc-400' : $route.name === 'app.products' }"
+                class="py-2 px-5 mb-4 transition-colors hover:text-zinc-400"
             >
                 <span class="text-md"> Products </span>
             </router-link>
             <router-link
                 :to="{ name: 'app.customers' }"
-                :class="{ 'text-white' : $route.name === 'app.customers' }"
-                class="py-2 px-5 mb-4 transition-colors hover:text-white"
+                :class="{ 'text-zinc-400' : $route.name === 'app.customers' }"
+                class="py-2 px-5 mb-4 transition-colors hover:text-zinc-400"
             >
                 <span class="text-md"> Customers </span>
             </router-link>
             <router-link
                 :to="{ name: 'app.orders' }"
-                :class="{ 'text-white' : $route.name === 'app.orders' }"
-                class="py-2 px-5 mb-4 transition-colors hover:text-white"
+                :class="{ 'text-zinc-400' : $route.name === 'app.orders' }"
+                class="py-2 px-5 mb-4 transition-colors hover:text-zinc-400"
             >
                 <span class="text-md"> Orders </span>
             </router-link>
             <router-link
                 :to="{ name: 'app.users' }"
-                :class="{ 'text-white' : $route.name === 'app.users' }"
-                class="py-2 px-5 mb-4 transition-colors hover:text-white"
+                :class="{ 'text-zinc-400' : $route.name === 'app.users' }"
+                class="py-2 px-5 mb-4 transition-colors hover:text-zinc-400"
             >
                 <span class="text-md"> Users </span>
             </router-link>
@@ -70,7 +70,7 @@
         <!-- Avatar dropdown -->
         <Menu as="div" class="relative inline-block text-left">
             <MenuButton
-                class="flex items-center text-zinc-500 hover:text-white"
+                class="flex items-center text-black hover:text-zinc-400"
             >
                 <img
                     src="https://randomuser.me/api/portraits/men/1.jpg"
