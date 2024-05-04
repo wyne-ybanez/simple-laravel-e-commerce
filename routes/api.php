@@ -21,16 +21,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum', 'admin'])
     ->group(function () {
+        // User Routes
         Route::get('/user', [AuthController::class, 'getUser']);
         Route::post('/logout', [AuthController::class, 'logout']);
 
+        // API resources
         Route::apiResource('/products', ProductController::class);
         Route::apiResource('/users', UserController::class);
         Route::apiResource('/customers', CustomerController::class);
+        Route::apiResource('/orders', OrderController::class);
         Route::get('/countries', [CustomerController::class, 'countries']);
+
+        // Orders Routes
         Route::get('/orders/statuses', [OrderController::class, 'getStatuses']);
         Route::post('/orders/change-status/{order}/{status}', [OrderController::class, 'changeStatus']);
-        Route::apiResource('/orders', OrderController::class);
         Route::get('/orders/{order}', [OrderController::class, 'view']);
         Route::delete('/orders/delete/{order}', [OrderController::class, 'destroy']);
 
@@ -39,6 +43,7 @@ Route::middleware(['auth:sanctum', 'admin'])
         Route::get('/dashboard/products-count', [DashboardController::class, 'activeProducts']);
         Route::get('/dashboard/orders-count', [DashboardController::class, 'paidOrders']);
         Route::get('/dashboard/income-amount', [DashboardController::class, 'totalIncome']);
-    });
+});
 
+// Login
 Route::post('/login', [AuthController::class, 'login']);

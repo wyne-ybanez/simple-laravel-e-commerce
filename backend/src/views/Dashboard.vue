@@ -1,7 +1,7 @@
 <template>
     <h1 class="text-lg font-normal mb-3">Dashboard</h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
       <!-- Acive Customers -->
       <div class="bg-white py-6 px-5 rounded border text-lg flex flex-col items-center justify-center">
         <label class="font-light">Active Customers</label>

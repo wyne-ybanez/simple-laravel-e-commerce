@@ -8,7 +8,7 @@
                 <hr class="h-[2.5px] rounded my-5 bg-strong">
 
                 <div class="mb-6" x-data="{expanded: true}">
-                    <div x-show="expanded" x-collapse.min.290px class="text-soft text-lg wysiwyg-content">
+                    <div class="text-soft text-lg wysiwyg-content">
                         {{ $product->description_2 }}
                     </div>
                 </div>
