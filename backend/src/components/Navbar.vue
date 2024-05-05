@@ -12,7 +12,7 @@
 
         <!-- Site name -->
         <div class="text-black md:block hidden">
-            <router-link :to="{ name: 'app.dashboard' }">
+            <a :href="appURL" target="_blank">
                 <span class="pr-2">{{ businessName }}</span>
                 <span
                     class="rounded-full px-2 py-[2px] uppercase text-xs text-white font-base"
@@ -25,7 +25,7 @@
                 >
                     {{ status }}
                 </span>
-            </router-link>
+            </a>
         </div>
 
         <!-- Navbar links -->
@@ -137,7 +137,7 @@
 import { MenuIcon, LogoutIcon, UserIcon } from "@heroicons/vue/outline";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 import { ChevronDownIcon } from "@heroicons/vue/solid";
-import { DEMO, LIVE, STAGING, LOCAL, BUSINESS_NAME } from "../constants.js";
+import { DEMO, LIVE, STAGING, LOCAL, BUSINESS_NAME, APP_URL } from "../constants.js";
 import store from "../store";
 import router from "../router";
 import { ref, computed } from "vue";
@@ -146,6 +146,7 @@ const emit = defineEmits(["toggle-sidebar"]);
 
 // controlled in 'constants.js'
 const businessName = ref(BUSINESS_NAME);
+const appURL = ref(APP_URL);
 
 const status = computed(() => {
     if (DEMO) {
