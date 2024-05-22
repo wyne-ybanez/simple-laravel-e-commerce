@@ -106,6 +106,7 @@ const customersCount = ref(0);
 const productsCount = ref(0);
 const paidOrders = ref(0);
 const totalIncome = ref(0);
+const ordersByCountry = ref({});
 
 axiosClient.get("/dashboard/customers-count").then(({ data }) => {
     customersCount.value = data;
@@ -125,6 +126,9 @@ axiosClient.get("/dashboard/income-amount").then(({ data }) => {
         currency: "EUR",
     }).format(data);
     loading.value.totalIncome = false;
+});
+axiosClient.get("/dashboard/orders-by-country").then(({ data }) => {
+    ordersByCountry.value = data;
 });
 </script>
 
