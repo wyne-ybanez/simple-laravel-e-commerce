@@ -58,7 +58,17 @@
             <div
                 class="bg-white py-6 md:row-span-2 lg:h-[20vw] rounded border text-lg flex flex-col items-center justify-center"
             >
-                <DoughnutChart :data="chartData" />
+                <label class="text-lg font-semibold block mb-2"
+                    >Orders by Country</label
+                >
+                <template v-if="!loading.ordersByCountry">
+                    <DoughnutChart
+                        :width="140"
+                        :height="200"
+                        :data="ordersByCountry"
+                    />
+                </template>
+                <Spinner v-else text="" class="" />
             </div>
             <div
                 class="bg-white py-6 md:row-span-5 px-5 rounded border text-lg flex flex-col items-center justify-center mt-3"
@@ -85,21 +95,12 @@ import axiosClient from "../axios.js";
 import { computed, onMounted, ref } from "vue";
 import Spinner from "../components/core/Spinner.vue";
 
-const chartData = {
-    labels: ["Red", "Blue", "Yellow"],
-    datasets: [
-        {
-            data: [300, 50, 100],
-            backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-        },
-    ],
-};
-
 const loading = ref({
     customersCount: true,
     productsCount: true,
     paidOrders: true,
     totalIncome: true,
+    ordersByCountry: true,
 });
 
 const customersCount = ref(0);
@@ -112,14 +113,17 @@ axiosClient.get("/dashboard/customers-count").then(({ data }) => {
     customersCount.value = data;
     loading.value.customersCount = false;
 });
+
 axiosClient.get("/dashboard/products-count").then(({ data }) => {
     productsCount.value = data;
     loading.value.productsCount = false;
 });
+
 axiosClient.get("/dashboard/orders-count").then(({ data }) => {
     paidOrders.value = data;
     loading.value.paidOrders = false;
 });
+
 axiosClient.get("/dashboard/income-amount").then(({ data }) => {
     totalIncome.value = new Intl.NumberFormat("en-UK", {
         style: "currency",
@@ -127,8 +131,31 @@ axiosClient.get("/dashboard/income-amount").then(({ data }) => {
     }).format(data);
     loading.value.totalIncome = false;
 });
-axiosClient.get("/dashboard/orders-by-country").then(({ data }) => {
-    ordersByCountry.value = data;
+
+axiosClient.get("/dashboard/orders-by-country").then(({ data: countries }) => {
+    const chartData = {
+        labels: [],
+        datasets: [
+            {
+                backgroundColor: [
+                    "#41B883",
+                    "#36A2EB",
+                    "#FFCE56",
+                    "#FF3100",
+                    "#C0CBFF",
+                ],
+                data: [],
+            },
+        ],
+    };
+
+    countries.forEach((c) => {
+        chartData.labels.push(c.name);
+        chartData.datasets[0].data.push(c.count);
+    });
+
+    ordersByCountry.value = chartData;
+    loading.value.ordersByCountry = false;
 });
 </script>
 
