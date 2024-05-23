@@ -51,4 +51,13 @@ class DashboardController extends Controller
 
         return $orders;
     }
+
+    public function latestCustomers()
+    {
+        return Customer::query()
+            ->where('status', CustomerStatus::Active->value)
+            ->orderBy('created_at', 'desc')
+            ->limit(5)
+            ->get();
+    }
 }
