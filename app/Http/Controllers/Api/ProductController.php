@@ -131,8 +131,9 @@ class ProductController extends Controller
             $data['image_size'] = $image->getSize();
 
             // if there is an existing image, delete it
-            if($product->image) {
-                Storage::deleteDirectory('/public/' . dirname($product->image));
+            if ($product->image) {
+                $imagePath = str_replace('storage/', '', parse_url($product->image, PHP_URL_PATH));
+                Storage::deleteDirectory('/public/' . dirname($imagePath));
             }
         }
         if ($image_1) {
@@ -141,8 +142,9 @@ class ProductController extends Controller
             $data['image_mime_1'] = $image_1->getClientMimeType();
             $data['image_size_1'] = $image_1->getSize();
 
-            if($product->image_1) {
-                Storage::deleteDirectory('/public/' . dirname($product->image_1));
+            if ($product->image_1) {
+                $imagePath = str_replace('storage/', '', parse_url($product->image_1, PHP_URL_PATH));
+                Storage::deleteDirectory('/public/' . dirname($imagePath));
             }
         }
         if ($image_2) {
@@ -151,8 +153,9 @@ class ProductController extends Controller
             $data['image_mime_2'] = $image_2->getClientMimeType();
             $data['image_size_2'] = $image_2->getSize();
 
-            if($product->image_2) {
-                Storage::deleteDirectory('/public/' . dirname($product->image_2));
+            if ($product->image_2) {
+                $imagePath = str_replace('storage/', '', parse_url($product->image_2, PHP_URL_PATH));
+                Storage::deleteDirectory('/public/' . dirname($imagePath));
             }
         }
         if ($image_3) {
@@ -161,8 +164,9 @@ class ProductController extends Controller
             $data['image_mime_3'] = $image_3->getClientMimeType();
             $data['image_size_3'] = $image_3->getSize();
 
-            if($product->image_3) {
-                Storage::deleteDirectory('/public/' . dirname($product->image_3));
+            if ($product->image_3) {
+                $imagePath = str_replace('storage/', '', parse_url($product->image_3, PHP_URL_PATH));
+                Storage::deleteDirectory('/public/' . dirname($imagePath));
             }
         }
 

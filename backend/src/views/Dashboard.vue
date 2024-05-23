@@ -155,7 +155,10 @@ axiosClient.get("/dashboard/orders-by-country").then(({ data: countries }) => {
     });
 
     ordersByCountry.value = chartData;
-    loading.value.ordersByCountry = false;
+
+    if (countries) {
+        loading.value.ordersByCountry = false;
+    }
 });
 </script>
 

@@ -129,8 +129,12 @@
                                 'bg-green-400': customer.status === 'active',
                             }"
                         >
-                            <span class="py-1" v-if="customer.status === 'active'">active</span>
-                            <span class="py-1" v-else>disabled</span>
+                            <span
+                                class="py-1"
+                                v-if="customer.status === 'active'"
+                                >Active</span
+                            >
+                            <span class="py-1" v-else>Disabled</span>
                         </div>
                         <!-- End Color Notification -->
                     </td>
