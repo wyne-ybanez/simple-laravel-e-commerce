@@ -14,7 +14,9 @@
             </TransitionChild>
 
             <div class="fixed inset-0 overflow-y-auto">
-                <div class="flex min-h-full items-center justify-center p-4 text-center">
+                <div
+                    class="flex min-h-full items-center justify-center p-4 text-center"
+                >
                     <TransitionChild
                         as="template"
                         enter="duration-300 ease-out"
@@ -24,12 +26,16 @@
                         leave-from="opacity-100 scale-100"
                         leave-to="opacity-0 scale-95"
                     >
-                        <DialogPanel class="w-full max-w-5xl h-[80vh] transform overflow-x-hidden rounded-sm text-left align-middle shadow-lg transition-all">
+                        <DialogPanel
+                            class="w-full max-w-5xl h-[80vh] transform overflow-x-hidden rounded-sm text-left align-middle shadow-lg transition-all"
+                        >
                             <Spinner
                                 v-if="loading"
                                 class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"
                             />
-                            <header class="py-3 px-4 flex justify-between items-center bg-zinc-200 sticky top-0">
+                            <header
+                                class="py-3 px-4 flex justify-between items-center bg-zinc-200 sticky top-0"
+                            >
                                 <DialogTitle
                                     as="h3"
                                     class="text-base leading-6 font-medium text-gray-900"
@@ -60,7 +66,10 @@
                                     </svg>
                                 </button>
                             </header>
-                            <form @submit.prevent="onSubmit" enctype="multipart/form-data">
+                            <form
+                                @submit.prevent="onSubmit"
+                                enctype="multipart/form-data"
+                            >
                                 <div class="bg-white px-4 pt-1 pb-4">
                                     <CustomInput
                                         class="mt-8 mb-2"
@@ -76,16 +85,23 @@
                                             (file) => (product.image = file)
                                         "
                                     />
-                                    <img class="w-16 h-16 object-cover inline" :src="props.product.image_url">
+                                    <img
+                                        class="w-16 h-16 object-cover inline"
+                                        :src="props.product.image_url"
+                                        v-if="props.product.image_url"
+                                    />
                                     <CustomInput
                                         type="file"
                                         class="mt-8 mb-2"
                                         label="Product Image 1"
                                         @change="
                                             (file) => (product.image_1 = file)
-                                        "
+                                        "                                    />
+                                    <img
+                                        class="w-16 h-16 object-cover"
+                                        :src="props.product.image_url_1"
+                                        v-if="props.product.image_url_1"
                                     />
-                                    <img class="w-16 h-16 object-cover" :src="props.product.image_url_1">
                                     <CustomInput
                                         type="file"
                                         class="mt-8 mb-2"
@@ -94,7 +110,11 @@
                                             (file) => (product.image_2 = file)
                                         "
                                     />
-                                    <img class="w-16 h-16 object-cover" :src="props.product.image_url_2">
+                                    <img
+                                        class="w-16 h-16 object-cover"
+                                        :src="props.product.image_url_2"
+                                        v-if="props.product.image_url_2"
+                                    />
                                     <CustomInput
                                         type="file"
                                         class="mt-8 mb-2"
@@ -103,8 +123,12 @@
                                             (file) => (product.image_3 = file)
                                         "
                                     />
-                                    <img class="w-16 h-16 object-cover" :src="props.product.image_url_3">
-                                     <CustomInput
+                                    <img
+                                        class="w-16 h-16 object-cover"
+                                        :src="props.product.image_url_3"
+                                        v-if="props.product.image_url_3"
+                                    />
+                                    <CustomInput
                                         class="mt-8 mb-2"
                                         v-model="product.category"
                                         label="Category"
@@ -129,7 +153,12 @@
                                         prepend="€"
                                         required
                                     />
-                                    <label class="block text-sm mt-12 text-zinc-400"> Product images are black & white by default </label>
+                                    <label
+                                        class="block text-sm mt-12 text-zinc-400"
+                                    >
+                                        Product images are black & white by
+                                        default
+                                    </label>
                                     <CustomInput
                                         type="checkbox"
                                         class="mt-4 mb-2"
@@ -137,7 +166,9 @@
                                         label="Colored Image"
                                     />
                                 </div>
-                                <footer class="bg-white px-4 py-6 sm:flex sm:flex-row-reverse justify-between border border-t-1 border-r-0 border-stone-200 sticky bottom-0">
+                                <footer
+                                    class="bg-white px-4 py-6 sm:flex sm:flex-row-reverse justify-between border border-t-1 border-r-0 border-stone-200 sticky bottom-0"
+                                >
                                     <button
                                         type="submit"
                                         class="mt-5 inline-flex justify-center rounded-sm shadow-sm px-8 py-2 bg-green-600 md:text-base font-light text-white hover:bg-green-700 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-base"
@@ -220,29 +251,26 @@ function closeModal() {
 }
 
 function onSubmit() {
-  loading.value = true
-  if (product.value.id) {
-    store.dispatch('updateProduct', product.value)
-      .then(response => {
-        loading.value = false;
-        if (response.status === 200) {
-          // TODO show notification if: product updated
-          store.dispatch('getProducts')
-          closeModal()
-        }
-      })
-  }
-  else {
-    store.dispatch('createProduct', product.value)
-      .then(response => {
-        loading.value = false;
-        if (response.status === 201) {
-          // TODO show notification if: product created
-          store.dispatch('getProducts')
-          closeModal()
-        }
-      })
-  }
+    loading.value = true;
+    if (product.value.id) {
+        store.dispatch("updateProduct", product.value).then((response) => {
+            loading.value = false;
+            if (response.status === 200) {
+                // TODO show notification if: product updated
+                store.dispatch("getProducts");
+                closeModal();
+            }
+        });
+    } else {
+        store.dispatch("createProduct", product.value).then((response) => {
+            loading.value = false;
+            if (response.status === 201) {
+                // TODO show notification if: product created
+                store.dispatch("getProducts");
+                closeModal();
+            }
+        });
+    }
 }
 </script>
 
