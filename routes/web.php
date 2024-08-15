@@ -20,10 +20,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guestOrVerified'])->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('home');
-    Route::get('/monsters', [ProductController::class, 'category1'])->name(getenv('PRODUCT_CATEGORY_1'));
-    Route::get('/anti-heroes', [ProductController::class, 'category2'])->name(getenv('PRODUCT_CATEGORY_2'));
-    Route::get('/heroes', [ProductController::class, 'category3'])->name(getenv('PRODUCT_CATEGORY_3'));
-    Route::get('/landscapes', [ProductController::class, 'category4'])->name(getenv('PRODUCT_CATEGORY_4'));
+    Route::get('/' . getenv('PRODUCT_CATEGORY_1'), [ProductController::class, 'category1'])->name(getenv('PRODUCT_CATEGORY_1'));
+    Route::get('/' . getenv('PRODUCT_CATEGORY_2'), [ProductController::class, 'category2'])->name(getenv('PRODUCT_CATEGORY_2'));
+    Route::get('/' . getenv('PRODUCT_CATEGORY_3'), [ProductController::class, 'category3'])->name(getenv('PRODUCT_CATEGORY_3'));
+    Route::get('/' . getenv('PRODUCT_CATEGORY_4'), [ProductController::class, 'category4'])->name(getenv('PRODUCT_CATEGORY_4'));
     Route::get('/product/{product:slug}', [ProductController::class, 'view'])->name('product.view');
 
     Route::prefix('/cart')->name('cart.')->group(function () {

@@ -11,7 +11,7 @@
     </div>
 
     <div class="px-20 pb-16 2xl:w-1/2 xl:w-[60%]">
-        {{ $pageDescription }}
+        {{ $category_description }}
     </div>
 
     @include('product.partials.view-items')
