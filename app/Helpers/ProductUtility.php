@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Helpers;
 
@@ -23,15 +23,15 @@ class ProductUtility
         $category_name_4 = getenv('PRODUCT_CATEGORY_4');
 
         // Singular
-        $category_1 = 'monster';
-        $category_2 = 'anti-hero';
-        $category_3 = 'hero';
-        $category_4 = 'landscape';
+        $category_1 = getenv('CATEGORY_SINGULAR_1');
+        $category_2 = getenv('CATEGORY_SINGULAR_2');
+        $category_3 = getenv('CATEGORY_SINGULAR_3');
+        $category_4 = getenv('CATEGORY_SINGULAR_4');
 
         $category = array(
             $category_name_1 => $category_1,
             $category_name_2 => $category_4,
-            $category_name_3  => $category_3 ,
+            $category_name_3  => $category_3,
             $category_name_4 => $category_2
         );
 

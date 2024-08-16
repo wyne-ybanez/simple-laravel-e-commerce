@@ -15,7 +15,7 @@ class ProductController extends Controller
             ->paginate(12);
 
         $heading = "All Works";
-        $pageDescription = "Delve into a world teeming with the imagination of artists who have breathed life into our favourite fantasy universes. From majestic dragons to heroic characters, our carefully curated collection showcases the incredible diversity and creativity of digital artists. ";
+        $category_description = getenv('INDEX_DESCRIPTION');
 
         // Categories
         $category_name_1 = getenv('PRODUCT_CATEGORY_1');
@@ -23,16 +23,16 @@ class ProductController extends Controller
         $category_name_3 = getenv('PRODUCT_CATEGORY_3');
         $category_name_4 = getenv('PRODUCT_CATEGORY_4');
 
-        $category_1 = 'monster';
-        $category_2 = 'anti-hero';
-        $category_3 = 'hero';
-        $category_4 = 'landscape';
+        $category_1 = getenv('CATEGORY_SINGULAR_1');
+        $category_2 = getenv('CATEGORY_SINGULAR_2');
+        $category_3 = getenv('CATEGORY_SINGULAR_3');
+        $category_4 = getenv('CATEGORY_SINGULAR_4');
 
         $category = array(
             $category_name_1 => $category_1,
-            $category_name_2 => $category_4,
+            $category_name_2 => $category_2,
             $category_name_3  => $category_3,
-            $category_name_4 => $category_2
+            $category_name_4 => $category_4
         );
 
         $query = strtolower($request->input('q'));
@@ -53,7 +53,7 @@ class ProductController extends Controller
         $context = [
             'products' => $products,
             'heading' => $heading,
-            'pageDescription' => $pageDescription,
+            'category_description' => $category_description,
             'request' => $request
         ];
 
