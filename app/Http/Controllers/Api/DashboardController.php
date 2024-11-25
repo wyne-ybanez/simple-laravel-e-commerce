@@ -55,6 +55,8 @@ class DashboardController extends Controller
     public function latestCustomers()
     {
         return Customer::query()
+            ->select(['id', 'first_name', 'last_name', 'u.email', 'phone', 'u.created_at'])
+            ->join('users AS u', 'u.id', '=', 'customers.user_id')
             ->where('status', CustomerStatus::Active->value)
             ->orderBy('created_at', 'desc')
             ->limit(5)

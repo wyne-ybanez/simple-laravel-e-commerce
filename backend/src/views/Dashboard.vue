@@ -56,7 +56,7 @@
         </div>
         <div class="md:grid grid-cols-1">
             <div
-                class="bg-white py-6 md:row-span-2 lg:h-[20vw] rounded border text-lg flex flex-col items-center justify-center"
+                class="bg-white md:py-6 lg:py-10 xl:py-16 md:row-span-2 lg:h-[20vw] rounded border text-lg flex flex-col items-center justify-center"
             >
                 <label class="text-lg font-semibold block mb-2"
                     >Orders by Country</label
@@ -70,20 +70,24 @@
                 </template>
                 <Spinner v-else text="" class="" />
             </div>
-            <div
-                class="bg-white py-6 md:row-span-5 px-5 rounded border text-lg flex flex-col items-center justify-center mt-3"
-            >
-                Customers
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
-                </p>
+            <div class="bg-white py-8 md:row-span-5 px-8 rounded border text-lg mt-3 font-medium">
+                Latest Customers
+                <router-link
+                    :to="`/customers/${c.id}`"
+                    v-for="c of latestCustomers"
+                    :key="c.id"
+                    class="flex mt-3 items-center font-light hover:underline"
+                >
+                    <div class="w-10 h-10 bg-gray-200 flex items-center justify-center rounded-full mr-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3>{{ c.first_name }} {{ c.last_name }}</h3>
+                        <p>{{ c.email }}</p>
+                    </div>
+                </router-link>
             </div>
         </div>
     </div>
@@ -101,6 +105,7 @@ const loading = ref({
     paidOrders: true,
     totalIncome: true,
     ordersByCountry: true,
+    latestCustomers: true,
 });
 
 const customersCount = ref(0);
@@ -108,6 +113,7 @@ const productsCount = ref(0);
 const paidOrders = ref(0);
 const totalIncome = ref(0);
 const ordersByCountry = ref({});
+const latestCustomers = ref({});
 
 axiosClient.get("/dashboard/customers-count").then(({ data }) => {
     customersCount.value = data;
@@ -159,6 +165,11 @@ axiosClient.get("/dashboard/orders-by-country").then(({ data: countries }) => {
     if (countries) {
         loading.value.ordersByCountry = false;
     }
+});
+
+axiosClient.get("/dashboard/latest-customers").then(({ data: customers }) => {
+    latestCustomers.value = customers
+    loading.value.latestCustomers = false;
 });
 </script>
 

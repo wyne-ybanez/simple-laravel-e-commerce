@@ -1,6 +1,6 @@
 <template>
     <header
-        class="flex justify-between items-center pt-3 pb-14 px-6 shadow bg-zinc-200 text-black"
+        class="flex justify-between items-center pt-9 pb-9 px-6 shadow bg-zinc-200 text-black"
     >
         <!-- Hamburger -->
         <button
