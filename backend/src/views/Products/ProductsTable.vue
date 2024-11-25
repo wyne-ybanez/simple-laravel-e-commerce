@@ -85,6 +85,15 @@
                         Color
                     </TableHeaderCell>
                     <TableHeaderCell
+                        @click="sortProducts('published')"
+                        class="border-b p-2 pb-5 font-medium cursor-pointer"
+                        field="published"
+                        :sort-field="sortField"
+                        :sort-direction="sortDirection"
+                    >
+                        Status
+                    </TableHeaderCell>
+                    <TableHeaderCell
                         @click="sortProducts('updated_at')"
                         class="border-b p-2 pb-5 font-medium cursor-pointer"
                         field="updated_at"
@@ -143,15 +152,8 @@
                         <div
                             class="text-black text-sm py-1 px-2 rounded-full w-fit"
                             :class="{
-                                'bg-green-400': ['true', '1', 1, true].includes(
-                                    product.color
-                                ),
-                                'bg-gray-300': [
-                                    'false',
-                                    '0',
-                                    0,
-                                    false,
-                                ].includes(product.color),
+                                'bg-green-400': ['true', '1', 1, true].includes(product.color),
+                                'bg-gray-300': ['false', '0', 0, false].includes(product.color),
                             }"
                         >
                             <span class="py-1" v-if="product.color">
@@ -160,6 +162,20 @@
                             <span class="py-1" v-else> Grayscale </span>
                         </div>
                         <!-- End Color Notification -->
+                    </td>
+                    <td class="border-b p-2">
+                        <div
+                            class="text-black text-sm py-1 px-2 rounded-full w-fit"
+                            :class="{
+                                'bg-green-400': ['true', '1', 1, true].includes(product.published),
+                                'bg-gray-300': ['false', '0', 0, false,].includes(product.published),
+                            }"
+                        >
+                            <span class="py-1" v-if="product.published">
+                                Published
+                            </span>
+                            <span class="py-1" v-else> Draft </span>
+                        </div>
                     </td>
                     <td class="border-b p-2">
                         {{ product.updated_at }}
@@ -190,12 +206,12 @@
                                 >
                                     <div class="px-1 py-1">
                                         <MenuItem v-slot="{ active }">
-                                            <button
+                                            <router-link
+                                                :to="`/products/${product.id}`"
                                                 :class="[
                                                     active ? 'bg-gray-100' : '',
                                                     'group flex w-full items-center rounded-sm px-2 py-2 text-sm',
                                                 ]"
-                                                @click="editProduct(product)"
                                             >
                                                 <PencilIcon
                                                     :active="active"
@@ -203,7 +219,7 @@
                                                     aria-hidden="true"
                                                 />
                                                 Edit
-                                            </button>
+                                            </router-link>
                                         </MenuItem>
                                         <MenuItem v-slot="{ active }">
                                             <button

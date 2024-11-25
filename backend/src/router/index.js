@@ -3,6 +3,7 @@ import AppLayout from "../components/AppLayout.vue";
 import Login from "../views/Login.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Products from "../views/Products/Products.vue";
+import ProductView from "../views/Products/ProductView.vue";
 import Users from "../views/Users/Users.vue";
 import Customers from "../views/Customers/Customers.vue";
 import CustomerView from "../views/Customers/CustomerView.vue";
@@ -31,6 +32,20 @@ const routes = [
                 path: "products",
                 name: "app.products",
                 component: Products,
+            },
+            {
+                path: "products/create",
+                name: "app.products.create",
+                component: ProductView,
+            },
+            {
+                path: "products/:id",
+                name: "app.products.view",
+                component: ProductView,
+                props: {
+                    // ensures the id value is an integer, must be numeric value
+                    id: (value) => /^\d+$/.test(value)
+                }
             },
             {
                 path: "users",
