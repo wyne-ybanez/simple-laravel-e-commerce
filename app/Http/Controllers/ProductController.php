@@ -16,35 +16,17 @@ class ProductController extends Controller
 
         $heading = "All Works";
         $category_description = getenv('INDEX_DESCRIPTION');
-
-        // Categories
-        $category_name_1 = getenv('PRODUCT_CATEGORY_1');
-        $category_name_2 = getenv('PRODUCT_CATEGORY_2');
-        $category_name_3 = getenv('PRODUCT_CATEGORY_3');
-        $category_name_4 = getenv('PRODUCT_CATEGORY_4');
-
-        $category_1 = getenv('CATEGORY_SINGULAR_1');
-        $category_2 = getenv('CATEGORY_SINGULAR_2');
-        $category_3 = getenv('CATEGORY_SINGULAR_3');
-        $category_4 = getenv('CATEGORY_SINGULAR_4');
-
-        $category = array(
-            $category_name_1 => $category_1,
-            $category_name_2 => $category_2,
-            $category_name_3  => $category_3,
-            $category_name_4 => $category_4
-        );
-
         $query = strtolower($request->input('q'));
+        $categories = $this->getCategories();
 
         // query allows for search of product titles and categories
         if (!empty($query)) {
             $products = Product::query()
                 ->where('title', 'LIKE', '%' . $query . '%')
                 ->orWhere('category', 'LIKE', '%' . $query . '%')
-                ->orWhere(function ($queryBuilder) use ($query, $category) {
-                    if (isset($category[$query])) {
-                        $queryBuilder->where('category', 'LIKE', $category[$query] . '%');
+                ->orWhere(function ($queryBuilder) use ($query, $categories) {
+                    if (isset($categories[$query])) {
+                        $queryBuilder->where('category', 'LIKE', $categories[$query] . '%');
                     }
                 })
                 ->paginate(12);
@@ -124,6 +106,30 @@ class ProductController extends Controller
             'heading' => $heading,
             'category_description' => $category_description,
         ]);
+    }
+
+    public function getCategories()
+    {
+        // Define category plural names
+        $category_name_1 = getenv('PRODUCT_CATEGORY_1');
+        $category_name_2 = getenv('PRODUCT_CATEGORY_2');
+        $category_name_3 = getenv('PRODUCT_CATEGORY_3');
+        $category_name_4 = getenv('PRODUCT_CATEGORY_4');
+
+        // Define category singular names
+        $category_1 = getenv('CATEGORY_SINGULAR_1');
+        $category_2 = getenv('CATEGORY_SINGULAR_2');
+        $category_3 = getenv('CATEGORY_SINGULAR_3');
+        $category_4 = getenv('CATEGORY_SINGULAR_4');
+
+        $category = [
+            strtolower($category_name_1) => strtolower($category_1),
+            strtolower($category_name_2) => strtolower($category_2),
+            strtolower($category_name_3) => strtolower($category_3),
+            strtolower($category_name_4) => strtolower($category_4)
+        ];
+
+        return $category;
     }
 
     public function view(Product $product)
