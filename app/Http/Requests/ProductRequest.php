@@ -33,7 +33,8 @@ class ProductRequest extends FormRequest
             'category' => ['nullable', 'max: 255'],
             'description' => ['nullable', 'string'],
             'description_2' => ['nullable', 'string'],
-            'color' => ['nullable', 'boolean']
+            'color' => ['nullable', 'boolean'],
+            'published' => ['nullable', 'boolean'],
         ];
     }
 }

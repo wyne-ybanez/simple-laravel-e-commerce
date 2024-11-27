@@ -23,6 +23,7 @@
             <CustomInput type="richtext" class="mt-5 mb-5" v-model="product.description_2" label="Alternative Description" :errors="errors['description_2']"/>
             <CustomInput type="number" class="mb-5" v-model="product.price" label="Price" prepend="$" :errors="errors['price']"/>
             <CustomInput type="number" class="mb-5" v-model="product.quantity" label="Quantity" :errors="errors['quantity']"/>
+            <CustomInput type="checkbox" class="mb-5 mt-8" v-model="product.color" label="Color" :errors="errors['color']"/>
             <CustomInput type="checkbox" class="mb-5 mt-8" v-model="product.published" label="Published" :errors="errors['published']"/>
           </div>
           <div class="col-span-2 lg:col-span-1 lg:mt-14 pb-4">
@@ -149,6 +150,7 @@
     description_2: '',
     price: null,
     quantity: null,
+    color: false,
     published: false,
     categories: []
   })

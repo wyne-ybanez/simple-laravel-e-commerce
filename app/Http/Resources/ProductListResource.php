@@ -24,6 +24,7 @@ class ProductListResource extends JsonResource
             'price' => $this->price,
             'category' => $this->category,
             'color' => (bool)$this->color,
+            'published' => (bool)$this->published,
             'updated_at' => (new \DateTime($this->updated_at))->format('Y-m-d H:i:s'),
         ];
     }

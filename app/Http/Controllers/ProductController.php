@@ -17,16 +17,16 @@ class ProductController extends Controller
         $heading = "All Works";
         $category_description = getenv('INDEX_DESCRIPTION');
         $query = strtolower($request->input('q'));
-        $categories = $this->getCategories();
+        $categories_collection = $this->getCategories();
 
         // query allows for search of product titles and categories
         if (!empty($query)) {
             $products = Product::query()
                 ->where('title', 'LIKE', '%' . $query . '%')
                 ->orWhere('category', 'LIKE', '%' . $query . '%')
-                ->orWhere(function ($queryBuilder) use ($query, $categories) {
-                    if (isset($categories[$query])) {
-                        $queryBuilder->where('category', 'LIKE', $categories[$query] . '%');
+                ->orWhere(function ($queryBuilder) use ($query, $categories_collection) {
+                    if (isset($categories_collection[$query])) {
+                        $queryBuilder->where('category', 'LIKE', $categories_collection[$query] . '%');
                     }
                 })
                 ->paginate(12);
