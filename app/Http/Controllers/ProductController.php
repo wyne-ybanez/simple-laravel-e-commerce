@@ -11,6 +11,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = Product::query()
+            ->where('published', true)
             ->orderBy('updated_at', 'asc')
             ->paginate(12);
 
