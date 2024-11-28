@@ -28,15 +28,18 @@ class ProductUtility
         $category_3 = getenv('CATEGORY_SINGULAR_3');
         $category_4 = getenv('CATEGORY_SINGULAR_4');
 
-        $category = array(
-            $category_name_1 => $category_1,
-            $category_name_2 => $category_4,
-            $category_name_3  => $category_3,
-            $category_name_4 => $category_2
+        $category_collection = array(
+            strtolower($category_name_1) => $category_1,
+            strtolower($category_name_2) => $category_4,
+            strtolower($category_name_3) => $category_3,
+            strtolower($category_name_4) => $category_2
         );
 
+        $sanitized_category = strtolower($category_name);
+
         $products = Product::query()
-            ->where('category', 'LIKE', $category[$category_name] . '%')
+            ->where('category', 'LIKE', $category_collection[$sanitized_category] . '%')
+            ->where('published', true)
             ->orderBy('updated_at', 'asc')
             ->paginate(12);
 
