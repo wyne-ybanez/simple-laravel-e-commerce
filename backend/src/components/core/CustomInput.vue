@@ -25,6 +25,7 @@
                         <option
                             v-for="option of selectOptions"
                             :value="option.key"
+                            :key="option.key"
                         >
                             {{ option.text }}
                         </option>
@@ -71,10 +72,6 @@
             <template v-else-if="type === 'checkbox'">
                 <div class="flex flex-col grow">
                     <div>
-                        {{ label }}
-                        <span v-if="required" class="text-zinc-400 text-lg"
-                            >*</span
-                        >
                         <input
                             :name="name"
                             :type="type"
@@ -85,8 +82,12 @@
                             @change="
                                 emit('update:modelValue', $event.target.checked)
                             "
-                            class="h-[20px] w-[20px] text-zinc-600 border-gray-200 ml-1 accent-green-500 mb-5 cursor-pointer"
+                            class="h-[20px] w-[20px] text-zinc-600 border-gray-200 mr-1 accent-green-500 mb-1 cursor-pointer"
                         />
+                        {{ label }}
+                        <span v-if="required" class="text-zinc-400 text-lg"
+                            >*</span
+                        >
                     </div>
                 </div>
             </template>

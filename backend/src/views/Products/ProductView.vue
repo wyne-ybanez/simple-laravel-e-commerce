@@ -24,7 +24,7 @@
             <CustomInput type="number" class="mb-5" v-model="product.price" label="Price" prepend="$" :errors="errors['price']"/>
             <CustomInput type="number" class="mb-5" v-model="product.quantity" label="Quantity" :errors="errors['quantity']"/>
             <CustomInput type="checkbox" class="mb-5 mt-8" v-model="product.color" label="Color" :errors="errors['color']"/>
-            <CustomInput type="checkbox" class="mb-5 mt-8" v-model="product.published" label="Published" :errors="errors['published']"/>
+            <CustomInput type="checkbox" class="mb-6 mt-5" v-model="product.published" label="Published" :errors="errors['published']"/>
           </div>
           <div class="col-span-2 lg:col-span-1 lg:mt-14 pb-4">
             <!-- Image inputs -->
