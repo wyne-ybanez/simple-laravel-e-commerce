@@ -84,6 +84,11 @@ class ProductController extends Controller
             $data['image_size_3'] = $image_3->getSize();
         }
 
+        // default image
+        if (!$image || !$image_1 || !$image_2 || !$image_3) {
+            $data['image'] = URL::to(Storage::url('images/default.png'));
+        }
+
         $product = Product::create($data);
 
         return new ProductResource($product);
