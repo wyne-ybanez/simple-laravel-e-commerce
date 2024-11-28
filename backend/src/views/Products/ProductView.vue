@@ -19,8 +19,8 @@
           <div class="col-span-2 lg:col-span-1 pt-5 pb-4">
             <CustomInput class="mb-5" v-model="product.title" label="Product Title" :errors="errors['title']"/>
             <CustomInput class="mb-5" v-model="product.category" label="Product Category" :errors="errors['category']"/>
-            <CustomInput type="richtext" class="mt-5 mb-5" v-model="product.description" label="Description" :errors="errors['description']"/>
-            <CustomInput type="richtext" class="mt-5 mb-5" v-model="product.description_2" label="Alternative Description" :errors="errors['description_2']"/>
+            <CustomInput type="richtext" class="mt-5 mb-5" v-model="product.description" label="Description 1" :errors="errors['description']"/>
+            <CustomInput type="richtext" class="mt-5 mb-5" v-model="product.description_2" label="Description 2" :errors="errors['description_2']"/>
             <CustomInput type="number" class="mb-5" v-model="product.price" label="Price" prepend="$" :errors="errors['price']"/>
             <CustomInput type="number" class="mb-5" v-model="product.quantity" label="Quantity" :errors="errors['quantity']"/>
             <CustomInput type="checkbox" class="mb-5 mt-8" v-model="product.color" label="Color" :errors="errors['color']"/>
