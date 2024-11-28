@@ -46,7 +46,7 @@ class ProductController extends Controller
     public function category1()
     {
         $product_category = getenv('PRODUCT_CATEGORY_1');
-        $products = ProductUtility::get_items_in_category("$product_category");
+        $products = ProductUtility::get_items_in_category($product_category);
 
         $heading = getenv('PRODUCT_CATEGORY_1');
         $category_description = getenv('PRODUCT_CATEGORY_DESCRIPTION_1');
@@ -63,7 +63,7 @@ class ProductController extends Controller
     public function category2()
     {
         $product_category = getenv('PRODUCT_CATEGORY_2');
-        $products = ProductUtility::get_items_in_category("$product_category");
+        $products = ProductUtility::get_items_in_category($product_category);
 
         $heading = getenv('PRODUCT_CATEGORY_2');
         $category_description = getenv('PRODUCT_CATEGORY_DESCRIPTION_2');
@@ -80,7 +80,7 @@ class ProductController extends Controller
     public function category3()
     {
         $product_category = getenv('PRODUCT_CATEGORY_3');
-        $products = ProductUtility::get_items_in_category("$product_category");
+        $products = ProductUtility::get_items_in_category($product_category);
 
         $heading = getenv('PRODUCT_CATEGORY_3');
         $category_description = getenv('PRODUCT_CATEGORY_DESCRIPTION_3');
@@ -97,7 +97,7 @@ class ProductController extends Controller
     public function category4()
     {
         $product_category = getenv('PRODUCT_CATEGORY_4');
-        $products = ProductUtility::get_items_in_category("$product_category");
+        $products = ProductUtility::get_items_in_category($product_category);
 
         $heading = getenv('PRODUCT_CATEGORY_4');
         $category_description = getenv('PRODUCT_CATEGORY_DESCRIPTION_4');
@@ -123,14 +123,14 @@ class ProductController extends Controller
         $category_3 = getenv('CATEGORY_SINGULAR_3');
         $category_4 = getenv('CATEGORY_SINGULAR_4');
 
-        $category = [
+        $category_collection = [
             strtolower($category_name_1) => strtolower($category_1),
             strtolower($category_name_2) => strtolower($category_2),
             strtolower($category_name_3) => strtolower($category_3),
             strtolower($category_name_4) => strtolower($category_4)
         ];
 
-        return $category;
+        return $category_collection;
     }
 
     public function view(Product $product)

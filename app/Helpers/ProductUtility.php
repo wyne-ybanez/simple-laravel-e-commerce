@@ -29,10 +29,10 @@ class ProductUtility
         $category_4 = getenv('CATEGORY_SINGULAR_4');
 
         $category_collection = array(
-            strtolower($category_name_1) => $category_1,
-            strtolower($category_name_2) => $category_4,
-            strtolower($category_name_3) => $category_3,
-            strtolower($category_name_4) => $category_2
+            strtolower($category_name_1) => strtolower($category_1),
+            strtolower($category_name_2) => strtolower($category_2),
+            strtolower($category_name_3) => strtolower($category_3),
+            strtolower($category_name_4) => strtolower($category_4)
         );
 
         $sanitized_category = strtolower($category_name);
