@@ -8,8 +8,8 @@
     @cart-change.window="cartItemsCount = $event.detail.count"
     x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 150)"
     :class="{
-            'bg-secondary': scrolled,
-            'text-secondary' : scrolled,
+            'lg:bg-secondary': scrolled,
+            'lg:text-secondary' : scrolled,
             }"
     class="flex justify-between border-b border-bg-soft sticky top-0 z-50 bg-primary transition ease-in duration-300"
 >
@@ -30,6 +30,15 @@
                     <div class="flex items-center">
                         <div class="link-underline link-underline-black text-stone-600 text-2xl">
                             Home
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="/about" class="relative flex items-center justify-between py-3 px-6 transition-colors hover:bg-gray-100">
+                    <div class="flex items-center">
+                        <div class="link-underline link-underline-black text-stone-600 text-2xl">
+                            About
                         </div>
                     </div>
                 </a>
@@ -105,6 +114,14 @@
     <!-- Desktop: Responsive Menu -->
     <nav class="hidden lg:block text-lg">
         <ul class="grid grid-flow-col items-center">
+            <li class="mt-5">
+                <a href="/about" class="relative inline-flex items-center py-navbar-item px-navbar-item">
+                    <div class="link-underline"
+                        :class="{ 'link-underline-black' : !scrolled }">
+                        About
+                    </div>
+                </a>
+            </li>
             <li class="mt-5">
                 <a href="{{ route('home') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item">
                     <div class="link-underline"

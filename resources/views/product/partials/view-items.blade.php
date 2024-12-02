@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 md:gap-10 lg:gap-12 2xl:gap-20 py-6 px-6 lg:px-20 ">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 md:gap-10 lg:gap-12 2xl:gap-20 py-6 px-10 lg:px-20">
     @foreach($products as $product)
     <!-- Product Item -->
     <div x-data="productItem({{ json_encode([
@@ -12,7 +12,7 @@
                 }})"
         class="bg-primary text-strong flex flex-col product-item rounded"
     >
-        <a href="{{ route('product.view', $product->slug) }}" class="aspect-w-3 aspect-h-3 block overflow-hidden">
+        <a href="{{ route('product.view', $product->slug) }}" class="aspect-w-3 aspect-h-3 block overflow-hidden shadow shadow-lg shadow-zinc-900 rounded">
             <img src="{{ $product->image }}" alt="" class="object-cover hover:grayscale-0 hover:scale-105 transition duration-200 ease-in-out rounded"
                 :class="{{ $product->color }} ? '' : 'grayscale'"/>
         </a>

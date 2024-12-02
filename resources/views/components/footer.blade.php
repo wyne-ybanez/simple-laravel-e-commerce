@@ -26,9 +26,9 @@
             </a>
         </div>
     </div>
-    <div class="mt-10 pt-8 text-xl flex text-black items-end grid grid-cols-1 gap-y-10">
+    <div class="mt-10 pt-8 text-xl flex text-black items-end grid grid-cols-1 gap-y-10 px-5 lg:px-0">
         <div class="col-span-1">
-            All rights reserved &copy; {{ date('Y') }}<span class="font-semibold px-2">{{ getenv('APP_NAME') }}</span>
+            All rights reserved &copy; {{ date('Y') }}<span class="font-semibold">{{ getenv('APP_NAME') }}</span>
             @if (getenv('APP_AUTHOR'))
             <br>
             Developed by

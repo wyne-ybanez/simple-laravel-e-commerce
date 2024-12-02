@@ -9,7 +9,7 @@
                     'addToCartUrl' => route('cart.add', $product),
                 ]) }})" class="container mb-24">
         <div class="grid gap-6 w-screen grid-cols-1 lg:grid-cols-2 bg-primary text-primary py-20">
-            <div class="lg:col-span-1 md:px-0 lg:px-20 xl:pt-24 lg:pr-0">
+            <div class="lg:col-span-1 px-10 md:px-0 lg:px-20 xl:pt-24 lg:pr-0">
                 <div x-data="{
                     image: ['{{$product->image}}'],
                     image_1: ['{{$product->image_1}}'],
@@ -35,10 +35,10 @@
                         console.log(this.image[0]);
                     }
                 }">
-                    <div class="relative">
-                        <img :src="activeImage ? activeImage : image" alt="" class="w-full cursor-pointer xl:rounded" />
+                    <div class="relative px-0 md:px-10 lg:px-0 mb-2">
+                        <img :src="activeImage ? activeImage : image" alt="" class="w-full cursor-pointer xl:rounded shadow shadow-xl shadow-zinc-900" />
                     </div>
-                    <div class="flex mb-[0.1rem]">
+                    <div class="flex mb-[0.1rem] px-0 md:px-10 lg:px-0 flex-wrap">
                         <template x-if="image_1[0] || image_2[0] || image_3[0]">
                             <a x-show="image_1[0] || image_2[0] || image_3[0]" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{ 'border-bg-strong': activeImage === image }">
                                 <img :src="image[0]" alt="" class="w-auto mt-2 rounded hover:shadow-black hover:shadow-lg object-cover h-[10rem] mr-auto" />
@@ -63,7 +63,7 @@
                 </div>
             </div>
 
-            <div class="lg:col-span-1 w-fit md:px-20 px-10 md:my-0 xl:my-24">
+            <div class="lg:col-span-1 w-fit lg:px-20 px-10 md:my-0 xl:my-24">
                 <h1 class="font-bold text-4xl font-montserrat mb-2">
                     {{$product->title}}
                 </h1>

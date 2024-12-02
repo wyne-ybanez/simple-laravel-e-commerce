@@ -25,6 +25,9 @@ Route::middleware(['guestOrVerified'])->group(function () {
     Route::get('/' . getenv('PRODUCT_CATEGORY_3'), [ProductController::class, 'category3'])->name(getenv('PRODUCT_CATEGORY_3'));
     Route::get('/' . getenv('PRODUCT_CATEGORY_4'), [ProductController::class, 'category4'])->name(getenv('PRODUCT_CATEGORY_4'));
     Route::get('/product/{product:slug}', [ProductController::class, 'view'])->name('product.view');
+    Route::get('/about', function () {
+        return view('about');
+    });
 
     Route::prefix('/cart')->name('cart.')->group(function () {
         Route::get('/', [CartController::class, 'index'])->name('index');

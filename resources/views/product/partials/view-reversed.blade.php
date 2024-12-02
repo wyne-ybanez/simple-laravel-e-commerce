@@ -1,13 +1,13 @@
 <div class="container">
     <div class="grid w-screen grid-cols-1 bg-strong text-black py-20 gap-16 lg:gap-0">
-        <div class="w-full md:px-20 px-10 md:my-0 xl:my-24">
+        <div class="w-full lg:px-20 px-10 md:my-0 xl:my-24">
             <h1 class="text-4xl text-soft font-bold font-montserrat mb-2">
                 {{$product->title}}
             </h1>
 
             <hr class="h-[2.5px] rounded my-5 bg-strong">
 
-            <div class="xl:my-24">
+            <div class="lg:mt-24 lg:mb-10">
                 <div x-data="{
                     image: ['{{$product->image}}'],
                     image_1: ['{{$product->image_1}}'],
@@ -37,7 +37,7 @@
                     <div class="relative">
                         <img :src="activeImage ? activeImage : image[0]" alt="" class="w-full shadow shadow-xl shadow-white cursor-pointer grayscale rounded object-cover" :class="grayscale ? 'grayscale' : 'grayscale-0'" @click="grayscale = !grayscale" />
                     </div>
-                    <div class="flex mb-[0.1rem]">
+                    <div class="flex mb-[0.1rem] flex-wrap">
                         <template x-if="image_1[0] || image_2[0] || image_3[0]">
                             <a x-show="image_1[0] || image_2[0] || image_3[0]" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{ 'border-bg-strong': activeImage === image }">
                                 <img :src="image[0]" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto" />
@@ -58,6 +58,9 @@
                                 <img :src="image" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto" />
                             </a>
                         </template>
+                    </div>
+                    <div class="text-white italic mt-8 text-zinc-300">
+                        Click on the image to display image colours
                     </div>
                 </div>
             </div>
