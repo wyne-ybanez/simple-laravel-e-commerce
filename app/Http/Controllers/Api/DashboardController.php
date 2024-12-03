@@ -65,6 +65,9 @@ class DashboardController extends Controller
 
     public function latestOrders()
     {
+        // o = order
+        // oi = order items
+        // c = customer
         return Order::query()
             ->select(['o.id', 'o.total_price', 'o.created_at', DB::raw('COUNT(oi.id) AS items'),
                 'c.user_id', 'c.first_name', 'c.last_name'])

@@ -35,27 +35,27 @@
                         console.log(this.image[0]);
                     }
                 }">
-                    <div class="relative px-0 md:px-10 lg:px-0 mb-2">
-                        <img :src="activeImage ? activeImage : image" alt="" class="w-full cursor-pointer xl:rounded shadow shadow-xl shadow-zinc-900" />
+                    <div class="relative px-0 md:px-10 lg:px-0 mb-2" id="primaryGallery">
+                        <img :src="activeImage ? activeImage : image" alt="" class="w-full cursor-pointer xl:rounded shadow shadow-xl shadow-zinc-900 md:object-contain lg:max-w-[1000px]" />
                     </div>
                     <div class="flex mb-[0.1rem] px-0 md:px-10 lg:px-0 flex-wrap">
                         <template x-if="image_1[0] || image_2[0] || image_3[0]">
-                            <a x-show="image_1[0] || image_2[0] || image_3[0]" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{ 'border-bg-strong': activeImage === image }">
+                            <a x-show="image_1[0] || image_2[0] || image_3[0]" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{ 'border-bg-strong': activeImage === image }" href="#primaryGallery">
                                 <img :src="image[0]" alt="" class="w-auto mt-2 rounded hover:shadow-black hover:shadow-lg object-cover h-[10rem] mr-auto" />
                             </a>
                         </template>
                         <template x-for="image in image_1">
-                            <a x-show="image" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_1}">
+                            <a x-show="image" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_1}" href="#primaryGallery">
                                 <img :src="image" alt="" class="w-auto mt-2 rounded hover:shadow-black hover:shadow-lg object-cover h-[10rem] mr-auto" />
                             </a>
                         </template>
                         <template x-for="image in image_2">
-                            <a x-show="image" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_2}">
+                            <a x-show="image" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_2}" href="#primaryGallery">
                                 <img :src="image" alt="" class="w-auto mt-2 rounded hover:shadow-black hover:shadow-lg object-cover h-[10rem] mr-auto" />
                             </a>
                         </template>
                         <template x-for="image in image_3">
-                            <a x-show="image" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_3}">
+                            <a x-show="image" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_3}" href="#primaryGallery">
                                 <img :src="image" alt="" class="w-auto mt-2 rounded hover:shadow-black hover:shadow-lg object-cover h-[10rem] mr-auto" />
                             </a>
                         </template>

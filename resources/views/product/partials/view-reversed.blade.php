@@ -34,33 +34,33 @@
                     },
                     grayscale: true,
                     }">
-                    <div class="relative">
-                        <img :src="activeImage ? activeImage : image[0]" alt="" class="w-full shadow shadow-xl shadow-white cursor-pointer grayscale rounded object-cover" :class="grayscale ? 'grayscale' : 'grayscale-0'" @click="grayscale = !grayscale" />
+                    <div class="relative flex flex-col items-center justify-center" id="secondaryGallery">
+                        <img :src="activeImage ? activeImage : image[0]" alt="" class="shadow shadow-xl shadow-white cursor-pointer grayscale rounded object-contain max-h-[100vh] lg:max-w-[75vw]" :class="grayscale ? 'grayscale' : 'grayscale-0'" @click="grayscale = !grayscale" />
+                        <div class="text-white italic mt-10 text-zinc-300">
+                            Click on the image to display image colours
+                        </div>
                     </div>
-                    <div class="flex mb-[0.1rem] flex-wrap">
+                    <div class="flex mb-[0.1rem] flex-wrap items-center justify-center">
                         <template x-if="image_1[0] || image_2[0] || image_3[0]">
-                            <a x-show="image_1[0] || image_2[0] || image_3[0]" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{ 'border-bg-strong': activeImage === image }">
+                            <a x-show="image_1[0] || image_2[0] || image_3[0]" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{ 'border-bg-strong': activeImage === image }" href="/#secondaryGallery">
                                 <img :src="image[0]" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto" />
                             </a>
                         </template>
                         <template x-for="image in image_1">
-                            <a x-show="image" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_1}">
+                            <a x-show="image" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_1}" href="/#secondaryGallery">
                                 <img :src="image" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto" />
                             </a>
                         </template>
                         <template x-for="image in image_2">
-                            <a x-show="image" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_2}">
+                            <a x-show="image" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_2}" href="/#secondaryGallery">
                                 <img :src="image" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto" />
                             </a>
                         </template>
                         <template x-for="image in image_3">
-                            <a x-show="image" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_3}">
+                            <a x-show="image" @click.prevent="activeImage=image" class="cursor-pointer w-[12rem] pt-[0.1rem] pr-[3px] ml-0 pl-0 flex" :class="{'border-bg-strong': activeImage === image_3}" href="/#secondaryGallery">
                                 <img :src="image" alt="" class="w-auto mt-10 grayscale rounded hover:shadow-white hover:shadow-lg object-cover h-[10rem] mr-auto" />
                             </a>
                         </template>
-                    </div>
-                    <div class="text-white italic mt-8 text-zinc-300">
-                        Click on the image to display image colours
                     </div>
                 </div>
             </div>
