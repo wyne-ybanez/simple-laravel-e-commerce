@@ -47,24 +47,39 @@
         </div>
         <!-- End Total Income -->
     </div>
-
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-3">
+        <!-- Latest Orders -->
         <div
-            class="bg-white py-6 lg:col-span-2 px-5 rounded border text-lg flex flex-col justify-center"
-        >
-            Latest Orders
-             <template v-if="!loading.latestOrders">
-                <pre>
-                    {{ latestOrders }}
-                </pre>
+            class="bg-white lg:col-span-2 px-8 py-8 rounded"
+        >   
+            <div class="text-lg mb-3">Latest Orders</div>
+            <template v-if="!loading.latestOrders">
+                <div v-for="o of latestOrders" :key="o.id" class="p-3 hover:bg-gray-100 rounded border-b flex flex-col">
+                    <router-link :to="{
+                                name: 'app.orders.view',
+                                params: {id: o.id}}"
+                                class=""
+                    >
+                        <p><span class="font-semibold">Order #{{ o.id }}</span></p>
+                        <p class="font-light">created {{ o.created_at }}</p>
+                        <p class="font-light">{{ o.items }} item(s)</p>
+                        <p class="flex justify-between font-light">
+                            <span>{{ o.first_name }} {{ o.last_name }}</span>
+                            <span>{{ o.total_price }}</span>
+                        </p>
+                    </router-link>
+
+                </div>
             </template>
             <Spinner v-else text="" class="" />
         </div>
+        <!-- End Latest Orders -->
+        <!-- Orders by Country -->
         <div class="md:grid grid-cols-1">
             <div
                 class="bg-white md:py-6 lg:py-10 xl:py-16 md:row-span-2 lg:h-[20vw] rounded border text-lg flex flex-col items-center justify-center"
             >
-                <label class="text-lg font-semibold block mb-2"
+                <label class="text-lg block mb-2"
                     >Orders by Country</label
                 >
                 <template v-if="!loading.ordersByCountry">
@@ -76,14 +91,16 @@
                 </template>
                 <Spinner v-else text="" class="" />
             </div>
-            <div class="bg-white py-8 md:row-span-5 px-8 rounded border text-lg mt-3 font-medium">
+            <!-- End Orders by Country -->
+            <!-- Latest Customers -->
+            <div class="bg-white py-8 md:row-span-5 px-8 rounded border mt-3">
                 <div v-if="latestCustomers">
-                    Latest Customers
+                    <div class="text-lg">Latest Customers</div>
                     <router-link
                         :to="`/customers/${c.id}`"
                         v-for="c of latestCustomers"
                         :key="c.id"
-                        class="flex mt-3 items-center font-light hover:underline"
+                        class="flex mt-3 items-center font-light hover:bg-gray-100 p-3 rounded border-b"
                     >
                         <div class="w-10 h-10 bg-gray-200 flex items-center justify-center rounded-full mr-5">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -98,6 +115,7 @@
                 </div>
                 <Spinner v-else text="" class="" />
             </div>
+            <!-- End Latest Customers -->
         </div>
     </div>
 </template>

@@ -64,21 +64,25 @@ class DashboardController extends Controller
     }
 
     public function latestOrders()
-    {
-        // o = order
-        // oi = order items
-        // c = customer
+    {   
+        // items
+        // user_id
+        // first_name
+        // last_name
+
         return Order::query()
-            ->select(['o.id', 'o.total_price', 'o.created_at', DB::raw('COUNT(oi.id) AS items'),
-                'c.user_id', 'c.first_name', 'c.last_name'])
-            ->from('orders AS o')
-            ->join('order_items AS oi', 'oi.order_id', '=', 'o.id')
-            ->join('customers AS c', 'c.user_id', '=', 'o.created_by')
-            ->where('o.status', OrderStatus::Paid->value)
-            ->orderBy('o.created_at', 'desc')
-            ->groupBy('o.id', 'o.total_price', 'o.created_at', 'c.user_id', 'c.first_name', 'c.last_name')
-            ->limit(10)
-            ->withTrashed() // This line is added because of soft deletes on orders
+            ->select([
+                'id',
+                'total_price',
+                'created_at',
+                DB::raw('(SELECT COUNT(*) FROM order_items WHERE order_id = orders.id) AS items'),
+                DB::raw('(SELECT user_id FROM customers WHERE user_id = orders.created_by) AS user_id'),
+                DB::raw('(SELECT first_name FROM customers WHERE user_id = orders.created_by) AS first_name'),
+                DB::raw('(SELECT last_name FROM customers WHERE user_id = orders.created_by) AS last_name')
+            ])
+            ->where('status', OrderStatus::Paid->value)
+            ->orderBy('created_at', 'desc')
+            ->limit(7)
             ->get();
     }
 }

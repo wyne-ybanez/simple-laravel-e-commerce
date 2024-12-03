@@ -65,7 +65,7 @@
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                     >
-                        Admin
+                        Status
                     </TableHeaderCell>
                     <TableHeaderCell
                         @click="sortUsers('created_at')"

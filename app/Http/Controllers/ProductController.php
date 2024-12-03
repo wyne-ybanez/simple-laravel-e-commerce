@@ -136,6 +136,7 @@ class ProductController extends Controller
     public function view(Product $product)
     {
         $products = Product::query()
+            ->where('published', true)
             ->orderBy('updated_at', 'desc')
             ->limit(6)
             ->get();
