@@ -35,7 +35,7 @@
                     grayscale: true,
                     }">
                     <div class="relative flex flex-col items-center justify-center" id="secondaryGallery">
-                        <img :src="activeImage ? activeImage : image[0]" alt="" class="shadow shadow-xl shadow-white cursor-pointer grayscale rounded object-contain max-h-[100vh] lg:max-w-[75vw]" :class="grayscale ? 'grayscale' : 'grayscale-0'" @click="grayscale = !grayscale" />
+                        <img :src="activeImage ? activeImage : image[0]" alt="" class="shadow shadow-xl shadow-white cursor-pointer grayscale rounded object-contain max-h-[100vh] lg:max-w-[75vw] lg:max-h-[150vh]" :class="grayscale ? 'grayscale' : 'grayscale-0'" @click="grayscale = !grayscale" />
                         <div class="text-white italic mt-10 text-zinc-300">
                             Click on the image to display image colours
                         </div>
