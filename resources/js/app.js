@@ -91,3 +91,46 @@ document.addEventListener("alpine:init", async () => {
 });
 
 Alpine.start();
+
+
+// Modal
+const modal = document.getElementById("Modal");
+const modalImg = document.querySelector('#ModalImg');
+const activeImage = document.querySelector("#activeImage");
+const image = document.querySelector("#activeImage img");
+const body = document.querySelector("body");
+let closeIcon = document.getElementsByClassName("close")[0]; // close icon
+
+
+activeImage.onclick = () => {
+  modal.style.display = "block";
+  modalImg.src = image.src;
+  localStorage.setItem('modal', 'active');
+  addModalActiveStyles()
+};
+
+closeIcon.onclick = () => {
+  removeModalActiveStyles();
+};
+
+modal.onclick = () => {
+  removeModalActiveStyles();
+};
+
+window.onresize = () => {
+  removeModalActiveStyles();
+}
+
+function addModalActiveStyles() {
+    if (localStorage.getItem('modal') === 'active') {
+        body.style.overflow = "hidden";
+    }
+}
+
+function removeModalActiveStyles() {
+    if (localStorage.getItem('modal') === 'active') {
+        localStorage.setItem('modal', '')
+        modal.style.display = "none";
+        body.style.overflow = "auto";
+    }
+}

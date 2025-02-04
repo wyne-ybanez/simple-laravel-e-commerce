@@ -12,7 +12,7 @@
                 }})"
         class="bg-primary text-strong flex flex-col product-item rounded"
     >
-        <a href="{{ route('product.view', $product->slug) }}" class="aspect-w-3 aspect-h-3 block overflow-hidden shadow shadow-lg shadow-zinc-900 rounded">
+        <a href="{{ route('product.view', $product->slug) }}" class="aspect-w-3 aspect-h-3 block overflow-hidden rounded">
             <img src="{{ $product->image }}" alt="" class="object-cover hover:grayscale-0 hover:scale-105 transition duration-200 ease-in-out rounded"
                 :class="{{ $product->color }} ? '' : 'grayscale'"/>
         </a>

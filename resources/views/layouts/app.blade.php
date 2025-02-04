@@ -47,6 +47,14 @@
         </div>
     </div>
     <!--/ Toast -->
+
+    <!-- Modal -->
+    <div id="Modal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="ModalImg" />
+      <div id="caption"></div>
+    </div>
+    <!--/ Modal -->
 </body>
 
 </html>
