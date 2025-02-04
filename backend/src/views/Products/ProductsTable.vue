@@ -142,7 +142,7 @@
                         {{ product.title }}
                     </td>
                     <td class="border-b p-2">
-                        {{ product.price }}
+                        {{ $filters.currencyEU(product.price) }}
                     </td>
                     <td class="border-b p-2">
                         {{ product.category }}

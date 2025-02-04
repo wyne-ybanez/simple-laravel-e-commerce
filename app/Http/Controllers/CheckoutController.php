@@ -129,8 +129,8 @@ class CheckoutController extends Controller
             $customer = \Stripe\Customer::retrieve($session->customer);
 
             $products = Product::query()
-            ->orderBy('updated_at', 'asc')
-            ->paginate(12);
+                ->orderBy('updated_at', 'asc')
+                ->paginate(12);
 
             $context = [
                 'heading' => 'All Works',
@@ -142,8 +142,8 @@ class CheckoutController extends Controller
             throw $e;
         } catch (\Exception $e) {
             $products = Product::query()
-            ->orderBy('updated_at', 'asc')
-            ->paginate(12);
+                ->orderBy('updated_at', 'asc')
+                ->paginate(12);
 
             $context = [
                 'message' => $e->getMessage(),
@@ -163,8 +163,8 @@ class CheckoutController extends Controller
     public function failure(Request $request)
     {
         $products = Product::query()
-        ->orderBy('updated_at', 'asc')
-        ->paginate(12);
+            ->orderBy('updated_at', 'asc')
+            ->paginate(12);
 
         return view('checkout.failure', [
             'message' => 'If the issue persists, please try again later',

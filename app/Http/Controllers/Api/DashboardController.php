@@ -64,7 +64,7 @@ class DashboardController extends Controller
     }
 
     public function latestOrders()
-    {   
+    {
         // items
         // user_id
         // first_name

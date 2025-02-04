@@ -45,7 +45,7 @@
                     </tr>
                     <tr>
                         <td class="font-bold py-1 px-2">SubTotal</td>
-                        <td>{{ order.total_price }}</td>
+                        <td>{{ $filters.currencyEU(order.total_price) }}</td>
                     </tr>
                 </tbody>
             </table>

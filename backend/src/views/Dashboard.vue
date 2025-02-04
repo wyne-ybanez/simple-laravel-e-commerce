@@ -49,26 +49,31 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-3">
         <!-- Latest Orders -->
-        <div
-            class="bg-white lg:col-span-2 px-8 py-8 rounded"
-        >   
+        <div class="bg-white lg:col-span-2 px-8 py-8 rounded">
             <div class="text-lg mb-3">Latest Orders</div>
             <template v-if="!loading.latestOrders">
-                <div v-for="o of latestOrders" :key="o.id" class="p-3 hover:bg-gray-100 rounded border-b flex flex-col">
-                    <router-link :to="{
-                                name: 'app.orders.view',
-                                params: {id: o.id}}"
-                                class=""
+                <div
+                    v-for="o of latestOrders"
+                    :key="o.id"
+                    class="p-3 hover:bg-gray-100 rounded border-b flex flex-col"
+                >
+                    <router-link
+                        :to="{
+                            name: 'app.orders.view',
+                            params: { id: o.id },
+                        }"
+                        class=""
                     >
-                        <p><span class="font-semibold">Order #{{ o.id }}</span></p>
+                        <p>
+                            <span class="font-semibold">Order #{{ o.id }}</span>
+                        </p>
                         <p class="font-light">created {{ o.created_at }}</p>
                         <p class="font-light">{{ o.items }} item(s)</p>
                         <p class="flex justify-between font-light">
                             <span>{{ o.first_name }} {{ o.last_name }}</span>
-                            <span>{{ o.total_price }}</span>
+                            <span>{{ $filters.currencyEU(o.total_price) }}</span>
                         </p>
                     </router-link>
-
                 </div>
             </template>
             <Spinner v-else text="" class="" />
@@ -79,9 +84,7 @@
             <div
                 class="bg-white md:py-6 lg:py-10 xl:py-16 md:row-span-2 lg:h-[20vw] rounded border text-lg flex flex-col items-center justify-center"
             >
-                <label class="text-lg block mb-2"
-                    >Orders by Country</label
-                >
+                <label class="text-lg block mb-2">Orders by Country</label>
                 <template v-if="!loading.ordersByCountry">
                     <DoughnutChart
                         :width="140"
@@ -102,9 +105,22 @@
                         :key="c.id"
                         class="flex mt-3 items-center font-light hover:bg-gray-100 p-3 rounded border-b"
                     >
-                        <div class="w-10 h-10 bg-gray-200 flex items-center justify-center rounded-full mr-5">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                        <div
+                            class="w-10 h-10 bg-gray-200 flex items-center justify-center rounded-full mr-5"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="w-6 h-6"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                                />
                             </svg>
                         </div>
                         <div>
@@ -160,7 +176,7 @@ axiosClient.get("/dashboard/orders-count").then(({ data }) => {
 });
 
 axiosClient.get("/dashboard/income-amount").then(({ data }) => {
-    totalIncome.value = new Intl.NumberFormat("en-UK", {
+    totalIncome.value = new Intl.NumberFormat("en-DE", {
         style: "currency",
         currency: "EUR",
     }).format(data);
@@ -197,12 +213,12 @@ axiosClient.get("/dashboard/orders-by-country").then(({ data: countries }) => {
 });
 
 axiosClient.get("/dashboard/latest-customers").then(({ data: customers }) => {
-    latestCustomers.value = customers
+    latestCustomers.value = customers;
     loading.value.latestCustomers = false;
 });
 
 axiosClient.get("/dashboard/latest-orders").then(({ data: orders }) => {
-    latestOrders.value = orders
+    latestOrders.value = orders;
     loading.value.latestOrders = false;
 });
 </script>
