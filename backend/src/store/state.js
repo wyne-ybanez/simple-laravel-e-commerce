@@ -22,6 +22,15 @@ export default {
         limit: null,
         total: null,
     },
+    dateOptions: [
+        {key: '1 day', text: 'Yesterday'},
+        {key: '1 week', text: 'Last Week'},
+        {key: '2 weeks', text: 'Last 2 Weeks'},
+        {key: '1 month', text: 'Last Month'},
+        {key: '3 months', text: 'Last 3 Months'},
+        {key: '6 months', text: 'Last 6 Months'},
+        {key: 'all', text: 'All Time'},
+    ],
     users: {
         loading: false,
         data: [],

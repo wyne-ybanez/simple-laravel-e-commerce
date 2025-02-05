@@ -2,7 +2,7 @@
     <div class="mb-2 flex items-center justify-between">
         <h1 class="text-lg font-normal mb-3">Dashboard</h1>
         <div class="flex items-center">
-        <label class="mr-2">Change Date Period</label>
+        <label class="mr-4">Change Date Period</label>
         <CustomInput type="select" v-model="chosenDate" @change="onDatePickerChange" :select-options="dateOptions"/>
         </div>
     </div>
@@ -86,7 +86,7 @@
         </div>
 
         <!-- Orders by Country -->
-        <div class="md:grid grid-cols-1">
+        <div class="md:grid grid-cols-1 lg:col-span-1">
             <div
                 class="bg-white md:py-6 lg:py-10 xl:py-16 md:row-span-2 lg:h-[20vw] rounded border text-lg flex flex-col items-center justify-center"
             >
@@ -174,32 +174,32 @@ const latestOrders = ref([]);
 
 function updateDashboard() {
     const date = chosenDate.value
-        loading.value = {
+    loading.value = {
         customersCount: true,
         productsCount: true,
         paidOrders: true,
         totalIncome: true,
         ordersByCountry: true,
         latestCustomers: true,
-        latestOrders: true
+        latestOrders: true,
     }
 
-    axiosClient.get("/dashboard/customers-count").then(({ data }) => {
+    axiosClient.get("/dashboard/customers-count", {params: {date}}).then(({ data }) => {
         customersCount.value = data;
         loading.value.customersCount = false;
     });
 
-    axiosClient.get("/dashboard/products-count").then(({ data }) => {
+    axiosClient.get("/dashboard/products-count", {params: {date}}).then(({ data }) => {
         productsCount.value = data;
         loading.value.productsCount = false;
     });
 
-    axiosClient.get("/dashboard/orders-count").then(({ data }) => {
+    axiosClient.get("/dashboard/orders-count", {params: {date}}).then(({ data }) => {
         paidOrders.value = data;
         loading.value.paidOrders = false;
     });
 
-    axiosClient.get("/dashboard/income-amount").then(({ data }) => {
+    axiosClient.get("/dashboard/income-amount", {params: {date}}).then(({ data }) => {
         totalIncome.value = new Intl.NumberFormat("en-DE", {
             style: "currency",
             currency: "EUR",
@@ -207,7 +207,7 @@ function updateDashboard() {
         loading.value.totalIncome = false;
     });
 
-    axiosClient.get("/dashboard/orders-by-country").then(({ data: countries }) => {
+    axiosClient.get("/dashboard/orders-by-country", {params: {date}}).then(({ data: countries }) => {
         const chartData = {
             labels: [],
             datasets: [
@@ -236,7 +236,7 @@ function updateDashboard() {
         }
     });
 
-    axiosClient.get("/dashboard/latest-customers").then(({ data: customers }) => {
+    axiosClient.get("/dashboard/latest-customers", {params: {date}}).then(({ data: customers }) => {
         latestCustomers.value = customers;
         loading.value.latestCustomers = false;
     });

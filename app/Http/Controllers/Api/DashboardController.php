@@ -12,6 +12,7 @@ use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -27,15 +28,24 @@ class DashboardController extends Controller
 
     public function paidOrders()
     {
+        $fromDate = $this->getFromDate();
         $query = Order::query()->where('status', OrderStatus::Paid->value);
+
+        if ($fromDate) {
+            $query->where('created_at', '>', $fromDate);
+        }
 
         return $query->count();
     }
 
     public function totalIncome()
     {
+        $fromDate = $this->getFromDate();
         $query = Order::query()->where('status', OrderStatus::Paid->value);
 
+        if ($fromDate) {
+            $query->where('created_at', '>', $fromDate);
+        }
         return round($query->sum('total_price'));
     }
 
@@ -43,14 +53,24 @@ class DashboardController extends Controller
     {
         // c = country
         // a = address
+        $fromDate = $this->getFromDate();
         $query = Order::query()
             ->select(['c.name', DB::raw('count(orders.id) as count')])
             ->join('users', 'created_by', '=', 'users.id')
             ->join('customer_addresses AS a', 'users.id', '=', 'a.customer_id')
-            ->join('countries AS c', 'a.country_code', '=', 'c.code')
+            ->join(
+                'countries AS c',
+                'a.country_code',
+                '=',
+                'c.code'
+            )
             ->where('status', OrderStatus::Paid->value)
             ->where('a.type', AddressType::Billing->value)
             ->groupBy('c.name');
+
+        if ($fromDate) {
+            $query->where('orders.created_at', '>', $fromDate);
+        }
 
         return $query->get();
     }
@@ -95,10 +115,28 @@ class DashboardController extends Controller
                     'customers.first_name',
                     'customers.last_name'
                 )
-                ->limit(7)
+                ->limit(10)
                 ->withoutTrashed()
                 ->orderBy('orders.created_at', 'desc')
                 ->get()
         );
+    }
+
+    // get 'date' from request and we map it to this array for a result
+    // mappings should be similar as in store/state.js
+    private function getFromDate()
+    {
+        $request = \request();
+        $paramDate = $request->get('date');
+        $array = [
+            '1 day' => Carbon::now()->subDays(1),
+            '1 week' => Carbon::now()->subDays(7),
+            '2 weeks' => Carbon::now()->subDays(14),
+            '1 month' => Carbon::now()->subDays(30),
+            '3 months' => Carbon::now()->subDays(60),
+            '6 months' => Carbon::now()->subDays(180),
+        ];
+
+        return $array[$paramDate] ?? null;
     }
 }

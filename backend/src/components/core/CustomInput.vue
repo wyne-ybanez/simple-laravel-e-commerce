@@ -19,7 +19,7 @@
                         :required="required"
                         :value="props.modelValue"
                         :class="inputClasses"
-                        class="py-[0.8rem]"
+                        class="py-[0.8rem] mt-0 border]"
                         @change="onChange($event.target.value)"
                     >
                         <option
@@ -152,6 +152,10 @@ const props = defineProps({
         default: "",
     },
     selectOptions: Array,
+    errors: {
+        type: Array,
+        required: false
+    },
 });
 
 const inputClasses = computed(() => {
@@ -172,6 +176,11 @@ const inputClasses = computed(() => {
 });
 
 const emit = defineEmits(["update:modelValue", "change"]);
+
+function onChange(value) {
+  emit('update:modelValue', value)
+  emit('change', value)
+}
 </script>
 
 <style scoped></style>
