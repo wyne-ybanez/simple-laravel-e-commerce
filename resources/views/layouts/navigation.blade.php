@@ -113,7 +113,7 @@
     </div>
     <!-- Desktop: Responsive Menu -->
     <nav class="hidden lg:block text-lg">
-        <ul class="grid grid-flow-col items-center">
+        <ul class="flex flex-wrap items-center">
             <li class="mt-5">
                 <a href="/about" class="relative inline-flex items-center py-navbar-item px-navbar-item">
                     <div class="link-underline"
