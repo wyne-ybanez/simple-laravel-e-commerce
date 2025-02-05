@@ -35,15 +35,6 @@
                 </a>
             </li>
             <li>
-                <a href="/about" class="relative flex items-center justify-between py-3 px-6 transition-colors hover:bg-gray-100">
-                    <div class="flex items-center">
-                        <div class="link-underline link-underline-black text-stone-600 text-2xl">
-                            About
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
                 <a href="{{ route('cart.index') }}" class="relative flex items-center justify-between py-3 px-6 transition-colors hover:bg-gray-100">
                     <div class="flex items-center">
                         <div class="link-underline link-underline-black text-stone-600 text-2xl">
@@ -114,14 +105,6 @@
     <!-- Desktop: Responsive Menu -->
     <nav class="hidden lg:block text-lg">
         <ul class="flex flex-wrap items-center">
-            <li class="mt-5">
-                <a href="/about" class="relative inline-flex items-center py-navbar-item px-navbar-item">
-                    <div class="link-underline"
-                        :class="{ 'link-underline-black' : !scrolled }">
-                        About
-                    </div>
-                </a>
-            </li>
             <li class="mt-5">
                 <a href="{{ route('home') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item">
                     <div class="link-underline"

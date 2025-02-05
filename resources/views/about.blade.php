@@ -26,15 +26,15 @@
     @include('layouts.navigation')
 
     <main class="overflow-x-hidden px-10 lg:px-20 py-20 text-lg">
-        <h1 class="mb-10 font-[500] text-[2.5rem] lg:text-[4rem] font-montserrat leading-snug"> Digi.Art - A Digital Art Metal Poster E-Commerce Platform</h1>
+        <h1 class="mb-10 font-[500] text-[2.5rem] lg:text-[4rem] font-montserrat leading-snug">Simple Laravel E-commerce</h1>
         <p>
-            A Laravel-powered showcase demonstrating web development skills through a digital art metal poster e-commerce concept. 
-            This personal project highlights technical proficiency in building a full-featured web application, focusing on creating a streamlined online platform for digital art poster sales.
+            A Laravel-powered showcase demonstrating web development skills through an e-commerce concept.
+            This personal project highlights technical proficiency in building a full-featured web application, focusing on creating a streamlined online business .
         </p>
         <h3 class="font-[500] text-[1.3rem] font-montserrat my-10">Key Highlights:</h3>
         <ul class="list-disc relative left-4">
             <li>Solo Laravel development project</li>
-            <li>Digital art metal poster e-commerce simulation</li>
+            <li>E-commerce business simulation</li>
             <li>Technical skill demonstration</li>
         </ul>
     </main>
