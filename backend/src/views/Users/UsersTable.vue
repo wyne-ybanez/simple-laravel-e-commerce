@@ -28,7 +28,7 @@
             </div>
         </div>
         <!-- Users table -->
-        <table class="table-auto w-full">
+        <table class="table lg:table-auto table-fixed w-fit md:w-full">
             <thead class="text-left">
                 <tr>
                     <TableHeaderCell

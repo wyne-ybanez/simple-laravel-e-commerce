@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <table class="table-auto w-full">
+        <table class="table lg:table-auto table-fixed w-fit md:w-full">
             <thead>
                 <tr>
                     <TableHeaderCell

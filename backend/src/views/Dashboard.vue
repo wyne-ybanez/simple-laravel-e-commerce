@@ -1,9 +1,9 @@
 <template>
     <div class="mb-2 flex items-center justify-between">
         <h1 class="text-lg font-normal mb-3">Dashboard</h1>
-        <div class="flex items-center">
-        <label class="mr-4">Change Date Period</label>
-        <CustomInput type="select" v-model="chosenDate" @change="onDatePickerChange" :select-options="dateOptions"/>
+        <div class="flex flex-col md:flex-row items-center">
+            <label class="mr-4">Change Date Period</label>
+            <CustomInput type="select" v-model="chosenDate" @change="onDatePickerChange" :select-options="dateOptions"/>
         </div>
     </div>
 

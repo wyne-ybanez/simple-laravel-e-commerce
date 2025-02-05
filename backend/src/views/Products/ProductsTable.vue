@@ -3,7 +3,7 @@
         <div class="flex justify-between pb-5">
             <div class="flex items-center">
                 <!-- List options -->
-                <span class="whitespace-nowrap mr-3">Per Page</span>
+                <span class="mr-3">Per Page</span>
                 <select
                     v-model="perPage"
                     @change="getProducts(null)"
@@ -28,7 +28,7 @@
             </div>
         </div>
         <!-- Products table -->
-        <table class="table-auto w-full">
+        <table class="table lg:table-auto table-fixed w-fit md:w-full">
             <thead class="text-left">
                 <tr>
                     <TableHeaderCell
@@ -137,7 +137,7 @@
                         />
                     </td>
                     <td
-                        class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
+                        class="border-b p-2 max-w-[200px] overflow-hidden text-ellipsis"
                     >
                         {{ product.title }}
                     </td>
