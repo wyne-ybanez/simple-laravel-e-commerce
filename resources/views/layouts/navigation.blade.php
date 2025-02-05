@@ -8,8 +8,8 @@
     @cart-change.window="cartItemsCount = $event.detail.count"
     x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 150)"
     :class="{
-            'lg:bg-secondary': scrolled,
-            'lg:text-secondary' : scrolled,
+            'lg:bg-primary': scrolled,
+            'lg:text-primary' : scrolled,
             }"
     class="flex justify-between border-b border-bg-soft sticky top-0 z-50 bg-primary transition ease-in duration-300"
 >

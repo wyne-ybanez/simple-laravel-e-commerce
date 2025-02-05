@@ -50,9 +50,13 @@
 
     <!-- Modal -->
     <div id="Modal" class="modal">
-      <span class="close">&times;</span>
-      <img class="modal-content" id="ModalImg" />
-      <div id="caption"></div>
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <div class="modal-content__image">
+                <img id="ModalImg" />
+            </div>
+            <div id="modalCaption"></div>
+        </div>
     </div>
     <!--/ Modal -->
 </body>

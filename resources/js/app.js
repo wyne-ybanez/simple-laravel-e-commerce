@@ -94,17 +94,21 @@ Alpine.start();
 
 
 // Modal
+const activeImage = document.querySelector("#activeImage");
+const productCaption = document.querySelector('#productCaption');
+
 const modal = document.getElementById("Modal");
 const modalImg = document.querySelector('#ModalImg');
-const activeImage = document.querySelector("#activeImage");
+const modalCaption = document.querySelector('#modalCaption');
+
 const image = document.querySelector("#activeImage img");
 const body = document.querySelector("body");
 let closeIcon = document.getElementsByClassName("close")[0]; // close icon
 
-
 activeImage.onclick = () => {
   modal.style.display = "block";
   modalImg.src = image.src;
+  modalCaption.innerText = productCaption.innerText;
   localStorage.setItem('modal', 'active');
   addModalActiveStyles()
 };
