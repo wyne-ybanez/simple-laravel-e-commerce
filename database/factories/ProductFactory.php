@@ -20,7 +20,7 @@ class ProductFactory extends Factory
         $model = Product::class;
 
         // Define categories
-        $categories = ['Anti-Hero', 'Hero', 'Monster', 'Landscape'];
+        $categories = ['CATEGORY_1', 'CATEGORY_2', 'CATEGORY_3', 'CATEGORY_4'];
 
         $category = fake()->randomElement($categories);
 
@@ -38,6 +38,7 @@ class ProductFactory extends Factory
             'updated_at' => now(),
             'created_by' => 1,
             'updated_by' => 1,
+            'published' => 1,
         ];
     }
 }

@@ -105,13 +105,15 @@ const image = document.querySelector("#activeImage img");
 const body = document.querySelector("body");
 let closeIcon = document.getElementsByClassName("close")[0]; // close icon
 
-activeImage.onclick = () => {
-  modal.style.display = "block";
-  modalImg.src = image.src;
-  modalCaption.innerText = productCaption.innerText;
-  localStorage.setItem('modal', 'active');
-  addModalActiveStyles()
-};
+if (activeImage) {
+    activeImage.onclick = () => {
+    modal.style.display = "block";
+    modalImg.src = image.src;
+    modalCaption.innerText = productCaption.innerText;
+    localStorage.setItem('modal', 'active');
+    addModalActiveStyles()
+  };
+}
 
 closeIcon.onclick = () => {
   removeModalActiveStyles();

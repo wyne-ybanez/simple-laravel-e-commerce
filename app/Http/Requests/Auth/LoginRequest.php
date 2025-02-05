@@ -54,7 +54,7 @@ class LoginRequest extends FormRequest
         $customer = $user->customer;
 
         // bans login of admin email
-        if($user->email === "admin@example.com") {
+        if ($user->email === "admin@example.com") {
             Auth::guard('web')->logout();
             $this->session()->invalidate();
             $this->session()->regenerateToken();
@@ -65,7 +65,7 @@ class LoginRequest extends FormRequest
         }
 
         // checks if user is deactivated
-        if($customer->status !== CustomerStatus::Active->value) {
+        if ($customer->status !== CustomerStatus::Active->value) {
             Auth::guard('web')->logout();
             $this->session()->invalidate();
             $this->session()->regenerateToken();
@@ -106,6 +106,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->input('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->input('email')) . '|' . $this->ip());
     }
 }

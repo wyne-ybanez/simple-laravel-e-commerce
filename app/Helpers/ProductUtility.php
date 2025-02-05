@@ -40,7 +40,7 @@ class ProductUtility
         $products = Product::query()
             ->where('category', 'LIKE', $category_collection[$sanitized_category] . '%')
             ->where('published', true)
-            ->orderBy('updated_at', 'asc')
+            ->orderBy('updated_at', 'desc')
             ->paginate(12);
 
         return $products;
