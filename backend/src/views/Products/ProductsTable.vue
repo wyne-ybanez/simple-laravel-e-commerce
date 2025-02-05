@@ -130,16 +130,20 @@
                 <tr v-for="product of products.data" class="animate-fade-in">
                     <td class="border-b p-2">{{ product.id }}</td>
                     <td class="border-b p-2">
-                        <img
-                            class="w-16 h-16 object-cover"
-                            :src="product.image_url"
-                            :alt="product.title"
-                        />
+                        <router-link :to="`/products/${product.id}`">
+                            <img
+                                class="w-16 h-16 object-cover"
+                                :src="product.image_url"
+                                :alt="product.title"
+                            />
+                        </router-link>
                     </td>
                     <td
                         class="border-b p-2 max-w-[200px] overflow-hidden text-ellipsis"
                     >
-                        {{ product.title }}
+                        <router-link :to="`/products/${product.id}`" class="hover:border-b hover:border-zinc-900">
+                            {{ product.title }}
+                        </router-link>
                     </td>
                     <td class="border-b p-2">
                         {{ $filters.currencyEU(product.price) }}
