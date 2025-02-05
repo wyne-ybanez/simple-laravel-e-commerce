@@ -6,6 +6,7 @@ use App\Enums\AddressType;
 use App\Enums\CustomerStatus;
 use App\Enums\OrderStatus;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Dashboard\OrderResource;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
@@ -21,35 +22,37 @@ class DashboardController extends Controller
 
     public function activeProducts()
     {
-        // TODO: implement where for active products
-        return Product::count();
+        return Product::where('published', '=', 1)->count();
     }
 
     public function paidOrders()
     {
-        return Order::where('status', OrderStatus::Paid->value)->count();
+        $query = Order::query()->where('status', OrderStatus::Paid->value);
+
+        return $query->count();
     }
 
     public function totalIncome()
     {
-        return Order::where('status', OrderStatus::Paid->value)->sum('total_price');
+        $query = Order::query()->where('status', OrderStatus::Paid->value);
+
+        return round($query->sum('total_price'));
     }
 
     public function ordersByCountry()
     {
         // c = country
         // a = address
-        $orders = Order::query()
+        $query = Order::query()
             ->select(['c.name', DB::raw('count(orders.id) as count')])
             ->join('users', 'created_by', '=', 'users.id')
             ->join('customer_addresses AS a', 'users.id', '=', 'a.customer_id')
             ->join('countries AS c', 'a.country_code', '=', 'c.code')
             ->where('status', OrderStatus::Paid->value)
             ->where('a.type', AddressType::Billing->value)
-            ->groupBy('c.name')
-            ->get();
+            ->groupBy('c.name');
 
-        return $orders;
+        return $query->get();
     }
 
     public function latestCustomers()
@@ -70,19 +73,32 @@ class DashboardController extends Controller
         // first_name
         // last_name
 
-        return Order::query()
-            ->select([
-                'id',
-                'total_price',
-                'created_at',
-                DB::raw('(SELECT COUNT(*) FROM order_items WHERE order_id = orders.id) AS items'),
-                DB::raw('(SELECT user_id FROM customers WHERE user_id = orders.created_by) AS user_id'),
-                DB::raw('(SELECT first_name FROM customers WHERE user_id = orders.created_by) AS first_name'),
-                DB::raw('(SELECT last_name FROM customers WHERE user_id = orders.created_by) AS last_name')
-            ])
-            ->where('status', OrderStatus::Paid->value)
-            ->orderBy('created_at', 'desc')
-            ->limit(7)
-            ->get();
+        return OrderResource::collection(
+            Order::query()
+                ->select([
+                    'orders.id',
+                    'orders.total_price',
+                    'orders.created_at',
+                    DB::raw('COUNT(order_items.id) AS items_count'),
+                    'customers.user_id',
+                    'customers.first_name',
+                    'customers.last_name'
+                ])
+                ->join('order_items', 'order_items.order_id', '=', 'orders.id')
+                ->join('customers', 'customers.user_id', '=', 'orders.created_by')
+                ->where('orders.status', OrderStatus::Paid->value)
+                ->groupBy(
+                    'orders.id',
+                    'orders.total_price',
+                    'orders.created_at',
+                    'customers.user_id',
+                    'customers.first_name',
+                    'customers.last_name'
+                )
+                ->limit(7)
+                ->withoutTrashed()
+                ->orderBy('orders.created_at', 'desc')
+                ->get()
+        );
     }
 }

@@ -71,6 +71,7 @@ const routes = [
                 path: "orders/:id",
                 name: "app.orders.view",
                 component: OrderView,
+                props: true
             },
         ],
     },

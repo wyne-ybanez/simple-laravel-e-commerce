@@ -1,5 +1,11 @@
 <template>
-    <h1 class="text-lg font-normal mb-3">Dashboard</h1>
+    <div class="mb-2 flex items-center justify-between">
+        <h1 class="text-lg font-normal mb-3">Dashboard</h1>
+        <div class="flex items-center">
+        <label class="mr-2">Change Date Period</label>
+        <CustomInput type="select" v-model="chosenDate" @change="onDatePickerChange" :select-options="dateOptions"/>
+        </div>
+    </div>
 
     <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-3">
         <!-- Acive Customers -->
@@ -68,7 +74,7 @@
                             <span class="font-semibold">Order #{{ o.id }}</span>
                         </p>
                         <p class="font-light">created {{ o.created_at }}</p>
-                        <p class="font-light">{{ o.items }} item(s)</p>
+                        <p class="font-light">{{ o.items[0].quantity }} item(s)</p>
                         <p class="flex justify-between font-light">
                             <span>{{ o.first_name }} {{ o.last_name }}</span>
                             <span>{{ $filters.currencyEU(o.total_price) }}</span>
@@ -76,9 +82,9 @@
                     </router-link>
                 </div>
             </template>
-            <Spinner v-else text="" class="" />
-        </div>
         <!-- End Latest Orders -->
+        </div>
+
         <!-- Orders by Country -->
         <div class="md:grid grid-cols-1">
             <div
@@ -141,6 +147,12 @@ import DoughnutChart from "../components/core/Charts/Doughnut.vue";
 import axiosClient from "../axios.js";
 import { computed, onMounted, ref } from "vue";
 import Spinner from "../components/core/Spinner.vue";
+import CustomInput from "../components/core/CustomInput.vue";
+import {useStore} from "vuex";
+
+const store = useStore();
+const dateOptions = computed(() => store.state.dateOptions);
+const chosenDate = ref('all')
 
 const loading = ref({
     customersCount: true,
@@ -156,71 +168,90 @@ const customersCount = ref(0);
 const productsCount = ref(0);
 const paidOrders = ref(0);
 const totalIncome = ref(0);
-const ordersByCountry = ref({});
-const latestCustomers = ref({});
-const latestOrders = ref({});
+const ordersByCountry = ref([]);
+const latestCustomers = ref([]);
+const latestOrders = ref([]);
 
-axiosClient.get("/dashboard/customers-count").then(({ data }) => {
-    customersCount.value = data;
-    loading.value.customersCount = false;
-});
+function updateDashboard() {
+    const date = chosenDate.value
+        loading.value = {
+        customersCount: true,
+        productsCount: true,
+        paidOrders: true,
+        totalIncome: true,
+        ordersByCountry: true,
+        latestCustomers: true,
+        latestOrders: true
+    }
 
-axiosClient.get("/dashboard/products-count").then(({ data }) => {
-    productsCount.value = data;
-    loading.value.productsCount = false;
-});
-
-axiosClient.get("/dashboard/orders-count").then(({ data }) => {
-    paidOrders.value = data;
-    loading.value.paidOrders = false;
-});
-
-axiosClient.get("/dashboard/income-amount").then(({ data }) => {
-    totalIncome.value = new Intl.NumberFormat("en-DE", {
-        style: "currency",
-        currency: "EUR",
-    }).format(data);
-    loading.value.totalIncome = false;
-});
-
-axiosClient.get("/dashboard/orders-by-country").then(({ data: countries }) => {
-    const chartData = {
-        labels: [],
-        datasets: [
-            {
-                backgroundColor: [
-                    "#41B883",
-                    "#36A2EB",
-                    "#FFCE56",
-                    "#FF3100",
-                    "#C0CBFF",
-                ],
-                data: [],
-            },
-        ],
-    };
-
-    countries.forEach((c) => {
-        chartData.labels.push(c.name);
-        chartData.datasets[0].data.push(c.count);
+    axiosClient.get("/dashboard/customers-count").then(({ data }) => {
+        customersCount.value = data;
+        loading.value.customersCount = false;
     });
 
-    ordersByCountry.value = chartData;
+    axiosClient.get("/dashboard/products-count").then(({ data }) => {
+        productsCount.value = data;
+        loading.value.productsCount = false;
+    });
 
-    if (countries) {
-        loading.value.ordersByCountry = false;
-    }
-});
+    axiosClient.get("/dashboard/orders-count").then(({ data }) => {
+        paidOrders.value = data;
+        loading.value.paidOrders = false;
+    });
 
-axiosClient.get("/dashboard/latest-customers").then(({ data: customers }) => {
-    latestCustomers.value = customers;
-    loading.value.latestCustomers = false;
-});
+    axiosClient.get("/dashboard/income-amount").then(({ data }) => {
+        totalIncome.value = new Intl.NumberFormat("en-DE", {
+            style: "currency",
+            currency: "EUR",
+        }).format(data);
+        loading.value.totalIncome = false;
+    });
 
-axiosClient.get("/dashboard/latest-orders").then(({ data: orders }) => {
-    latestOrders.value = orders;
-    loading.value.latestOrders = false;
-});
+    axiosClient.get("/dashboard/orders-by-country").then(({ data: countries }) => {
+        const chartData = {
+            labels: [],
+            datasets: [
+                {
+                    backgroundColor: [
+                        "#41B883",
+                        "#36A2EB",
+                        "#FFCE56",
+                        "#FF3100",
+                        "#C0CBFF",
+                    ],
+                    data: [],
+                },
+            ],
+        };
+
+        countries.forEach((c) => {
+            chartData.labels.push(c.name);
+            chartData.datasets[0].data.push(c.count);
+        });
+
+        ordersByCountry.value = chartData;
+
+        if (countries) {
+            loading.value.ordersByCountry = false;
+        }
+    });
+
+    axiosClient.get("/dashboard/latest-customers").then(({ data: customers }) => {
+        latestCustomers.value = customers;
+        loading.value.latestCustomers = false;
+    });
+
+    axiosClient.get(`/dashboard/latest-orders`, {params: {date}}).then(({data: orders}) => {
+        latestOrders.value = orders.data;
+        loading.value.latestOrders = false;
+    })
+}
+
+function onDatePickerChange() {
+    updateDashboard()
+}
+
+onMounted(() => updateDashboard())
 </script>
 
 <style scoped></style>
