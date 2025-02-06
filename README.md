@@ -1,6 +1,28 @@
 # Simple Laravel E-Commerce
 
-Welcome to Simple Laravel E-Commerce, your starting point for building a Laravel-based e-commerce website. This README will guide you through the setup process and provide essential information about the project.
+This is a laravel project for an e-commerce website/app that allows online sellers to sell, categorize and take payment for the sale of goods online.
+
+The project aims to build a website on the Laravel Framework for improved security and speedy development. It allows user's to register an account and log in to review their orders. Additionally, the website allows the administrator to gather the latest data such as recent purchases and on going orders through an the admin panel.
+
+Here’s a structured Table of Contents for your markdown file:
+
+## Table of Contents
+
+-   [Getting Started](#getting-started)
+    -   [Running the backend/admin panel locally](#running-the-backendadmin-panel-locally)
+-   [Demo Images](#demo-images)
+-   [Frontend Dependencies](#frontend-dependencies)
+    -   [Core Technologies](#core-technologies)
+    -   [UI/Styling](#uistyling)
+    -   [Development Tools](#development-tools)
+    -   [Data Handling & Utilities](#data-handling--utilities)
+-   [Backend Dependencies](#backend-dependencies)
+    -   [PHP Core Requirements](#php-core-requirements)
+    -   [Database & ORM](#database--orm)
+    -   [Payment Processing](#payment-processing)
+    -   [API & HTTP](#api--http)
+-   [Future Improvements](#future-improvements)
+-   [Media](#media)
 
 ## Getting Started
 
@@ -54,9 +76,9 @@ MAIL_FROM_NAME="${APP_NAME}"
     npm run dev
     ```
 
-### Running the backend locally
+### Running the backend/admin panel locally
 
-Once you have setup your database or seeded your db. To access the backend admin, follow these steps:
+Once you have setup your database, seeded your database and established your `.env` files. To access the backend admin, follow these steps:
 
 1. From the project root directory, navigate to the `backend/` folder.
 
@@ -72,6 +94,22 @@ Once you have setup your database or seeded your db. To access the backend admin
 admin@example.com
 admin123
 ```
+
+## Demo Images
+
+![App overview](storage/docs/images/digi-art-overview.webp)
+
+![App product individual](storage/docs/images/digi-art-prod-individual.webp)
+
+![App product modal](storage/docs/images/digi-art-modal.webp)
+
+![App product checkout](storage/docs/images/digi-art-checkout.webp)
+
+![App backend](storage/docs/images/digi-art-backend.webp)
+
+![App backend orders](storage/docs/images/digi-art-admin-orders.webp)
+
+![App backend product edit](storage/docs/images/digi-art-prod-edit.webp)
 
 ## Frontend Dependencies
 
@@ -129,3 +167,19 @@ admin123
 ### API & HTTP
 
 -   GuzzleHTTP (v7.2+)
+
+## Future Improvements
+
+-   Improve/Update Laravel and Tailwind versions and every other dependency.
+-   Create a reset password functionality for admin users
+-   Create a better categorization feature for products
+-   Develop a better solution for multiple images assigned to a product
+-   Allow for comments and reviews under products
+-   Develop admin profile editing functionality/feature
+-   WYSIWYG editor for products
+
+## Media
+
+-   I got most of my media from Google images
+-   I do not own any of the media
+-   Media used from the readme doc is for educational purposes only
