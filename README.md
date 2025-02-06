@@ -98,20 +98,32 @@ admin123
 **Overview:**
 ![App overview](storage/docs/images/digi-art-overview.webp)
 
+&nbsp;
+
 **Product Individual:**
 ![App product individual](storage/docs/images/digi-art-prod-individual.webp)
+
+&nbsp;
 
 **Product Modal:**
 ![App product modal](storage/docs/images/digi-art-modal.webp)
 
+&nbsp;
+
 **Product Checkout:**
 ![App product checkout](storage/docs/images/digi-art-checkout.webp)
+
+&nbsp;
 
 **Admin Dashboard:**
 ![App backend](storage/docs/images/digi-art-backend.webp)
 
+&nbsp;
+
 **Admin Panel Orders:**
 ![App backend orders](storage/docs/images/digi-art-admin-orders.webp)
+
+&nbsp;
 
 **Admin Panel Product Edit:**
 ![App backend product edit](storage/docs/images/digi-art-prod-edit.webp)
