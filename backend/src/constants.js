@@ -1,5 +1,5 @@
 // Project Name
-export const BUSINESS_NAME = "Digi.Art";
+export const BUSINESS_NAME = `${import.meta.env.VITE_BUSINESS_NAME}`;
 
 // Per page
 export const PRODUCTS_PER_PAGE = 10;
