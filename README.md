@@ -4,8 +4,6 @@ This is a laravel project for an e-commerce website/app that allows online selle
 
 The project aims to build a website on the Laravel Framework for improved security and speedy development. It allows user's to register an account and log in to review their orders. Additionally, the website allows the administrator to gather the latest data such as recent purchases and on going orders through an the admin panel.
 
-Here’s a structured Table of Contents for your markdown file:
-
 ## Table of Contents
 
 -   [Getting Started](#getting-started)
@@ -97,18 +95,25 @@ admin123
 
 ## Demo Images
 
+**Overview:**
 ![App overview](storage/docs/images/digi-art-overview.webp)
 
+**Product Individual:**
 ![App product individual](storage/docs/images/digi-art-prod-individual.webp)
 
+**Product Modal:**
 ![App product modal](storage/docs/images/digi-art-modal.webp)
 
+**Product Checkout:**
 ![App product checkout](storage/docs/images/digi-art-checkout.webp)
 
+**Admin Dashboard:**
 ![App backend](storage/docs/images/digi-art-backend.webp)
 
+**Admin Panel Orders:**
 ![App backend orders](storage/docs/images/digi-art-admin-orders.webp)
 
+**Admin Panel Product Edit:**
 ![App backend product edit](storage/docs/images/digi-art-prod-edit.webp)
 
 ## Frontend Dependencies
