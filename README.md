@@ -57,7 +57,7 @@ MAIL_FROM_ADDRESS="hello@example.com"
 MAIL_FROM_NAME="${APP_NAME}"
 ```
 
-5. Configure your strip API details in the `.env`
+5. Configure your stripe API details in the `.env`
 
 6. Ensure you assign a database for your project. If you don't have a similar database you'll need to:
 
