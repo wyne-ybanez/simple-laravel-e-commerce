@@ -245,6 +245,11 @@
                 >
                 </a>
             </nav>
+            <div v-if="customers.data.length === 0" class="text-center mx-auto">
+                <p class="py-8 text-gray-700">
+                    There are no customers.
+                </p>
+            </div>
         </div>
     </div>
 </template>
