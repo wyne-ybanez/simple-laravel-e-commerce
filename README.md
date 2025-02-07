@@ -42,7 +42,9 @@ When you have these. You can then begin to create the project, follow these step
 cp backend/.env.example backend/.env
 ```
 
-3. In `app/Helpers/ProductCategory` file ensure you have outlined your **category plural names** and **category singular names**.
+3. In `app/Helpers/ProductCategory.php` file ensure you have outlined your **category plural names** and **category singular names**. Below is an example of this
+
+![Product categorues](storage/docs/images/digi-art-categories.webp)
 
 4. You'll need to configure your mailer settings in the `.env` file:
 
@@ -125,6 +127,11 @@ admin123
 
 **Admin Dashboard:**
 ![App backend](storage/docs/images/digi-art-backend.webp)
+
+&nbsp;
+
+**Admin Products Table:**
+![App backend products table](storage/docs/images/digi-art-products-table.webp)
 
 &nbsp;
 
