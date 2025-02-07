@@ -16,7 +16,7 @@ class ProductController extends Controller
             ->orderBy('updated_at', 'asc')
             ->paginate(12);
 
-        $heading = "All Works";
+        $heading = "All Items";
         $query = strtolower($request->input('q'));
 
         $category_description = ProductUtility::getIndexDescription();

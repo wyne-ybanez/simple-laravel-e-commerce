@@ -59,7 +59,7 @@
                     <div class="py-6">
                         <div class="flex justify-between">
                             <span class="font-semibold text-lg">Subtotal</span>
-                            <span id="cartTotal" class="text-xl font-semibold" x-text="`$${cartTotal}`"></span>
+                            <span id="cartTotal" class="text-xl font-semibold" x-text="`€${cartTotal}`"></span>
                         </div>
                         <p class="text-stone-800 mb-6">
                             Shipping and taxes calculated at checkout

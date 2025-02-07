@@ -26,10 +26,10 @@ class ProductFactory extends Factory
 
         return [
             'title' => fake()->text(30),
-            'image' => fake()->imageUrl(),
-            'image_1' => fake()->imageUrl(),
-            'image_2' => fake()->imageUrl(),
-            'image_3' => fake()->imageUrl(),
+            'image' => 'https://picsum.photos/640/480?random=' . fake()->numberBetween(1, 1000),
+            'image_1' => 'https://picsum.photos/640/480?random=' . fake()->numberBetween(1, 1000),
+            'image_2' => 'https://picsum.photos/640/480?random=' . fake()->numberBetween(1, 1000),
+            'image_3' => 'https://picsum.photos/640/480?random=' . fake()->numberBetween(1, 1000),
             'description' => fake()->realText(2000),
             'description_2' => fake()->realText(2000),
             'category' => $category,
