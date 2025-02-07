@@ -5,7 +5,7 @@ namespace App\Helpers;
 class ProductCategory
 {
     // Change these to suit whatever categories you'd like to set for your project.
-    // Ensure when creating products they are set with these categories in your database
+    // Ensure when creating products they are set with the category singular name.
     private static $categories = [
         'category1' => [
             'plural_name' => 'cat_1_plural',
@@ -23,8 +23,8 @@ class ProductCategory
             'description' => 'Description for category 3',
         ],
         'category4' => [
-            'plural_name' => 'cat_4_plural',
-            'singular_name' => 'cat_4_singular',
+            'plural_name' => 'Landscapes',
+            'singular_name' => 'Landscape',
             'description' => 'Description for category 4',
         ]
     ];
