@@ -11,7 +11,12 @@
     </div>
 
     <div class="px-10 lg:px-20 pb-16 2xl:w-1/2 xl:w-[60%]">
-        {{ $category_description }}
+        @if (isset($category_description) && $category_description !== null)
+            {{ $category_description }}
+        @else
+            Delve into a world teeming with the imagination of artists who have breathed life into our favourite fantasy universes. 
+            From majestic dragons to heroic characters, our carefully curated collection showcases the incredible diversity and creativity of digital artists.
+        @endif
     </div>
 
     @include('product.partials.view-items')

@@ -19,7 +19,6 @@ class ProductController extends Controller
         $heading = "All Items";
         $query = strtolower($request->input('q'));
 
-        $category_description = ProductUtility::getIndexDescription();
         $categories_collection = $this->getIndexCategories();
 
         // query allows for search of product titles and categories
@@ -38,7 +37,6 @@ class ProductController extends Controller
         $context = [
             'products' => $products,
             'heading' => $heading,
-            'category_description' => $category_description,
             'request' => $request
         ];
 
