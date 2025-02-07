@@ -44,7 +44,33 @@ cp backend/.env.example backend/.env
 
 3. In `app/Helpers/ProductCategory.php` file ensure you have outlined your **category plural names** and **category singular names**. Below is an example of this
 
-![Product categorues](storage/docs/images/digi-art-categories.webp)
+```php
+// Change these to suit whatever categories you'd like to set for your project.
+// Ensure when creating products they are set with the category singular name.
+
+private static $categories = [
+    'category1' => [
+        'plural_name' => 'cat_1_plural',
+        'singular_name' => 'cat_1_singular',
+        'description' => 'Description for category 1',
+    ],
+    'category2' => [
+        'plural_name' => 'cat_2_plural',
+        'singular_name' => 'cat_2_singular',
+        'description' => 'Description for category 2',
+    ],
+    'category3' => [
+        'plural_name' => 'cat_3_plural',
+        'singular_name' => 'cat_3_singular',
+        'description' => 'Description for category 3',
+    ],
+    'category4' => [
+        'plural_name' => 'cat_4_plural',
+        'singular_name' => 'cat_4_singular',
+        'description' => 'Description for category 4',
+    ]
+];
+```
 
 4. You'll need to configure your mailer settings in the `.env` file:
 
