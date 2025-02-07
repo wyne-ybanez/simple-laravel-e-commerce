@@ -24,7 +24,15 @@ The project aims to build a website on the Laravel Framework for improved securi
 
 ## Getting Started
 
-To begin, follow these steps:
+**Requirements**
+
+-   PHP (v8.1+)
+-   Laravel Framework (v9.19+)
+-   Alpine.js (v3.12.0) with Collapse and Persist plugins
+-   Vue.js (v3.2.25) with Vue Router (v4.0.13) and Vuex (v4.0.2)
+-   Tailwind CSS (v3.1.0)
+
+When you have these. You can then begin to create the project, follow these steps:
 
 1. Set up your `.env` file. Navigate to the `backend/` folder and configure your `.env` file there too. Follow the `.env.example` file for sample file contents.
 
@@ -34,7 +42,7 @@ To begin, follow these steps:
 cp backend/.env.example backend/.env
 ```
 
-3. In your `.env` file ensure you have outlined your **category plural names** and **category singular names**. They must be somewhat similar as in the `.env` file.
+3. In `app/Helpers/ProductCategory` file ensure you have outlined your **category plural names** and **category singular names**.
 
 4. You'll need to configure your mailer settings in the `.env` file:
 

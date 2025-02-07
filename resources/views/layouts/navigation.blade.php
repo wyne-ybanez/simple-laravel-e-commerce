@@ -1,4 +1,8 @@
 <!-- Conditional bg header color depends on ProductView -->
+@php
+    use App\Helpers\ProductCategory;
+@endphp
+
 <header
     x-data="{
         mobileMenuOpen: false,
@@ -109,39 +113,39 @@
                 <a href="{{ route('home') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item">
                     <div class="link-underline"
                         :class="{ 'link-underline-black' : !scrolled }">
-                        All Works
+                        All Items
                     </div>
                 </a>
             </li>
             <li class="mt-5">
-                <a href="{{ route(getenv('PRODUCT_CATEGORY_1')) }}" class="relative inline-flex items-center py-navbar-item px-navbar-item">
+                <a href="{{ route('category1') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item">
                     <div class="link-underline"
                         :class="{ 'link-underline-black' : !scrolled }">
-                        {{ getenv('PRODUCT_CATEGORY_1') }}
+                        {{ ProductCategory::getCategory('category1')['plural_name'] }}
                     </div>
                 </a>
             </li>
             <li class="mt-5">
-                <a href="{{ route(getenv('PRODUCT_CATEGORY_4')) }}" class="relative inline-flex items-center py-navbar-item px-navbar-item">
+                <a href="{{ route('category2') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item">
                     <div class="link-underline"
                         :class="{ 'link-underline-black' : !scrolled }">
-                        {{ getenv('PRODUCT_CATEGORY_4') }}
+                        {{ ProductCategory::getCategory('category2')['plural_name'] }}
                     </div>
                 </a>
             </li>
             <li class="mt-5">
-                <a href="{{ route(getenv('PRODUCT_CATEGORY_3')) }}" class="relative inline-flex items-center py-navbar-item px-navbar-item">
+                <a href="{{ route('category3') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item">
                     <div class="link-underline"
                         :class="{ 'link-underline-black' : !scrolled }">
-                        {{ getenv('PRODUCT_CATEGORY_3') }}
+                        {{ ProductCategory::getCategory('category3')['plural_name'] }}
                     </div>
                 </a>
             </li>
             <li class="mt-5">
-                <a href="{{ route(getenv('PRODUCT_CATEGORY_2')) }}" class="relative inline-flex items-center py-navbar-item px-navbar-item">
+                <a href="{{ route('category4') }}" class="relative inline-flex items-center py-navbar-item px-navbar-item">
                     <div class="link-underline"
                         :class="{ 'link-underline-black' : !scrolled }">
-                        {{ getenv('PRODUCT_CATEGORY_2') }}
+                        {{ ProductCategory::getCategory('category4')['plural_name']}}
                     </div>
                 </a>
             </li>

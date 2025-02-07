@@ -20,7 +20,7 @@ class ProductFactory extends Factory
         $model = Product::class;
 
         // Define categories
-        $categories = ['CATEGORY_1', 'CATEGORY_2', 'CATEGORY_3', 'CATEGORY_4'];
+        $categories = ['cat_1', 'cat_2', 'cat_3', 'cat_4'];
 
         $category = fake()->randomElement($categories);
 

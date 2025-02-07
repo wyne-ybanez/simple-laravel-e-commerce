@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
+use App\Helpers\ProductCategory;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +21,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guestOrVerified'])->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('home');
-    Route::get('/' . getenv('PRODUCT_CATEGORY_1'), [ProductController::class, 'category1'])->name(getenv('PRODUCT_CATEGORY_1'));
-    Route::get('/' . getenv('PRODUCT_CATEGORY_2'), [ProductController::class, 'category2'])->name(getenv('PRODUCT_CATEGORY_2'));
-    Route::get('/' . getenv('PRODUCT_CATEGORY_3'), [ProductController::class, 'category3'])->name(getenv('PRODUCT_CATEGORY_3'));
-    Route::get('/' . getenv('PRODUCT_CATEGORY_4'), [ProductController::class, 'category4'])->name(getenv('PRODUCT_CATEGORY_4'));
+    Route::get('/' . ProductCategory::getCategory('category1')['plural_name'], [ProductController::class, 'category1'])->name('category1');
+    Route::get('/' . ProductCategory::getCategory('category2')['plural_name'], [ProductController::class, 'category2'])->name('category2');
+    Route::get('/' . ProductCategory::getCategory('category3')['plural_name'], [ProductController::class, 'category3'])->name('category3');
+    Route::get('/' . ProductCategory::getCategory('category4')['plural_name'], [ProductController::class, 'category4'])->name('category4');
     Route::get('/product/{product:slug}', [ProductController::class, 'view'])->name('product.view');
     Route::get('/about', function () {
         return view('about');

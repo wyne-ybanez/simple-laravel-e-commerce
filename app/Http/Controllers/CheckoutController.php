@@ -15,6 +15,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Helpers\ProductCategory;
 
 class CheckoutController extends Controller
 {
@@ -129,11 +130,11 @@ class CheckoutController extends Controller
             $customer = \Stripe\Customer::retrieve($session->customer);
 
             $products = Product::query()
-                ->orderBy('updated_at', 'asc')
+                ->orderBy('updated_at', 'desc')
                 ->paginate(12);
 
             $context = [
-                'heading' => 'All Works',
+                'heading' => 'All Items',
                 'products' => $products
             ];
 
@@ -147,7 +148,7 @@ class CheckoutController extends Controller
 
             $context = [
                 'message' => $e->getMessage(),
-                'heading' => 'All Works',
+                'heading' => 'All Items',
                 'products' => $products
             ];
 
@@ -168,7 +169,7 @@ class CheckoutController extends Controller
 
         return view('checkout.failure', [
             'message' => 'If the issue persists, please try again later',
-            'heading' => 'All Works',
+            'heading' => 'All Items',
             'products' => $products
         ]);
     }

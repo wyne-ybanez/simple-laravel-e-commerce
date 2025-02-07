@@ -3,8 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\Product;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\URL;
+use App\Helpers\ProductCategory;
 
 /**
  * Class ProductUtility
@@ -14,35 +13,22 @@ use Illuminate\Support\Facades\URL;
  */
 class ProductUtility
 {
-    public static function get_items_in_category($category_name)
+    public static function getItemsInCategory($category_id)
     {
-        // keys
-        $category_name_1 = getenv('PRODUCT_CATEGORY_1');
-        $category_name_2 = getenv('PRODUCT_CATEGORY_2');
-        $category_name_3 = getenv('PRODUCT_CATEGORY_3');
-        $category_name_4 = getenv('PRODUCT_CATEGORY_4');
+        $category = ProductCategory::getCategorySingularName($category_id);
+        $searchTerm = strtolower($category);
 
-        // Singular
-        $category_1 = getenv('CATEGORY_SINGULAR_1');
-        $category_2 = getenv('CATEGORY_SINGULAR_2');
-        $category_3 = getenv('CATEGORY_SINGULAR_3');
-        $category_4 = getenv('CATEGORY_SINGULAR_4');
-
-        $category_collection = array(
-            strtolower($category_name_1) => strtolower($category_1),
-            strtolower($category_name_2) => strtolower($category_2),
-            strtolower($category_name_3) => strtolower($category_3),
-            strtolower($category_name_4) => strtolower($category_4)
-        );
-
-        $sanitized_category = strtolower($category_name);
-
-        $products = Product::query()
-            ->where('category', 'LIKE', $category_collection[$sanitized_category] . '%')
+        return Product::query()
+            ->where('category', 'LIKE', $searchTerm . '%')
             ->where('published', true)
             ->orderBy('updated_at', 'desc')
             ->paginate(12);
+    }
 
-        return $products;
+    public static function getIndexDescription()
+    {
+        $index_description = "Delve into a world teeming with the imagination of artists who have breathed life into our favourite fantasy universes. From majestic dragons to heroic characters, our carefully curated collection showcases the incredible diversity and creativity of digital artists.";
+
+        return $index_description;
     }
 }
