@@ -34,15 +34,17 @@ The project aims to build a website on the Laravel Framework for improved securi
 
 When you have these. You can then begin to create the project, follow these steps:
 
-1. Set up your `.env` file. Navigate to the `backend/` folder and configure your `.env` file there too. Follow the `.env.example` file for sample file contents.
+1. After you clone this project. Set up your `.env` file. Navigate to the `backend/` folder and configure your `.env` file there too. Follow the `.env.example` file for sample file contents.
 
-2. Go to `backend/` and copy the `.env.example` - from the root:
+2. Generate your APP Key: `php artisan key:generate`
+
+3. Go to `backend/` and copy the `.env.example` - from the root:
 
 ```php
 cp backend/.env.example backend/.env
 ```
 
-3. In `app/Helpers/ProductCategory.php` file ensure you have outlined your **category plural names** and **category singular names**. Below is an example of this
+4. In `app/Helpers/ProductCategory.php` file ensure you have outlined your **category plural names** and **category singular names**. Below is an example of this
 
 ```php
 // Change these to suit whatever categories you'd like to set for your project.
@@ -72,7 +74,7 @@ private static $categories = [
 ];
 ```
 
-4. You'll need to configure your mailer settings in the `.env` file:
+5. You'll need to configure your mailer settings in the `.env` file:
 
 ```php
 MAIL_MAILER=smtp
@@ -85,26 +87,26 @@ MAIL_FROM_ADDRESS="hello@example.com"
 MAIL_FROM_NAME="${APP_NAME}"
 ```
 
-5. Configure your stripe API details in the `.env`
+6. Configure your stripe API details in the `.env`
 
-6. Ensure you assign a database for your project. If you don't have a similar database you'll need to:
+7. Ensure you assign a database for your project. If you don't have a similar database you'll need to:
 
     - Run database migrations: `php artisan migrate`. If you don't have a database, it will prompt if you'd like to create one named in your `.env` file. Type `yes`.
     - Run `php artisan db:seed`
 
-7. In your terminal, go to the project root directory and run:
+8. In your terminal, go to the project root directory and run:
 
     ```bash
     npm install && composer install
     ```
 
-8. Next, navigate to the `backend/` folder and run:
+9. Next, navigate to the `backend/` folder and run:
 
     ```bash
     npm install --legacy-peer-deps
     ```
 
-9. Return to the project root directory and execute the following commands in your terminal:
+10. Return to the project root directory and execute the following commands in your terminal:
     ```bash
     php artisan serve
     npm run dev
