@@ -15,17 +15,17 @@ class ProductCategory
         'category2' => [
             'plural_name' => 'cat_2_plural',
             'singular_name' => 'cat_2_singular',
-            'description' => 'Description for category 1',
+            'description' => 'Description for category 2',
         ],
         'category3' => [
             'plural_name' => 'cat_3_plural',
             'singular_name' => 'cat_3_singular',
-            'description' => 'Description for category 1',
+            'description' => 'Description for category 3',
         ],
         'category4' => [
             'plural_name' => 'cat_4_plural',
             'singular_name' => 'cat_4_singular',
-            'description' => 'Description for category 1',
+            'description' => 'Description for category 4',
         ]
     ];
 
