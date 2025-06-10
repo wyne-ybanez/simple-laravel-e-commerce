@@ -68,85 +68,88 @@
     </div>
 </template>
 
-<script setup>
-import { onMounted, ref } from "vue";
+<script>
 import CustomInput from "../../components/core/CustomInput.vue";
 import store from "../../store/index.js";
 import Spinner from "../../components/core/Spinner.vue";
-import { useRoute, useRouter } from "vue-router";
-import axiosClient from "../../axios.js";
 
-const route = useRoute();
-const router = useRouter();
-
-const user = ref({
-    id: null,
-    name: "",
-    email: "",
-    password: null,
-    is_admin: false,
-});
-
-const errors = ref({});
-
-const loading = ref(false);
-const options = ref([]);
-
-const emit = defineEmits(["update:modelValue", "close"]);
-
-onMounted(() => {
-    if (route.params.id) {
-        loading.value = true;
-        store.dispatch("getUser", route.params.id).then((response) => {
-            loading.value = false;
-            user.value = response.data;
-        });
-    }
-});
-
-function onSubmit($event, close = false) {
-    loading.value = true;
-    errors.value = {};
-    if (user.value.id) {
-        store
-            .dispatch("updateUser", user.value)
-            .then((response) => {
-                loading.value = false;
-                if (response.status === 200) {
-                    user.value = response.data;
-                    store.dispatch("getUsers");
-                    if (close) {
-                        router.push({ name: "app.users" });
-                    }
-                }
-            })
-            .catch((err) => {
-                loading.value = false;
-                errors.value = err.response.data.errors;
-            });
-    } else {
-        store
-            .dispatch("createUser", user.value)
-            .then((response) => {
-                loading.value = false;
-                if (response.status === 201) {
-                    user.value = response.data;
-                    store.dispatch("getUsers");
-                    if (close) {
-                        router.push({ name: "app.users" });
-                    } else {
-                        user.value = response.data;
-                        router.push({
-                            name: "app.users.view",
-                            params: { id: response.data.id },
-                        });
-                    }
-                }
-            })
-            .catch((err) => {
-                loading.value = false;
-                errors.value = err.response.data.errors;
-            });
-    }
-}
+export default {
+    components: {
+        CustomInput,
+        Spinner,
+    },
+    emits: ["update:modelValue", "close"],
+    data() {
+        return {
+            user: {
+                id: null,
+                name: "",
+                email: "",
+                password: null,
+                is_admin: false,
+            },
+            errors: {},
+            loading: false,
+            options: [],
+        };
+    },
+    mounted() {
+        if (this.$route.params.id) {
+            this.loading = true;
+            store
+                .dispatch("getUser", this.$route.params.id)
+                .then((response) => {
+                    this.loading = false;
+                    this.user = response.data;
+                });
+        }
+    },
+    methods: {
+        onSubmit($event, close = false) {
+            this.loading = true;
+            this.errors = {};
+            if (this.user.id) {
+                store
+                    .dispatch("updateUser", this.user)
+                    .then((response) => {
+                        this.loading = false;
+                        if (response.status === 200) {
+                            this.user = response.data;
+                            store.dispatch("getUsers");
+                            if (close) {
+                                this.$router.push({ name: "app.users" });
+                            }
+                        }
+                    })
+                    .catch((err) => {
+                        this.loading = false;
+                        this.errors = err.response.data.errors;
+                    });
+            } else {
+                store
+                    .dispatch("createUser", this.user)
+                    .then((response) => {
+                        this.loading = false;
+                        if (response.status === 201) {
+                            this.user = response.data;
+                            store.dispatch("getUsers");
+                            if (close) {
+                                this.$router.push({ name: "app.users" });
+                            } else {
+                                this.user = response.data;
+                                this.$router.push({
+                                    name: "app.users.view",
+                                    params: { id: response.data.id },
+                                });
+                            }
+                        }
+                    })
+                    .catch((err) => {
+                        this.loading = false;
+                        this.errors = err.response.data.errors;
+                    });
+            }
+        },
+    },
+};
 </script>

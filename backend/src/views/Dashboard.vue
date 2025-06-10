@@ -165,6 +165,7 @@ import axiosClient from "../axios.js";
 import Spinner from "../components/core/Spinner.vue";
 import CustomInput from "../components/core/CustomInput.vue";
 import AppLayout from "../components/AppLayout.vue";
+import store from "../store";
 
 export default {
     components: {
@@ -196,7 +197,7 @@ export default {
     },
     computed: {
         dateOptions() {
-            return this.$store.state.dateOptions;
+            return store.state.dateOptions;
         },
     },
     methods: {

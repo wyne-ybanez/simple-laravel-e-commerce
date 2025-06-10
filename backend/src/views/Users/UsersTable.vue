@@ -69,7 +69,7 @@
                     </TableHeaderCell>
                     <TableHeaderCell
                         @click="sortUsers('created_at')"
-                        class="font-medium"
+                        class="font-medium border-b p-2 pb-5"
                         field="created_at"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
@@ -78,7 +78,7 @@
                     </TableHeaderCell>
                     <TableHeaderCell
                         field="actions"
-                        class="cursor-default font-medium"
+                        class="cursor-default font-medium border-b p-2 pb-5"
                     >
                         Actions
                     </TableHeaderCell>
@@ -239,8 +239,7 @@
     </div>
 </template>
 
-<script setup>
-import { computed, ref, onMounted } from "vue";
+<script>
 import Spinner from "../../components/core/Spinner.vue";
 import store from "../../store";
 import { USERS_PER_PAGE } from "../../constants.js";
@@ -252,66 +251,84 @@ import {
     TrashIcon,
 } from "@heroicons/vue/outline";
 
-const emit = defineEmits(["clickEdit"]);
+export default {
+    components: {
+        Spinner,
+        TableHeaderCell,
+        Menu,
+        MenuButton,
+        MenuItem,
+        MenuItems,
+        DotsVerticalIcon,
+        PencilIcon,
+        TrashIcon,
+    },
+    emits: ["clickEdit"],
+    data() {
+        return {
+            perPage: USERS_PER_PAGE,
+            search: "",
+            sortField: "updated_at",
+            sortDirection: "desc",
+            showUserModal: false,
+        };
+    },
+    computed: {
+        users() {
+            return store.state.users;
+        },
+    },
+    mounted() {
+        this.getUsers();
+    },
+    methods: {
+        getForPage(ev, link) {
+            ev.preventDefault();
+            if (!link.url || link.active) {
+                return;
+            }
+            this.getUsers(link.url);
+        },
 
-const perPage = ref(USERS_PER_PAGE);
-const search = ref("");
-const users = computed(() => store.state.users);
-const sortField = ref("updated_at");
-const sortDirection = ref("desc");
+        getUsers(url = null) {
+            store.dispatch("getUsers", {
+                url,
+                search: this.search,
+                per_page: this.perPage,
+                sort_field: this.sortField,
+                sort_direction: this.sortDirection,
+            });
+        },
 
-const showUserModal = ref(false);
+        sortUsers(field) {
+            if (field === this.sortField) {
+                if (this.sortDirection === "desc") {
+                    this.sortDirection = "asc";
+                } else {
+                    this.sortDirection = "desc";
+                }
+            } else {
+                this.sortField = field;
+                this.sortDirection = "asc";
+            }
+            this.getUsers();
+        },
 
-onMounted(() => {
-    getUsers();
-});
+        showAddNewModal() {
+            this.showUserModal = true;
+        },
 
-function getForPage(ev, link) {
-    ev.preventDefault();
-    if (!link.url || link.active) {
-        return;
-    }
-
-    getUsers(link.url);
-}
-
-function getUsers(url = null) {
-    store.dispatch("getUsers", {
-        url,
-        search: search.value,
-        per_page: perPage.value,
-        sort_field: sortField.value,
-        sort_direction: sortDirection.value,
-    });
-}
-
-function sortUsers(field) {
-    if (field === sortField.value) {
-        if (sortDirection.value === "desc") {
-            sortDirection.value = "asc";
-        } else {
-            sortDirection.value = "desc";
-        }
-    } else {
-        sortField.value = field;
-        sortDirection.value = "asc";
-    }
-    getUsers();
-}
-
-function showAddNewModal() {
-    showUserModal.value = true;
-}
-
-function deleteUser(user) {
-    if (!confirm(`Are you sure you want to delete the user?`)) {
-        return;
-    }
-    store.dispatch("deleteUser", user.id).then((res) => {
-        // TODO show notification (after delete)
-        store.dispatch("getUsers");
-    });
-}
+        deleteUser(user) {
+            if (!confirm(`Are you sure you want to delete the user?`)) {
+                return;
+            }
+            store.dispatch("deleteUser", user.id).then((res) => {
+                // TODO show notification (after delete)
+                store.dispatch("getUsers");
+            });
+        },
+    },
+};
 </script>
 
 <style scoped></style>
