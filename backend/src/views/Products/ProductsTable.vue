@@ -141,7 +141,10 @@
                     <td
                         class="border-b p-2 max-w-[200px] overflow-hidden text-ellipsis"
                     >
-                        <router-link :to="`/products/${product.id}`" class="hover:border-b hover:border-zinc-900">
+                        <router-link
+                            :to="`/products/${product.id}`"
+                            class="hover:border-b hover:border-zinc-900"
+                        >
                             {{ product.title }}
                         </router-link>
                     </td>
@@ -156,8 +159,15 @@
                         <div
                             class="text-black text-sm py-1 px-2 rounded-full w-fit"
                             :class="{
-                                'bg-green-400': ['true', '1', 1, true].includes(product.color),
-                                'bg-gray-300': ['false', '0', 0, false].includes(product.color),
+                                'bg-green-400': ['true', '1', 1, true].includes(
+                                    product.color
+                                ),
+                                'bg-gray-300': [
+                                    'false',
+                                    '0',
+                                    0,
+                                    false,
+                                ].includes(product.color),
                             }"
                         >
                             <span class="py-1" v-if="product.color">
@@ -171,8 +181,15 @@
                         <div
                             class="text-black text-sm py-1 px-2 rounded-full w-fit"
                             :class="{
-                                'bg-green-400': ['true', '1', 1, true].includes(product.published),
-                                'bg-gray-300': ['false', '0', 0, false,].includes(product.published),
+                                'bg-green-400': ['true', '1', 1, true].includes(
+                                    product.published
+                                ),
+                                'bg-gray-300': [
+                                    'false',
+                                    '0',
+                                    0,
+                                    false,
+                                ].includes(product.published),
                             }"
                         >
                             <span class="py-1" v-if="product.published">
@@ -333,10 +350,6 @@ function sortProducts(field) {
         sortDirection.value = "asc";
     }
     getProducts();
-}
-
-function editProduct(product) {
-    emit("clickEdit", product);
 }
 
 function deleteProduct(product) {

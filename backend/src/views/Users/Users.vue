@@ -10,11 +10,9 @@
         </button>
     </div>
     <UsersTable @clickEdit="editUser" />
-    <UserModal v-model="showModal" :user="userModel" @close="onModalClose" />
 </template>
 
 <script setup>
-import UserModal from "./UserModal.vue";
 import UsersTable from "./UsersTable.vue";
 import { ref } from "vue";
 
@@ -28,20 +26,11 @@ const DEFAULT_USER = {
 };
 
 const userModel = ref({ ...DEFAULT_USER });
-const showModal = ref(false);
-
-function showUserModal() {
-    showModal.value = true;
-}
 
 function editUser(user) {
-    userModel.value = user;
-    showUserModal();
-}
-
-function onModalClose() {
-    // resets form
-    userModel.value = { ...DEFAULT_USER };
+    store.dispatch("getUser", user.id).then(({ data }) => {
+        user.value = data;
+    });
 }
 </script>
 

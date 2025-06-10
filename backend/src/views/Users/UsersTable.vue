@@ -163,12 +163,12 @@
                                 >
                                     <div class="px-1 py-1">
                                         <MenuItem v-slot="{ active }">
-                                            <button
+                                            <router-link
+                                                :to="`/users/${user.id}`"
                                                 :class="[
                                                     active ? 'bg-gray-100' : '',
                                                     'group flex w-full items-center rounded-sm px-2 py-2 text-sm',
                                                 ]"
-                                                @click="editUser(user)"
                                             >
                                                 <PencilIcon
                                                     :active="active"
@@ -176,7 +176,7 @@
                                                     aria-hidden="true"
                                                 />
                                                 Edit
-                                            </button>
+                                            </router-link>
                                         </MenuItem>
                                         <MenuItem v-slot="{ active }">
                                             <button
@@ -301,10 +301,6 @@ function sortUsers(field) {
 
 function showAddNewModal() {
     showUserModal.value = true;
-}
-
-function editUser(user) {
-    emit("clickEdit", user);
 }
 
 function deleteUser(user) {

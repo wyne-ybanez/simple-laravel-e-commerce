@@ -5,6 +5,7 @@ import Dashboard from "../views/Dashboard.vue";
 import Products from "../views/Products/Products.vue";
 import ProductView from "../views/Products/ProductView.vue";
 import Users from "../views/Users/Users.vue";
+import UserView from "../views/Users/UserView.vue";
 import Customers from "../views/Customers/Customers.vue";
 import CustomerView from "../views/Customers/CustomerView.vue";
 import Orders from "../views/Orders/Orders.vue";
@@ -51,6 +52,15 @@ const routes = [
                 path: "users",
                 name: "app.users",
                 component: Users,
+            },
+            {
+                path: "users/:id",
+                name: "app.users.view",
+                component: UserView,
+                props: {
+                    // ensures the id value is an integer, must be numeric value
+                    id: (value) => /^\d+$/.test(value)
+                }
             },
             {
                 path: "customers",
