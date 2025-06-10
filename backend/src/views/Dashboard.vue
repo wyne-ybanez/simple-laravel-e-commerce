@@ -3,7 +3,12 @@
         <h1 class="text-lg font-normal mb-3">Dashboard</h1>
         <div class="flex flex-col md:flex-row items-center">
             <label class="mr-4">Change Date Period</label>
-            <CustomInput type="select" v-model="chosenDate" @change="onDatePickerChange" :select-options="dateOptions"/>
+            <CustomInput
+                type="select"
+                v-model="chosenDate"
+                @change="onDatePickerChange"
+                :select-options="dateOptions"
+            />
         </div>
     </div>
 
@@ -74,15 +79,19 @@
                             <span class="font-semibold">Order #{{ o.id }}</span>
                         </p>
                         <p class="font-light">created {{ o.created_at }}</p>
-                        <p class="font-light">{{ o.items[0].quantity }} item(s)</p>
+                        <p class="font-light">
+                            {{ o.items[0].quantity }} item(s)
+                        </p>
                         <p class="flex justify-between font-light">
                             <span>{{ o.first_name }} {{ o.last_name }}</span>
-                            <span>{{ $filters.currencyEU(o.total_price) }}</span>
+                            <span>{{
+                                $filters.currencyEU(o.total_price)
+                            }}</span>
                         </p>
                     </router-link>
                 </div>
             </template>
-        <!-- End Latest Orders -->
+            <!-- End Latest Orders -->
         </div>
 
         <!-- Orders by Country -->
@@ -142,116 +151,133 @@
     </div>
 </template>
 
-<script setup>
+<script>
 import DoughnutChart from "../components/core/Charts/Doughnut.vue";
 import axiosClient from "../axios.js";
-import { computed, onMounted, ref } from "vue";
 import Spinner from "../components/core/Spinner.vue";
 import CustomInput from "../components/core/CustomInput.vue";
-import {useStore} from "vuex";
+import AppLayout from "../components/AppLayout.vue";
 
-const store = useStore();
-const dateOptions = computed(() => store.state.dateOptions);
-const chosenDate = ref('all')
-
-const loading = ref({
-    customersCount: true,
-    productsCount: true,
-    paidOrders: true,
-    totalIncome: true,
-    ordersByCountry: true,
-    latestCustomers: true,
-    latestOrders: true,
-});
-
-const customersCount = ref(0);
-const productsCount = ref(0);
-const paidOrders = ref(0);
-const totalIncome = ref(0);
-const ordersByCountry = ref([]);
-const latestCustomers = ref([]);
-const latestOrders = ref([]);
-
-function updateDashboard() {
-    const date = chosenDate.value
-    loading.value = {
-        customersCount: true,
-        productsCount: true,
-        paidOrders: true,
-        totalIncome: true,
-        ordersByCountry: true,
-        latestCustomers: true,
-        latestOrders: true,
-    }
-
-    axiosClient.get("/dashboard/customers-count", {params: {date}}).then(({ data }) => {
-        customersCount.value = data;
-        loading.value.customersCount = false;
-    });
-
-    axiosClient.get("/dashboard/products-count", {params: {date}}).then(({ data }) => {
-        productsCount.value = data;
-        loading.value.productsCount = false;
-    });
-
-    axiosClient.get("/dashboard/orders-count", {params: {date}}).then(({ data }) => {
-        paidOrders.value = data;
-        loading.value.paidOrders = false;
-    });
-
-    axiosClient.get("/dashboard/income-amount", {params: {date}}).then(({ data }) => {
-        totalIncome.value = new Intl.NumberFormat("en-DE", {
-            style: "currency",
-            currency: "EUR",
-        }).format(data);
-        loading.value.totalIncome = false;
-    });
-
-    axiosClient.get("/dashboard/orders-by-country", {params: {date}}).then(({ data: countries }) => {
-        const chartData = {
-            labels: [],
-            datasets: [
-                {
-                    backgroundColor: [
-                        "#41B883",
-                        "#36A2EB",
-                        "#FFCE56",
-                        "#FF3100",
-                        "#C0CBFF",
-                    ],
-                    data: [],
-                },
-            ],
+export default {
+    components: {
+        DoughnutChart,
+        Spinner,
+        CustomInput,
+        AppLayout,
+    },
+    data() {
+        return {
+            chosenDate: "all",
+            loading: {
+                customersCount: true,
+                productsCount: true,
+                paidOrders: true,
+                totalIncome: true,
+                ordersByCountry: true,
+                latestCustomers: true,
+                latestOrders: true,
+            },
+            customersCount: 0,
+            productsCount: 0,
+            paidOrders: 0,
+            totalIncome: 0,
+            ordersByCountry: [],
+            latestCustomers: [],
+            latestOrders: [],
         };
-
-        countries.forEach((c) => {
-            chartData.labels.push(c.name);
-            chartData.datasets[0].data.push(c.count);
-        });
-
-        ordersByCountry.value = chartData;
-
-        if (countries) {
-            loading.value.ordersByCountry = false;
-        }
-    });
-
-    axiosClient.get("/dashboard/latest-customers", {params: {date}}).then(({ data: customers }) => {
-        latestCustomers.value = customers;
-        loading.value.latestCustomers = false;
-    });
-
-    axiosClient.get(`/dashboard/latest-orders`, {params: {date}}).then(({data: orders}) => {
-        latestOrders.value = orders.data;
-        loading.value.latestOrders = false;
-    })
-}
-
-function onDatePickerChange() {
-    updateDashboard()
-}
-
-onMounted(() => updateDashboard())
+    },
+    computed: {
+        dateOptions() {
+            return this.$store.state.dateOptions;
+        },
+    },
+    methods: {
+        updateDashboard() {
+            const date = this.chosenDate;
+            this.loading = {
+                customersCount: true,
+                productsCount: true,
+                paidOrders: true,
+                totalIncome: true,
+                ordersByCountry: true,
+                latestCustomers: true,
+                latestOrders: true,
+            };
+            axiosClient
+                .get("/dashboard/customers-count", { params: { date } })
+                .then(({ data }) => {
+                    this.customersCount = data;
+                    this.loading.customersCount = false;
+                });
+            axiosClient
+                .get("/dashboard/products-count", { params: { date } })
+                .then(({ data }) => {
+                    this.productsCount = data;
+                    this.loading.productsCount = false;
+                });
+            axiosClient
+                .get("/dashboard/orders-count", { params: { date } })
+                .then(({ data }) => {
+                    this.paidOrders = data;
+                    this.loading.paidOrders = false;
+                });
+            axiosClient
+                .get("/dashboard/income-amount", { params: { date } })
+                .then(({ data }) => {
+                    this.totalIncome = new Intl.NumberFormat("en-DE", {
+                        style: "currency",
+                        currency: "EUR",
+                    }).format(data);
+                    this.loading.totalIncome = false;
+                });
+            axiosClient
+                .get("/dashboard/orders-by-country", { params: { date } })
+                .then(({ data: countries }) => {
+                    const chartData = {
+                        labels: [],
+                        datasets: [
+                            {
+                                backgroundColor: [
+                                    "#41B883",
+                                    "#36A2EB",
+                                    "#FFCE56",
+                                    "#FF3100",
+                                    "#C0CBFF",
+                                ],
+                                data: [],
+                            },
+                        ],
+                    };
+                    countries.forEach((c) => {
+                        chartData.labels.push(c.name);
+                        chartData.datasets[0].data.push(c.count);
+                    });
+                    this.ordersByCountry = chartData;
+                    if (countries) {
+                        this.loading.ordersByCountry = false;
+                    }
+                });
+            axiosClient
+                .get("/dashboard/latest-customers", { params: { date } })
+                .then(({ data: customers }) => {
+                    this.latestCustomers = customers;
+                    this.loading.latestCustomers = false;
+                });
+            axiosClient
+                .get(`/dashboard/latest-orders`, { params: { date } })
+                .then(({ data: orders }) => {
+                    this.latestOrders = orders.data;
+                    this.loading.latestOrders = false;
+                });
+        },
+        onDatePickerChange() {
+            this.updateDashboard();
+        },
+    },
+    mounted() {
+        this.updateDashboard();
+    },
+};
 </script>
 
 <style scoped></style>
