@@ -13,7 +13,7 @@
 
 <script>
 import UsersTable from "./UsersTable.vue";
-import store from "../../store";
+import store from "../../store/index.js";
 
 export default {
     components: {

@@ -69,8 +69,9 @@
 </template>
 
 <script>
-import CustomInput from "../../components/core/CustomInput.vue";
 import store from "../../store/index.js";
+import router from "../../router/index.js";
+import CustomInput from "../../components/core/CustomInput.vue";
 import Spinner from "../../components/core/Spinner.vue";
 
 export default {
@@ -117,7 +118,7 @@ export default {
                             this.user = response.data;
                             store.dispatch("getUsers");
                             if (close) {
-                                this.$router.push({ name: "app.users" });
+                                router.push({ name: "app.users" });
                             }
                         }
                     })
@@ -134,10 +135,10 @@ export default {
                             this.user = response.data;
                             store.dispatch("getUsers");
                             if (close) {
-                                this.$router.push({ name: "app.users" });
+                                router.push({ name: "app.users" });
                             } else {
                                 this.user = response.data;
-                                this.$router.push({
+                                router.push({
                                     name: "app.users.view",
                                     params: { id: response.data.id },
                                 });

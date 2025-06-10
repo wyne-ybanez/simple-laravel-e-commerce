@@ -5,7 +5,7 @@ import Dashboard from "../views/Dashboard.vue";
 import Products from "../views/Products/Products.vue";
 import ProductView from "../views/Products/ProductView.vue";
 import Users from "../views/Users/Users.vue";
-import UserView from "../views/Users/UserView.vue";
+import UserShow from "../views/Users/UserShow.vue";
 import Customers from "../views/Customers/Customers.vue";
 import CustomerView from "../views/Customers/CustomerView.vue";
 import Orders from "../views/Orders/Orders.vue";
@@ -13,7 +13,7 @@ import OrderView from "../views/Orders/OrderView.vue";
 import RequestPassword from "../views/RequestPassword.vue";
 import ResetPassword from "../views/ResetPassword.vue";
 import NotFound from "../views/NotFound.vue";
-import store from "../store";
+import store from "../store/index.js";
 
 const routes = [
     {
@@ -56,12 +56,12 @@ const routes = [
             {
                 path: "users/create",
                 name: "app.users.create",
-                component: UserView,
+                component: UserShow,
             },
             {
                 path: "users/:id",
                 name: "app.users.view",
-                component: UserView,
+                component: UserShow,
                 props: {
                     // ensures the id value is an integer, must be numeric value
                     id: (value) => /^\d+$/.test(value)

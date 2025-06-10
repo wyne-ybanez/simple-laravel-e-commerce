@@ -136,8 +136,8 @@
 <script>
 import { LockClosedIcon } from "@heroicons/vue/solid";
 import GuestLayout from "../components/GuestLayout.vue";
-import store from "../store";
-import router from "../router";
+import store from "../store/index.js";
+import router from "../router/index.js";
 
 export default {
     components: {

@@ -241,7 +241,7 @@
 
 <script>
 import Spinner from "../../components/core/Spinner.vue";
-import store from "../../store";
+import store from "../../store/index.js";
 import { USERS_PER_PAGE } from "../../constants.js";
 import TableHeaderCell from "../../components/core/Table/TableHeaderCell.vue";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
