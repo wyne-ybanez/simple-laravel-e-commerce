@@ -33,7 +33,7 @@
                 <tr>
                     <TableHeaderCell
                         @click="sortUsers('id')"
-                        class="border-b p-2 pb-5 font-medium"
+                        class="border-b p-2 pb-5 font-medium cursor-pointer"
                         field="id"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
@@ -42,8 +42,8 @@
                     </TableHeaderCell>
                     <TableHeaderCell
                         @click="sortUsers('name')"
-                        class="border-b p-2 pb-5 font-medium"
-                        field=""
+                        class="border-b p-2 pb-5 font-medium cursor-pointer"
+                        field="name"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                     >
@@ -51,8 +51,8 @@
                     </TableHeaderCell>
                     <TableHeaderCell
                         @click="sortUsers('email')"
-                        class="border-b p-2 pb-5 font-medium"
-                        field="title"
+                        class="border-b p-2 pb-5 font-medium cursor-pointer"
+                        field="email"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                     >
@@ -60,7 +60,7 @@
                     </TableHeaderCell>
                     <TableHeaderCell
                         @click="sortUsers('is_admin')"
-                        class="border-b p-2 pb-5 font-medium"
+                        class="border-b p-2 pb-5 font-medium cursor-pointer"
                         field="is_admin"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
@@ -69,7 +69,7 @@
                     </TableHeaderCell>
                     <TableHeaderCell
                         @click="sortUsers('created_at')"
-                        class="font-medium border-b p-2 pb-5"
+                        class="font-medium border-b p-2 pb-5 cursor-pointer"
                         field="created_at"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
