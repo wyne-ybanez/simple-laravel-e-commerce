@@ -1,13 +1,12 @@
 <template>
     <div class="flex items-center justify-between mb-3">
         <h1 class="text-lg font-normal">Users</h1>
-        <button
-            type="submit"
-            @click="showUserModal"
+        <router-link
+            :to="{ name: 'app.users.create' }"
             class="py-2 px-6 border border-transparent text-sm font-light rounded-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none"
         >
             Add User
-        </button>
+        </router-link>
     </div>
     <UsersTable @clickEdit="editUser" />
 </template>

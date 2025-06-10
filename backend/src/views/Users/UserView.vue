@@ -7,7 +7,7 @@
                     <span class="font-semibold mr-2">User:</span>{{ user.name }}
                 </div>
                 <div v-else>
-                    <span class="font-semibold">Add new user</span>
+                    <span class="font-semibold">Add New User</span>
                 </div>
             </h1>
         </div>

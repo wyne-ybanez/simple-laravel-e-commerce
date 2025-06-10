@@ -270,7 +270,6 @@ export default {
             search: "",
             sortField: "updated_at",
             sortDirection: "desc",
-            showUserModal: false,
         };
     },
     computed: {
@@ -312,10 +311,6 @@ export default {
                 this.sortDirection = "asc";
             }
             this.getUsers();
-        },
-
-        showAddNewModal() {
-            this.showUserModal = true;
         },
 
         deleteUser(user) {

@@ -54,6 +54,11 @@ const routes = [
                 component: Users,
             },
             {
+                path: "users/create",
+                name: "app.users.create",
+                component: UserView,
+            },
+            {
                 path: "users/:id",
                 name: "app.users.view",
                 component: UserView,
