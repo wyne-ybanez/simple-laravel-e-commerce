@@ -11,26 +11,34 @@
     <UsersTable @clickEdit="editUser" />
 </template>
 
-<script setup>
+<script>
 import UsersTable from "./UsersTable.vue";
-import { ref } from "vue";
+import store from "../../store";
 
-// Default form values
-const DEFAULT_USER = {
-    id: "",
-    name: "",
-    email: "",
-    password: "",
-    is_admin: "",
+export default {
+    components: {
+        UsersTable,
+    },
+    data() {
+        return {
+            // Default form values
+            userModel: {
+                id: "",
+                name: "",
+                email: "",
+                password: "",
+                is_admin: "",
+            },
+        };
+    },
+    methods: {
+        editUser(user) {
+            store.dispatch("getUser", user.id).then(({ data }) => {
+                this.userModel = data;
+            });
+        },
+    },
 };
-
-const userModel = ref({ ...DEFAULT_USER });
-
-function editUser(user) {
-    store.dispatch("getUser", user.id).then(({ data }) => {
-        user.value = data;
-    });
-}
 </script>
 
 <style scoped></style>
