@@ -177,48 +177,52 @@
     </div>
 </template>
 
-<script setup>
-import { computed, onMounted, ref } from "vue";
-import store from "../../store";
-import { useRoute } from "vue-router";
+<script>
+import store from "../../store/index.js";
 import axiosClient from "../../axios.js";
 import OrderStatus from "./OrderStatus.vue";
 import OrderAddressStatus from "./OrderAddressStatus.vue";
 import OrderCustomerStatus from "./OrderCustomerStatus.vue";
 import { APP_URL } from "../../constants.js";
 
-const route = useRoute();
+export default {
+    components: {
+        OrderStatus,
+        OrderAddressStatus,
+        OrderCustomerStatus,
+    },
+    data() {
+        return {
+            order: null,
+            orderStatuses: [],
+            productUrlPrefix: `${APP_URL}/product/`,
+        };
+    },
+    mounted() {
+        store.dispatch("getOrder", this.$route.params.id).then(({ data }) => {
+            this.order = data;
+        });
+        axiosClient
+            .get("api/orders/statuses")
+            .then(({ data }) => (this.orderStatuses = data));
+    },
+    methods: {
+        deleteOrder(order) {
+            if (!confirm(`Are you sure you want to delete the order?`)) {
+                return;
+            }
+            store.dispatch("deleteOrder", order.id).then((response) => {
+                this.$router.push({ name: "app.orders" }); // back to orders index
+            });
+        },
 
-const order = ref(null);
-const orderStatuses = ref([]);
-
-const productUrlPrefix = `${APP_URL}/product/`;
-
-onMounted(() => {
-    store.dispatch("getOrder", route.params.id).then(({ data }) => {
-        order.value = data;
-    });
-
-    axiosClient
-        .get("api/orders/statuses")
-        .then(({data}) => orderStatuses.value = data)
-});
-
-function deleteOrder(order) {
-    if (!confirm(`Are you sure you want to delete the order?`)) {
-        return;
-    }
-    store.dispatch("deleteOrder", order.id).then((response) => {
-        // Redirect to the index route
-        window.location = "/orders";
-    });
-}
-
-function onStatusChange() {
-    axiosClient.post(
-        `/orders/change-status/${order.value.id}/${order.value.status}`
-    );
-}
+        onStatusChange() {
+            axiosClient.post(
+                `/orders/change-status/${this.order.id}/${this.order.status}`
+            );
+        },
+    },
+};
 </script>
 
 <style scoped></style>

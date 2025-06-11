@@ -41,7 +41,9 @@
                         ID
                     </TableHeaderCell>
                     <TableHeaderCell
-                        class="border-b p-2 pb-5 font-medium cursor-default"
+                        @click="sortOrders('first_name')"
+                        class="border-b p-2 pb-5 font-medium cursor-pointer"
+                        field="first_name"
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                     >
@@ -84,7 +86,10 @@
             <tbody v-if="orders.loading || !orders.data.length">
                 <tr>
                     <td colspan="6">
-                        <Spinner v-if="orders.loading" class="py-10 h-[65.1vh] justify-center align-center"/>
+                        <Spinner
+                            v-if="orders.loading"
+                            class="py-10 h-[65.1vh] justify-center align-center"
+                        />
                         <p v-else class="text-center py-8 text-gray-700">
                             There are no orders.
                         </p>
@@ -190,70 +195,77 @@
     </div>
 </template>
 
-<script setup>
-import { computed, ref, onMounted } from "vue";
+<script>
 import Spinner from "../../components/core/Spinner.vue";
-import store from "../../store";
+import store from "../../store/index.js";
 import { ORDERS_PER_PAGE } from "../../constants.js";
 import TableHeaderCell from "../../components/core/Table/TableHeaderCell.vue";
 import OrderStatus from "./OrderStatus.vue";
 
-const emit = defineEmits(["clickEdit"]);
+export default {
+    components: {
+        Spinner,
+        TableHeaderCell,
+        OrderStatus,
+    },
+    emits: ["clickEdit"],
+    data() {
+        return {
+            perPage: ORDERS_PER_PAGE,
+            search: "",
+            sortField: "updated_at",
+            sortDirection: "desc",
+        };
+    },
+    computed: {
+        orders() {
+            return store.state.orders;
+        },
+    },
+    mounted() {
+        this.getOrders();
+    },
+    methods: {
+        getForPage(e, link) {
+            e.preventDefault();
+            if (!link.url || link.active) {
+                return;
+            }
+            this.getOrders(link.url);
+        },
 
-const perPage = ref(ORDERS_PER_PAGE);
-const search = ref("");
-const orders = computed(() => store.state.orders);
-const sortField = ref("updated_at");
-const sortDirection = ref("desc");
+        getOrders(url = null) {
+            store.dispatch("getOrders", {
+                url,
+                search: this.search,
+                per_page: this.perPage,
+                sort_field: this.sortField,
+                sort_direction: this.sortDirection,
+            });
+        },
 
-const showOrderModal = ref(false);
+        sortOrders(field) {
+            if (field === this.sortField) {
+                if (this.sortDirection === "desc") {
+                    this.sortDirection = "asc";
+                } else {
+                    this.sortDirection = "desc";
+                }
+            } else {
+                this.sortField = field;
+                this.sortDirection = "asc";
+            }
+            this.getOrders();
+        },
 
-onMounted(() => {
-    getOrders();
-});
-
-function getForPage(e, link) {
-    e.preventDefault();
-    if (!link.url || link.active) {
-        return;
-    }
-    getOrders(link.url);
-}
-
-function getOrders(url = null) {
-    store.dispatch("getOrders", {
-        url,
-        search: search.value,
-        per_page: perPage.value,
-        sort_field: sortField.value,
-        sort_direction: sortDirection.value,
-    });
-}
-
-function sortOrders(field) {
-    if (field === sortField.value) {
-        if (sortDirection.value === "desc") {
-            sortDirection.value = "asc";
-        } else {
-            sortDirection.value = "desc";
-        }
-    } else {
-        sortField.value = field;
-        sortDirection.value = "asc";
-    }
-    getOrders();
-}
-
-function showAddNewModal() {
-    showOrderModal.value = true;
-}
-
-function deleteOrder(order) {
-    if (!confirm(`Are you sure you want to delete the order?`)) {
-        return;
-    }
-    store.dispatch("deleteOrder", order.id).then((res) => {
-        store.dispatch("getOrders");
-    });
-}
+        deleteOrder(order) {
+            if (!confirm(`Are you sure you want to delete the order?`)) {
+                return;
+            }
+            store.dispatch("deleteOrder", order.id).then((res) => {
+                store.dispatch("getOrders");
+            });
+        },
+    },
+};
 </script>

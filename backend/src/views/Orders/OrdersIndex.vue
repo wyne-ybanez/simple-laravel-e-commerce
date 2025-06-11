@@ -5,10 +5,13 @@
     <OrdersTable />
 </template>
 
-<script setup>
-import {computed, onMounted, ref} from "vue";
-import store from "../../store";
+<script>
+import { computed } from "vue";
 import OrdersTable from "./OrdersTable.vue";
 
-const orders = computed(() => store.state.orders);
+export default {
+    components: {
+        OrdersTable,
+    },
+};
 </script>
