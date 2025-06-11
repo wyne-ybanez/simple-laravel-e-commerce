@@ -303,11 +303,10 @@
     </div>
 </template>
 
-<script setup>
-import { computed, ref, onMounted } from "vue";
+<script>
 import Spinner from "../../components/core/Spinner.vue";
-import store from "../../store";
-import { PRODUCTS_PER_PAGE } from "../../constants";
+import store from "../../store/index.js";
+import { PRODUCTS_PER_PAGE } from "../../constants.js";
 import TableHeaderCell from "../../components/core/Table/TableHeaderCell.vue";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import {
@@ -316,58 +315,78 @@ import {
     TrashIcon,
 } from "@heroicons/vue/outline";
 
-const emit = defineEmits(["clickEdit"]);
+export default {
+    components: {
+        Spinner,
+        TableHeaderCell,
+        Menu,
+        MenuButton,
+        MenuItem,
+        MenuItems,
+        DotsVerticalIcon,
+        PencilIcon,
+        TrashIcon,
+    },
+    emits: ["clickEdit"],
+    data() {
+        return {
+            perPage: PRODUCTS_PER_PAGE,
+            search: "",
+            sortField: "updated_at",
+            sortDirection: "desc",
+        };
+    },
+    computed: {
+        products() {
+            return store.state.products;
+        },
+    },
+    mounted() {
+        this.getProducts();
+    },
+    methods: {
+        getProducts(url = null) {
+            store.dispatch("getProducts", {
+                url,
+                sort_field: this.sortField,
+                sort_direction: this.sortDirection,
+                search: this.search,
+                per_page: this.perPage,
+            });
+        },
 
-const perPage = ref(PRODUCTS_PER_PAGE);
-const search = ref("");
-const products = computed(() => store.state.products);
-const sortField = ref("updated_at");
-const sortDirection = ref("desc");
+        sortProducts(field) {
+            if (field === this.sortField) {
+                if (this.sortDirection === "desc") {
+                    this.sortDirection = "asc";
+                } else {
+                    this.sortDirection = "desc";
+                }
+            } else {
+                this.sortField = field;
+                this.sortDirection = "asc";
+            }
+            this.getProducts();
+        },
 
-onMounted(() => {
-    getProducts();
-});
+        deleteProduct(product) {
+            if (!confirm(`Are you sure you want to delete the product?`)) {
+                return;
+            }
+            store.dispatch("deleteProduct", product.id).then((res) => {
+                // TODO show notification (after delete)
+                store.dispatch("getProducts");
+            });
+        },
 
-function getProducts(url = null) {
-    store.dispatch("getProducts", {
-        url,
-        sort_field: sortField.value,
-        sort_direction: sortDirection.value,
-        search: search.value,
-        per_page: perPage.value,
-    });
-}
-
-function sortProducts(field) {
-    if (field === sortField.value) {
-        if (sortDirection.value === "desc") {
-            sortDirection.value = "asc";
-        } else {
-            sortDirection.value = "desc";
-        }
-    } else {
-        sortField.value = field;
-        sortDirection.value = "asc";
-    }
-    getProducts();
-}
-
-function deleteProduct(product) {
-    if (!confirm(`Are you sure you want to delete the product?`)) {
-        return;
-    }
-    store.dispatch("deleteProduct", product.id).then((res) => {
-        // TODO show notification (after delete)
-        store.dispatch("getProducts");
-    });
-}
-
-function getForPage(e, link) {
-    if (!link.url || link.active) {
-        return;
-    }
-    getProducts(link.url);
-}
+        getForPage(e, link) {
+            if (!link.url || link.active) {
+                return;
+            }
+            this.getProducts(link.url);
+        },
+    },
+};
 </script>
 
 <style scoped></style>

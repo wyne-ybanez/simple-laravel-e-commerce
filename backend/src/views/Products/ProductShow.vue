@@ -179,96 +179,100 @@
     </div>
 </template>
 
-<script setup>
-import { onMounted, ref } from "vue";
+<script>
 import CustomInput from "../../components/core/CustomInput.vue";
 import store from "../../store/index.js";
 import Spinner from "../../components/core/Spinner.vue";
-import { useRoute, useRouter } from "vue-router";
 import axiosClient from "../../axios.js";
 
-const route = useRoute();
-const router = useRouter();
-
-const product = ref({
-    id: null,
-    title: null,
-    images: [],
-    image: null,
-    image_1: null,
-    image_2: null,
-    image_3: null,
-    deleted_images: [],
-    image_positions: {},
-    description: "",
-    description_2: "",
-    price: null,
-    quantity: null,
-    color: false,
-    published: false,
-    categories: [],
-});
-
-const errors = ref({});
-
-const loading = ref(false);
-const options = ref([]);
-
-const emit = defineEmits(["update:modelValue", "close"]);
-
-onMounted(() => {
-    if (route.params.id) {
-        loading.value = true;
-        store.dispatch("getProduct", route.params.id).then((response) => {
-            loading.value = false;
-            product.value = response.data;
-        });
-    }
-});
-
-function onSubmit($event, close = false) {
-    loading.value = true;
-    errors.value = {};
-    if (product.value.id) {
-        store
-            .dispatch("updateProduct", product.value)
-            .then((response) => {
-                loading.value = false;
-                if (response.status === 200) {
-                    product.value = response.data;
-                    store.dispatch("getProducts");
-                    if (close) {
-                        router.push({ name: "app.products" });
-                    }
-                }
-            })
-            .catch((err) => {
-                loading.value = false;
-                errors.value = err.response.data.errors;
-            });
-    } else {
-        store
-            .dispatch("createProduct", product.value)
-            .then((response) => {
-                loading.value = false;
-                if (response.status === 201) {
-                    product.value = response.data;
-                    store.dispatch("getProducts");
-                    if (close) {
-                        router.push({ name: "app.products" });
-                    } else {
-                        product.value = response.data;
-                        router.push({
-                            name: "app.products.view",
-                            params: { id: response.data.id },
-                        });
-                    }
-                }
-            })
-            .catch((err) => {
-                loading.value = false;
-                errors.value = err.response.data.errors;
-            });
-    }
-}
+export default {
+    components: {
+        CustomInput,
+        Spinner,
+    },
+    emits: ["update:modelValue", "close"],
+    data() {
+        return {
+            product: {
+                id: null,
+                title: null,
+                images: [],
+                image: null,
+                image_1: null,
+                image_2: null,
+                image_3: null,
+                deleted_images: [],
+                image_positions: {},
+                description: "",
+                description_2: "",
+                price: null,
+                quantity: null,
+                color: false,
+                published: false,
+                categories: [],
+            },
+            errors: {},
+            loading: false,
+            options: [],
+        };
+    },
+    mounted() {
+        if (this.$route.params.id) {
+            this.loading = true;
+            store
+                .dispatch("getProduct", this.$route.params.id)
+                .then((response) => {
+                    this.loading = false;
+                    this.product = response.data;
+                });
+        }
+    },
+    methods: {
+        onSubmit($event, close = false) {
+            this.loading = true;
+            this.errors = {};
+            if (this.product.id) {
+                store
+                    .dispatch("updateProduct", this.product)
+                    .then((response) => {
+                        this.loading = false;
+                        if (response.status === 200) {
+                            this.product = response.data;
+                            store.dispatch("getProducts");
+                            if (close) {
+                                this.$router.push({ name: "app.products" });
+                            }
+                        }
+                    })
+                    .catch((err) => {
+                        this.loading = false;
+                        this.errors = err.response.data.errors;
+                    });
+            } else {
+                store
+                    .dispatch("createProduct", this.product)
+                    .then((response) => {
+                        this.loading = false;
+                        if (response.status === 201) {
+                            this.product = response.data;
+                            store.dispatch("getProducts");
+                            if (close) {
+                                this.$router.push({ name: "app.products" });
+                            } else {
+                                this.product = response.data;
+                                this.$router.push({
+                                    name: "app.products.view",
+                                    params: { id: response.data.id },
+                                });
+                            }
+                        }
+                    })
+                    .catch((err) => {
+                        this.loading = false;
+                        this.errors = err.response.data.errors;
+                    });
+            }
+        },
+    },
+};
 </script>

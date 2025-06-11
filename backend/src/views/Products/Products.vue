@@ -11,32 +11,39 @@
     <ProductsTable @clickEdit="editProduct" />
 </template>
 
-<script setup>
+<script>
 import ProductsTable from "./ProductsTable.vue";
-import { ref } from "vue";
-import store from "../../store";
+import store from "../../store/index.js";
 
-// Default form values
-const DEFAULT_PRODUCT = {
-    id: "",
-    title: "",
-    description: "",
-    category: "",
-    image: "",
-    image_1: "",
-    image_2: "",
-    image_3: "",
-    price: "",
-    color: "",
+export default {
+    components: {
+        ProductsTable,
+    },
+    data() {
+        return {
+            // Default form values
+            productModel: {
+                id: "",
+                title: "",
+                description: "",
+                category: "",
+                image: "",
+                image_1: "",
+                image_2: "",
+                image_3: "",
+                price: "",
+                color: "",
+            },
+        };
+    },
+    methods: {
+        editProduct(product) {
+            store.dispatch("getProduct", product.id).then(({ data }) => {
+                this.productModel = data;
+            });
+        },
+    },
 };
-
-const productModel = ref({ ...DEFAULT_PRODUCT });
-
-function editProduct(product) {
-    store.dispatch("getProduct", product.id).then(({ data }) => {
-        productModel.value = data;
-    });
-}
 </script>
 
 <style scoped></style>
