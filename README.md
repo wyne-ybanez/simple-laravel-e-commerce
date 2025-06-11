@@ -1,8 +1,8 @@
 # Simple Laravel E-Commerce
 
-This is a laravel project for an e-commerce website/app that allows online sellers to sell, categorize and take payment for the sale of goods online.
+This is a laravel hobby project for an e-commerce website/app that allows online sellers to sell, categorize and take payment for the sale of goods online.
 
-The project aims to build a website on the Laravel Framework for improved security and speedy development. It allows user's to register an account and log in to review their orders. Additionally, the website allows the administrator to gather the latest data such as recent purchases and on going orders through an the admin panel.
+The project aims to build a website on the Laravel Framework for improved security and speedy development. It allows user's to register an account and log in to review their orders. Additionally, the website allows the administrator to gather the latest data such as recent purchases and on going orders through an admin panel.
 
 ## Table of Contents
 
@@ -237,6 +237,8 @@ admin123
 -   Allow for comments and reviews under products
 -   Develop admin profile editing functionality/feature
 -   WYSIWYG editor for products
+-   Mobile responsive styling
+-   Notifications for user actions in the backend
 
 ## Media
 
