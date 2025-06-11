@@ -246,17 +246,14 @@
                 </a>
             </nav>
             <div v-if="customers.data.length === 0" class="text-center mx-auto">
-                <p class="py-8 text-gray-700">
-                    There are no customers.
-                </p>
+                <p class="py-8 text-gray-700">There are no customers.</p>
             </div>
         </div>
     </div>
 </template>
 
-<script setup>
-import { computed, onMounted, ref } from "vue";
-import store from "../../store";
+<script>
+import store from "../../store/index.js";
 import Spinner from "../../components/core/Spinner.vue";
 import { CUSTOMERS_PER_PAGE } from "../../constants";
 import TableHeaderCell from "../../components/core/Table/TableHeaderCell.vue";
@@ -267,68 +264,77 @@ import {
     TrashIcon,
 } from "@heroicons/vue/outline";
 
-const perPage = ref(CUSTOMERS_PER_PAGE);
-const search = ref("");
-const customers = computed(() => store.state.customers);
-const sortField = ref("updated_at");
-const sortDirection = ref("desc");
+export default {
+    components: {
+        Spinner,
+        TableHeaderCell,
+        Menu,
+        MenuButton,
+        MenuItem,
+        MenuItems,
+        DotsVerticalIcon,
+        PencilIcon,
+        TrashIcon,
+    },
+    emits: ["clickEdit"],
+    data() {
+        return {
+            perPage: CUSTOMERS_PER_PAGE,
+            search: "",
+            sortField: "updated_at",
+            sortDirection: "desc",
+            customer: {},
+        };
+    },
+    computed: {
+        customers() {
+            return store.state.customers;
+        },
+    },
+    mounted() {
+        this.getCustomers();
+    },
+    methods: {
+        getForPage(ev, link) {
+            ev.preventDefault();
+            if (!link.url || link.active) {
+                return;
+            }
+            this.getCustomers(link.url);
+        },
 
-const customer = ref({});
-const showCustomerModal = ref(false);
+        getCustomers(url = null) {
+            store.dispatch("getCustomers", {
+                url,
+                search: this.search,
+                per_page: this.perPage,
+                sort_field: this.sortField,
+                sort_direction: this.sortDirection,
+            });
+        },
 
-const emit = defineEmits(["clickEdit"]);
+        sortCustomers(field) {
+            if (field === this.sortField) {
+                this.sortDirection =
+                    this.sortDirection === "desc" ? "asc" : "desc";
+            } else {
+                this.sortField = field;
+                this.sortDirection = "asc";
+            }
+            this.getCustomers();
+        },
 
-onMounted(() => {
-    getCustomers();
-});
-
-function getForPage(ev, link) {
-    ev.preventDefault();
-    if (!link.url || link.active) {
-        return;
-    }
-
-    getCustomers(link.url);
-}
-
-function getCustomers(url = null) {
-    store.dispatch("getCustomers", {
-        url,
-        search: search.value,
-        per_page: perPage.value,
-        sort_field: sortField.value,
-        sort_direction: sortDirection.value,
-    });
-}
-
-function sortCustomers(field) {
-    if (field === sortField.value) {
-        if (sortDirection.value === "desc") {
-            sortDirection.value = "asc";
-        } else {
-            sortDirection.value = "desc";
-        }
-    } else {
-        sortField.value = field;
-        sortDirection.value = "asc";
-    }
-
-    getCustomers();
-}
-
-function showAddNewModal() {
-    showCustomerModal.value = true;
-}
-
-function deleteCustomer(customer) {
-    if (!confirm(`Are you sure you want to delete the customer?`)) {
-        return;
-    }
-    store.dispatch("deleteCustomer", customer).then((res) => {
-        // TODO show notification (after delete)
-        store.dispatch("getCustomers");
-    });
-}
+        deleteCustomer(customer) {
+            if (!confirm(`Are you sure you want to delete the customer?`)) {
+                return;
+            }
+            store.dispatch("deleteCustomer", customer).then(() => {
+                // TODO show notification (after delete)
+                store.dispatch("getCustomers");
+            });
+        },
+    },
+};
 </script>
 
 <style scoped></style>

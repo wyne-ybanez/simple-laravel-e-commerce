@@ -11,24 +11,21 @@
     </span>
 </template>
 
-<script setup>
-import { computed, onMounted, ref } from "vue";
-
-console.log(customer);
-
-const { customer } = defineProps({
-    customer: Object,
-});
-
-// customer.status is a boolean
-const customerStatus = computed(() => {
-    if (!customer.status) {
-        return "disabled";
-    }
-    if (!customer || !customer.id) {
-        return "error";
-    }
-
-    return "active";
-});
+<script>
+export default {
+    props: {
+        customer: Object,
+    },
+    computed: {
+        customerStatus() {
+            if (!this.customer.status) {
+                return "disabled";
+            }
+            if (!this.customer || !this.customer.id) {
+                return "error";
+            }
+            return "active";
+        },
+    },
+};
 </script>

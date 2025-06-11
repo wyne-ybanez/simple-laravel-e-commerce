@@ -168,88 +168,99 @@
     </div>
 </template>
 
-<script setup>
-import { computed, onMounted, ref } from "vue";
-import store from "../../store";
-import { useRoute, useRouter } from "vue-router";
+<script>
+import store from "../../store/index.js";
 import CustomInput from "../../components/core/CustomInput.vue";
 import CustomerStatus from "./CustomerStatus.vue";
 
-const router = useRouter();
-const route = useRoute();
-
-const customerName = ref("");
-const errors = ref({
-    first_name: [],
-    last_name: [],
-    email: [],
-    phone: [],
-    status: [],
-    "billingAddress.address1": [],
-    "billingAddress.address2": [],
-    "billingAddress.city": [],
-    "billingAddress.zipcode": [],
-    "billingAddress.country_code": [],
-    "billingAddress.county": [],
-    "shippingAddress.address1": [],
-    "shippingAddress.address2": [],
-    "shippingAddress.city": [],
-    "shippingAddress.zipcode": [],
-    "shippingAddress.country_code": [],
-    "shippingAddress.county": [],
-});
-const customer = ref({
-    billingAddress: {},
-    shippingAddress: {},
-});
-const loading = ref(false);
-
-const countries = computed(() =>
-    store.state.countries.map((c) => ({ key: c.code, text: c.name }))
-);
-
-function onSubmit() {
-    loading.value = true;
-    if (customer.value.id) {
-        console.log(customer.value.status); // boolean
-        customer.value.status = !!customer.value.status;
+export default {
+    components: {
+        CustomInput,
+        CustomerStatus,
+    },
+    data() {
+        return {
+            customerName: "",
+            errors: {
+                first_name: [],
+                last_name: [],
+                email: [],
+                phone: [],
+                status: [],
+                "billingAddress.address1": [],
+                "billingAddress.address2": [],
+                "billingAddress.city": [],
+                "billingAddress.zipcode": [],
+                "billingAddress.country_code": [],
+                "billingAddress.county": [],
+                "shippingAddress.address1": [],
+                "shippingAddress.address2": [],
+                "shippingAddress.city": [],
+                "shippingAddress.zipcode": [],
+                "shippingAddress.country_code": [],
+                "shippingAddress.county": [],
+            },
+            customer: {
+                billingAddress: {},
+                shippingAddress: {},
+            },
+            loading: false,
+        };
+    },
+    computed: {
+        countries() {
+            return store.state.countries.map((c) => ({
+                key: c.code,
+                text: c.name,
+            }));
+        },
+    },
+    mounted() {
         store
-            .dispatch("updateCustomer", customer.value)
-            .then((response) => {
-                loading.value = false;
-                if (response.status === 200) {
-                    // TODO show notification
-                    store.dispatch("getCustomers");
-                    router.push({ name: "app.customers" });
-                }
-            })
-            .catch((err) => {
-                errors.value = err.response.data.errors;
+            .dispatch("getCustomer", this.$route.params.id)
+            .then(({ data }) => {
+                this.customerName = `${data.first_name} ${data.last_name}`;
+                this.customer = data;
             });
-    } else {
-        store
-            .dispatch("createCustomer", customer.value)
-            .then((response) => {
-                loading.value = false;
-                if (response.status === 201) {
-                    // TODO show notification
-                    store.dispatch("getCustomers");
-                    router.push({ name: "app.customers" });
-                }
-            })
-            .catch((err) => {
-                loading.value = false;
-                debugger;
-            });
-    }
-}
-
-onMounted(() => {
-    store.dispatch("getCustomer", route.params.id).then(({ data }) => {
-        customerName.value = `${data.first_name} ${data.last_name}`;
-        customer.value = data;
-    });
-});
+    },
+    methods: {
+        onSubmit() {
+            this.loading = true;
+            if (this.customer.id) {
+                console.log(this.customer.status); // boolean
+                this.customer.status = !!this.customer.status;
+                store
+                    .dispatch("updateCustomer", this.customer)
+                    .then((response) => {
+                        this.loading = false;
+                        if (response.status === 200) {
+                            // TODO show notification
+                            store.dispatch("getCustomers");
+                            this.$router.push({ name: "app.customers" });
+                        }
+                    })
+                    .catch((err) => {
+                        this.errors = err.response.data.errors;
+                    });
+            } else {
+                store
+                    .dispatch("createCustomer", this.customer)
+                    .then((response) => {
+                        this.loading = false;
+                        if (response.status === 201) {
+                            // TODO show notification
+                            store.dispatch("getCustomers");
+                            this.$router.push({ name: "app.customers" });
+                        }
+                    })
+                    .catch(() => {
+                        this.loading = false;
+                        debugger;
+                    });
+            }
+        },
+    },
+};
 </script>
 
 <style scoped></style>

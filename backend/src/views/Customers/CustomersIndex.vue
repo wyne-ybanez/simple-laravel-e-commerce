@@ -5,32 +5,32 @@
     <CustomersTable @clickEdit="editCustomer" />
 </template>
 
-<script setup>
-import { computed, onMounted, ref } from "vue";
-import store from "../../store";
+<script>
+import store from "../../store/index.js";
 import CustomersTable from "./CustomersTable.vue";
 
-const DEFAULT_CUSTOMER = {};
-
-const customers = computed(() => store.state.customers);
-
-const customerModel = ref({ ...DEFAULT_CUSTOMER });
-const showCustomerModal = ref(false);
-
-function showAddNewModal() {
-    showCustomerModal.value = true;
-}
-
-function editCustomer(c) {
-    store.dispatch("getCustomer", c.id).then(({ data }) => {
-        customerModel.value = data;
-        showAddNewModal();
-    });
-}
-
-function onModalClose() {
-    customerModel.value = { ...DEFAULT_CUSTOMER };
-}
+export default {
+    components: {
+        CustomersTable,
+    },
+    data() {
+        return {
+            customerModel: {},
+        };
+    },
+    computed: {
+        customers() {
+            return store.state.customers;
+        },
+    },
+    methods: {
+        editCustomer(c) {
+            store.dispatch("getCustomer", c.id).then(({ data }) => {
+                this.customerModel = data;
+            });
+        },
+    },
+};
 </script>
 
 <style scoped></style>
