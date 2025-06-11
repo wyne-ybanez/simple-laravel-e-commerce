@@ -72,7 +72,16 @@
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                     >
-                        Date
+                        Created
+                    </TableHeaderCell>
+                    <TableHeaderCell
+                        @click="sortOrders('updated_at')"
+                        class="border-b p-2 pb-5 font-medium cursor-pointer"
+                        field="updated_at"
+                        :sort-field="sortField"
+                        :sort-direction="sortDirection"
+                    >
+                        Updated
                     </TableHeaderCell>
                     <TableHeaderCell
                         field="actions"
@@ -106,12 +115,28 @@
                     <td class="border-b p-2 py-6">
                         {{ order.id }}
                     </td>
+
                     <td class="border-b p-2" v-if="order.customer">
-                        {{ order.customer.first_name }}
-                        {{ order.customer.last_name }}
+                        <router-link
+                            :to="{
+                                name: 'app.orders.show',
+                                params: { id: order.id },
+                            }"
+                            class="hover:border-b hover:border-zinc-900"
+                            >{{ order.customer.first_name }}
+                            {{ order.customer.last_name }}
+                        </router-link>
                     </td>
                     <td class="border-b p-2" v-else>
-                        {{ order.user.name }}
+                        <router-link
+                            :to="{
+                                name: 'app.orders.show',
+                                params: { id: order.id },
+                            }"
+                            class="hover:border-b hover:border-zinc-900"
+                        >
+                            {{ order.user.name }}
+                        </router-link>
                     </td>
                     <td
                         class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
@@ -125,9 +150,12 @@
                         {{ order.created_at }}
                     </td>
                     <td class="border-b p-2">
+                        {{ order.updated_at }}
+                    </td>
+                    <td class="border-b p-2">
                         <router-link
                             :to="{
-                                name: 'app.orders.view',
+                                name: 'app.orders.show',
                                 params: { id: order.id },
                             }"
                             class="w-8 h-8 rounded-full text-stone-700 border border-stone-700 flex justify-center items-center hover:text-white hover:bg-black"

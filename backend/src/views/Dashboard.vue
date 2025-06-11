@@ -70,7 +70,7 @@
                 >
                     <router-link
                         :to="{
-                            name: 'app.orders.view',
+                            name: 'app.orders.show',
                             params: { id: o.id },
                         }"
                         class=""

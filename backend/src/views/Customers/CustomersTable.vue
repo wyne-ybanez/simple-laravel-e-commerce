@@ -81,7 +81,16 @@
                         :sort-direction="sortDirection"
                         @click="sortCustomers('created_at')"
                     >
-                        Register Date
+                        Registered
+                    </TableHeaderCell>
+                    <TableHeaderCell
+                        field="updated_at"
+                        class="border-b p-2 pb-5 font-medium cursor-pointer"
+                        :sort-field="sortField"
+                        :sort-direction="sortDirection"
+                        @click="sortCustomers('updated_at')"
+                    >
+                        Updated
                     </TableHeaderCell>
                     <TableHeaderCell
                         field="actions"
@@ -109,7 +118,15 @@
                         {{ customer.id }}
                     </td>
                     <td class="border-b p-2">
-                        {{ customer.first_name }} {{ customer.last_name }}
+                        <router-link
+                            :to="{
+                                name: 'app.customers.show',
+                                params: { id: customer.id },
+                            }"
+                            class="hover:border-b hover:border-zinc-900"
+                        >
+                            {{ customer.first_name }} {{ customer.last_name }}
+                        </router-link>
                     </td>
                     <td
                         class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
@@ -142,6 +159,9 @@
                         {{ customer.created_at }}
                     </td>
                     <td class="border-b p-2">
+                        {{ customer.updated_at }}
+                    </td>
+                    <td class="border-b p-2">
                         <Menu as="div" class="relative inline-block text-left">
                             <div>
                                 <MenuButton
@@ -169,7 +189,7 @@
                                         <MenuItem v-slot="{ active }">
                                             <router-link
                                                 :to="{
-                                                    name: 'app.customers.view',
+                                                    name: 'app.customers.show',
                                                     params: { id: customer.id },
                                                 }"
                                                 :class="[

@@ -74,7 +74,16 @@
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                     >
-                        Created On
+                        Created
+                    </TableHeaderCell>
+                    <TableHeaderCell
+                        @click="sortUsers('updated_at')"
+                        class="font-medium border-b p-2 pb-5 cursor-pointer"
+                        field="updated_at"
+                        :sort-field="sortField"
+                        :sort-direction="sortDirection"
+                    >
+                        Updated
                     </TableHeaderCell>
                     <TableHeaderCell
                         field="actions"
@@ -106,7 +115,15 @@
                     <td
                         class="border-b px-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis"
                     >
-                        {{ user.name }}
+                        <router-link
+                            :to="{
+                                name: 'app.users.show',
+                                params: { id: user.id },
+                            }"
+                            class="hover:border-b hover:border-zinc-900"
+                        >
+                            {{ user.name }}
+                        </router-link>
                     </td>
                     <td class="border-b px-2">
                         {{ user.email }}
@@ -136,6 +153,9 @@
                     </td>
                     <td class="border-b px-2">
                         {{ user.created_at }}
+                    </td>
+                    <td class="border-b px-2">
+                        {{ user.updated_at }}
                     </td>
                     <td class="border-y px-2">
                         <Menu as="div" class="relative inline-block text-left">

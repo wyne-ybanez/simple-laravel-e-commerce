@@ -139,7 +139,7 @@ export default {
                             } else {
                                 this.user = response.data;
                                 router.push({
-                                    name: "app.users.view",
+                                    name: "app.users.show",
                                     params: { id: response.data.id },
                                 });
                             }

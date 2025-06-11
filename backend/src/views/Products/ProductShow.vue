@@ -261,7 +261,7 @@ export default {
                             } else {
                                 this.product = response.data;
                                 this.$router.push({
-                                    name: "app.products.view",
+                                    name: "app.products.show",
                                     params: { id: response.data.id },
                                 });
                             }

@@ -100,7 +100,7 @@
                         :sort-field="sortField"
                         :sort-direction="sortDirection"
                     >
-                        Last Updated
+                        Updated
                     </TableHeaderCell>
                     <TableHeaderCell
                         field="actions"
@@ -142,7 +142,10 @@
                         class="border-b p-2 max-w-[200px] overflow-hidden text-ellipsis"
                     >
                         <router-link
-                            :to="`/products/${product.id}`"
+                            :to="{
+                                name: 'app.products.show',
+                                params: { id: product.id },
+                            }"
                             class="hover:border-b hover:border-zinc-900"
                         >
                             {{ product.title }}

@@ -41,7 +41,7 @@ const routes = [
             },
             {
                 path: "products/:id",
-                name: "app.products.view",
+                name: "app.products.show",
                 component: ProductShow,
                 props: {
                     // ensures the id value is an integer, must be numeric value
@@ -60,7 +60,7 @@ const routes = [
             },
             {
                 path: "users/:id",
-                name: "app.users.view",
+                name: "app.users.show",
                 component: UserShow,
                 props: {
                     // ensures the id value is an integer, must be numeric value
@@ -74,7 +74,7 @@ const routes = [
             },
             {
                 path: "customers/:id",
-                name: "app.customers.view",
+                name: "app.customers.show",
                 component: CustomerShow,
             },
             {
@@ -84,7 +84,7 @@ const routes = [
             },
             {
                 path: "orders/:id",
-                name: "app.orders.view",
+                name: "app.orders.show",
                 component: OrderShow,
                 props: true
             },
