@@ -3,13 +3,13 @@ import AppLayout from "../components/AppLayout.vue";
 import Login from "../views/Login.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Products from "../views/Products/Products.vue";
-import ProductView from "../views/Products/ProductView.vue";
+import ProductShow from "../views/Products/ProductShow.vue";
 import Users from "../views/Users/Users.vue";
 import UserShow from "../views/Users/UserShow.vue";
 import Customers from "../views/Customers/Customers.vue";
-import CustomerView from "../views/Customers/CustomerView.vue";
+import CustomerShow from "../views/Customers/CustomerShow.vue";
 import Orders from "../views/Orders/Orders.vue";
-import OrderView from "../views/Orders/OrderView.vue";
+import OrderShow from "../views/Orders/OrderShow.vue";
 import RequestPassword from "../views/RequestPassword.vue";
 import ResetPassword from "../views/ResetPassword.vue";
 import NotFound from "../views/NotFound.vue";
@@ -37,12 +37,12 @@ const routes = [
             {
                 path: "products/create",
                 name: "app.products.create",
-                component: ProductView,
+                component: ProductShow,
             },
             {
                 path: "products/:id",
                 name: "app.products.view",
-                component: ProductView,
+                component: ProductShow,
                 props: {
                     // ensures the id value is an integer, must be numeric value
                     id: (value) => /^\d+$/.test(value)
@@ -75,7 +75,7 @@ const routes = [
             {
                 path: "customers/:id",
                 name: "app.customers.view",
-                component: CustomerView,
+                component: CustomerShow,
             },
             {
                 path: "orders",
@@ -85,7 +85,7 @@ const routes = [
             {
                 path: "orders/:id",
                 name: "app.orders.view",
-                component: OrderView,
+                component: OrderShow,
                 props: true
             },
         ],
