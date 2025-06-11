@@ -36,6 +36,7 @@ export function getCountries({ commit }) {
  * Get Products:
  *
  * These parameters are primarily whats used to display the products on the table prior to any filtering or queries.
+ * Uses the 'setProducts' mutation method in `mutations.js`.
  * Params: @url , @search , @per_page , @sort_field , @sort_direction
  */
 export function getProducts(
@@ -60,6 +61,8 @@ export function getProducts(
             },
         })
         .then((res) => {
+            // visually check data:
+            // console.log(JSON.stringify(res.data, null, 2));
             commit("setProducts", [false, res.data]);
         })
         .catch(() => {
@@ -133,6 +136,7 @@ export function deleteProduct({ commit }, id) {
  * Get Orders:
  *
  * These parameters are primarily whats used to display the users on the table prior to any filtering or queries.
+ * Uses the 'setOrders' mutation method in `mutations.js`.
  * Params: @url , @search , @per_page , @sort_field , @sort_direction
  */
 export function getOrders(
@@ -157,6 +161,8 @@ export function getOrders(
             },
         })
         .then((res) => {
+            // visually check data:
+            // console.log(JSON.stringify(res.data, null, 2));
             commit("setOrders", [false, res.data]);
         })
         .catch(() => {
@@ -179,6 +185,7 @@ export function deleteOrder({ commit }, id) {
  * Get Users:
  *
  * These parameters are primarily whats used to display the users on the table prior to any filtering or queries.
+ * Uses the 'setUsers' mutation method in `mutations.js`.
  * Params: @url , @search , @per_page , @sort_field , @sort_direction
  */
 export function getUsers(
@@ -203,6 +210,8 @@ export function getUsers(
             },
         })
         .then((res) => {
+            // visually check data:
+            // console.log(JSON.stringify(res.data, null, 2));
             commit("setUsers", [false, res.data]);
         })
         .catch(() => {
@@ -232,6 +241,7 @@ export function deleteUser({ commit }, id) {
  * Get Customers:
  *
  * These parameters are primarily whats used to display the users on the table prior to any filtering or queries.
+ * Uses the 'setCustomers' mutation method in `mutations.js`.
  * Params: @url , @search , @per_page , @sort_field , @sort_direction
  */
 
