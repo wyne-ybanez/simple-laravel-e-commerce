@@ -13,8 +13,10 @@
     </span>
 </template>
 
-<script setup>
-const { order } = defineProps({
-    order: Object,
-});
+<script>
+export default {
+    props: {
+        order: Object,
+    },
+};
 </script>

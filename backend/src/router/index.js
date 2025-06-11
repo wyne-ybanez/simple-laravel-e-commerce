@@ -2,13 +2,13 @@ import { createRouter, createWebHistory } from "vue-router";
 import AppLayout from "../components/AppLayout.vue";
 import Login from "../views/Login.vue";
 import Dashboard from "../views/Dashboard.vue";
-import Products from "../views/Products/Products.vue";
+import ProductsIndex from "../views/Products/ProductsIndex.vue";
 import ProductShow from "../views/Products/ProductShow.vue";
-import Users from "../views/Users/Users.vue";
+import UsersIndex from "../views/Users/UsersIndex.vue";
 import UserShow from "../views/Users/UserShow.vue";
-import Customers from "../views/Customers/Customers.vue";
+import CustomersIndex from "../views/Customers/CustomersIndex.vue";
 import CustomerShow from "../views/Customers/CustomerShow.vue";
-import Orders from "../views/Orders/Orders.vue";
+import OrdersIndex from "../views/Orders/OrdersIndex.vue";
 import OrderShow from "../views/Orders/OrderShow.vue";
 import RequestPassword from "../views/RequestPassword.vue";
 import ResetPassword from "../views/ResetPassword.vue";
@@ -32,7 +32,7 @@ const routes = [
             {
                 path: "products",
                 name: "app.products",
-                component: Products,
+                component: ProductsIndex,
             },
             {
                 path: "products/create",
@@ -51,7 +51,7 @@ const routes = [
             {
                 path: "users",
                 name: "app.users",
-                component: Users,
+                component: UsersIndex,
             },
             {
                 path: "users/create",
@@ -70,7 +70,7 @@ const routes = [
             {
                 path: "customers",
                 name: "app.customers",
-                component: Customers,
+                component: CustomersIndex,
             },
             {
                 path: "customers/:id",
@@ -80,7 +80,7 @@ const routes = [
             {
                 path: "orders",
                 name: "app.orders",
-                component: Orders,
+                component: OrdersIndex,
             },
             {
                 path: "orders/:id",
