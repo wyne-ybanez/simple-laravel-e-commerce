@@ -4,7 +4,7 @@
     >
         <!-- Hamburger -->
         <button
-            @click="emit('toggle-sidebar')"
+            @click="$emit('toggle-sidebar')"
             class="flex items-center justify-center rounded transition-colors w-8 h-8 text-zinc-500 hover:text-white md:hidden block"
         >
             <MenuIcon class="w-6" />
@@ -32,35 +32,35 @@
         <div class="text-zinc-600 justify-between md:block hidden">
             <router-link
                 :to="{ name: 'app.dashboard' }"
-                :class="{ 'text-zinc-400' : $route.name === 'app.dashboard' }"
+                :class="{ 'text-zinc-400': $route.name === 'app.dashboard' }"
                 class="py-2 px-5 mb-4 transition-colors hover:text-zinc-400 active:text-white"
             >
                 <span class="text-md"> Dashboard </span>
             </router-link>
             <router-link
                 :to="{ name: 'app.products' }"
-                :class="{ 'text-zinc-400' : $route.name === 'app.products' }"
+                :class="{ 'text-zinc-400': $route.name === 'app.products' }"
                 class="py-2 px-5 mb-4 transition-colors hover:text-zinc-400"
             >
                 <span class="text-md"> Products </span>
             </router-link>
             <router-link
                 :to="{ name: 'app.customers' }"
-                :class="{ 'text-zinc-400' : $route.name === 'app.customers' }"
+                :class="{ 'text-zinc-400': $route.name === 'app.customers' }"
                 class="py-2 px-5 mb-4 transition-colors hover:text-zinc-400"
             >
                 <span class="text-md"> Customers </span>
             </router-link>
             <router-link
                 :to="{ name: 'app.orders' }"
-                :class="{ 'text-zinc-400' : $route.name === 'app.orders' }"
+                :class="{ 'text-zinc-400': $route.name === 'app.orders' }"
                 class="py-2 px-5 mb-4 transition-colors hover:text-zinc-400"
             >
                 <span class="text-md"> Orders </span>
             </router-link>
             <router-link
                 :to="{ name: 'app.users' }"
-                :class="{ 'text-zinc-400' : $route.name === 'app.users' }"
+                :class="{ 'text-zinc-400': $route.name === 'app.users' }"
                 class="py-2 px-5 mb-4 transition-colors hover:text-zinc-400"
             >
                 <span class="text-md"> Users </span>
@@ -133,43 +133,62 @@
     </header>
 </template>
 
-<script setup>
+<script>
 import { MenuIcon, LogoutIcon, UserIcon } from "@heroicons/vue/outline";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 import { ChevronDownIcon } from "@heroicons/vue/solid";
-import { DEMO, LIVE, STAGING, LOCAL, BUSINESS_NAME, APP_URL } from "../constants.js";
-import store from "../store";
-import router from "../router";
-import { ref, computed } from "vue";
+import {
+    DEMO,
+    LIVE,
+    STAGING,
+    LOCAL,
+    BUSINESS_NAME,
+    APP_URL,
+} from "../constants.js";
+import store from "../store/index.js";
+import router from "../router/index.js";
 
-const emit = defineEmits(["toggle-sidebar"]);
-
-// controlled in 'constants.js'
-const businessName = ref(BUSINESS_NAME);
-const appURL = ref(APP_URL);
-
-const status = computed(() => {
-    if (DEMO) {
-        return "demo";
-    }
-    if (STAGING) {
-        return "staging";
-    }
-    if (LIVE) {
-        return "live";
-    }
-    if (LOCAL) {
-        return "local";
-    }
-});
-
-const currentUser = computed(() => store.state.user.data);
-
-function logout() {
-    store.dispatch("logout").then(() => {
-        router.push({ name: "login" });
-    });
-}
+export default {
+    components: {
+        Menu,
+        MenuButton,
+        MenuItems,
+        MenuItem,
+        MenuIcon,
+        LogoutIcon,
+        UserIcon,
+        ChevronDownIcon,
+    },
+    emits: ["toggle-sidebar"],
+    data() {
+        return {
+            DEMO,
+            LIVE,
+            STAGING,
+            LOCAL,
+            businessName: BUSINESS_NAME,
+            appURL: APP_URL,
+        };
+    },
+    computed: {
+        status() {
+            if (DEMO) return "demo";
+            if (STAGING) return "staging";
+            if (LIVE) return "live";
+            if (LOCAL) return "local";
+        },
+        currentUser() {
+            return store.state.user.data;
+        },
+    },
+    methods: {
+        logout() {
+            store.dispatch("logout").then(() => {
+                router.push({ name: "login" });
+            });
+        },
+    },
+};
 </script>
 
 <style scoped></style>

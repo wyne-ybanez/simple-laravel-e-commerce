@@ -276,7 +276,6 @@ export default {
         PencilIcon,
         TrashIcon,
     },
-    emits: ["clickEdit"],
     data() {
         return {
             perPage: CUSTOMERS_PER_PAGE,

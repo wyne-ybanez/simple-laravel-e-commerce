@@ -208,7 +208,6 @@ export default {
         TableHeaderCell,
         OrderStatus,
     },
-    emits: ["clickEdit"],
     data() {
         return {
             perPage: ORDERS_PER_PAGE,

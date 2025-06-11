@@ -21,15 +21,17 @@
             ></path>
         </svg>
         <div v-if="text" class="mt-2">{{ text }}</div>
-        <div v-else class="mt-2" >Please Wait...</div>
+        <div v-else class="mt-2">Please Wait...</div>
     </div>
 </template>
 
-<script setup>
-    const { text } = defineProps ({
+<script>
+export default {
+    props: {
         text: String,
-        default: 'Please Wait...',
-    });
+        default: "Please Wait...",
+    },
+};
 </script>
 
 <style scoped></style>

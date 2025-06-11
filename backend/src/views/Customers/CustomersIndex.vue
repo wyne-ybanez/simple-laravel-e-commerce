@@ -2,7 +2,7 @@
     <div class="flex items-center justify-between mb-3">
         <h1 class="text-lg font-normal">Customers</h1>
     </div>
-    <CustomersTable @clickEdit="editCustomer" />
+    <CustomersTable />
 </template>
 
 <script>

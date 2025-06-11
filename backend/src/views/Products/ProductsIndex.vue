@@ -8,7 +8,7 @@
             Add Product
         </router-link>
     </div>
-    <ProductsTable @clickEdit="editProduct" />
+    <ProductsTable />
 </template>
 
 <script>

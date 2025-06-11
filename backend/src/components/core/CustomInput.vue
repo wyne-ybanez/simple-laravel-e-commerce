@@ -17,7 +17,7 @@
                     <select
                         :name="name"
                         :required="required"
-                        :value="props.modelValue"
+                        :value="modelValue"
                         :class="inputClasses"
                         class="py-[0.8rem] mt-0 border]"
                         @change="onChange($event.target.value)"
@@ -43,8 +43,8 @@
                     <textarea
                         :name="name"
                         :required="required"
-                        :value="props.modelValue"
-                        @input="emit('update:modelValue', $event.target.value)"
+                        :value="modelValue"
+                        @input="$emit('update:modelValue', $event.target.value)"
                         :class="inputClasses"
                     >
                     </textarea>
@@ -62,8 +62,8 @@
                         :type="type"
                         :name="name"
                         :required="required"
-                        :value="props.modelValue"
-                        @input="emit('change', $event.target.files[0])"
+                        :value="modelValue"
+                        @input="$emit('change', $event.target.files[0])"
                         :class="inputClasses"
                         :placeholder="label"
                     />
@@ -75,12 +75,13 @@
                         <input
                             :name="name"
                             :type="type"
-                            :checked="
-                                props.modelValue ? props.modelValue : false
-                            "
+                            :checked="modelValue ? modelValue : false"
                             :required="required"
                             @change="
-                                emit('update:modelValue', $event.target.checked)
+                                $emit(
+                                    'update:modelValue',
+                                    $event.target.checked
+                                )
                             "
                             class="h-[20px] w-[20px] text-zinc-600 border-gray-200 mr-1 accent-green-500 mb-1 cursor-pointer"
                         />
@@ -105,8 +106,8 @@
                         :type="type"
                         :name="name"
                         :required="required"
-                        :value="props.modelValue"
-                        @input="emit('update:modelValue', $event.target.value)"
+                        :value="modelValue"
+                        @input="$emit('update:modelValue', $event.target.value)"
                         :class="inputClasses"
                         step="0.01"
                     />
@@ -115,8 +116,8 @@
                         :type="type"
                         :name="name"
                         :required="required"
-                        :value="props.modelValue"
-                        @input="emit('update:modelValue', $event.target.value)"
+                        :value="modelValue"
+                        @input="$emit('update:modelValue', $event.target.value)"
                         :class="inputClasses"
                     />
                 </div>
@@ -131,56 +132,57 @@
     </div>
 </template>
 
-<script setup>
-import { computed } from "vue";
-
-const props = defineProps({
-    modelValue: [String, Number, File],
-    label: String,
-    type: {
-        type: String,
-        default: "text",
+<script>
+export default {
+    props: {
+        modelValue: [String, Number, File],
+        label: String,
+        type: {
+            type: String,
+            default: "text",
+        },
+        name: String,
+        required: Boolean,
+        prepend: {
+            type: String,
+            default: "",
+        },
+        append: {
+            type: String,
+            default: "",
+        },
+        selectOptions: Array,
+        errors: {
+            type: Array,
+            required: false,
+        },
     },
-    name: String,
-    required: Boolean,
-    prepend: {
-        type: String,
-        default: "",
+    emits: ["update:modelValue", "change"],
+    computed: {
+        inputClasses() {
+            const cls = [
+                `w-full mt-3 px-3 py-3 border border-gray-300 bg-zinc-50 placeholder-gray-500 text-zinc-900 focus:border-gray-400 focus:bg-white focus:outline-none focus:ring-0 focus:ring-offset-0 sm:text-sm`,
+            ];
+
+            if (this.append !== "" && this.prepend === "") {
+                cls.push(`rounded-l-sm`);
+            }
+            if (this.prepend !== "" && this.append === "") {
+                cls.push(`rounded-r-sm`);
+            }
+            if (this.prepend === "" && this.append === "") {
+                cls.push(`rounded-sm`);
+            }
+            return cls.join(" ");
+        },
     },
-    append: {
-        type: String,
-        default: "",
+    methods: {
+        onChange(value) {
+            this.$emit("update:modelValue", value);
+            this.$emit("change", value);
+        },
     },
-    selectOptions: Array,
-    errors: {
-        type: Array,
-        required: false
-    },
-});
-
-const inputClasses = computed(() => {
-    const cls = [
-        `w-full mt-3 px-3 py-3 border border-gray-300 bg-zinc-50 placeholder-gray-500 text-zinc-900 focus:border-gray-400 focus:bg-white focus:outline-none focus:ring-0 focus:ring-offset-0 sm:text-sm`,
-    ];
-
-    if (props.append && !props.prepend) {
-        cls.push(`rounded-l-sm`);
-    }
-    if (props.prepend && !props.append) {
-        cls.push(`rounded-r-sm`);
-    }
-    if (!props.prepend && !props.append) {
-        cls.push(`rounded-sm`);
-    }
-    return cls.join(" ");
-});
-
-const emit = defineEmits(["update:modelValue", "change"]);
-
-function onChange(value) {
-  emit('update:modelValue', value)
-  emit('change', value)
-}
+};
 </script>
 
 <style scoped></style>
